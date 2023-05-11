@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Date
  * @example
  *
- * isDate(new Date)
- * // => true
+ * isDate(new Date); // true
+ * isDate('Mon April 23 2012'); // false
  *
- * isDate('Mon April 23 2012')
- * // => false
  */
 function isDate(value: any) {
   return isType(value, 'Date');

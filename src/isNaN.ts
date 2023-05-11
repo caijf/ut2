@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为NaN
  * @example
  *
- * isNaN(NaN)
- * // => true
+ * isNaN(NaN); // true
+ * isNaN(1); // false
  *
- * isNaN(1)
- * // => false
  */
 function _isNaN(value: any) {
   return isType(value, 'Number') && isNaN(value);

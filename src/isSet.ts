@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Set
  * @example
  *
- * isSet(new Set)
- * // => true
+ * isSet(new Set); // true
+ * isSet(new WeakSet); // false
  *
- * isSet(new WeakSet)
- * // => false
  */
 function isSet(value: any) {
   return isType(value, 'Set');

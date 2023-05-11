@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Map
  * @example
  *
- * isMap(new Map)
- * // => true
+ * isMap(new Map); // true
+ * isMap(new WeakMap); // false
  *
- * isMap(new WeakMap)
- * // => false
  */
 function isMap(value: any) {
   return isType(value, 'Map');

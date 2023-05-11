@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为String
  * @example
  *
- * isString('abc')
- * // => true
+ * isString('abc'); // true
+ * isString(1); // false
  *
- * isString(1)
- * // => false
  */
 function isString(value: any) {
   return isType(value, 'String');

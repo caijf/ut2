@@ -12,14 +12,10 @@ import isType from './isType';
  * @returns {boolean} 是否为Blob对象
  * @example
  *
- * isBlob(new Blob(['a']))
- * // => true
+ * isBlob(new Blob(['a'])); // true
+ * isBlob({}); // false
+ * isBlob('2012'); // false
  *
- * isBlob({})
- * // => false
- *
- * isBlob('2012')
- * // => false
  */
 function isBlob(value: any) {
   return isType(value, 'Blob');

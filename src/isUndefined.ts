@@ -8,14 +8,10 @@
  * @returns {boolean} 是否为Undefined
  * @example
  *
- * isUndefined(undefined)
- * // => true
+ * isUndefined(undefined); // true
+ * isUndefined(void 0); // true
+ * isUndefined(null); // false
  *
- * isUndefined(void 0)
- * // => true
- *
- * isUndefined(null)
- * // => false
  */
 function isUndefined(value: any) {
   return value === void 0;

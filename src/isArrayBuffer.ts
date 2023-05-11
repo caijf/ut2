@@ -10,14 +10,10 @@ import isType from './isType';
  * @returns {boolean} 是否为ArrayBuffer对象
  * @example
  *
- * isArrayBuffer(new ArrayBuffer(8))
- * // => true
+ * isArrayBuffer(new ArrayBuffer(8)); // true
+ * isArrayBuffer({}); // false
+ * isArrayBuffer('2012'); // false
  *
- * isArrayBuffer({})
- * // => false
- *
- * isArrayBuffer('2012')
- * // => false
  */
 function isArrayBuffer(value: any) {
   return isType(value, 'ArrayBuffer');

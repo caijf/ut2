@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为WeakSet
  * @example
  *
- * isWeakSet(new WeakSet)
- * // => true
+ * isWeakSet(new WeakSet); // true
+ * isWeakSet(new Set); // false
  *
- * isWeakSet(new Set)
- * // => false
  */
 function isWeakSet(value: any) {
   return isType(value, 'WeakSet');

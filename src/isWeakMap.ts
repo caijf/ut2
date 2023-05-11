@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为WeakMap
  * @example
  *
- * isWeakMap(new WeakMap)
- * // => true
+ * isWeakMap(new WeakMap); // true
+ * isWeakMap(new Map); // false
  *
- * isWeakMap(new Map)
- * // => false
  */
 function isWeakMap(value: any) {
   return isType(value, 'WeakMap');

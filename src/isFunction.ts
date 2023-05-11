@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Function|AsyncFunction|GeneratorFunction|Proxy
  * @example
  *
- * isFunction(()=>{}))
- * // => true
+ * isFunction(()=>{})); // true
+ * isFunction(/abc/); // false
  *
- * isFunction(/abc/)
- * // => false
  */
 function isFunction(value: any) {
   return (

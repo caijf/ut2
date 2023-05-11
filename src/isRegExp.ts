@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为RegExp
  * @example
  *
- * isRegExp(/abc/)
- * // => true
+ * isRegExp(/abc/); // true
+ * isRegExp('/abc/'); // false
  *
- * isRegExp('/abc/')
- * // => false
  */
 function isRegExp(value: any) {
   return isType(value, 'RegExp');

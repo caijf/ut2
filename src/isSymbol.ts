@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Symbol
  * @example
  *
- * isSymbol(Symbol.iterator)
- * // => true
+ * isSymbol(Symbol.iterator); // true
+ * isSymbol("abc"); // false
  *
- * isSymbol("abc")
- * // => false
  */
 function isSymbol(value: any) {
   return isType(value, 'Symbol');

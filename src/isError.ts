@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError | DOMException
  * @example
  *
- * isError(new Error)
- * // => true
+ * isError(new Error); // true
+ * isError(Error); // false
  *
- * isError(Error)
- * // => false
  */
 function isError(value: any) {
   return isType(value, 'Error') || isType(value, 'DOMException');

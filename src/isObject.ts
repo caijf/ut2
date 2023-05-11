@@ -8,14 +8,10 @@
  * @returns {boolean} 是否为Object
  * @example
  *
- * isObject({})
- * // => true
+ * isObject({}); // true
+ * isObject([1,2,3]); // true
+ * isObject(null); // false
  *
- * isObject([1,2,3])
- * // => true
- *
- * isObject(null)
- * // => false
  */
 function isObject(value: any) {
   const type = typeof value;

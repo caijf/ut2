@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Boolean
  * @example
  *
- * isBoolean(false)
- * // => true
+ * isBoolean(false); // true
+ * isBoolean(null); // false
  *
- * isBoolean(null)
- * // => false
  */
 function isBoolean(value: any) {
   return value === true || value === false || isType(value, 'Boolean');

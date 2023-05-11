@@ -10,20 +10,12 @@ import isType from './isType';
  * @returns {boolean} 是否为Number
  * @example
  *
- * isNumber(1)
- * // => true
+ * isNumber(1); // true
+ * isNumber(Number.MIN_VALUE); // true
+ * isNumber(Infinity); // true
+ * isNumber(NaN); // true
+ * isNumber('1'); // false
  *
- * isNumber(Number.MIN_VALUE)
- * // => true
- *
- * isNumber(Infinity)
- * // => true
- *
- * isNumber(NaN)
- * // => true
- *
- * isNumber('1')
- * // => false
  */
 function isNumber(value: any) {
   return isType(value, 'Number');

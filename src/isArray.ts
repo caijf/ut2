@@ -10,11 +10,9 @@ import isType from './isType';
  * @returns {boolean} 是否为Array
  * @example
  *
- * isArray([])
- * // => true
+ * isArray([]); // true
+ * isArray(1); // false
  *
- * isArray(1)
- * // => false
  */
 function isArray(value: any) {
   return Array.isArray(value) || isType(value, 'Array');

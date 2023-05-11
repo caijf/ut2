@@ -8,11 +8,9 @@
  * @returns {boolean} 是否为Null
  * @example
  *
- * isNull(null)
- * // => true
+ * isNull(null); // true
+ * isNull(void 0); // false
  *
- * isNull(void 0)
- * // => false
  */
 function isNull(value: any) {
   return value === null;
