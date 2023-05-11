@@ -1,9 +1,29 @@
-# Dependencies
-.psci_modules
-.spago
-bower_components
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
 node_modules
 
-# Generated files
-.psci
-output
+# testing
+coverage
+
+# production
+build
+zip
+dist
+example
+docs
+docs-src
+types
+esm
+lib
+
+# misc
+.DS_Store
+.vscode
+.idea
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+package-lock.json

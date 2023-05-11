@@ -1,0 +1,22 @@
+{
+  "name": "ut2",
+  "version": "0.0.0",
+  "main": "index.js",
+  "author": "caijf",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:coverage:local": "cross-env COVERAGE_LOCAL=1 jest --coverage && open ./coverage/lcov-report/index.html"
+  },
+  "dependencies": {
+    "tslib": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "cross-env": "^7.0.3",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.4"
+  }
+}
