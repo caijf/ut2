@@ -5,8 +5,6 @@
  * @since 1.0.0
  */
 export { default as uniqueId } from './uniqueId';
-
-// eslint-disable-next-line no-undef
 export const version = BUILD_VERSION;
 
 /**
