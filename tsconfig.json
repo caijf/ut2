@@ -1,5 +1,4 @@
 {
-  "exclude": ["docs/", "dist/", "es/", "lib/", "types/"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     /* Basic Options */
