@@ -176,7 +176,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isArguments.js.html">isArguments.js</a>, <a href="isArguments.js.html#line18">line 18</a>
+        <a href="isArguments.js.html">isArguments.js</a>, <a href="isArguments.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -226,11 +226,8 @@
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isArguments(function() { return arguments }())
-// => true
-
-isArguments([1, 2, 3])
-// => false</code></pre>
+    <pre class="prettyprint"><code>isArguments(function() { return arguments }()); // true
+isArguments([1, 2, 3]); // false</code></pre>
 
 
 
@@ -346,7 +343,7 @@ isArguments([1, 2, 3])
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isArray.js.html">isArray.js</a>, <a href="isArray.js.html#line18">line 18</a>
+        <a href="isArray.js.html">isArray.js</a>, <a href="isArray.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -396,11 +393,8 @@ isArguments([1, 2, 3])
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isArray([])
-// => true
-
-isArray(1)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isArray([]); // true
+isArray(1); // false</code></pre>
 
 
 
@@ -516,7 +510,7 @@ isArray(1)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isArrayBuffer.js.html">isArrayBuffer.js</a>, <a href="isArrayBuffer.js.html#line21">line 21</a>
+        <a href="isArrayBuffer.js.html">isArrayBuffer.js</a>, <a href="isArrayBuffer.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -566,14 +560,9 @@ isArray(1)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isArrayBuffer(new ArrayBuffer(8))
-// => true
-
-isArrayBuffer({})
-// => false
-
-isArrayBuffer('2012')
-// => false</code></pre>
+    <pre class="prettyprint"><code>isArrayBuffer(new ArrayBuffer(8)); // true
+isArrayBuffer({}); // false
+isArrayBuffer('2012'); // false</code></pre>
 
 
 
@@ -690,7 +679,7 @@ isArrayBuffer('2012')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isBlob.js.html">isBlob.js</a>, <a href="isBlob.js.html#line23">line 23</a>
+        <a href="isBlob.js.html">isBlob.js</a>, <a href="isBlob.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -740,14 +729,9 @@ isArrayBuffer('2012')
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isBlob(new Blob(['a']))
-// => true
-
-isBlob({})
-// => false
-
-isBlob('2012')
-// => false</code></pre>
+    <pre class="prettyprint"><code>isBlob(new Blob(['a'])); // true
+isBlob({}); // false
+isBlob('2012'); // false</code></pre>
 
 
 
@@ -863,7 +847,7 @@ isBlob('2012')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isBoolean.js.html">isBoolean.js</a>, <a href="isBoolean.js.html#line18">line 18</a>
+        <a href="isBoolean.js.html">isBoolean.js</a>, <a href="isBoolean.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -913,11 +897,8 @@ isBlob('2012')
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isBoolean(false)
-// => true
-
-isBoolean(null)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isBoolean(false); // true
+isBoolean(null); // false</code></pre>
 
 
 
@@ -1033,7 +1014,7 @@ isBoolean(null)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isDate.js.html">isDate.js</a>, <a href="isDate.js.html#line18">line 18</a>
+        <a href="isDate.js.html">isDate.js</a>, <a href="isDate.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -1083,11 +1064,8 @@ isBoolean(null)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isDate(new Date)
-// => true
-
-isDate('Mon April 23 2012')
-// => false</code></pre>
+    <pre class="prettyprint"><code>isDate(new Date); // true
+isDate('Mon April 23 2012'); // false</code></pre>
 
 
 
@@ -1203,7 +1181,7 @@ isDate('Mon April 23 2012')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isError.js.html">isError.js</a>, <a href="isError.js.html#line18">line 18</a>
+        <a href="isError.js.html">isError.js</a>, <a href="isError.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -1253,11 +1231,8 @@ isDate('Mon April 23 2012')
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isError(new Error)
-// => true
-
-isError(Error)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isError(new Error); // true
+isError(Error); // false</code></pre>
 
 
 
@@ -1373,7 +1348,7 @@ isError(Error)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isFunction.js.html">isFunction.js</a>, <a href="isFunction.js.html#line18">line 18</a>
+        <a href="isFunction.js.html">isFunction.js</a>, <a href="isFunction.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -1423,11 +1398,8 @@ isError(Error)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isFunction(()=>{}))
-// => true
-
-isFunction(/abc/)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isFunction(()=>{})); // true
+isFunction(/abc/); // false</code></pre>
 
 
 
@@ -1543,7 +1515,7 @@ isFunction(/abc/)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isMap.js.html">isMap.js</a>, <a href="isMap.js.html#line18">line 18</a>
+        <a href="isMap.js.html">isMap.js</a>, <a href="isMap.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -1593,11 +1565,8 @@ isFunction(/abc/)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isMap(new Map)
-// => true
-
-isMap(new WeakMap)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isMap(new Map); // true
+isMap(new WeakMap); // false</code></pre>
 
 
 
@@ -1713,7 +1682,7 @@ isMap(new WeakMap)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNaN.js.html">isNaN.js</a>, <a href="isNaN.js.html#line18">line 18</a>
+        <a href="isNaN.js.html">isNaN.js</a>, <a href="isNaN.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -1763,11 +1732,8 @@ isMap(new WeakMap)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isNaN(NaN)
-// => true
-
-isNaN(1)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isNaN(NaN); // true
+isNaN(1); // false</code></pre>
 
 
 
@@ -1883,7 +1849,7 @@ isNaN(1)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNil.js.html">isNil.js</a>, <a href="isNil.js.html#line12">line 12</a>
+        <a href="isNil.js.html">isNil.js</a>, <a href="isNil.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -1929,6 +1895,16 @@ isNaN(1)
 
 
 
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>isNil(undefined); // true
+isNil(void 0); // true
+isNil(null); // true
+isNil(''); // false
+isNil('a'); // false
+isNil(1); // false</code></pre>
 
 
 
@@ -2044,7 +2020,7 @@ isNaN(1)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNull.js.html">isNull.js</a>, <a href="isNull.js.html#line17">line 17</a>
+        <a href="isNull.js.html">isNull.js</a>, <a href="isNull.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -2094,11 +2070,8 @@ isNaN(1)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isNull(null)
-// => true
-
-isNull(void 0)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isNull(null); // true
+isNull(void 0); // false</code></pre>
 
 
 
@@ -2214,7 +2187,7 @@ isNull(void 0)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNumber.js.html">isNumber.js</a>, <a href="isNumber.js.html#line27">line 27</a>
+        <a href="isNumber.js.html">isNumber.js</a>, <a href="isNumber.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -2264,20 +2237,11 @@ isNull(void 0)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isNumber(1)
-// => true
-
-isNumber(Number.MIN_VALUE)
-// => true
-
-isNumber(Infinity)
-// => true
-
-isNumber(NaN)
-// => true
-
-isNumber('1')
-// => false</code></pre>
+    <pre class="prettyprint"><code>isNumber(1); // true
+isNumber(Number.MIN_VALUE); // true
+isNumber(Infinity); // true
+isNumber(NaN); // true
+isNumber('1'); // false</code></pre>
 
 
 
@@ -2393,7 +2357,7 @@ isNumber('1')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isObject.js.html">isObject.js</a>, <a href="isObject.js.html#line20">line 20</a>
+        <a href="isObject.js.html">isObject.js</a>, <a href="isObject.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -2443,14 +2407,9 @@ isNumber('1')
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isObject({})
-// => true
-
-isObject([1,2,3])
-// => true
-
-isObject(null)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isObject({}); // true
+isObject([1,2,3]); // true
+isObject(null); // false</code></pre>
 
 
 
@@ -2566,7 +2525,7 @@ isObject(null)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isRegExp.js.html">isRegExp.js</a>, <a href="isRegExp.js.html#line18">line 18</a>
+        <a href="isRegExp.js.html">isRegExp.js</a>, <a href="isRegExp.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -2616,11 +2575,8 @@ isObject(null)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isRegExp(/abc/)
-// => true
-
-isRegExp('/abc/')
-// => false</code></pre>
+    <pre class="prettyprint"><code>isRegExp(/abc/); // true
+isRegExp('/abc/'); // false</code></pre>
 
 
 
@@ -2736,7 +2692,7 @@ isRegExp('/abc/')
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isSet.js.html">isSet.js</a>, <a href="isSet.js.html#line18">line 18</a>
+        <a href="isSet.js.html">isSet.js</a>, <a href="isSet.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -2786,11 +2742,8 @@ isRegExp('/abc/')
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isSet(new Set)
-// => true
-
-isSet(new WeakSet)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isSet(new Set); // true
+isSet(new WeakSet); // false</code></pre>
 
 
 
@@ -2906,7 +2859,7 @@ isSet(new WeakSet)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isString.js.html">isString.js</a>, <a href="isString.js.html#line18">line 18</a>
+        <a href="isString.js.html">isString.js</a>, <a href="isString.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -2956,11 +2909,8 @@ isSet(new WeakSet)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isString('abc')
-// => true
-
-isString(1)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isString('abc'); // true
+isString(1); // false</code></pre>
 
 
 
@@ -3076,7 +3026,7 @@ isString(1)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isSymbol.js.html">isSymbol.js</a>, <a href="isSymbol.js.html#line18">line 18</a>
+        <a href="isSymbol.js.html">isSymbol.js</a>, <a href="isSymbol.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -3126,11 +3076,8 @@ isString(1)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isSymbol(Symbol.iterator)
-// => true
-
-isSymbol("abc")
-// => false</code></pre>
+    <pre class="prettyprint"><code>isSymbol(Symbol.iterator); // true
+isSymbol("abc"); // false</code></pre>
 
 
 
@@ -3246,7 +3193,7 @@ isSymbol("abc")
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isUndefined.js.html">isUndefined.js</a>, <a href="isUndefined.js.html#line20">line 20</a>
+        <a href="isUndefined.js.html">isUndefined.js</a>, <a href="isUndefined.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -3296,14 +3243,9 @@ isSymbol("abc")
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isUndefined(undefined)
-// => true
-
-isUndefined(void 0)
-// => true
-
-isUndefined(null)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isUndefined(undefined); // true
+isUndefined(void 0); // true
+isUndefined(null); // false</code></pre>
 
 
 
@@ -3419,7 +3361,7 @@ isUndefined(null)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isWeakMap.js.html">isWeakMap.js</a>, <a href="isWeakMap.js.html#line18">line 18</a>
+        <a href="isWeakMap.js.html">isWeakMap.js</a>, <a href="isWeakMap.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -3469,11 +3411,8 @@ isUndefined(null)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isWeakMap(new WeakMap)
-// => true
-
-isWeakMap(new Map)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isWeakMap(new WeakMap); // true
+isWeakMap(new Map); // false</code></pre>
 
 
 
@@ -3589,7 +3528,7 @@ isWeakMap(new Map)
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isWeakSet.js.html">isWeakSet.js</a>, <a href="isWeakSet.js.html#line18">line 18</a>
+        <a href="isWeakSet.js.html">isWeakSet.js</a>, <a href="isWeakSet.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -3639,11 +3578,8 @@ isWeakMap(new Map)
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isWeakSet(new WeakSet)
-// => true
-
-isWeakSet(new Set)
-// => false</code></pre>
+    <pre class="prettyprint"><code>isWeakSet(new WeakSet); // true
+isWeakSet(new Set); // false</code></pre>
 
 
 
@@ -3758,7 +3694,7 @@ isWeakSet(new Set)
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu May 11 2023 08:24:29 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Thu May 11 2023 08:37:14 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
