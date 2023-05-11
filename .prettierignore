@@ -22,4 +22,6 @@ yarn-error.log
 *.bmp
 
 /dist
+/es
+/lib
 /coverage

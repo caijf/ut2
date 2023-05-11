@@ -26,7 +26,7 @@ yarn add ut2
 
 如果你的项目使用的是原生方式开发，可以在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `utilHelpers` 。
 
-`npm` 包的 `ut2/umd` 目录下提供了 `UMD` 包 `ut2.js` 以及 `ut2.min.js`。你也可以通过 [UNPKG](https://unpkg.com/browse/ut2/umd/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/ut2/umd/ut2.min.js)<sup> _注意版本_ </sup>。
+`npm` 包的 `ut2/dist` 目录下提供了 `UMD` 包 `ut2.js` 以及 `ut2.min.js`。你也可以通过 [UNPKG](https://unpkg.com/browse/ut2/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/ut2/dist/ut2.min.js)<sup> _注意版本_ </sup>。
 
 [npm]: https://img.shields.io/npm/v/ut2.svg
 [npm-url]: https://npmjs.com/package/ut2

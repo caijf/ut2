@@ -13,7 +13,7 @@ function toCamel(str) {
 
 export const pkgName = pkg.name;
 export const globalName = toCamel(pkg.name);
-export const umdDir = `umd`;
+export const umdDir = `dist`;
 export const esmDir = `es`;
 export const cjsDir = `lib`;
 export const typesDir = 'types';
