@@ -15,14 +15,15 @@
     "build": "npm run build:module && npm run build:umd && npm run build:types",
     "build:module": "rm -rf es && rm -rf lib && rollup -c rollup.module.config.mjs",
     "build:umd": "rm -rf dist && rollup -c rollup.umd.config.mjs",
-    "build:types": "rm -rf types && tsc -d --outDir types --emitDeclarationOnly",
+    "build:types": "rm -rf types && tsc -p tsconfig.build.json -d --outDir types --emitDeclarationOnly",
     "build:doc": "npm run doc",
-    "doc": "rm -rf docs && rm -rf docs-src && tsc --outDir docs-src && jsdoc -c conf.json && rm -rf docs-src",
+    "doc": "rm -rf docs && rm -rf docs-src && tsc -p tsconfig.build.json --outDir docs-src && jsdoc -c conf.json && rm -rf docs-src",
     "doc:open": "open ./docs/index.html",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint:js -- --fix",
     "prettier": "prettier --write **/*",
-    "commit": "cz"
+    "commit": "cz",
+    "tsc": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

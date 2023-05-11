@@ -4,8 +4,9 @@
  * @module Util
  * @since 1.0.0
  */
-export { default as uniqueId } from './uniqueId';
 export const version = BUILD_VERSION;
+export { default as castArray } from './castArray';
+export { default as uniqueId } from './uniqueId';
 
 /**
  * 类型检测
