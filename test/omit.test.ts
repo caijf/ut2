@@ -1,7 +1,6 @@
 import omit from '../src/omit';
 
 describe('omit', () => {
-
   it('shallow copy', () => {
     const originObj = { name: 'jeff' };
     const copy = omit(originObj);

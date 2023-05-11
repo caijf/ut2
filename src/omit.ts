@@ -8,15 +8,15 @@
  * @param {string|string[]} [fields] 排除的属性
  * @returns {object} 浅拷贝对象
  * @example
- * 
+ *
  * const obj = { name: "jeff", age: 18 };
  *
  * // 浅拷贝对象
  * omit(obj); // { name: "jeff", age: 18 }
- * 
+ *
  * // 排除单个属性
  * omit(obj, 'name'); // { age: 18 }
- * 
+ *
  * // 排除多个属性
  * omit(obj, ['name', 'age']); // {}
  */
