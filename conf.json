@@ -1,0 +1,54 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": ["docs-src", "README.md"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "template": "node_modules/docdash",
+    "encoding": "utf8",
+    "destination": "docs/",
+    "recurse": true,
+    "verbose": true
+  },
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "layoutFile": "./.jsdoc/tmpl/layout.tmpl"
+    }
+  },
+  "docdash": {
+    "openGraph": {
+      "title": "ut2",
+      "type": "website",
+      "image": "",
+      "site_name": "ut2",
+      "url": "https://caijf.github.io/ut2/index.html"
+    },
+    "meta": {
+      "title": "ut2 ",
+      "description": "一个现代 JavaScript 实用工具库",
+      "keyword": "util, modules, es5, es6, es2015"
+    },
+    "search": true,
+    "menu": {
+      "Github": {
+        "href": "https://github.com/caijf/ut2",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "repo_link"
+      },
+      "Changelog": {
+        "href": "https://github.com/caijf/ut2/releases",
+        "target": "_blank",
+        "class": "menu-item",
+        "id": "repo_link"
+      }
+    }
+  }
+}
