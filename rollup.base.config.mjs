@@ -13,10 +13,9 @@ function toCamel(str) {
 
 export const pkgName = pkg.name;
 export const globalName = toCamel(pkg.name);
-export const outputDir = 'dist';
-export const umdDir = `${outputDir}/umd`;
-export const esmDir = `${outputDir}/es`;
-export const cjsDir = `${outputDir}/lib`;
+export const umdDir = `umd`;
+export const esmDir = `es`;
+export const cjsDir = `lib`;
 export const typesDir = 'types';
 export const input = './src/index.ts';
 export const plugins = [

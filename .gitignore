@@ -14,8 +14,9 @@ example
 docs
 docs-src
 types
-esm
+es
 lib
+umd
 
 # misc
 .DS_Store

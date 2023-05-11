@@ -3,18 +3,18 @@
   "version": "0.0.0",
   "author": "caijf",
   "license": "MIT",
-  "main": "dist/lib/index.js",
-  "module": "dist/es/index.js",
-  "unpkg": "dist/umd/ut2.min.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "unpkg": "umd/ut2.min.js",
   "sideEffects": false,
   "types": "types/index.d.ts",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:coverage:local": "cross-env COVERAGE_LOCAL=1 jest --coverage && open ./coverage/lcov-report/index.html",
-    "build": "rm -rf dist && npm run build:module && npm run build:dist && npm run build:types",
-    "build:module": "rm -rf dist/es && rm -rf dist/lib && rollup -c rollup.module.config.mjs",
-    "build:dist": "rm -rf dist/umd && rollup -c rollup.umd.config.mjs",
+    "build": "npm run build:module && npm run build:umd && npm run build:types",
+    "build:module": "rm -rf es && rm -rf lib && rollup -c rollup.module.config.mjs",
+    "build:umd": "rm -rf umd && rollup -c rollup.umd.config.mjs",
     "build:types": "rm -rf types && tsc -d --outDir types --emitDeclarationOnly",
     "build:doc": "npm run doc",
     "doc": "rm -rf docs && rm -rf docs-src && tsc --outDir docs-src && jsdoc -c conf.json && rm -rf docs-src",
@@ -32,7 +32,9 @@
     "url": "https://github.com/caijf/ut2/issues"
   },
   "files": [
-    "dist",
+    "umd",
+    "lib",
+    "es",
     "types"
   ],
   "keywords": [
