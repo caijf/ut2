@@ -1,13 +1,13 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为String
+ * 检查值是否为 String 。
  *
  * @static
  * @alias module:Type.isString
  * @since 1.0.0
  * @param {*} value 检查值
- * @returns {boolean} 是否为String
+ * @returns {boolean} 是否为 String
  * @example
  *
  * isString('abc'); // true

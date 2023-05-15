@@ -1,7 +1,7 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为Date
+ * 检查值是否为 Date 。
  *
  * @static
  * @alias module:Type.isDate

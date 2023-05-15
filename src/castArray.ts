@@ -1,5 +1,5 @@
 /**
- * 如果值不是数组，则将其转换为数组
+ * 如果值不是数组，则将其转换为数组。
  *
  * @static
  * @alias module:Util.castArray

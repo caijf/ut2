@@ -1,7 +1,7 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为ArrayBuffer对象
+ * 检查值是否为 ArrayBuffer 。
  *
  * @static
  * @alias module:Type.isArrayBuffer

@@ -1,7 +1,7 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为Arguments
+ * 检查值是否为 Arguments 。
  *
  * @static
  * @alias module:Type.isArguments

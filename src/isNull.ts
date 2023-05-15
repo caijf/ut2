@@ -1,11 +1,11 @@
 /**
- * 检查值是否为Null
+ * 检查值是否为 Null 。
  *
  * @static
  * @alias module:Type.isNull
  * @since 1.0.0
  * @param {*} value 检查值
- * @returns {boolean} 是否为Null
+ * @returns {boolean} 是否为 Null
  * @example
  *
  * isNull(null); // true

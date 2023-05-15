@@ -1,13 +1,13 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为WeakMap
+ * 检查值是否为 WeakMap 。
  *
  * @static
  * @alias module:Type.isWeakMap
  * @since 1.0.0
  * @param {*} value 检查值
- * @returns {boolean} 是否为WeakMap
+ * @returns {boolean} 是否为 WeakMap
  * @example
  *
  * isWeakMap(new WeakMap); // true

@@ -1,5 +1,5 @@
 /**
- * 检查值是否为Object
+ * 检查值是否为 Object 。
  *
  * @static
  * @alias module:Type.isObject

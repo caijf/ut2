@@ -1,7 +1,7 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为Boolean
+ * 检查值是否为 Boolean 。
  *
  * @static
  * @alias module:Type.isBoolean

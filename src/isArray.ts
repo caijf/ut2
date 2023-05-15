@@ -1,7 +1,7 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为Array
+ * 检查值是否为 Array 。
  *
  * @static
  * @alias module:Type.isArray
@@ -10,7 +10,7 @@ import isType from './isType';
  * @returns {boolean} 是否为Array
  * @example
  *
- * isArray([]); // true
+ * isArray([1, 2, 3]); // true
  * isArray(1); // false
  *
  */

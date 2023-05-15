@@ -1,13 +1,13 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为Map
+ * 检查值是否为 Map 。
  *
  * @static
  * @alias module:Type.isMap
  * @since 1.0.0
  * @param {*} value 检查值
- * @returns {boolean} 是否为Map
+ * @returns {boolean} 是否为 Map
  * @example
  *
  * isMap(new Map); // true

@@ -2,7 +2,7 @@ import isUndefined from './isUndefined';
 import isNull from './isNull';
 
 /**
- * 检查值是否为 undefined 或 null
+ * 检查值是否为 undefined 或 null 。
  *
  * @static
  * @alias module:Type.isNil

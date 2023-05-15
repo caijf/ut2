@@ -1,13 +1,13 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为RegExp
+ * 检查值是否为 RegExp 。
  *
  * @static
  * @alias module:Type.isRegExp
  * @since 1.0.0
  * @param {*} value 检查值
- * @returns {boolean} 是否为RegExp
+ * @returns {boolean} 是否为 RegExp
  * @example
  *
  * isRegExp(/abc/); // true

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test iframe</title>
+</head>
+
+<body>
+
+  <script src="../../dist/ut2.js"></script>
+  <script>
+    var value;
+    console.log('before:', ut2.isArray(value) + ', value is ', value); // false
+
+    var iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+
+    iframe.contentDocument.write(`
+    <html>
+    <body>
+      <script>
+        parent.value = [];
+  <\/script>
+</body>
+</hrml>
+`);
+
+    console.log('after:', ut2.isArray(value) + ', value is ', value); // true
+  </script>
+</body>
+
+</html>

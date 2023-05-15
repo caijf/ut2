@@ -1,13 +1,13 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为Set
+ * 检查值是否为 Set 。
  *
  * @static
  * @alias module:Type.isSet
  * @since 1.0.0
  * @param {*} value 检查值
- * @returns {boolean} 是否为Set
+ * @returns {boolean} 是否为 Set
  * @example
  *
  * isSet(new Set); // true

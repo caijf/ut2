@@ -1,11 +1,11 @@
 /**
- * 检查值是否为Undefined
+ * 检查值是否为 Undefined 。
  *
  * @static
  * @alias module:Type.isUndefined
  * @since 1.0.0
  * @param {*} value 检查值
- * @returns {boolean} 是否为Undefined
+ * @returns {boolean} 是否为 Undefined
  * @example
  *
  * isUndefined(undefined); // true

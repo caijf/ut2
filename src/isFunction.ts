@@ -1,7 +1,7 @@
-import isType from './isType';
+import isType from './internals/isType';
 
 /**
- * 检查值是否为Function|AsyncFunction|GeneratorFunction|Proxy
+ * 检查值是否为 Function|AsyncFunction|GeneratorFunction|Proxy 。
  *
  * @static
  * @alias module:Type.isFunction
