@@ -5,6 +5,8 @@ describe('castArray', () => {
     const values = [false, '', undefined, null, true, 1, 'a', { a: 1 }];
     const expected = values.map((value) => [value]);
     expect(expected).toEqual(values.map(castArray));
+
+    expect(castArray()).toEqual([]);
   });
 
   it('如果是数组，返回原值', () => {

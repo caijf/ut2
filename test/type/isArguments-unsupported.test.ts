@@ -1,7 +1,17 @@
+jest.mock('../../src/internals/helpers.ts', () => {
+  return {
+    argType: 'Arguments',
+    supportedArgumentsType: false
+  };
+});
 import { isArguments } from '../../src';
 import { falsy, truthy, noop, symbol, args, strictArgs } from '../_utils';
 
-describe('isArguments', () => {
+describe('isArguments-unsupported `Object.prototype.toString', () => {
+  afterAll(() => {
+    jest.unmock('../../src/internals/helpers.ts');
+  });
+
   it('corrent', () => {
     expect(isArguments(args)).toBe(true);
     expect(isArguments(strictArgs)).toBe(true);

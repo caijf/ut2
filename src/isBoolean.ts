@@ -1,13 +1,13 @@
 import isType from './internals/isType';
 
 /**
- * 检查值是否为 Boolean 。
+ * 检查值是否为布尔基元或对象。
  *
  * @static
  * @alias module:Type.isBoolean
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为Boolean
+ * @returns {boolean} 是否为布尔基元或对象
  * @example
  *
  * isBoolean(false); // true
