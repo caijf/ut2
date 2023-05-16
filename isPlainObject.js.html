@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArguments.js - ut2 </title>
+    <title>isPlainObject.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArguments.js</h1>
+    <h1 class="page-title">isPlainObject.js</h1>
     
 
     
@@ -69,34 +69,48 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { hasOwnProperty, propertyIsEnumerable } from './internals/native';
-import { supportedArgumentsType, argType } from './internals/helpers';
+            <pre class="prettyprint source linenums"><code>import { functionToString, hasOwnProperty, objectCtorString } from './internals/native';
+import isType from './internals/isType';
 import isObjectLike from './isObjectLike';
 /**
- * 检查值是否为参数对象。
+ * 检查值是否为普通对象，即由 `Object` 构造函数创建的对象或 `[[Prototype]]` 为 `null` 的对象。
  *
  * @static
- * @alias module:Type.isArguments
+ * @alias module:Type.isPlainObject
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为参数对象
+ * @returns {boolean} 是否为普通对象
  * @example
  *
- * isArguments(function() { return arguments }()); // true
+ * function Foo(){
+ *   this.a = 1;
+ * }
  *
- * isArguments([1, 2, 3]); // false
+ * isPlainObject(new Foo); // false
+ *
+ * isObject([1,2,3]); // false
+ *
+ * isObject({ a: 1, b: 2 }); // true
+ *
+ * isObject(Object.create(null)); // true
  *
  */
-function isArguments(value) {
-    if (supportedArgumentsType) {
-        return isType(value, argType);
+function isPlainObject(value) {
+    if (!isObjectLike(value) || !isType(value, 'Object')) {
+        return false;
     }
-    return (isObjectLike(value) &amp;&amp;
-        hasOwnProperty.call(value, 'callee') &amp;&amp;
-        !propertyIsEnumerable.call(value, 'callee'));
+    var proto = Object.getPrototypeOf(Object(value));
+    // Object.create(null)
+    if (proto === null) {
+        return true;
+    }
+    var Ctor = hasOwnProperty.call(proto, 'constructor') &amp;&amp; proto.constructor;
+    // 这里如果直接比较 proto.constructor === Object ，iframe 嵌套会导致结果不准确。
+    return (typeof Ctor === 'function' &amp;&amp;
+        Ctor instanceof Ctor &amp;&amp;
+        functionToString.call(Ctor) === objectCtorString);
 }
-export default isArguments;
+export default isPlainObject;
 </code></pre>
         </article>
     </section>

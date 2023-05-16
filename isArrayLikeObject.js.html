@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArguments.js - ut2 </title>
+    <title>isArrayLikeObject.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArguments.js</h1>
+    <h1 class="page-title">isArrayLikeObject.js</h1>
     
 
     
@@ -69,34 +69,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { hasOwnProperty, propertyIsEnumerable } from './internals/native';
-import { supportedArgumentsType, argType } from './internals/helpers';
+            <pre class="prettyprint source linenums"><code>import isArrayLike from './isArrayLike';
 import isObjectLike from './isObjectLike';
 /**
- * 检查值是否为参数对象。
+ * 检查值是否为类数组对象。
  *
  * @static
- * @alias module:Type.isArguments
+ * @alias module:Type.isArrayLikeObject
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为参数对象
+ * @returns {boolean} 是否为类数组对象
  * @example
  *
- * isArguments(function() { return arguments }()); // true
+ * isArrayLike([1, 2, 3]); // true
  *
- * isArguments([1, 2, 3]); // false
+ * isArrayLike(document.body.children); // true
+ *
+ * isArrayLike('abc'); // false
+ *
+ * isArrayLike(()=>{}); // false
  *
  */
-function isArguments(value) {
-    if (supportedArgumentsType) {
-        return isType(value, argType);
-    }
-    return (isObjectLike(value) &amp;&amp;
-        hasOwnProperty.call(value, 'callee') &amp;&amp;
-        !propertyIsEnumerable.call(value, 'callee'));
+function isArrayLikeObject(value) {
+    return isObjectLike(value) &amp;&amp; isArrayLike(value);
 }
-export default isArguments;
+export default isArrayLikeObject;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArguments.js - ut2 </title>
+    <title>internals/getTag.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArguments.js</h1>
+    <h1 class="page-title">internals/getTag.js</h1>
     
 
     
@@ -69,34 +69,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { hasOwnProperty, propertyIsEnumerable } from './internals/native';
-import { supportedArgumentsType, argType } from './internals/helpers';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>import { hasOwnProperty, objectToString } from './native';
 /**
- * 检查值是否为参数对象。
+ * 获取值的 `Object.prototype.toString` ，并且忽略 `Symbol.toStringTag` 影响。
  *
- * @static
- * @alias module:Type.isArguments
- * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 是否为参数对象
- * @example
- *
- * isArguments(function() { return arguments }()); // true
- *
- * isArguments([1, 2, 3]); // false
- *
+ * @param value 要查询的值
+ * @returns 对象名称
  */
-function isArguments(value) {
-    if (supportedArgumentsType) {
-        return isType(value, argType);
+function getRawTag(value) {
+    var isOwn = hasOwnProperty.call(value, Symbol.toStringTag);
+    var tag = value[Symbol.toStringTag];
+    var unmasked = false;
+    try {
+        value[Symbol.toStringTag] = undefined;
+        unmasked = true;
     }
-    return (isObjectLike(value) &amp;&amp;
-        hasOwnProperty.call(value, 'callee') &amp;&amp;
-        !propertyIsEnumerable.call(value, 'callee'));
+    catch (e) {
+        /* empty */
+    }
+    var result = objectToString.call(value);
+    if (unmasked) {
+        if (isOwn) {
+            value[Symbol.toStringTag] = tag;
+        }
+        else {
+            delete value[Symbol.toStringTag];
+        }
+    }
+    return result;
 }
-export default isArguments;
+/**
+ * 获取值的 `Object.prototype.toString` ，忽略 `Symbol.toStringTag` 影响。
+ *
+ * @param value 要查询的值
+ * @returns 对象名称
+ */
+function getTag(value) {
+    return Symbol &amp;&amp; Symbol.toStringTag &amp;&amp; Symbol.toStringTag in Object(value)
+        ? getRawTag(value)
+        : objectToString.call(value);
+}
+export default getTag;
 </code></pre>
         </article>
     </section>

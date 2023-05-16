@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArguments.js - ut2 </title>
+    <title>isObjectLike.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArguments.js</h1>
+    <h1 class="page-title">isObjectLike.js</h1>
     
 
     
@@ -69,34 +69,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { hasOwnProperty, propertyIsEnumerable } from './internals/native';
-import { supportedArgumentsType, argType } from './internals/helpers';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为参数对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 检查值是否为类对象。
+ *
+ * 如果一个值不为 `null` 并且 `typeof` 结果为 `object`，则该值是类对象。
  *
  * @static
- * @alias module:Type.isArguments
+ * @alias module:Type.isObjectLike
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为参数对象
+ * @returns {boolean} 是否为类对象
  * @example
  *
- * isArguments(function() { return arguments }()); // true
+ * isObjectLike({}); // true
  *
- * isArguments([1, 2, 3]); // false
+ * isObjectLike([1,2,3]); // true
+ *
+ * isObjectLike(()=>{}); // false
+ *
+ * isObjectLike(null); // false
  *
  */
-function isArguments(value) {
-    if (supportedArgumentsType) {
-        return isType(value, argType);
-    }
-    return (isObjectLike(value) &amp;&amp;
-        hasOwnProperty.call(value, 'callee') &amp;&amp;
-        !propertyIsEnumerable.call(value, 'callee'));
+function isObjectLike(value) {
+    return value != null &amp;&amp; typeof value === 'object';
 }
-export default isArguments;
+export default isObjectLike;
 </code></pre>
         </article>
     </section>
