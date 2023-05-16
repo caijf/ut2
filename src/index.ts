@@ -18,6 +18,7 @@ export { default as isArguments } from './isArguments';
 export { default as isArray } from './isArray';
 export { default as isArrayBuffer } from './isArrayBuffer';
 export { default as isArrayLike } from './isArrayLike';
+export { default as isArrayLikeObject } from './isArrayLikeObject';
 export { default as isBoolean } from './isBoolean';
 export { default as isDate } from './isDate';
 export { default as isError } from './isError';
