@@ -5,7 +5,7 @@
  * @alias module:Type.isLength
  * @since 1.0.0
  * @see {@link https://262.ecma-international.org/7.0/#sec-tolength|ToLength}
- * @param {*} value 检查值
+ * @param {*} value 要检查的值
  * @returns {boolean} 是否为有效的类数组长度
  * @example
  *

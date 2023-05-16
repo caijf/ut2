@@ -1,15 +1,20 @@
 /**
- * 检查值是否为 Object 。
+ * 检查值是否为对象。(例如，数组、函数、对象、正则表达式、new Number(0) 和 new String(''))。
  *
  * @static
  * @alias module:Type.isObject
  * @since 1.0.0
- * @param {*} value 检查值
- * @returns {boolean} 是否为Object
+ * @see {@link http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types|language type}
+ * @param {*} value 要检查的值
+ * @returns {boolean} 是否为对象
  * @example
  *
  * isObject({}); // true
+ *
  * isObject([1,2,3]); // true
+ *
+ * isObject(()=>{}); // true
+ *
  * isObject(null); // false
  *
  */

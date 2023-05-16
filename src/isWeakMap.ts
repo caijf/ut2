@@ -6,7 +6,7 @@ import isType from './internals/isType';
  * @static
  * @alias module:Type.isWeakMap
  * @since 1.0.0
- * @param {*} value 检查值
+ * @param {*} value 要检查的值
  * @returns {boolean} 是否为 WeakMap
  * @example
  *

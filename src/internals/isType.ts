@@ -1,4 +1,4 @@
-const toString = Object.prototype.toString;
+import getTag from './getTag';
 
 /**
  * 检测值的 `Object.prototype.toString` 类型。
@@ -10,7 +10,7 @@ const toString = Object.prototype.toString;
  * @returns {boolean} 返回值类型是否匹配
  */
 function isType(value: any, type: string) {
-  const nativeTypeString = toString.call(value);
+  const nativeTypeString = getTag(value);
   return nativeTypeString === '[object ' + type + ']';
 }
 

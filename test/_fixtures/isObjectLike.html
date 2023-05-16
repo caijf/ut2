@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>isObjectLike</title>
+</head>
+
+<body>
+  <script src="./iframe-vars.js"></script>
+  <script src="../../dist/ut2.js"></script>
+  <script>
+    console.assert(ut2.isObjectLike(document), document);
+    console.assert(ut2.isObjectLike(document.body), document.body);
+    console.assert(ut2.isObjectLike(childObject.element), childObject.element);
+    console.assert(ut2.isObjectLike(childObject.object), childObject.object);
+    console.assert(ut2.isObjectLike(childObject.date), childObject.date);
+    console.assert(ut2.isObjectLike(childObject.regexp), childObject.regexp);
+    console.assert(ut2.isObjectLike(childObject.string), childObject.string);
+    console.assert(ut2.isObjectLike(childObject.number), childObject.number);
+  </script>
+</body>
+
+</html>

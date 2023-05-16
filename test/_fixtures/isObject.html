@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>isObject</title>
+</head>
+
+<body>
+  <script src="./iframe-vars.js"></script>
+  <script src="../../dist/ut2.js"></script>
+  <script>
+    console.assert(ut2.isObject(document), document);
+    console.assert(ut2.isObject(document.body), document.body);
+    console.assert(ut2.isObject(childObject.element), childObject.element);
+    console.assert(ut2.isObject(childObject.object), childObject.object);
+    console.assert(ut2.isObject(childObject.date), childObject.date);
+    console.assert(ut2.isObject(childObject.function), childObject.function);
+    console.assert(ut2.isObject(childObject.regexp), childObject.regexp);
+    console.assert(ut2.isObject(childObject.string), childObject.string);
+    console.assert(ut2.isObject(childObject.number), childObject.number);
+  </script>
+</body>
+
+</html>

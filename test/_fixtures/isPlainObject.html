@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>isPlainObject</title>
+</head>
+
+<body>
+  <script src="./iframe-vars.js"></script>
+  <script src="../../dist/ut2.js"></script>
+  <script>
+    console.assert(!ut2.isPlainObject(document), document);
+    console.assert(!ut2.isPlainObject(document.body), document.body);
+    console.assert(!ut2.isPlainObject(childObject.element), childObject.element);
+    console.assert(!ut2.isPlainObject(childObject.date), childObject.date);
+    console.assert(!ut2.isPlainObject(childObject.function), childObject.function);
+    console.assert(!ut2.isPlainObject(childObject.regexp), childObject.regexp);
+    console.assert(!ut2.isPlainObject(childObject.string), childObject.string);
+    console.assert(!ut2.isPlainObject(childObject.number), childObject.number);
+
+    // true
+    console.assert(ut2.isPlainObject(childObject.object), childObject.object);
+  </script>
+</body>
+
+</html>
