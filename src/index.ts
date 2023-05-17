@@ -23,6 +23,7 @@ export { default as isBlob } from './isBlob';
 export { default as isBoolean } from './isBoolean';
 export { default as isBuffer } from './isBuffer';
 export { default as isDate } from './isDate';
+export { default as isElement } from './isElement';
 export { default as isError } from './isError';
 export { default as isFunction } from './isFunction';
 export { default as isLength } from './isLength';
