@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>isElement.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">isElement.js</h1>
     
 
     
@@ -69,32 +69,27 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 Buffer 。
- *
- * &lt;em style="font-weight: bold;">注意：该方法仅适用于 Node.js 。&lt;/em>
+            <pre class="prettyprint source linenums"><code>import isObjectLike from './isObjectLike';
+import isPlainObject from './isPlainObject';
+/**
+ * 检查值是否可能为 DOM 元素。
  *
  * @static
- * @alias module:Type.isBuffer
+ * @alias module:Type.isElement
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为 Buffer
+ * @returns {boolean} 是否可能为 DOM 元素
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
+ * isElement(document.body); // true
  *
- * isBuffer({}); // false
- *
- * isBuffer('2012'); // false
+ * isElement('&lt;body>'); // false
  *
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
-    }
-    return false;
+function isElement(value) {
+    return isObjectLike(value) &amp;&amp; value.nodeType === 1 &amp;&amp; !isPlainObject(value);
 }
-export default isBuffer;
+export default isElement;
 </code></pre>
         </article>
     </section>

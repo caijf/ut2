@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>internals/keys.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">internals/keys.js</h1>
     
 
     
@@ -69,32 +69,43 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 Buffer 。
+            <pre class="prettyprint source linenums"><code>import { hasOwnProperty, objectProto } from './native';
+/**
+ * 检测值是否为原型对象。
  *
- * &lt;em style="font-weight: bold;">注意：该方法仅适用于 Node.js 。&lt;/em>
- *
- * @static
- * @alias module:Type.isBuffer
- * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 是否为 Buffer
- * @example
- *
- * isBuffer(new Blob(['a'])); // true
- *
- * isBuffer({}); // false
- *
- * isBuffer('2012'); // false
- *
+ * @private
+ * @param value 要检查的值
+ * @returns 是否为原型对象
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
+function isPrototype(value) {
+    if (typeof value !== 'object') {
+        return false;
     }
-    return false;
+    var Ctor = value.constructor;
+    var proto = typeof Ctor === 'function' ? Ctor.prototype : objectProto;
+    return value === proto;
 }
-export default isBuffer;
+/**
+ * 获取对象的键。
+ *
+ * 抹平浏览器和 `nodejs` 对于 `Foo.prototype.constructor` 是否可枚举的差异
+ *
+ * @param value 对象
+ * @returns 可枚举的键
+ */
+function keys(value) {
+    if (!isPrototype(value)) {
+        return Object.keys(value);
+    }
+    var result = [];
+    for (var key in Object(value)) {
+        if (hasOwnProperty.call(value, key) &amp;&amp; key !== 'constructor') {
+            result.push(key);
+        }
+    }
+    return result;
+}
+export default keys;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>isTypedArray.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">isTypedArray.js</h1>
     
 
     
@@ -69,32 +69,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 Buffer 。
- *
- * &lt;em style="font-weight: bold;">注意：该方法仅适用于 Node.js 。&lt;/em>
+            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
+import { nodeIsTypedArray } from './internals/nodeUtil';
+/**
+ * 检查值是否为类型化数组。
  *
  * @static
- * @alias module:Type.isBuffer
+ * @alias module:Type.isTypedArray
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为 Buffer
+ * @returns {boolean} 是否为类型化数组
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
+ * ut2.isTypedArray(new Uint8Array); // true
  *
- * isBuffer({}); // false
- *
- * isBuffer('2012'); // false
+ * ut2.isTypedArray([]); // false
  *
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
+function isTypedArray(value) {
+    if (nodeIsTypedArray) {
+        return nodeIsTypedArray(value);
     }
-    return false;
+    return (isType(value, 'Float32Array') ||
+        isType(value, 'Float64Array') ||
+        isType(value, 'Int8Array') ||
+        isType(value, 'Int16Array') ||
+        isType(value, 'Int32Array') ||
+        isType(value, 'Uint8Array') ||
+        isType(value, 'Uint8ClampedArray') ||
+        isType(value, 'Uint16Array') ||
+        isType(value, 'Uint32Array'));
 }
-export default isBuffer;
+export default isTypedArray;
 </code></pre>
         </article>
     </section>
