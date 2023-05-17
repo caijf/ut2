@@ -29,6 +29,11 @@ export const args = (function () {
   return arguments;
 })();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const args2 = (function (a, b, c) {
+  return arguments;
+})(1, 2, 3);
+
 export const strictArgs = (function () {
   'use strict';
   return arguments;

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>isTypedArray</title>
+</head>
+
+<body>
+  <script src="./iframe-vars.js"></script>
+  <script src="../../dist/ut2.js"></script>
+  <script>
+    console.assert(ut2.isTypedArray(childObject.float32Array), childObject.float32Array);
+    console.assert(ut2.isTypedArray(childObject.float64Array), childObject.float64Array);
+    console.assert(ut2.isTypedArray(childObject.int8Array), childObject.int8Array);
+    console.assert(ut2.isTypedArray(childObject.int16Array), childObject.int16Array);
+    console.assert(ut2.isTypedArray(childObject.int32Array), childObject.int32Array);
+    console.assert(ut2.isTypedArray(childObject.uint8Array), childObject.uint8Array);
+    console.assert(ut2.isTypedArray(childObject.uint8ClampedArray), childObject.uint8ClampedArray);
+    console.assert(ut2.isTypedArray(childObject.uint16Array), childObject.uint16Array);
+    console.assert(ut2.isTypedArray(childObject.uint32Array), childObject.uint32Array);
+  </script>
+</body>
+
+</html>

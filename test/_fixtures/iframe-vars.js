@@ -39,7 +39,7 @@ iframe.contentDocument.write(`
       uint8ClampedArray: new Uint8ClampedArray(new ArrayBuffer(24)),
       uint16Array: new Uint16Array(new ArrayBuffer(24)),
       uint32Array: new Uint32Array(new ArrayBuffer(24)),
-      dateView: this.DateView ? new DateView(new ArrayBuffer(24)) : undefined,
+      dateView: typeof DateView !== 'undefined' ? new DateView(new ArrayBuffer(24)) : undefined,
     }
 
     parent.childObject = object;

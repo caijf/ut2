@@ -7,6 +7,8 @@ describe('isArrayLike', () => {
     values.forEach((item) => {
       expect(isArrayLike(item)).toBe(true);
     });
+
+    expect(isArrayLike(new Buffer(0))).toBe(true);
   });
 
   it('incorrent', () => {
@@ -24,5 +26,8 @@ describe('isArrayLike', () => {
     expect(isArrayLike(/x/)).toBe(false);
     expect(isArrayLike(new Error())).toBe(false);
     expect(isArrayLike(symbol)).toBe(false);
+    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    expect(isArrayLike((a, b) => {})).toBe(false);
   });
 });

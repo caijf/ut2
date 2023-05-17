@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>test isType speed</title>
+  <title>isType performance</title>
 </head>
 
 <body>
@@ -27,11 +27,19 @@
       return nativeTypeString === '[object ' + type + ']';
     }
 
+    function isType4(value, type) {
+      var nativeTypeString = toString.call(value);
+      if (typeof type === 'string') {
+        return nativeTypeString === '[object ' + type + ']';
+      }
+      return type.some(function (item) { return nativeTypeString === '[object ' + item + ']'; });
+    }
+
     const total = 1000000;
 
     console.time('isType1');
     for (let i = 0; i < total; i++) {
-      // isType1('', 'String');
+      isType1('', 'String');
 
       isType1(() => { }, ['String', 'Function']);
     }
@@ -43,7 +51,7 @@
     console.time('isType2');
     for (let i = 0; i < total; i++) {
       // console.timeLog('isType2');
-      // isType2('', 'String');
+      isType2('', 'String');
 
       isType2(() => { }, 'String');
       isType2(() => { }, 'Function');
@@ -56,12 +64,24 @@
     console.time('isType3');
     for (let i = 0; i < total; i++) {
       // console.timeLog('isType3');
-      // isType3('', 'String');
+      isType3('', 'String');
 
       isType3(() => { }, 'String');
       isType3(() => { }, 'Function');
     }
     console.timeEnd('isType3');
+
+
+
+
+    console.time('isType4');
+    for (let i = 0; i < total; i++) {
+      // console.timeLog('isType4');
+      isType4('', 'String');
+
+      isType4(() => { }, ['String', 'Function']);
+    }
+    console.timeEnd('isType4');
   </script>
 </body>
 
