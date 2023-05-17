@@ -20,11 +20,15 @@ import isSet from './isSet';
  *
  * isEmpty(null); // true
  *
- * isEmpty(undefined); // true
- *
  * isEmpty(true); // true
  *
  * isEmpty(1); // true
+ *
+ * isEmpty([]); // true
+ *
+ * isEmpty({}); // true
+ *
+ * isEmpty(''); // false
  *
  * isEmpty('abc'); // false
  *
