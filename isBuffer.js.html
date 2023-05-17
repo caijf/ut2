@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArrayLikeObject.js - ut2 </title>
+    <title>isBuffer.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArrayLikeObject.js</h1>
+    <h1 class="page-title">isBuffer.js</h1>
     
 
     
@@ -69,31 +69,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isArrayLike from './isArrayLike';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为类数组对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 检查值是否为 Buffer 。
+ *
+ * &lt;em style="font-weight: bold;">注意：该方法仅适用于 Node.js 。&lt;/em>
  *
  * @static
- * @alias module:Type.isArrayLikeObject
+ * @alias module:Type.isBuffer
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为类数组对象
+ * @returns {boolean} 是否为 Buffer
  * @example
  *
- * isArrayLike([1, 2, 3]); // true
+ * isBuffer(new Blob(['a'])); // true
  *
- * isArrayLike(document.body.children); // true
+ * isBuffer({}); // false
  *
- * isArrayLike('abc'); // false
- *
- * isArrayLike(()=>{}); // false
+ * isBuffer('2012'); // false
  *
  */
-function isArrayLikeObject(value) {
-    return isObjectLike(value) &amp;&amp; isArrayLike(value);
+function isBuffer(value) {
+    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
+        return Buffer.isBuffer(value);
+    }
+    return false;
 }
-export default isArrayLikeObject;
+export default isBuffer;
 </code></pre>
         </article>
     </section>

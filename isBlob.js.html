@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArrayLikeObject.js - ut2 </title>
+    <title>isBlob.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArrayLikeObject.js</h1>
+    <h1 class="page-title">isBlob.js</h1>
     
 
     
@@ -69,31 +69,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isArrayLike from './isArrayLike';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
 /**
- * 检查值是否为类数组对象。
+ * 检查值是否为 Blob 对象。
+ *
+ * &lt;em style="font-weight: bold;">注意：该方法仅适用于浏览器端。&lt;/em>
  *
  * @static
- * @alias module:Type.isArrayLikeObject
+ * @alias module:Type.isBlob
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为类数组对象
+ * @returns {boolean} 是否为 Blob 对象
  * @example
  *
- * isArrayLike([1, 2, 3]); // true
+ * isBlob(new Blob(['a'])); // true
  *
- * isArrayLike(document.body.children); // true
+ * isBlob({}); // false
  *
- * isArrayLike('abc'); // false
- *
- * isArrayLike(()=>{}); // false
+ * isBlob('2012'); // false
  *
  */
-function isArrayLikeObject(value) {
-    return isObjectLike(value) &amp;&amp; isArrayLike(value);
+function isBlob(value) {
+    return isType(value, 'Blob');
 }
-export default isArrayLikeObject;
+export default isBlob;
 </code></pre>
         </article>
     </section>
