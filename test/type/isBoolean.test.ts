@@ -7,6 +7,8 @@ describe('isBoolean', () => {
     expect(isBoolean(false)).toBe(true);
     expect(isBoolean(Object(true))).toBe(true);
     expect(isBoolean(Object(false))).toBe(true);
+    expect(isBoolean(new Boolean(true))).toBe(true);
+    expect(isBoolean(new Boolean(false))).toBe(true);
   });
 
   it('非布尔值', () => {
