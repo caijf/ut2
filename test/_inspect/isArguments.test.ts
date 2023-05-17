@@ -4,6 +4,7 @@ jest.mock('../../src/internals/helpers.ts', () => {
     supportedArgumentsType: false
   };
 });
+
 import { isArguments } from '../../src';
 import { falsy, truthy, noop, symbol, args, strictArgs } from '../_utils';
 
