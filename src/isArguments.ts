@@ -20,7 +20,7 @@ import isObjectLike from './isObjectLike';
  */
 function isArguments(value: any) {
   if (supportedArgumentsType) {
-    return isType(value, argType);
+    return isObjectLike(value) && isType(value, argType);
   }
   return (
     isObjectLike(value) &&

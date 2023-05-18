@@ -1,3 +1,5 @@
+import { MAX_SAFE_INTEGER } from './internals/native';
+
 /**
  * 检查值是否为有效的类数组长度。
  *
@@ -16,9 +18,7 @@
  *
  */
 function isLength(value: any) {
-  return (
-    typeof value === 'number' && value > -1 && value % 1 === 0 && value <= Number.MAX_SAFE_INTEGER
-  );
+  return typeof value === 'number' && value > -1 && value % 1 === 0 && value <= MAX_SAFE_INTEGER;
 }
 
 export default isLength;

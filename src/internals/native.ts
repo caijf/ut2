@@ -16,6 +16,15 @@ export const functionToString = Function.prototype.toString;
 
 export const objectCtorString = functionToString.call(Object);
 
+// 最大安全数字
+export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+
+// 最小安全数字
+export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
+
+// Blob 对象是否存在
+export const blobExisted = typeof Blob !== 'undefined';
+
 export function toSource(func: any) {
   if (func !== null) {
     try {

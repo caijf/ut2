@@ -2,13 +2,13 @@ import isObjectLike from './isObjectLike';
 import isPlainObject from './isPlainObject';
 
 /**
- * 检查值是否可能为 DOM 元素。
+ * 检查值是否可能为 `DOM` 元素。
  *
  * @static
  * @alias module:Type.isElement
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否可能为 DOM 元素
+ * @returns {boolean} 是否可能为 `DOM` 元素
  * @example
  *
  * isElement(document.body); // true

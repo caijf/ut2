@@ -10,6 +10,8 @@ describe('isBlob', () => {
     expect(isBlob(new Blob(['1']))).toBe(true);
     expect(isBlob(new Blob(['<a>html</a>'], { type: 'html/plain' }))).toBe(true);
     expect(isBlob(new Blob([new ArrayBuffer(8)]))).toBe(true);
+
+    expect(isBlob(new File([], ''))).toBe(true);
   });
 
   it('incorrect', () => {

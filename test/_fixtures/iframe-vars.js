@@ -11,6 +11,7 @@ iframe.contentDocument.write(`
       array: [1],
       arrayBuffer: new ArrayBuffer(2),
       boolean: Object(false),
+      blob: new Blob([]),
       date: new Date,
       element: document.body,
       errors: [new Error, new EvalError, new RangeError, new ReferenceError, new SyntaxError, new TypeError, new URIError],
@@ -40,6 +41,16 @@ iframe.contentDocument.write(`
       uint16Array: new Uint16Array(new ArrayBuffer(24)),
       uint32Array: new Uint32Array(new ArrayBuffer(24)),
       dateView: typeof DateView !== 'undefined' ? new DateView(new ArrayBuffer(24)) : undefined,
+
+      // errors
+      error: new Error,
+      evalError: new EvalError,
+      rangeError: new RangeError,
+      referenceError: new ReferenceError,
+      syntaxError: new SyntaxError,
+      typeError: new TypeError,
+      uriError: new URIError,
+      aggregateError: new AggregateError([])
     }
 
     parent.childObject = object;
