@@ -20,18 +20,17 @@ function isTypedArray(value: any) {
   if (nodeIsTypedArray) {
     return nodeIsTypedArray(value);
   }
-
-  return (
-    isType(value, 'Float32Array') ||
-    isType(value, 'Float64Array') ||
-    isType(value, 'Int8Array') ||
-    isType(value, 'Int16Array') ||
-    isType(value, 'Int32Array') ||
-    isType(value, 'Uint8Array') ||
-    isType(value, 'Uint8ClampedArray') ||
-    isType(value, 'Uint16Array') ||
-    isType(value, 'Uint32Array')
-  );
+  return isType(value, [
+    'Float32Array',
+    'Float64Array',
+    'Int8Array',
+    'Int16Array',
+    'Int32Array',
+    'Uint8Array',
+    'Uint8ClampedArray',
+    'Uint16Array',
+    'Uint32Array'
+  ]);
 }
 
 export default isTypedArray;

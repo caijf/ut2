@@ -15,12 +15,9 @@ import isType from './internals/isType';
  *
  */
 function isFunction(value: any) {
-  return (
-    isType(value, 'Function') ||
-    isType(value, 'AsyncFunction') ||
-    isType(value, 'GeneratorFunction') ||
-    isType(value, 'Proxy')
-  );
+  // if()
+
+  return isType(value, ['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy']);
 }
 
 export default isFunction;

@@ -23,10 +23,8 @@ import { blobExisted } from './internals/native';
  *
  */
 function isBlob(value: any) {
-  return (
-    // instanceof 不支持跨域对象判断，如来自 iframe 的 Blob 对象
-    (blobExisted && value instanceof Blob) || isType(value, 'Blob') || isType(value, 'File')
-  );
+  // instanceof 不支持跨域对象判断，如来自 iframe 的 Blob 对象
+  return (blobExisted && value instanceof Blob) || isType(value, ['Blob', 'File']);
 }
 
 export default isBlob;

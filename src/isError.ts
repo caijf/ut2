@@ -22,7 +22,7 @@ function isError(value: any) {
   if (!isObjectLike(value)) {
     return false;
   }
-  return value instanceof Error || isType(value, 'Error') || isType(value, 'DOMException');
+  return value instanceof Error || isType(value, ['Error', 'DOMException']);
 }
 
 export default isError;
