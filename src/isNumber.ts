@@ -1,4 +1,5 @@
 import isType from './internals/isType';
+import isObjectLike from './isObjectLike';
 
 /**
  * 检查值是否为 Number 。
@@ -18,7 +19,7 @@ import isType from './internals/isType';
  *
  */
 function isNumber(value: any) {
-  return isType(value, 'Number');
+  return typeof value === 'number' || (isObjectLike(value) && isType(value, 'Number'));
 }
 
 export default isNumber;

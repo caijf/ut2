@@ -1,5 +1,7 @@
 import isType from './internals/isType';
 import { nodeIsTypedArray } from './internals/nodeUtil';
+import isLength from './isLength';
+import isObjectLike from './isObjectLike';
 
 /**
  * 检查值是否为类型化数组。
@@ -20,17 +22,21 @@ function isTypedArray(value: any) {
   if (nodeIsTypedArray) {
     return nodeIsTypedArray(value);
   }
-  return isType(value, [
-    'Float32Array',
-    'Float64Array',
-    'Int8Array',
-    'Int16Array',
-    'Int32Array',
-    'Uint8Array',
-    'Uint8ClampedArray',
-    'Uint16Array',
-    'Uint32Array'
-  ]);
+  return (
+    isObjectLike(value) &&
+    isLength(value.length) &&
+    isType(value, [
+      'Float32Array',
+      'Float64Array',
+      'Int8Array',
+      'Int16Array',
+      'Int32Array',
+      'Uint8Array',
+      'Uint8ClampedArray',
+      'Uint16Array',
+      'Uint32Array'
+    ])
+  );
 }
 
 export default isTypedArray;

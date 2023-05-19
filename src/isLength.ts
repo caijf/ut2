@@ -12,8 +12,11 @@ import { MAX_SAFE_INTEGER } from './internals/native';
  * @example
  *
  * isLength(3); // true
+ *
  * isLength('3'); // false
+ *
  * isLength(Number.Min_VALUE); // false
+ *
  * isLength(Number.Infinity); // false
  *
  */

@@ -1,6 +1,7 @@
-const freeGlobalThis = typeof globalThis === 'object' && globalThis && globalThis.Object === Object;
-const freeGlobal = typeof global === 'object' && global && global.Object === Object;
-const freeSelf = typeof self === 'object' && self && self.Object === Object;
+const freeGlobalThis =
+  typeof globalThis === 'object' && globalThis && globalThis.Object === Object && globalThis;
+const freeGlobal = typeof global === 'object' && global && global.Object === Object && global;
+const freeSelf = typeof self === 'object' && self && self.Object === Object && self;
 
 export const root = freeGlobalThis || freeGlobal || freeSelf || Function('return this')() || {};
 
