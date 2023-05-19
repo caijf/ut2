@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isEmpty.js - ut2 </title>
+    <title>isFinite.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isEmpty.js</h1>
+    <h1 class="page-title">isFinite.js</h1>
     
 
     
@@ -69,60 +69,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import keys from './internals/keys';
-import isArrayLike from './isArrayLike';
-import isMap from './isMap';
-import isObjectLike from './isObjectLike';
-import isSet from './isSet';
+            <pre class="prettyprint source linenums"><code>import { root } from './internals/native';
+import { numberIsFinite } from './internals/helpers';
 /**
- * 检查 `类数组` `Map` `Set` `对象` 是否为空。
+ * 检查值是否为有穷数。
  *
- * 类数组的 `length===0`，`Map` `Set` 的 `size === 0` 表示为空。如果对象 `Object.keys` 没有可枚举属性，则被认为是空的。
- *
- * 非上述类型值，都将被认为是空的。
+ * 同 `Number.isFinite` 。
  *
  * @static
- * @alias module:Type.isEmpty
+ * @alias module:Type.isFinite
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为空
+ * @returns {boolean} 是否为有穷数
  * @example
  *
- * isEmpty(null); // true
+ * isFinite(1); // true
  *
- * isEmpty(true); // true
+ * isFinite(Infinity); // false
  *
- * isEmpty(1); // true
+ * isFinite(Number.MIN_VALUE); // true
  *
- * isEmpty([]); // true
+ * isFinite('1'); // false
  *
- * isEmpty({}); // true
- *
- * isEmpty(''); // false
- *
- * isEmpty('abc'); // false
- *
- * isEmpty([1, 2, 3]); // false
- *
- * isEmpty({ a: 1, b: 2 }); // false
+ * isFinite(null); // false
  *
  */
-function isEmpty(value) {
-    if (value == null) {
-        return true;
-    }
-    if (isMap(value) || isSet(value)) {
-        return !value.size;
-    }
-    if (isObjectLike(value)) {
-        return !keys(value).length;
-    }
-    if (isArrayLike(value)) {
-        return !value.length;
-    }
-    return true;
-}
-export default isEmpty;
+var isFinite = numberIsFinite ||
+    function (value) {
+        return typeof value === 'number' &amp;&amp; root.isFinite(value);
+    };
+export default isFinite;
 </code></pre>
         </article>
     </section>

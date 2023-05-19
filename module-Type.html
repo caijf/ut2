@@ -151,6 +151,267 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".isFinite"><span class="type-signature type-signature-static">(static) </span>isFinite<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为有穷数。</p>
+<p>同 <code>Number.isFinite</code> 。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="isFinite.js.html">isFinite.js</a>, <a href="isFinite.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>检查值是否为有穷数。</p>
+<p>同 <code>Number.isFinite</code> 。</p>
+</div>
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>isFinite(1); // true
+
+isFinite(Infinity); // false
+
+isFinite(Number.MIN_VALUE); // true
+
+isFinite('1'); // false
+
+isFinite(null); // false</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".isInteger"><span class="type-signature type-signature-static">(static) </span>isInteger<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为整数。</p>
+<p>同 <code>Number.isInteger</code> 。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="isInteger.js.html">isInteger.js</a>, <a href="isInteger.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>检查值是否为整数。</p>
+<p>同 <code>Number.isInteger</code> 。</p>
+</div>
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>isInteger(1); // true
+
+isInteger(Infinity); // false
+
+isInteger(Number.MIN_VALUE); // false
+
+isInteger('1'); // false
+
+isInteger(null); // false</code></pre>
+
+
+
+        
+            
+<h4 class="name" id=".isSafeInteger"><span class="type-signature type-signature-static">(static) </span>isSafeInteger<span class="type-signature"></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为安全整数。</p>
+<p>同 <code>Number.isSafeInteger</code> 。</p>
+<p>如果一个整数是一个 <code>IEEE-754</code> 双精度数字，它不是四舍五入的不安全整数的结果，那么它就是安全的。安全整数范围为 <code>-(2^53 - 1)</code> 到 <code>2^53 - 1</code> 之间的整数，包含 <code>-(2^53 - 1)</code> 和 <code>2^53 - 1</code>。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="isSafeInteger.js.html">isSafeInteger.js</a>, <a href="isSafeInteger.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>检查值是否为安全整数。</p>
+<p>同 <code>Number.isSafeInteger</code> 。</p>
+<p>如果一个整数是一个 <code>IEEE-754</code> 双精度数字，它不是四舍五入的不安全整数的结果，那么它就是安全的。安全整数范围为 <code>-(2^53 - 1)</code> 到 <code>2^53 - 1</code> 之间的整数，包含 <code>-(2^53 - 1)</code> 和 <code>2^53 - 1</code>。</p>
+</div>
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>isSafeInteger(1); // true
+
+isSafeInteger(Infinity); // false
+
+isSafeInteger(Number.MIN_VALUE); // false
+
+isSafeInteger('1'); // false
+
+isSafeInteger(null); // false</code></pre>
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -512,13 +773,13 @@ isArray(()=>{}); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 ArrayBuffer 对象。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>ArrayBuffer</code> 对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isArrayBuffer.js.html">isArrayBuffer.js</a>, <a href="isArrayBuffer.js.html#line20">line 20</a>
+        <a href="isArrayBuffer.js.html">isArrayBuffer.js</a>, <a href="isArrayBuffer.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -645,7 +906,7 @@ isArrayBuffer('2012'); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 ArrayBuffer 对象</p>
+    <p>是否为 <code>ArrayBuffer</code> 对象</p>
 </div>
 
 
@@ -1027,14 +1288,14 @@ isArrayLike(()=>{}); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Blob 对象。</p>
-<p><em style="font-weight: bold;">注意：该方法仅适用于浏览器端。</em></p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>Blob</code> 对象。</p>
+<p>浏览器环境的 <code>Blob</code> 或 <code>File</code> 对象，或其他继承自 <code>Blob</code> 的实例，都将返回 <code>true</code> 。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isBlob.js.html">isBlob.js</a>, <a href="isBlob.js.html#line21">line 21</a>
+        <a href="isBlob.js.html">isBlob.js</a>, <a href="isBlob.js.html#line24">line 24</a>
     </li></ul></dd>
     
 
@@ -1067,6 +1328,15 @@ isArrayLike(()=>{}); // false</code></pre>
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob">Blob</a></li>
+        
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/File">File</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -1161,7 +1431,7 @@ isBlob('2012'); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Blob 对象</p>
+    <p>是否为 <code>Blob</code> 对象</p>
 </div>
 
 
@@ -1370,8 +1640,8 @@ isBoolean(null); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Buffer 。</p>
-<p><em style="font-weight: bold;">注意：该方法仅适用于 Node.js 。</em></p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>Buffer</code> 。</p>
+<p>非 Node.js 环境，始终返回 <code>false</code> 。</p></li></ul></dd>
     
 
     
@@ -1504,7 +1774,7 @@ isBuffer('2012'); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Buffer</p>
+    <p>是否为 <code>Buffer</code></p>
 </div>
 
 
@@ -1547,7 +1817,7 @@ isBuffer('2012'); // false</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isDate.js.html">isDate.js</a>, <a href="isDate.js.html#line18">line 18</a>
+        <a href="isDate.js.html">isDate.js</a>, <a href="isDate.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -1709,7 +1979,7 @@ isDate('Mon April 23 2012'); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否可能为 DOM 元素。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否可能为 <code>DOM</code> 元素。</p></li></ul></dd>
     
 
     
@@ -1840,7 +2110,7 @@ isElement('&lt;body>'); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否可能为 DOM 元素</p>
+    <p>是否可能为 <code>DOM</code> 元素</p>
 </div>
 
 
@@ -2061,13 +2331,14 @@ isEmpty({ a: 1, b: 2 }); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError|DOMException 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>Error</code> 或 <code>DOMException</code> 。</p>
+<p>继承自 <code>Error</code> 的对象，如 <code>EvalError</code> <code>RangeError</code> <code>ReferenceError</code> <code>SyntaxError</code> <code>TypeError</code> <code>URIError</code> <code>AggregateError</code>，都将返回 <code>true</code> 。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isError.js.html">isError.js</a>, <a href="isError.js.html#line16">line 16</a>
+        <a href="isError.js.html">isError.js</a>, <a href="isError.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -2118,6 +2389,7 @@ isEmpty({ a: 1, b: 2 }); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isError(new Error); // true
+
 isError(Error); // false</code></pre>
 
 
@@ -2191,7 +2463,7 @@ isError(Error); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError、URIError|DOMException</p>
+    <p>是否为 <code>Error</code> 或 <code>DOMException</code></p>
 </div>
 
 
@@ -2228,13 +2500,14 @@ isError(Error); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Function|AsyncFunction|GeneratorFunction|Proxy 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>Function</code> 对象 。</p>
+<p><code>Function</code> <code>AsyncFunction</code> <code>GeneratorFunction</code> <code>Proxy</code> 都将返回 <code>true</code> 。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isFunction.js.html">isFunction.js</a>, <a href="isFunction.js.html#line16">line 16</a>
+        <a href="isFunction.js.html">isFunction.js</a>, <a href="isFunction.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -2285,7 +2558,8 @@ isError(Error); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isFunction(()=>{})); // true
-isFunction(/abc/); // false</code></pre>
+
+isFunction(/x/); // false</code></pre>
 
 
 
@@ -2358,7 +2632,7 @@ isFunction(/abc/); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为Function|AsyncFunction|GeneratorFunction|Proxy</p>
+    <p>是否为 <code>Function</code> 对象</p>
 </div>
 
 
@@ -2401,7 +2675,7 @@ isFunction(/abc/); // false</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isLength.js.html">isLength.js</a>, <a href="isLength.js.html#line18">line 18</a>
+        <a href="isLength.js.html">isLength.js</a>, <a href="isLength.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -2459,8 +2733,11 @@ isFunction(/abc/); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isLength(3); // true
+
 isLength('3'); // false
+
 isLength(Number.Min_VALUE); // false
+
 isLength(Number.Infinity); // false</code></pre>
 
 
@@ -2571,13 +2848,13 @@ isLength(Number.Infinity); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Map 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>Map</code> 对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isMap.js.html">isMap.js</a>, <a href="isMap.js.html#line16">line 16</a>
+        <a href="isMap.js.html">isMap.js</a>, <a href="isMap.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -2628,6 +2905,7 @@ isLength(Number.Infinity); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isMap(new Map); // true
+
 isMap(new WeakMap); // false</code></pre>
 
 
@@ -2701,7 +2979,7 @@ isMap(new WeakMap); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Map</p>
+    <p>是否为 <code>Map</code> 对象</p>
 </div>
 
 
@@ -2738,13 +3016,14 @@ isMap(new WeakMap); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 NaN 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>NaN</code> 。</p>
+<p>和 <code>Number.isNaN</code> 区别是 <code>new Number(NaN)</code> 也被认为是 <code>NaN</code>。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNaN.js.html">isNaN.js</a>, <a href="isNaN.js.html#line16">line 16</a>
+        <a href="isNaN.js.html">isNaN.js</a>, <a href="isNaN.js.html#line22">line 22</a>
     </li></ul></dd>
     
 
@@ -2795,6 +3074,9 @@ isMap(new WeakMap); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isNaN(NaN); // true
+
+isNaN(new Number(NaN)); // true
+
 isNaN(1); // false</code></pre>
 
 
@@ -2868,7 +3150,7 @@ isNaN(1); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 NaN</p>
+    <p>是否为 <code>NaN</code></p>
 </div>
 
 
@@ -2905,13 +3187,13 @@ isNaN(1); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 undefined 或 null 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>undefined</code> 或 <code>null</code> 。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNil.js.html">isNil.js</a>, <a href="isNil.js.html#line20">line 20</a>
+        <a href="isNil.js.html">isNil.js</a>, <a href="isNil.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -2962,10 +3244,15 @@ isNaN(1); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isNil(undefined); // true
+
 isNil(void 0); // true
+
 isNil(null); // true
+
 isNil(''); // false
+
 isNil('a'); // false
+
 isNil(1); // false</code></pre>
 
 
@@ -3039,7 +3326,7 @@ isNil(1); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 undefined 或 null</p>
+    <p>是否为 <code>undefined</code> 或 <code>null</code></p>
 </div>
 
 
@@ -3076,13 +3363,13 @@ isNil(1); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Null 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>null</code> 。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNull.js.html">isNull.js</a>, <a href="isNull.js.html#line15">line 15</a>
+        <a href="isNull.js.html">isNull.js</a>, <a href="isNull.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -3133,6 +3420,7 @@ isNil(1); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isNull(null); // true
+
 isNull(void 0); // false</code></pre>
 
 
@@ -3206,7 +3494,7 @@ isNull(void 0); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Null</p>
+    <p>是否为 <code>null</code></p>
 </div>
 
 
@@ -3243,13 +3531,14 @@ isNull(void 0); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Number 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为数字基元或对象。</p>
+<p><code>Infinity</code> <code>-Infinity</code> <code>NaN</code> 都归类为数字。如果要排除，请使用 <code>isFinite</code> 方法。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNumber.js.html">isNumber.js</a>, <a href="isNumber.js.html#line19">line 19</a>
+        <a href="isNumber.js.html">isNumber.js</a>, <a href="isNumber.js.html#line28">line 28</a>
     </li></ul></dd>
     
 
@@ -3300,10 +3589,16 @@ isNull(void 0); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isNumber(1); // true
-isNumber(Number.MIN_VALUE); // true
+
 isNumber(Infinity); // true
+
+isNumber(Number.MIN_VALUE); // true
+
 isNumber(NaN); // true
-isNumber('1'); // false</code></pre>
+
+isNumber('1'); // false
+
+isNumber(null); // false</code></pre>
 
 
 
@@ -3376,7 +3671,7 @@ isNumber('1'); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Number</p>
+    <p>是否为数字基元或对象</p>
 </div>
 
 
@@ -3941,13 +4236,13 @@ isObject(Object.create(null)); // true</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 RegExp 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 RegExp 对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isRegExp.js.html">isRegExp.js</a>, <a href="isRegExp.js.html#line16">line 16</a>
+        <a href="isRegExp.js.html">isRegExp.js</a>, <a href="isRegExp.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -3998,6 +4293,7 @@ isObject(Object.create(null)); // true</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isRegExp(/abc/); // true
+
 isRegExp('/abc/'); // false</code></pre>
 
 
@@ -4071,7 +4367,7 @@ isRegExp('/abc/'); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 RegExp</p>
+    <p>是否为 RegExp 对象</p>
 </div>
 
 
@@ -4108,13 +4404,13 @@ isRegExp('/abc/'); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Set 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>Set</code> 对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isSet.js.html">isSet.js</a>, <a href="isSet.js.html#line16">line 16</a>
+        <a href="isSet.js.html">isSet.js</a>, <a href="isSet.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -4165,6 +4461,7 @@ isRegExp('/abc/'); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isSet(new Set); // true
+
 isSet(new WeakSet); // false</code></pre>
 
 
@@ -4238,7 +4535,7 @@ isSet(new WeakSet); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Set</p>
+    <p>是否为 <code>Set</code> 对象</p>
 </div>
 
 
@@ -4615,7 +4912,7 @@ isSymbol("abc"); // false</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isTypedArray.js.html">isTypedArray.js</a>, <a href="isTypedArray.js.html#line18">line 18</a>
+        <a href="isTypedArray.js.html">isTypedArray.js</a>, <a href="isTypedArray.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -5284,7 +5581,7 @@ isWeakSet(new Set); // false</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Wed May 17 2023 12:09:31 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 19 2023 09:49:36 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

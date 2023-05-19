@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isEmpty.js - ut2 </title>
+    <title>isInteger.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isEmpty.js</h1>
+    <h1 class="page-title">isInteger.js</h1>
     
 
     
@@ -69,60 +69,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import keys from './internals/keys';
-import isArrayLike from './isArrayLike';
-import isMap from './isMap';
-import isObjectLike from './isObjectLike';
-import isSet from './isSet';
+            <pre class="prettyprint source linenums"><code>import { numberIsInteger } from './internals/helpers';
+import isFinite from './isFinite';
 /**
- * 检查 `类数组` `Map` `Set` `对象` 是否为空。
+ * 检查值是否为整数。
  *
- * 类数组的 `length===0`，`Map` `Set` 的 `size === 0` 表示为空。如果对象 `Object.keys` 没有可枚举属性，则被认为是空的。
- *
- * 非上述类型值，都将被认为是空的。
+ * 同 `Number.isInteger` 。
  *
  * @static
- * @alias module:Type.isEmpty
+ * @alias module:Type.isInteger
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为空
+ * @returns {boolean} 是否为整数
  * @example
  *
- * isEmpty(null); // true
+ * isInteger(1); // true
  *
- * isEmpty(true); // true
+ * isInteger(Infinity); // false
  *
- * isEmpty(1); // true
+ * isInteger(Number.MIN_VALUE); // false
  *
- * isEmpty([]); // true
+ * isInteger('1'); // false
  *
- * isEmpty({}); // true
- *
- * isEmpty(''); // false
- *
- * isEmpty('abc'); // false
- *
- * isEmpty([1, 2, 3]); // false
- *
- * isEmpty({ a: 1, b: 2 }); // false
+ * isInteger(null); // false
  *
  */
-function isEmpty(value) {
-    if (value == null) {
-        return true;
-    }
-    if (isMap(value) || isSet(value)) {
-        return !value.size;
-    }
-    if (isObjectLike(value)) {
-        return !keys(value).length;
-    }
-    if (isArrayLike(value)) {
-        return !value.length;
-    }
-    return true;
-}
-export default isEmpty;
+var isInteger = numberIsInteger ||
+    function (value) {
+        return isFinite(value) &amp;&amp; Math.floor(value) === value;
+    };
+export default isInteger;
 </code></pre>
         </article>
     </section>

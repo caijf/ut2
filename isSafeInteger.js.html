@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isEmpty.js - ut2 </title>
+    <title>isSafeInteger.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isEmpty.js</h1>
+    <h1 class="page-title">isSafeInteger.js</h1>
     
 
     
@@ -69,60 +69,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import keys from './internals/keys';
-import isArrayLike from './isArrayLike';
-import isMap from './isMap';
-import isObjectLike from './isObjectLike';
-import isSet from './isSet';
+            <pre class="prettyprint source linenums"><code>import { MAX_SAFE_INTEGER } from './internals/native';
+import { numberIsSafeInteger } from './internals/helpers';
+import isInteger from './isInteger';
 /**
- * 检查 `类数组` `Map` `Set` `对象` 是否为空。
+ * 检查值是否为安全整数。
  *
- * 类数组的 `length===0`，`Map` `Set` 的 `size === 0` 表示为空。如果对象 `Object.keys` 没有可枚举属性，则被认为是空的。
+ * 同 `Number.isSafeInteger` 。
  *
- * 非上述类型值，都将被认为是空的。
+ * 如果一个整数是一个 `IEEE-754` 双精度数字，它不是四舍五入的不安全整数的结果，那么它就是安全的。安全整数范围为 `-(2^53 - 1)` 到 `2^53 - 1` 之间的整数，包含 `-(2^53 - 1)` 和 `2^53 - 1`。
  *
  * @static
- * @alias module:Type.isEmpty
+ * @alias module:Type.isSafeInteger
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为空
+ * @returns {boolean} 是否为安全整数
  * @example
  *
- * isEmpty(null); // true
+ * isSafeInteger(1); // true
  *
- * isEmpty(true); // true
+ * isSafeInteger(Infinity); // false
  *
- * isEmpty(1); // true
+ * isSafeInteger(Number.MIN_VALUE); // false
  *
- * isEmpty([]); // true
+ * isSafeInteger('1'); // false
  *
- * isEmpty({}); // true
- *
- * isEmpty(''); // false
- *
- * isEmpty('abc'); // false
- *
- * isEmpty([1, 2, 3]); // false
- *
- * isEmpty({ a: 1, b: 2 }); // false
+ * isSafeInteger(null); // false
  *
  */
-function isEmpty(value) {
-    if (value == null) {
-        return true;
-    }
-    if (isMap(value) || isSet(value)) {
-        return !value.size;
-    }
-    if (isObjectLike(value)) {
-        return !keys(value).length;
-    }
-    if (isArrayLike(value)) {
-        return !value.length;
-    }
-    return true;
-}
-export default isEmpty;
+var isSafeInteger = numberIsSafeInteger ||
+    function (value) {
+        return isInteger(value) &amp;&amp; Math.abs(value) &lt;= MAX_SAFE_INTEGER;
+    };
+export default isSafeInteger;
 </code></pre>
         </article>
     </section>
