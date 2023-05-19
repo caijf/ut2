@@ -1,4 +1,5 @@
 import { root } from './internals/native';
+import { numberIsFinite } from './internals/helpers';
 
 /**
  * 检查值是否为有穷数。
@@ -23,8 +24,10 @@ import { root } from './internals/native';
  * isFinite(null); // false
  *
  */
-function isFinite(value: any) {
-  return typeof value === 'number' && root.isFinite(value);
-}
+const isFinite =
+  numberIsFinite ||
+  function (value: any) {
+    return typeof value === 'number' && root.isFinite(value);
+  };
 
 export default isFinite;

@@ -1,6 +1,6 @@
 import { types } from 'util';
 jest.mock('../../src/internals/nodeUtil.ts', () => ({
-  nodeIsDate: types.isDate
+  nodeIsRegExp: types.isRegExp
 }));
 
-import '../type/isDate.test';
+import '../type/isRegExp.test';

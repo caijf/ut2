@@ -4,7 +4,7 @@ import isNumber from './isNumber';
 /**
  * 检查值是否为 `NaN` 。
  *
- * 同 `Number.isNaN` 。
+ * 和 `Number.isNaN` 区别是 `new Number(NaN)` 也被认为是 `NaN`。
  *
  * @static
  * @alias module:Type.isNaN

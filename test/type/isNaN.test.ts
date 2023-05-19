@@ -12,6 +12,7 @@ describe('isNaN', () => {
     const expected = falsy.map((item) => item !== item);
     const actual = falsy.map(isNaN);
 
+    expect(isNaN(undefined)).toBe(false);
     expect(expected).toEqual(actual);
 
     expect(isNaN(args)).toBe(false);

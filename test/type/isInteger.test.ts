@@ -3,7 +3,7 @@ import { args, symbol } from '../_utils';
 
 describe('isInteger', () => {
   it('corrent', () => {
-    const values = [-1, 0, 1, 2e64];
+    const values = [-1, 0, 1, 2e64, Math.pow(2, 53)];
     values.forEach((item) => {
       expect(isInteger(item)).toBe(true);
     });

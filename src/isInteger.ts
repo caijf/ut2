@@ -1,3 +1,4 @@
+import { numberIsInteger } from './internals/helpers';
 import isFinite from './isFinite';
 
 /**
@@ -23,8 +24,10 @@ import isFinite from './isFinite';
  * isInteger(null); // false
  *
  */
-function isInteger(value: any) {
-  return isFinite(value) && Math.floor(value) === value;
-}
+const isInteger =
+  numberIsInteger ||
+  function (value: any) {
+    return isFinite(value) && Math.floor(value) === value;
+  };
 
 export default isInteger;
