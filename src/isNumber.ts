@@ -21,6 +21,8 @@ import isObjectLike from './isObjectLike';
  *
  * isNumber(NaN); // true
  *
+ * isNumber(new Number(1)); // true
+ *
  * isNumber('1'); // false
  *
  * isNumber(null); // false

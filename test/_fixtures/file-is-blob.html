@@ -5,22 +5,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>isBlob</title>
+  <title>file is blob</title>
 </head>
 
 <body>
   <input type="file" id="input" />
-  <script src="./iframe-vars.js"></script>
+
   <script src="../../dist/ut2.js"></script>
   <script>
     const oInput = document.querySelector('#input');
-
     oInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       console.log(Object.prototype.toString.call(file));
+      console.log(ut2.isBlob(file));
     });
-
-    console.assert(ut2.isBlob(childObject.blob), childObject.blob);
   </script>
 </body>
 

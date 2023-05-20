@@ -12,6 +12,8 @@ import isType from './internals/isType';
  *
  * isBoolean(false); // true
  *
+ * isBoolean(new Boolean(false)); // true
+ *
  * isBoolean(Object(false)); // true
  *
  * isBoolean(new Boolean(false)); // true

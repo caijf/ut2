@@ -4,6 +4,8 @@ import { args, falsy, symbol } from '../_utils';
 describe('isNumber', () => {
   it('corrent', () => {
     expect(isNumber(1)).toBe(true);
+    expect(isNumber(new Number(1))).toBe(true);
+    expect(isNumber(Object(1))).toBe(true);
     expect(isNumber(Number.MIN_VALUE)).toBe(true);
     expect(isNumber(Infinity)).toBe(true);
     expect(isNumber(-Infinity)).toBe(true);

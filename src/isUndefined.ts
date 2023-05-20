@@ -1,15 +1,15 @@
 /**
- * 检查值是否为 Undefined 。
+ * 检查值是否为 `undefined` 。
  *
  * @static
  * @alias module:Type.isUndefined
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为 Undefined
+ * @returns {boolean} 是否为 `undefined`
  * @example
  *
  * isUndefined(undefined); // true
- * isUndefined(void 0); // true
+ *
  * isUndefined(null); // false
  *
  */
