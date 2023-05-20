@@ -1474,7 +1474,7 @@ isBlob('2012'); // false</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isBoolean.js.html">isBoolean.js</a>, <a href="isBoolean.js.html#line21">line 21</a>
+        <a href="isBoolean.js.html">isBoolean.js</a>, <a href="isBoolean.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1525,6 +1525,8 @@ isBlob('2012'); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isBoolean(false); // true
+
+isBoolean(new Boolean(false)); // true
 
 isBoolean(Object(false)); // true
 
@@ -3538,7 +3540,7 @@ isNull(void 0); // false</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isNumber.js.html">isNumber.js</a>, <a href="isNumber.js.html#line28">line 28</a>
+        <a href="isNumber.js.html">isNumber.js</a>, <a href="isNumber.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -3595,6 +3597,8 @@ isNumber(Infinity); // true
 isNumber(Number.MIN_VALUE); // true
 
 isNumber(NaN); // true
+
+isNumber(new Number(1)); // true
 
 isNumber('1'); // false
 
@@ -4572,13 +4576,13 @@ isSet(new WeakSet); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 String 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为字符串基元或对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isString.js.html">isString.js</a>, <a href="isString.js.html#line16">line 16</a>
+        <a href="isString.js.html">isString.js</a>, <a href="isString.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -4629,6 +4633,9 @@ isSet(new WeakSet); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isString('abc'); // true
+
+isString(new String('abc')); // true
+
 isString(1); // false</code></pre>
 
 
@@ -4702,7 +4709,7 @@ isString(1); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 String</p>
+    <p>是否为字符串基元或对象</p>
 </div>
 
 
@@ -4739,13 +4746,13 @@ isString(1); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Symbol 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>Symbol</code> 对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isSymbol.js.html">isSymbol.js</a>, <a href="isSymbol.js.html#line16">line 16</a>
+        <a href="isSymbol.js.html">isSymbol.js</a>, <a href="isSymbol.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -4795,7 +4802,10 @@ isString(1); // false</code></pre>
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>isSymbol(Symbol.iterator); // true
+    <pre class="prettyprint"><code>isSymbol(Symbol()); // true
+
+isSymbol(Symbol.iterator); // true
+
 isSymbol("abc"); // false</code></pre>
 
 
@@ -4869,7 +4879,7 @@ isSymbol("abc"); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Symbol</p>
+    <p>是否为 <code>Symbol</code> 对象</p>
 </div>
 
 
@@ -5074,7 +5084,7 @@ ut2.isTypedArray([]); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 Undefined 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>undefined</code> 。</p></li></ul></dd>
     
 
     
@@ -5131,7 +5141,7 @@ ut2.isTypedArray([]); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isUndefined(undefined); // true
-isUndefined(void 0); // true
+
 isUndefined(null); // false</code></pre>
 
 
@@ -5205,7 +5215,7 @@ isUndefined(null); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 Undefined</p>
+    <p>是否为 <code>undefined</code></p>
 </div>
 
 
@@ -5242,13 +5252,13 @@ isUndefined(null); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 WeakMap 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>WeakMap</code> 对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isWeakMap.js.html">isWeakMap.js</a>, <a href="isWeakMap.js.html#line16">line 16</a>
+        <a href="isWeakMap.js.html">isWeakMap.js</a>, <a href="isWeakMap.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -5299,6 +5309,7 @@ isUndefined(null); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isWeakMap(new WeakMap); // true
+
 isWeakMap(new Map); // false</code></pre>
 
 
@@ -5372,7 +5383,7 @@ isWeakMap(new Map); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 WeakMap</p>
+    <p>是否为 <code>WeakMap</code> 对象</p>
 </div>
 
 
@@ -5409,13 +5420,13 @@ isWeakMap(new Map); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 WeakSet 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值是否为 <code>WeakSet</code> 对象。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="isWeakSet.js.html">isWeakSet.js</a>, <a href="isWeakSet.js.html#line16">line 16</a>
+        <a href="isWeakSet.js.html">isWeakSet.js</a>, <a href="isWeakSet.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -5466,6 +5477,7 @@ isWeakMap(new Map); // false</code></pre>
     <h5 class="h5-examples">Example</h5>
     
     <pre class="prettyprint"><code>isWeakSet(new WeakSet); // true
+
 isWeakSet(new Set); // false</code></pre>
 
 
@@ -5539,7 +5551,7 @@ isWeakSet(new Set); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>是否为 WeakSet</p>
+    <p>是否为 <code>WeakSet</code> 对象</p>
 </div>
 
 
@@ -5581,7 +5593,7 @@ isWeakSet(new Set); // false</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Fri May 19 2023 09:49:36 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Sat May 20 2023 13:00:09 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
