@@ -30,10 +30,10 @@ export const args = (function () {
 })();
 
 export const toArgs = function (arr: any[]) {
-  // @ts-ignore
   // eslint-disable-next-line prefer-spread
   return function () {
     return arguments;
+    // @ts-ignore
   }.apply(undefined, arr);
 };
 
