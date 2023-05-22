@@ -2,7 +2,7 @@ import negate from './negate';
 import pickBy from './pickBy';
 
 /**
- * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Truthy` 。
+ * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Falsy` 。与 `pickBy` 相反。
  *
  * 断言方法的两个参数是对象的每个可枚举属性的 `value` `key` 。
  *
@@ -16,7 +16,7 @@ import pickBy from './pickBy';
  *
  * const obj = { name: "jeff", age: 18 };
  *
- * omitBy(obj); // { name: "jeff", age: 18 }
+ * omitBy(obj); // {}
  *
  * omitBy(obj, (value, key) => typeof value === 'number'); // { name: "jeff" }
  *
