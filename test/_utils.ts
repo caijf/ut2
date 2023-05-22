@@ -29,10 +29,13 @@ export const args = (function () {
   return arguments;
 })();
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const args2 = (function (a, b, c) {
-  return arguments;
-})(1, 2, 3);
+export const toArgs = function (arr: any[]) {
+  // @ts-ignore
+  // eslint-disable-next-line prefer-spread
+  return function () {
+    return arguments;
+  }.apply(undefined, arr);
+};
 
 export const strictArgs = (function () {
   'use strict';

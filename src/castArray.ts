@@ -24,11 +24,11 @@
  * castArray(arr); // [1, 2, 3]
  * console.log(arr === castArray(arr)); // true
  */
-function castArray(value?: any) {
+function castArray<T>(value?: T | T[]): T[] {
   if (!arguments.length) {
     return [];
   }
-  return Array.isArray(value) ? value : [value];
+  return Array.isArray(value) ? value : [value as T];
 }
 
 export default castArray;

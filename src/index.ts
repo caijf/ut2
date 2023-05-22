@@ -55,6 +55,9 @@ export { default as isWeakSet } from './isWeakSet';
  * @since 1.0.0
  */
 export { default as omit } from './omit';
+export { default as omitBy } from './omitBy';
+export { default as pick } from './pick';
+export { default as pickBy } from './pickBy';
 
 /**
  * 函数
@@ -62,4 +65,5 @@ export { default as omit } from './omit';
  * @module Function
  * @since 1.0.0
  */
+export { default as negate } from './negate';
 export { default as throttle } from './throttle';

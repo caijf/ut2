@@ -1,5 +1,5 @@
 import { isEmpty } from '../../src';
-import { args, args2, falsy, noop, symbol } from '../_utils';
+import { args, toArgs, falsy, noop, symbol } from '../_utils';
 
 describe('isEmpty', () => {
   it('corrent', () => {
@@ -30,7 +30,7 @@ describe('isEmpty', () => {
     expect(isEmpty([1, 2, 3])).toBe(false);
     expect(isEmpty('abc')).toBe(false);
     expect(isEmpty(new Buffer(1))).toBe(false);
-    expect(isEmpty(args2)).toBe(false);
+    expect(isEmpty(toArgs([1, 2, 3]))).toBe(false);
   });
 
   it('对象带有 `length` 属性', () => {
