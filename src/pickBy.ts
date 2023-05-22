@@ -6,8 +6,6 @@ import getSymbolsIn from './internals/getSymbolsIn';
  *
  * 断言方法的两个参数是对象的每个可枚举属性的 `value` `key` 。
  *
- * 仅包含对象可枚举的属性。
- *
  * @static
  * @alias module:Object.pickBy
  * @since 1.0.0

@@ -1,9 +1,7 @@
 import castArray from './castArray';
 
 /**
- * 浅拷贝对象并排除部分属性。
- *
- * 仅包含对象可枚举的属性。
+ * 创建一个对象，该对象由未被排除的自身和继承的可枚举属性组成。与 [`pick`](#.pick) 相反。
  *
  * @static
  * @alias module:Object.omit

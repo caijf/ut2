@@ -3,7 +3,7 @@ import castArray from './castArray';
 /**
  * 创建一个由选取的对象属性组成的对象。
  *
- * 允许选取不可枚举的属性。
+ * 允许选取对象的所有属性（包含不可枚举属性）。
  *
  * @static
  * @alias module:Object.pick

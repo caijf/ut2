@@ -2,7 +2,7 @@ import negate from './negate';
 import pickBy from './pickBy';
 
 /**
- * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Falsy` 。与 `pickBy` 相反。
+ * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Falsy` 。与 [`pickBy`](#.pickBy) 相反。
  *
  * 断言方法的两个参数是对象的每个可枚举属性的 `value` `key` 。
  *
