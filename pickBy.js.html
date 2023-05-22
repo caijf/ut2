@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>omit.js - ut2 </title>
+    <title>pickBy.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">omit.js</h1>
+    <h1 class="page-title">pickBy.js</h1>
     
 
     
@@ -69,44 +69,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { __assign } from "tslib";
-import castArray from './castArray';
+            <pre class="prettyprint source linenums"><code>import { __read, __spreadArray } from "tslib";
+import getKeysIn from './internals/getKeysIn';
+import getSymbolsIn from './internals/getSymbolsIn';
 /**
- * 浅拷贝对象并排除部分属性。
+ * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Truthy` 。
  *
- * 仅包含对象可枚举的属性。
+ * 断言方法的两个参数是对象的每个可枚举属性的 `value` `key` 。
  *
  * @static
- * @alias module:Object.omit
+ * @alias module:Object.pickBy
  * @since 1.0.0
  * @param {object} obj 对象
- * @param {string|string[]} [fields] 排除的属性
+ * @param {function} predicate 每个属性/值调用函数
  * @returns {object} 新对象
  * @example
  *
  * const obj = { name: "jeff", age: 18 };
  *
- * // 浅拷贝对象
- * omit(obj); // { name: "jeff", age: 18 }
+ * pickBy(obj); // {}
  *
- * // 排除单个属性
- * omit(obj, 'name'); // { age: 18 }
+ * pickBy(obj, (value, key) => typeof value === 'number'); // { age: 18 }
  *
- * // 排除多个属性
- * omit(obj, ['name', 'age']); // {}
+ * pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }
  *
  */
-function omit(obj, fields) {
-    if (fields === void 0) { fields = []; }
-    var shallowCopy = __assign({}, obj);
-    var fieldArr = castArray(fields);
-    for (var i = 0; i &lt; fieldArr.length; i++) {
-        var field = fieldArr[i];
-        delete shallowCopy[field];
+function pickBy(obj, predicate) {
+    if (predicate === void 0) { predicate = function () { return false; }; }
+    var result = {};
+    if (obj === null) {
+        return result;
     }
-    return shallowCopy;
+    var allKeys = __spreadArray(__spreadArray([], __read(getKeysIn(obj)), false), __read(getSymbolsIn(obj)), false);
+    for (var i = 0; i &lt; allKeys.length; i++) {
+        var currentKey = allKeys[i];
+        if (predicate(obj[currentKey], currentKey)) {
+            result[currentKey] = obj[currentKey];
+        }
+    }
+    return result;
 }
-export default omit;
+export default pickBy;
 </code></pre>
         </article>
     </section>

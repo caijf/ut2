@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>omit.js - ut2 </title>
+    <title>omitBy.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">omit.js</h1>
+    <h1 class="page-title">omitBy.js</h1>
     
 
     
@@ -69,44 +69,35 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { __assign } from "tslib";
-import castArray from './castArray';
+            <pre class="prettyprint source linenums"><code>import negate from './negate';
+import pickBy from './pickBy';
 /**
- * 浅拷贝对象并排除部分属性。
+ * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Truthy` 。
  *
- * 仅包含对象可枚举的属性。
+ * 断言方法的两个参数是对象的每个可枚举属性的 `value` `key` 。
  *
  * @static
- * @alias module:Object.omit
+ * @alias module:Object.omitBy
  * @since 1.0.0
  * @param {object} obj 对象
- * @param {string|string[]} [fields] 排除的属性
+ * @param {function} predicate 每个属性/值调用函数
  * @returns {object} 新对象
  * @example
  *
  * const obj = { name: "jeff", age: 18 };
  *
- * // 浅拷贝对象
- * omit(obj); // { name: "jeff", age: 18 }
+ * omitBy(obj); // { name: "jeff", age: 18 }
  *
- * // 排除单个属性
- * omit(obj, 'name'); // { age: 18 }
+ * omitBy(obj, (value, key) => typeof value === 'number'); // { name: "jeff" }
  *
- * // 排除多个属性
- * omit(obj, ['name', 'age']); // {}
+ * omitBy(obj, (value, key) => value); // {}
  *
  */
-function omit(obj, fields) {
-    if (fields === void 0) { fields = []; }
-    var shallowCopy = __assign({}, obj);
-    var fieldArr = castArray(fields);
-    for (var i = 0; i &lt; fieldArr.length; i++) {
-        var field = fieldArr[i];
-        delete shallowCopy[field];
-    }
-    return shallowCopy;
+function omitBy(obj, predicate) {
+    if (predicate === void 0) { predicate = function () { return true; }; }
+    return pickBy(obj, negate(predicate));
 }
-export default omit;
+export default omitBy;
 </code></pre>
         </article>
     </section>

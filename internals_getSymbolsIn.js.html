@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>omit.js - ut2 </title>
+    <title>internals/getSymbolsIn.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">omit.js</h1>
+    <h1 class="page-title">internals/getSymbolsIn.js</h1>
     
 
     
@@ -69,44 +69,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { __assign } from "tslib";
-import castArray from './castArray';
+            <pre class="prettyprint source linenums"><code>import { __read, __spreadArray } from "tslib";
+import getSymbols from './getSymbols';
 /**
- * 浅拷贝对象并排除部分属性。
+ * 创建一个数组，包含自身以及继承的可枚举 `symbol` 属性。
  *
- * 仅包含对象可枚举的属性。
- *
- * @static
- * @alias module:Object.omit
- * @since 1.0.0
- * @param {object} obj 对象
- * @param {string|string[]} [fields] 排除的属性
- * @returns {object} 新对象
- * @example
- *
- * const obj = { name: "jeff", age: 18 };
- *
- * // 浅拷贝对象
- * omit(obj); // { name: "jeff", age: 18 }
- *
- * // 排除单个属性
- * omit(obj, 'name'); // { age: 18 }
- *
- * // 排除多个属性
- * omit(obj, ['name', 'age']); // {}
- *
+ * @param {object} obj 要查询的对象
+ * @returns {symbol[]} 可枚举的 `symbol` 属性数组
  */
-function omit(obj, fields) {
-    if (fields === void 0) { fields = []; }
-    var shallowCopy = __assign({}, obj);
-    var fieldArr = castArray(fields);
-    for (var i = 0; i &lt; fieldArr.length; i++) {
-        var field = fieldArr[i];
-        delete shallowCopy[field];
+function getSymbolsIn(obj) {
+    var result = [];
+    var o = Object(obj);
+    while (o) {
+        result.push.apply(result, __spreadArray([], __read(getSymbols(o)), false));
+        o = Object.getPrototypeOf(o);
     }
-    return shallowCopy;
+    return result;
 }
-export default omit;
+export default getSymbolsIn;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>omit.js - ut2 </title>
+    <title>pick.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">omit.js</h1>
+    <h1 class="page-title">pick.js</h1>
     
 
     
@@ -69,44 +69,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { __assign } from "tslib";
-import castArray from './castArray';
+            <pre class="prettyprint source linenums"><code>import castArray from './castArray';
 /**
- * 浅拷贝对象并排除部分属性。
+ * 创建一个由选取的对象属性组成的对象。
  *
- * 仅包含对象可枚举的属性。
+ * 允许选取不可枚举的属性。
  *
  * @static
- * @alias module:Object.omit
+ * @alias module:Object.pick
  * @since 1.0.0
  * @param {object} obj 对象
- * @param {string|string[]} [fields] 排除的属性
+ * @param {string|string[]} [fields] 选取的属性
  * @returns {object} 新对象
  * @example
  *
  * const obj = { name: "jeff", age: 18 };
  *
- * // 浅拷贝对象
- * omit(obj); // { name: "jeff", age: 18 }
+ * pick(obj); // {}
  *
- * // 排除单个属性
- * omit(obj, 'name'); // { age: 18 }
+ * // 选取单个属性
+ * pick(obj, 'name'); // { name: "jeff" }
  *
- * // 排除多个属性
- * omit(obj, ['name', 'age']); // {}
- *
+ * // 选取多个属性
+ * pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }
  */
-function omit(obj, fields) {
+// function pick&lt;T extends object, K extends keyof T>(obj: T, fields: K | K[]): Pick&lt;T, K>;
+// function pick&lt;T extends object>(obj: T, fields?: string | string[]): Partial&lt;T>;
+function pick(obj, fields) {
     if (fields === void 0) { fields = []; }
-    var shallowCopy = __assign({}, obj);
+    var result = {};
     var fieldArr = castArray(fields);
     for (var i = 0; i &lt; fieldArr.length; i++) {
         var field = fieldArr[i];
-        delete shallowCopy[field];
+        if (field in obj) {
+            result[field] = obj[field];
+        }
     }
-    return shallowCopy;
+    return result;
 }
-export default omit;
+export default pick;
 </code></pre>
         </article>
     </section>
