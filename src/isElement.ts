@@ -7,8 +7,8 @@ import isPlainObject from './isPlainObject';
  * @static
  * @alias module:Type.isElement
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 是否可能为 `DOM` 元素
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为 `DOM` 元素，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isElement(document.body); // true

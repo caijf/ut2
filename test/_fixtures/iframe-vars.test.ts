@@ -143,6 +143,8 @@ describe('iframe vars', () => {
     expect(isTypedArray(childObject.uint8ClampedArray)).toBe(true);
     expect(isTypedArray(childObject.uint16Array)).toBe(true);
     expect(isTypedArray(childObject.uint32Array)).toBe(true);
+    expect(isTypedArray(childObject.bigInt64Array)).toBe(true);
+    expect(isTypedArray(childObject.bigUint64Array)).toBe(true);
   });
 
   it('isUndefined', () => {

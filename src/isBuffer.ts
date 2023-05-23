@@ -1,5 +1,5 @@
 /**
- * 检查值是否为 `Buffer` 。
+ * 检查值是否为 `buffer` 。
  *
  * 非 Node.js 环境，始终返回 `false` 。
  *
@@ -7,7 +7,7 @@
  * @alias module:Type.isBuffer
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为 `Buffer`
+ * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isBuffer(new Blob(['a'])); // true

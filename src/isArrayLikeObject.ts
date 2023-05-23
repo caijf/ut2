@@ -8,7 +8,7 @@ import isObjectLike from './isObjectLike';
  * @alias module:Type.isArrayLikeObject
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为类数组对象
+ * @returns {boolean} 如果值为类数组对象，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isArrayLike([1, 2, 3]); // true

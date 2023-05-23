@@ -2,16 +2,16 @@ import getKeysIn from './internals/getKeysIn';
 import getSymbolsIn from './internals/getSymbolsIn';
 
 /**
- * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Truthy` 。
+ * 创建一个对象，该对象的属性从 `object` 中经 `predicate` （断言函数）判断为真值的属性。
  *
- * 断言方法的两个参数是对象的每个可枚举属性的 `value` `key` 。
+ * `predicate` 调用2个参数 `value` `key` 。
  *
  * @static
  * @alias module:Object.pickBy
  * @since 1.0.0
- * @param {object} obj 对象
- * @param {function} predicate 每个属性/值调用函数
- * @returns {object} 新对象
+ * @param {object} obj 来源对象。
+ * @param {function} predicate 调用每一个属性的函数。
+ * @returns {object} 新对象。
  * @example
  *
  * const obj = { name: "jeff", age: 18 };

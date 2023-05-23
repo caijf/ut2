@@ -1,11 +1,11 @@
 /**
- * 检查值是否为数组对象。
+ * 检查值是否为 `Array` 对象。
  *
  * @static
  * @alias module:Type.isArray
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 是否为数组对象
+ * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isArray([1, 2, 3]); // true

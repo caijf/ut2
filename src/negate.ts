@@ -1,11 +1,11 @@
 /**
- * 创建一个函数来否定断言函数结果。
+ * 创建一个断言函数结果取反的函数。
  *
  * @static
- * @alias module.Function.negate
+ * @alias module:Function.negate
  * @since 1.0.0
- * @param {function} predicate 断言函数
- * @returns 否定函数
+ * @param {function} predicate 需要对结果取反的函数。
+ * @returns 新的取反函数。
  * @example
  *
  * function isEven(num){

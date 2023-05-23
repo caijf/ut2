@@ -4,8 +4,8 @@
  * @static
  * @alias module:Util.castArray
  * @since 1.0.0
- * @param {*} [value] 要检查的值
- * @returns {Array} 转换数组
+ * @param {*} [value] 要处理的值。
+ * @returns {Array} 转换后的数组。
  * @example
  *
  * castArray('a'); // ["a"]

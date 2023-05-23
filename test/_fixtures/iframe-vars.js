@@ -40,6 +40,8 @@ iframe.contentDocument.write(`
       uint8ClampedArray: new Uint8ClampedArray(new ArrayBuffer(24)),
       uint16Array: new Uint16Array(new ArrayBuffer(24)),
       uint32Array: new Uint32Array(new ArrayBuffer(24)),
+      bigInt64Array: new BigInt64Array(new ArrayBuffer(8)),
+      bigUint64Array: new BigUint64Array(new ArrayBuffer(8)),
       dateView: typeof DateView !== 'undefined' ? new DateView(new ArrayBuffer(24)) : undefined,
 
       // errors

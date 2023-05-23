@@ -12,8 +12,8 @@ import isInteger from './isInteger';
  * @static
  * @alias module:Type.isSafeInteger
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 是否为安全整数
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为安全整数，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isSafeInteger(1); // true

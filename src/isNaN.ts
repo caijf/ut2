@@ -9,8 +9,8 @@ import isNumber from './isNumber';
  * @static
  * @alias module:Type.isNaN
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 是否为 `NaN`
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为 `NaN` ，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isNaN(NaN); // true

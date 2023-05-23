@@ -7,8 +7,8 @@ import { MAX_SAFE_INTEGER } from './internals/native';
  * @alias module:Type.isLength
  * @since 1.0.0
  * @see {@link https://262.ecma-international.org/7.0/#sec-tolength|ToLength}
- * @param {*} value 要检查的值
- * @returns {boolean} 是否为有效的类数组长度
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为有效的类数组长度，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isLength(3); // true

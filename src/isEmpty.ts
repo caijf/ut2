@@ -5,7 +5,7 @@ import isObjectLike from './isObjectLike';
 import isSet from './isSet';
 
 /**
- * 检查 `类数组` `Map` `Set` `对象` 是否为空。
+ * 检查值是否为空对象。
  *
  * 类数组的 `length===0`，`Map` `Set` 的 `size === 0` 表示为空。如果对象 `Object.keys` 没有可枚举属性，则被认为是空的。
  *
@@ -14,8 +14,8 @@ import isSet from './isSet';
  * @static
  * @alias module:Type.isEmpty
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 是否为空
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为空，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isEmpty(null); // true

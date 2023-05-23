@@ -9,8 +9,8 @@ import isObjectLike from './isObjectLike';
  * @static
  * @alias module:Type.isError
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 是否为 `Error` 或 `DOMException`
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为 `Error` 或 `DOMException` 对象，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * isError(new Error); // true

@@ -2,16 +2,16 @@ import negate from './negate';
 import pickBy from './pickBy';
 
 /**
- * 创建一个对象，该对象的属性由第二个参数断言方法返回 `Falsy` 。与 [`pickBy`](#.pickBy) 相反。
+ * 创建一个对象，该对象忽略 `predicate` （断言函数）判断不是真值的属性后，`object` 自身和继承的可枚举属性组成。与 [`pickBy`](#.pickBy) 相反。
  *
- * 断言方法的两个参数是对象的每个可枚举属性的 `value` `key` 。
+ * `predicate` 调用2个参数 `value` `key` 。
  *
  * @static
  * @alias module:Object.omitBy
  * @since 1.0.0
- * @param {object} obj 对象
- * @param {function} predicate 每个属性/值调用函数
- * @returns {object} 新对象
+ * @param {object} obj 来源对象。
+ * @param {function} predicate 调用每一个属性的函数。
+ * @returns {object} 新对象。
  * @example
  *
  * const obj = { name: "jeff", age: 18 };

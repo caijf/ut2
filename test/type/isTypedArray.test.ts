@@ -12,7 +12,9 @@ describe('isTypedArray', () => {
       new Uint8Array(new ArrayBuffer(24)),
       new Uint8ClampedArray(new ArrayBuffer(24)),
       new Uint16Array(new ArrayBuffer(24)),
-      new Uint32Array(new ArrayBuffer(24))
+      new Uint32Array(new ArrayBuffer(24)),
+      new BigInt64Array(new ArrayBuffer(8)),
+      new BigUint64Array(new ArrayBuffer(8))
     ];
 
     typedArrays.forEach((item) => {
