@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArrayLikeObject.js - ut2 </title>
+    <title>conformsTo.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArrayLikeObject.js</h1>
+    <h1 class="page-title">conformsTo.js</h1>
     
 
     
@@ -69,31 +69,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isArrayLike from './isArrayLike';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为类数组对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 通过调用断言 `source` 的属性与 `object` 的相应属性值，检查 `object` 是否符合 `source` 。
  *
  * @static
- * @alias module:Type.isArrayLikeObject
+ * @alias module:Util.conformsTo
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为类数组对象，返回 `true` ，否则返回 `false` 。
+ * @param object 要检查的对象。
+ * @param source 要断言属性是否符合的对象。
+ * @returns {boolean} 如果 `object` 符合，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isArrayLike([1, 2, 3]); // true
+ * const object = { a: 1, b: 2 }
  *
- * isArrayLike(document.body.children); // true
+ * conformsTo(object, { b: value => value > 1 }); // true
  *
- * isArrayLike('abc'); // false
- *
- * isArrayLike(()=>{}); // false
+ * conformsTo(object, { b: value => value > 2 }); // false
  *
  */
-function isArrayLikeObject(value) {
-    return isObjectLike(value) &amp;&amp; isArrayLike(value);
+function conformsTo(object, source) {
+    var props = Object.keys(source);
+    var length = props.length;
+    if (object == null) {
+        return !length;
+    }
+    if (length === 0) {
+        return true;
+    }
+    for (var i = 0; i &lt; length; i++) {
+        var key = props[i];
+        var predicate = source[key];
+        var value = object[key];
+        if ((value === undefined &amp;&amp; !(key in object)) || !predicate(value)) {
+            return false;
+        }
+    }
+    return true;
 }
-export default isArrayLikeObject;
+export default conformsTo;
 </code></pre>
         </article>
     </section>

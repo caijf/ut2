@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArrayLikeObject.js - ut2 </title>
+    <title>constant.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArrayLikeObject.js</h1>
+    <h1 class="page-title">constant.js</h1>
     
 
     
@@ -69,31 +69,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isArrayLike from './isArrayLike';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为类数组对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 创建一个返回 `value` 的函数。
  *
  * @static
- * @alias module:Type.isArrayLikeObject
+ * @alias module:Util.constant
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为类数组对象，返回 `true` ，否则返回 `false` 。
+ * @param {*} value 新函数返回的值。
+ * @returns {function} 返回新的常量函数。
  * @example
  *
- * isArrayLike([1, 2, 3]); // true
+ * const obj = { a: 1 }
  *
- * isArrayLike(document.body.children); // true
+ * const returnObj = constant(obj);
  *
- * isArrayLike('abc'); // false
- *
- * isArrayLike(()=>{}); // false
- *
+ * console.log(returnObj() === obj); // true
  */
-function isArrayLikeObject(value) {
-    return isObjectLike(value) &amp;&amp; isArrayLike(value);
+function constant(value) {
+    return function () {
+        return value;
+    };
 }
-export default isArrayLikeObject;
+export default constant;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArrayLikeObject.js - ut2 </title>
+    <title>conforms.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArrayLikeObject.js</h1>
+    <h1 class="page-title">conforms.js</h1>
     
 
     
@@ -69,31 +69,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isArrayLike from './isArrayLike';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>import conformsTo from './conformsTo';
 /**
- * 检查值是否为类数组对象。
+ * 创建一个函数，调用 `source` 的属性名对应的断言函数与传入对象相对应属性名的值进行断言处理。如果都符合返回 `true`，否则返回 `false` 。
  *
  * @static
- * @alias module:Type.isArrayLikeObject
+ * @alias module:Util.conforms
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为类数组对象，返回 `true` ，否则返回 `false` 。
- * @example
+ * @param source 要断言属性是否符合的对象。
+ * @returns {function} 新的函数。
  *
- * isArrayLike([1, 2, 3]); // true
+ * const objs =  [
+ *   { a: 1, b: 1 },
+ *   { a: 2, b: 2 }
+ * ]
  *
- * isArrayLike(document.body.children); // true
- *
- * isArrayLike('abc'); // false
- *
- * isArrayLike(()=>{}); // false
- *
+ * objs.filter(conforms({ b: value => value > 1 })); // [{ a: 2: b: 2 }]
  */
-function isArrayLikeObject(value) {
-    return isObjectLike(value) &amp;&amp; isArrayLike(value);
+function conforms(source) {
+    return function (obj) {
+        return conformsTo(obj, source);
+    };
 }
-export default isArrayLikeObject;
+export default conforms;
 </code></pre>
         </article>
     </section>
