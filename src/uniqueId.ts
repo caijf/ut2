@@ -11,11 +11,11 @@ let idCounter = 0;
  * @returns {string} 唯一ID。
  * @example
  *
- * uniqueId(); // 1
+ * uniqueId(); // '1'
  *
- * uniqueId(); // 2
+ * uniqueId(); // '2'
  *
- * uniqueId('abc_'); // abc_3
+ * uniqueId('abc_'); // 'abc_3'
  *
  */
 function uniqueId(prefix = '') {
