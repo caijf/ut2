@@ -27,10 +27,10 @@ import isInteger from './isInteger';
  * isSafeInteger(null); // false
  *
  */
-const isSafeInteger =
-  numberIsSafeInteger ||
-  function (value: any) {
-    return isInteger(value) && Math.abs(value) <= MAX_SAFE_INTEGER;
-  };
+function isSafeInteger(value: any) {
+  return numberIsSafeInteger
+    ? numberIsSafeInteger(value)
+    : isInteger(value) && Math.abs(value) <= MAX_SAFE_INTEGER;
+}
 
 export default isSafeInteger;

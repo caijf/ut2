@@ -24,10 +24,8 @@ import { numberIsFinite } from './internals/helpers';
  * isFinite(null); // false
  *
  */
-const isFinite =
-  numberIsFinite ||
-  function (value: any) {
-    return typeof value === 'number' && root.isFinite(value);
-  };
+function isFinite(value: any) {
+  return numberIsFinite ? numberIsFinite(value) : typeof value === 'number' && root.isFinite(value);
+}
 
 export default isFinite;

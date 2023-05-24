@@ -8,6 +8,7 @@ import conformsTo from './conformsTo';
  * @since 1.0.0
  * @param source 要断言属性是否符合的对象。
  * @returns {function} 新的函数。
+ * @example
  *
  * const objs =  [
  *   { a: 1, b: 1 },

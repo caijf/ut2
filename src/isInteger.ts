@@ -24,10 +24,8 @@ import isFinite from './isFinite';
  * isInteger(null); // false
  *
  */
-const isInteger =
-  numberIsInteger ||
-  function (value: any) {
-    return isFinite(value) && Math.floor(value) === value;
-  };
+function isInteger(value: any) {
+  return numberIsInteger ? numberIsInteger(value) : isFinite(value) && Math.floor(value) === value;
+}
 
 export default isInteger;
