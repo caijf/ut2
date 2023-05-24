@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isRegExp.js - ut2 </title>
+    <title>noop.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isRegExp.js</h1>
+    <h1 class="page-title">noop.js</h1>
     
 
     
@@ -69,28 +69,19 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { nodeIsRegExp } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为 `RegExp` 对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 空函数，返回 `undefined` 。
  *
  * @static
- * @alias module:Type.isRegExp
+ * @alias module:Util.noop
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `RegExp` 对象，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isRegExp(/abc/); // true
- *
- * isRegExp('/abc/'); // false
+ * noop(); // undefined
  *
  */
-function isRegExp(value) {
-    return nodeIsRegExp ? nodeIsRegExp(value) : isObjectLike(value) &amp;&amp; isType(value, 'RegExp');
-}
-export default isRegExp;
+function noop() { }
+export default noop;
 </code></pre>
         </article>
     </section>
