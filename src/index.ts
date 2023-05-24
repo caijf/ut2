@@ -10,6 +10,7 @@ export { default as conforms } from './conforms';
 export { default as conformsTo } from './conformsTo';
 export { default as constant } from './constant';
 export { default as defaultTo } from './defaultTo';
+export { default as identity } from './identity';
 export { default as uniqueId } from './uniqueId';
 
 /**
