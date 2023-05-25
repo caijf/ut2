@@ -1,5 +1,3 @@
-function identity<T>(value?: T): T;
-function identity<T>(value: T, ...args: any[]): T;
 /**
  * 返回第一个参数。
  *
@@ -15,6 +13,9 @@ function identity<T>(value: T, ...args: any[]): T;
  * console.log(identity(obj, 1) === obj); // true
  *
  */
+
+function identity<T>(value?: T): T;
+function identity<T>(value: T, ...args: any[]): T;
 function identity<T>(value?: T) {
   return value;
 }

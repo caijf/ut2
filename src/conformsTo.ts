@@ -1,11 +1,3 @@
-function conformsTo<T extends object, K extends keyof T>(
-  object: T,
-  source: Record<K, (value: T[K]) => any>
-): boolean;
-function conformsTo<T extends object | null | undefined>(
-  object: T,
-  source: Record<string, (value: any) => any>
-): boolean;
 /**
  * 通过调用断言 `source` 的属性与 `object` 的相应属性值，检查 `object` 是否符合 `source` 。
  *
@@ -24,6 +16,15 @@ function conformsTo<T extends object | null | undefined>(
  * conformsTo(object, { b: value => value > 2 }); // false
  *
  */
+
+function conformsTo<T extends object, K extends keyof T>(
+  object: T,
+  source: Record<K, (value: T[K]) => any>
+): boolean;
+function conformsTo<T extends object | null | undefined>(
+  object: T,
+  source: Record<string, (value: any) => any>
+): boolean;
 function conformsTo<T extends object, K extends keyof T>(
   object: T,
   source: Record<K, (value: T[K]) => any>
