@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isNaN.js - ut2 </title>
+    <title>isPromiseLike.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isNaN.js</h1>
+    <h1 class="page-title">isPromiseLike.js</h1>
     
 
     
@@ -69,31 +69,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { root } from './internals/native';
-import isNumber from './isNumber';
+            <pre class="prettyprint source linenums"><code>import isObject from './isObject';
 /**
- * 检查值是否为 `NaN` 。
+ * 检测值是否类似 `Promise` 对象。
  *
- * 和 `Number.isNaN` 区别是 `new Number(NaN)` 也被认为是 `NaN`。
+ * 如果一个对象包含 `then` 方法，它就是类似 `Promise` 对象。
  *
  * @static
- * @alias module:Type.isNaN
+ * @alias module:Type.isPromiseLike
  * @since 1.0.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `NaN` ，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值类似 `Promise` 对象，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isNaN(NaN); // true
+ * isPromiseLike(Promise.resolve()); // true
  *
- * isNaN(new Number(NaN)); // true
+ * isPromiseLike({ then: () => { } }); // true
  *
- * isNaN(1); // false
+ * isPromiseLike([]); // false
  *
  */
-function isNaN(value) {
-    return isNumber(value) &amp;&amp; root.isNaN(value);
+function isPromiseLike(value) {
+    return isObject(value) &amp;&amp; typeof value.then === 'function';
 }
-export default isNaN;
+export default isPromiseLike;
 </code></pre>
         </article>
     </section>
