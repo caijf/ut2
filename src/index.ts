@@ -1,18 +1,30 @@
 /**
- * 工具
+ * 数组
  *
- * @module Util
+ * @module Array
  * @since 1.0.0
  */
-export const version = BUILD_VERSION;
-export { default as castArray } from './castArray';
-export { default as conforms } from './conforms';
-export { default as conformsTo } from './conformsTo';
-export { default as constant } from './constant';
-export { default as defaultTo } from './defaultTo';
-export { default as identity } from './identity';
-export { default as noop } from './noop';
-export { default as uniqueId } from './uniqueId';
+export { default as nth } from './nth';
+
+/**
+ * 函数
+ *
+ * @module Function
+ * @since 1.0.0
+ */
+export { default as negate } from './negate';
+export { default as throttle } from './throttle';
+
+/**
+ * 对象
+ *
+ * @module Object
+ * @since 1.0.0
+ */
+export { default as omit } from './omit';
+export { default as omitBy } from './omitBy';
+export { default as pick } from './pick';
+export { default as pickBy } from './pickBy';
 
 /**
  * 类型检测
@@ -56,21 +68,18 @@ export { default as isWeakMap } from './isWeakMap';
 export { default as isWeakSet } from './isWeakSet';
 
 /**
- * 对象
+ * 工具
  *
- * @module Object
+ * @module Util
  * @since 1.0.0
  */
-export { default as omit } from './omit';
-export { default as omitBy } from './omitBy';
-export { default as pick } from './pick';
-export { default as pickBy } from './pickBy';
-
-/**
- * 函数
- *
- * @module Function
- * @since 1.0.0
- */
-export { default as negate } from './negate';
-export { default as throttle } from './throttle';
+export const version = BUILD_VERSION;
+export { default as castArray } from './castArray';
+export { default as conforms } from './conforms';
+export { default as conformsTo } from './conformsTo';
+export { default as constant } from './constant';
+export { default as defaultTo } from './defaultTo';
+export { default as identity } from './identity';
+export { default as noop } from './noop';
+export { default as nthArg } from './nthArg';
+export { default as uniqueId } from './uniqueId';
