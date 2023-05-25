@@ -44,6 +44,7 @@ export { default as isNumber } from './isNumber';
 export { default as isObject } from './isObject';
 export { default as isObjectLike } from './isObjectLike';
 export { default as isPlainObject } from './isPlainObject';
+export { default as isPromiseLike } from './isPromiseLike';
 export { default as isRegExp } from './isRegExp';
 export { default as isSafeInteger } from './isSafeInteger';
 export { default as isSet } from './isSet';
