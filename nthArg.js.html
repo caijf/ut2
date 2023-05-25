@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isError.js - ut2 </title>
+    <title>nthArg.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isError.js</h1>
+    <h1 class="page-title">nthArg.js</h1>
     
 
     
@@ -69,32 +69,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>import nth from './nth';
 /**
- * 检查值是否为 `Error` 或 `DOMException` 。
- *
- * 继承自 `Error` 的对象，如 `EvalError` `RangeError` `ReferenceError` `SyntaxError` `TypeError` `URIError` `AggregateError`，都将返回 `true` 。
+ * 创建一个函数，该函数返回第 `n` 个参数。如果 `n` 为负数，则返回从结尾开始的第 `n` 个参数。
  *
  * @static
- * @alias module:Type.isError
+ * @alias module:Util.nthArg
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Error` 或 `DOMException` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {number} [n=0] 要返回参数的索引值。
+ * @returns 新函数。
  * @example
  *
- * isError(new Error); // true
+ * const func1 = nthArg(1);
  *
- * isError(Error); // false
+ * func1('a', 'b', 'c', 'd'); // 'b'
+ *
+ * const func2 = nthArg(-2);
+ *
+ * func2('a', 'b', 'c', 'd'); // 'c'
  *
  */
-function isError(value) {
-    if (!isObjectLike(value)) {
-        return false;
-    }
-    return value instanceof Error || isType(value, ['Error', 'DOMException']);
+function nthArg(n) {
+    if (n === void 0) { n = 0; }
+    return function () {
+        var args = [];
+        for (var _i = 0; _i &lt; arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return nth(args, n);
+    };
 }
-export default isError;
+export default nthArg;
 </code></pre>
         </article>
     </section>

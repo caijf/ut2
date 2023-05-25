@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isError.js - ut2 </title>
+    <title>nth.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isError.js</h1>
+    <h1 class="page-title">nth.js</h1>
     
 
     
@@ -69,32 +69,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>import { arrayAt } from './internals/helpers';
+import isArrayLike from './isArrayLike';
 /**
- * 检查值是否为 `Error` 或 `DOMException` 。
+ * 获取数组的第 `n` 个元素。如果 `n` 为负数，则返回从数组结尾开始的第 `n` 个元素。
  *
- * 继承自 `Error` 的对象，如 `EvalError` `RangeError` `ReferenceError` `SyntaxError` `TypeError` `URIError` `AggregateError`，都将返回 `true` 。
+ * 同 `Array.prototype.at` 方法。
  *
  * @static
- * @alias module:Type.isError
+ * @alias module:Array.nth
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Error` 或 `DOMException` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {Array} array 要查询的数组。
+ * @param {number} [n=0] 要返回元素的索引值。
+ * @returns {*} 数组的第 `n` 个元素。
  * @example
  *
- * isError(new Error); // true
+ * const arr = ['a', 'b', 'c', 'd'];
  *
- * isError(Error); // false
+ * nth(arr, 1); // 'b'
+ *
+ * nth(arr, -2); // 'c'
  *
  */
-function isError(value) {
-    if (!isObjectLike(value)) {
-        return false;
+function nth(array, n) {
+    if (n === void 0) { n = 0; }
+    if (!isArrayLike(array)) {
+        return undefined;
     }
-    return value instanceof Error || isType(value, ['Error', 'DOMException']);
+    if (typeof arrayAt === 'function') {
+        return arrayAt.call(array, n);
+    }
+    var index = n &lt; 0 ? n + array.length : n;
+    return array[index];
 }
-export default isError;
+export default nth;
 </code></pre>
         </article>
     </section>
