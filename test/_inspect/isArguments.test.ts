@@ -5,4 +5,4 @@ jest.mock('../../src/internals/helpers.ts', () => {
   };
 });
 
-import '../type/isArguments.test';
+import '../isArguments.test';

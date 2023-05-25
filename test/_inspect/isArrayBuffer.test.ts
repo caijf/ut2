@@ -3,4 +3,4 @@ jest.mock('../../src/internals/nodeUtil.ts', () => ({
   nodeIsArrayBuffer: types.isArrayBuffer
 }));
 
-import '../type/isArrayBuffer.test';
+import '../isArrayBuffer.test';

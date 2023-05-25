@@ -3,4 +3,4 @@ jest.mock('../../src/internals/nodeUtil.ts', () => ({
   nodeIsRegExp: types.isRegExp
 }));
 
-import '../type/isRegExp.test';
+import '../isRegExp.test';
