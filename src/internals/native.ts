@@ -23,6 +23,10 @@ export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
 // 最小安全数字
 export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 
+export const MAX_ARRAY_LENGTH = 4294967295;
+// export const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1;
+// export const HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
+
 // Blob 对象是否存在
 export const blobExisted = typeof Blob !== 'undefined';
 
