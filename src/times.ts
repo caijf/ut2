@@ -8,7 +8,7 @@ function times(n: number): number[];
 /**
  * 调用 `iteratee` `n` 次，每次调用返回的结果存入到数组中。
  *
- * `iteratee` 调用传入1个参数 `index` 。
+ * `iteratee` 调用传入 1 个参数 `index` 。
  *
  * @static
  * @alias module:Util.times
