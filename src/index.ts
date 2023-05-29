@@ -37,6 +37,14 @@ export { default as pick } from './pick';
 export { default as pickBy } from './pickBy';
 
 /**
+ * 字符串
+ *
+ * @module String
+ * @since 1.0.0
+ */
+export { default as words } from './words';
+
+/**
  * 类型检测
  *
  * @module Type
