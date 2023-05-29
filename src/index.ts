@@ -23,6 +23,7 @@ export { default as throttle } from './throttle';
  */
 export { default as clamp } from './clamp';
 export { default as inRange } from './inRange';
+export { default as random } from './random';
 
 /**
  * 对象
