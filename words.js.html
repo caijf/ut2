@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isMap.js - ut2 </title>
+    <title>words.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isMap.js</h1>
+    <h1 class="page-title">words.js</h1>
     
 
     
@@ -69,28 +69,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { nodeIsMap } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 /**
- * 检查值是否为 `Map` 对象。
+ * 拆分字符串中的词为数组。
  *
  * @static
- * @alias module:Type.isMap
+ * @alias module:String.words
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Map` 对象，返回 `true` ，否则返回 `false` 。
+ * @see {@link https://zh.wikipedia.org/wiki/ASCII|ASCII}
+ * @param {string} string 要拆分的字符串。
+ * @param {RegExp|string} [pattern=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g] 匹配模式。
+ * @returns {Array} 拆分后的数组。
  * @example
  *
- * isMap(new Map); // true
+ * words('fred, barney, &amp; pebbles'); // ['fred', 'barney', 'pebbles']
  *
- * isMap(new WeakMap); // false
+ * words('fred, barney, &amp; pebbles', /[^, ]+/g); // ['fred', 'barney', '&amp;', 'pebbles']
  *
  */
-function isMap(value) {
-    return nodeIsMap ? nodeIsMap(value) : isObjectLike(value) &amp;&amp; isType(value, 'Map');
+function words(string, pattern) {
+    if (pattern === void 0) { pattern = reAsciiWord; }
+    return string.match(pattern) || [];
 }
-export default isMap;
+export default words;
 </code></pre>
         </article>
     </section>
