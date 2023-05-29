@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isMap.js - ut2 </title>
+    <title>inRange.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isMap.js</h1>
+    <h1 class="page-title">inRange.js</h1>
     
 
     
@@ -69,28 +69,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { nodeIsMap } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为 `Map` 对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 检查数字是否在 `start` 与 `end` 之间，但不包括 `end` 。
  *
  * @static
- * @alias module:Type.isMap
+ * @alias module:Number.inRange
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Map` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {number} number 要检查的值。
+ * @param {number} start 开始范围。
+ * @param {number} end 结束范围。
+ * @returns {number} 如果数字在范围内，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isMap(new Map); // true
+ * inRange(3, 2, 4); // true
  *
- * isMap(new WeakMap); // false
+ * inRange(1, 0, 2); // true
+ *
+ * inRange(1.2, 0.5, 1.5); // true
+ *
+ * inRange(2.2, 0.5, 1.5); // false
+ *
+ * inRange(-2, -2, 4); // true
+ *
+ * inRange(4, -2, 4); // false
  *
  */
-function isMap(value) {
-    return nodeIsMap ? nodeIsMap(value) : isObjectLike(value) &amp;&amp; isType(value, 'Map');
+function inRange(number, start, end) {
+    var num = +number;
+    var startNum = +start;
+    var endNum = +end;
+    return num >= Math.min(startNum, endNum) &amp;&amp; num &lt; Math.max(startNum, endNum);
 }
-export default isMap;
+export default inRange;
 </code></pre>
         </article>
     </section>

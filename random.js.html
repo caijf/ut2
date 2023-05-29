@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isMap.js - ut2 </title>
+    <title>random.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isMap.js</h1>
+    <h1 class="page-title">random.js</h1>
     
 
     
@@ -69,28 +69,55 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { nodeIsMap } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为 `Map` 对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 产生一个包含 `lower` 与 `upper` 之间的随机数。
+ *
+ * 如果 `lower` 等于 `upper` , 直接返回该值。
+ *
+ * 如果 `lower` 与 `upper` 差值小于 `1` ，`floating` 将强制为 `true` 。
  *
  * @static
- * @alias module:Type.isMap
+ * @alias module:Number.random
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Map` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {number} [lower=0] 下限。
+ * @param {number} [upper=1] 上限。
+ * @param {boolean} [floating=true] 是否返回浮点数。
+ * @returns {number} 随机数。
  * @example
  *
- * isMap(new Map); // true
+ * random(); // 0 到 1 之间的随机浮点数
  *
- * isMap(new WeakMap); // false
+ * random(2, 4); // 2 到 4 之间的随机浮点数
+ *
+ * random(2, 4, false); // 2 到 4 之间的随机整数
+ *
+ * random(1.2, 2.4); // 1.2 到 2.4 之间的随机整数
  *
  */
-function isMap(value) {
-    return nodeIsMap ? nodeIsMap(value) : isObjectLike(value) &amp;&amp; isType(value, 'Map');
+function random(lower, upper, floating) {
+    if (lower === void 0) { lower = 0; }
+    if (upper === void 0) { upper = 1; }
+    if (floating === void 0) { floating = true; }
+    var numLow = +lower;
+    var numUp = +upper;
+    numLow = numLow === numLow ? numLow : 0;
+    numUp = numUp === numUp ? numUp : 0;
+    var low = Math.min(numLow, numUp);
+    var up = Math.max(numLow, numUp);
+    if (low === up) {
+        return low;
+    }
+    var diff = up - low;
+    var rand = Math.random();
+    if (floating || diff &lt; 1) {
+        return Math.min(low + rand * diff, up);
+    }
+    var intLow = Math.ceil(low);
+    var intUp = Math.floor(up);
+    var intDiff = intUp - intLow;
+    return Math.min(intLow + Math.floor(rand * (intDiff + 1)), intUp);
 }
-export default isMap;
+export default random;
 </code></pre>
         </article>
     </section>

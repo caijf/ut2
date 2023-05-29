@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isMap.js - ut2 </title>
+    <title>clamp.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isMap.js</h1>
+    <h1 class="page-title">clamp.js</h1>
     
 
     
@@ -69,28 +69,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { nodeIsMap } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
-/**
- * 检查值是否为 `Map` 对象。
+            <pre class="prettyprint source linenums"><code>/**
+ * 数字限制在 `lower` 和 `upper` 之间的值。
  *
  * @static
- * @alias module:Type.isMap
+ * @alias module:Number.clamp
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Map` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {number} number 被限制的值。
+ * @param {number} lower 下限。
+ * @param {number} upper 上限。
+ * @returns {number} 被限制的值。
  * @example
  *
- * isMap(new Map); // true
+ * clamp(-10, -5, 5); // -5
  *
- * isMap(new WeakMap); // false
+ * clamp(-10, 0, 5); // 0
+ *
+ * clamp(10, -5, 5); // 5
  *
  */
-function isMap(value) {
-    return nodeIsMap ? nodeIsMap(value) : isObjectLike(value) &amp;&amp; isType(value, 'Map');
+function clamp(number, lower, upper) {
+    var num = +number;
+    var low = +lower;
+    var up = +upper;
+    low = low === low ? low : 0;
+    up = up === up ? up : 0;
+    if (num === num) {
+        num = num &lt;= up ? num : up;
+        num = num >= low ? num : low;
+    }
+    return num;
 }
-export default isMap;
+export default clamp;
 </code></pre>
         </article>
     </section>

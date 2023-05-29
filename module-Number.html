@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>Object - ut2 </title>
+    <title>Number - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Object</h1>
+    <h1 class="page-title">Number</h1>
     
 
     
@@ -82,13 +82,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>对象</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>数字</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line25">line 25</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -130,7 +130,7 @@
 
 
             
-                <div class="description usertext"><p>对象</p></div>
+                <div class="description usertext"><p>数字</p></div>
             
 
             
@@ -160,7 +160,7 @@
 
     
 
-    <h4 class="name" id=".omit"><span class="type-signature type-signature-static">(static) </span>omit<span class="signature">(obj, fields<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></h4>
+    <h4 class="name" id=".clamp"><span class="type-signature type-signature-static">(static) </span>clamp<span class="signature">(number, lower, upper)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
 
@@ -170,13 +170,13 @@
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>创建一个对象，该对象由忽略属性之外的 <code>object</code> 自身和继承的可枚举属性组成。与 <a href="#.pick"><code>pick</code></a> 相反。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>数字限制在 <code>lower</code> 和 <code>upper</code> 之间的值。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="omit.js.html">omit.js</a>, <a href="omit.js.html#line26">line 26</a>
+        <a href="clamp.js.html">clamp.js</a>, <a href="clamp.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -226,16 +226,457 @@
 
     <h5 class="h5-examples">Example</h5>
     
-    <pre class="prettyprint"><code>const obj = { name: "jeff", age: 18 };
+    <pre class="prettyprint"><code>clamp(-10, -5, 5); // -5
 
-// 浅拷贝对象
-omit(obj); // { name: "jeff", age: 18 }
+clamp(-10, 0, 5); // 0
 
-// 排除单个属性
-omit(obj, 'name'); // { age: 18 }
+clamp(10, -5, 5); // 5</code></pre>
 
-// 排除多个属性
-omit(obj, ['name', 'age']); // {}</code></pre>
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>number</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>被限制的值。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>lower</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>下限。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>upper</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>上限。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>被限制的值。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".inRange"><span class="type-signature type-signature-static">(static) </span>inRange<span class="signature">(number, start, end)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查数字是否在 <code>start</code> 与 <code>end</code> 之间，但不包括 <code>end</code> 。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="inRange.js.html">inRange.js</a>, <a href="inRange.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>inRange(3, 2, 4); // true
+
+inRange(1, 0, 2); // true
+
+inRange(1.2, 0.5, 1.5); // true
+
+inRange(2.2, 0.5, 1.5); // false
+
+inRange(-2, -2, 4); // true
+
+inRange(4, -2, 4); // false</code></pre>
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>number</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>要检查的值。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>start</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>开始范围。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>end</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>结束范围。</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5 class="h5-returns">Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>如果数字在范围内，返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".random"><span class="type-signature type-signature-static">(static) </span>random<span class="signature">(lower<span class="signature-attributes">opt</span>, upper<span class="signature-attributes">opt</span>, floating<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {number}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>产生一个包含 <code>lower</code> 与 <code>upper</code> 之间的随机数。</p>
+<p>如果 <code>lower</code> 等于 <code>upper</code> , 直接返回该值。</p>
+<p>如果 <code>lower</code> 与 <code>upper</code> 差值小于 <code>1</code> ，<code>floating</code> 将强制为 <code>true</code> 。</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="random.js.html">random.js</a>, <a href="random.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-examples">Example</h5>
+    
+    <pre class="prettyprint"><code>random(); // 0 到 1 之间的随机浮点数
+
+random(2, 4); // 2 到 4 之间的随机浮点数
+
+random(2, 4, false); // 2 到 4 之间的随机整数
+
+random(1.2, 2.4); // 1.2 到 2.4 之间的随机整数</code></pre>
 
 
 
@@ -257,6 +698,8 @@ omit(obj, ['name', 'age']); // {}</code></pre>
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -267,48 +710,13 @@ omit(obj, ['name', 'age']); // {}</code></pre>
 
         <tr>
             
-                <td class="name"><code>obj</code></td>
+                <td class="name"><code>lower</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>来源对象。</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fields</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-|
-
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">number</span>
 
 
 
@@ -328,406 +736,27 @@ omit(obj, ['name', 'age']); // {}</code></pre>
             
 
             
-
-            <td class="description last"><p>要被忽略的属性。</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>新对象。</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".omitBy"><span class="type-signature type-signature-static">(static) </span>omitBy<span class="signature">(obj, predicate)</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>创建一个对象，该对象忽略 <code>predicate</code> （断言函数）判断不是真值的属性后，<code>object</code> 自身和继承的可枚举属性组成。与 <a href="#.pickBy"><code>pickBy</code></a> 相反。</p>
-<p><code>predicate</code> 调用 2 个参数 <code>value</code> <code>key</code> 。</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="omitBy.js.html">omitBy.js</a>, <a href="omitBy.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>const obj = { name: "jeff", age: 18 };
-
-omitBy(obj); // {}
-
-omitBy(obj, (value, key) => typeof value === 'number'); // { name: "jeff" }
-
-omitBy(obj, (value, key) => value); // {}</code></pre>
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
+                <td class="default">
                 
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>来源对象。</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>predicate</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>调用每一个属性的函数。</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>新对象。</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".pick"><span class="type-signature type-signature-static">(static) </span>pick<span class="signature">(obj, fields<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>创建一个从 <code>object</code> 选中的属性的对象。</p>
-<p>允许选取对象的所有属性（包含不可枚举属性）。</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pick.js.html">pick.js</a>, <a href="pick.js.html#line27">line 27</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>const obj = { name: "jeff", age: 18 };
-
-pick(obj); // {}
-
-// 选取单个属性
-pick(obj, 'name'); // { name: "jeff" }
-
-// 选取多个属性
-pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
+                    <code>0</code>
                 
                 </td>
             
 
-            
-
-            <td class="description last"><p>来源对象。</p></td>
+            <td class="description last"><p>下限。</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>fields</code></td>
+                <td class="name"><code>upper</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
-|
-
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">number</span>
 
 
 
@@ -747,8 +776,54 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
             
 
             
+                <td class="default">
+                
+                    <code>1</code>
+                
+                </td>
+            
 
-            <td class="description last"><p>选中的属性。</p></td>
+            <td class="description last"><p>上限。</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>floating</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>true</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>是否返回浮点数。</p></td>
         </tr>
 
     
@@ -774,7 +849,7 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
 
         
 <div class="param-desc">
-    <p>新对象。</p>
+    <p>随机数。</p>
 </div>
 
 
@@ -785,204 +860,7 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
     </dt>
     <dd>
         
-<span class="param-type">object</span>
-
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".pickBy"><span class="type-signature type-signature-static">(static) </span>pickBy<span class="signature">(obj, predicate)</span><span class="type-signature"> &rarr; {object}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-    
-    <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>创建一个对象，该对象的属性从 <code>object</code> 中经 <code>predicate</code> （断言函数）判断为真值的属性。</p>
-<p><code>predicate</code> 调用 2 个参数 <code>value</code> <code>key</code> 。</p></li></ul></dd>
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pickBy.js.html">pickBy.js</a>, <a href="pickBy.js.html#line26">line 26</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-    <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul class="dummy"><li>1.0.0</li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-    <h5 class="h5-examples">Example</h5>
-    
-    <pre class="prettyprint"><code>const obj = { name: "jeff", age: 18 };
-
-pickBy(obj); // {}
-
-pickBy(obj, (value, key) => typeof value === 'number'); // { age: 18 }
-
-pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }</code></pre>
-
-
-
-
-    <h5 class="h5-parameters">Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>来源对象。</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>predicate</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>调用每一个属性的函数。</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5 class="h5-returns">Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>新对象。</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">object</span>
+<span class="param-type">number</span>
 
 
 
