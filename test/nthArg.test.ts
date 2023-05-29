@@ -5,8 +5,11 @@ describe('nthArg', () => {
   const args = ['a', 'b', 'c', 'd'];
 
   it('basic', () => {
-    const func = nthArg(1);
-    expect(func(...args)).toBe('b');
+    const func0 = nthArg();
+    expect(func0(...args)).toBe('a');
+
+    const func1 = nthArg(1);
+    expect(func1(...args)).toBe('b');
 
     args.forEach((item, i) => {
       const func = nthArg(i);
