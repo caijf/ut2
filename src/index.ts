@@ -22,6 +22,7 @@ export { default as throttle } from './throttle';
  * @since 1.0.0
  */
 export { default as clamp } from './clamp';
+export { default as inRange } from './inRange';
 
 /**
  * 对象
