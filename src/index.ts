@@ -16,6 +16,14 @@ export { default as negate } from './negate';
 export { default as throttle } from './throttle';
 
 /**
+ * 数字
+ *
+ * @module Number
+ * @since 1.0.0
+ */
+export { default as clamp } from './clamp';
+
+/**
  * 对象
  *
  * @module Object
