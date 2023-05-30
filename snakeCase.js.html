@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isSafeInteger.js - ut2 </title>
+    <title>snakeCase.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isSafeInteger.js</h1>
+    <h1 class="page-title">snakeCase.js</h1>
     
 
     
@@ -69,40 +69,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { MAX_SAFE_INTEGER } from './internals/native';
-import { numberIsSafeInteger } from './internals/helpers';
-import isInteger from './isInteger';
+            <pre class="prettyprint source linenums"><code>import words from './words';
 /**
- * 检查值是否为安全整数。
- *
- * 同 `Number.isSafeInteger` 。
- *
- * 如果一个整数是一个 `IEEE-754` 双精度数字，它不是四舍五入的不安全整数的结果，那么它就是安全的。安全整数范围为 `-(2^53 - 1)` 到 `2^53 - 1` 之间的整数，包含 `-(2^53 - 1)` 和 `2^53 - 1`。
+ * 转换字符串为下划线小写。
  *
  * @static
- * @alias module:Type.isSafeInteger
+ * @alias module:String.snakeCase
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为安全整数，返回 `true` ，否则返回 `false` 。
+ * @see {@link https://en.wikipedia.org/wiki/Snake_case | snake case}
+ * @param {string} string 要转换的字符串。
+ * @param {RegExp|string} [pattern] 拆分词组的匹配模式。
+ * @returns {string} 转换后的字符串。
  * @example
  *
- * isSafeInteger(1); // true
+ * camelCase('foo bar'); // 'foo_bar'
  *
- * isSafeInteger(Infinity); // false
+ * camelCase('foo-bar'); // 'foo_bar'
  *
- * isSafeInteger(Number.MIN_VALUE); // false
+ * camelCase('Foo Bar'); // 'foo_bar'
  *
- * isSafeInteger('1'); // false
+ * camelCase('FOO BAR'); // 'foo_bar'
  *
- * isSafeInteger(null); // false
+ * camelCase('--FOO-BAR--'); // 'foo_bar'
+ *
+ * camelCase('__FOO_BAR__'); // 'foo_bar'
  *
  */
-function isSafeInteger(value) {
-    return numberIsSafeInteger
-        ? numberIsSafeInteger(value)
-        : isInteger(value) &amp;&amp; Math.abs(value) &lt;= MAX_SAFE_INTEGER;
+function snakeCase(string, pattern) {
+    return words(String(string).replace(/['\u2019]/g, ''), pattern).reduce(function (prev, cur, index) { return prev + (index ? '_' : '') + cur.toLowerCase(); }, '');
 }
-export default isSafeInteger;
+export default snakeCase;
 </code></pre>
         </article>
     </section>
