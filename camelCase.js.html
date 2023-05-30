@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isObject.js - ut2 </title>
+    <title>camelCase.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isObject.js</h1>
+    <h1 class="page-title">camelCase.js</h1>
     
 
     
@@ -69,31 +69,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为对象。(例如，数组、函数、对象、正则表达式、new Number(0) 和 new String(''))。
+            <pre class="prettyprint source linenums"><code>import upperFirst from './upperFirst';
+import words from './words';
+/**
+ * 转换字符串为驼峰写法。
  *
  * @static
- * @alias module:Type.isObject
+ * @alias module:String.camelCase
  * @since 1.0.0
- * @see {@link http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types | language type}
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为对象，返回 `true` ，否则返回 `false` 。
+ * @see {@link https://en.wikipedia.org/wiki/Camel_case | Camel_case}
+ * @param {string} string 要转换的字符串。
+ * @param {RegExp} pattern 拆分词组的匹配模式。
+ * @returns {string} 驼峰写法的字符串。
  * @example
  *
- * isObject({}); // true
+ * camelCase('foo bar'); // 'fooBar'
  *
- * isObject([1,2,3]); // true
+ * camelCase('foo-bar'); // 'fooBar'
  *
- * isObject(()=>{}); // true
+ * camelCase('Foo Bar'); // 'fooBar'
  *
- * isObject(null); // false
+ * camelCase('FOO BAR'); // 'fooBar'
+ *
+ * camelCase('--FOO-BAR--'); // 'fooBar'
+ *
+ * camelCase('__FOO_BAR__'); // 'fooBar'
  *
  */
-function isObject(value) {
-    var type = typeof value;
-    return value != null &amp;&amp; (type === 'object' || type === 'function');
+function camelCase(string, pattern) {
+    return words(String(string).replace(/['\u2019]/g, ''), pattern).reduce(function (prev, cur, index) {
+        cur = cur.toLowerCase();
+        return prev + (index ? upperFirst(cur) : cur);
+    }, '');
 }
-export default isObject;
+export default camelCase;
 </code></pre>
         </article>
     </section>

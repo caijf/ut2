@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isObject.js - ut2 </title>
+    <title>lowerFirst.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isObject.js</h1>
+    <h1 class="page-title">lowerFirst.js</h1>
     
 
     
@@ -69,31 +69,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为对象。(例如，数组、函数、对象、正则表达式、new Number(0) 和 new String(''))。
+            <pre class="prettyprint source linenums"><code>import createCaseFirst from './internals/createCaseFirst';
+/**
+ * 转换字符串第一个字符为小写。
  *
  * @static
- * @alias module:Type.isObject
+ * @alias module:String.lowerFirst
  * @since 1.0.0
- * @see {@link http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types | language type}
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为对象，返回 `true` ，否则返回 `false` 。
+ * @param {string} string 要转换的字符串。
+ * @returns {string} 转换后的字符串。
  * @example
  *
- * isObject({}); // true
+ * lowerFirst('Bar'); // 'bar'
  *
- * isObject([1,2,3]); // true
- *
- * isObject(()=>{}); // true
- *
- * isObject(null); // false
+ * lowerFirst('BAR'); // 'bAR'
  *
  */
-function isObject(value) {
-    var type = typeof value;
-    return value != null &amp;&amp; (type === 'object' || type === 'function');
+function lowerFirst(string) {
+    return createCaseFirst('toLowerCase')(string);
 }
-export default isObject;
+export default lowerFirst;
 </code></pre>
         </article>
     </section>
