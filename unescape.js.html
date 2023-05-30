@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isFunction.js - ut2 </title>
+    <title>unescape.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isFunction.js</h1>
+    <h1 class="page-title">unescape.js</h1>
     
 
     
@@ -69,32 +69,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import isObject from './isObject';
+            <pre class="prettyprint source linenums"><code>var htmlUnescapes = {
+    '&amp;amp;': '&amp;',
+    '&amp;lt;': '&lt;',
+    '&amp;gt;': '>',
+    '&amp;quot;': '"',
+    '&amp;#39;': "'"
+};
+var reEscapedHtml = /&amp;(?:amp|lt|gt|quot|#(0+)?39);/g;
+var reHasEscapedHtml = RegExp(reEscapedHtml.source);
 /**
- * 检查值是否为 `Function` 对象 。
+ * 转义字符串中的 HTML 实体字符 `&amp;amp;` `&amp;lt;` `&amp;quot;` `&amp;#39;` 为对应的字符。
  *
- * `Function` `AsyncFunction` `GeneratorFunction` `Proxy` 都将返回 `true` 。
+ * 注意：不会转换其他的 HTML 实体。如果需要，可以使用第三方库，如 [he](https://github.com/mathiasbynens/he) 。
  *
  * @static
- * @alias module:Type.isFunction
+ * @alias module:String.unescape
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Function` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {string} string 要转换的字符串。
+ * @returns {string} 转换后的字符串。
  * @example
  *
- * isFunction(()=>{})); // true
+ * unescape('&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;'); // '&lt;script>&lt;/script>'
  *
- * isFunction(/x/); // false
- *
+ * unescape('&amp;amp;'); // '&amp;'
  */
-function isFunction(value) {
-    if (!isObject(value)) {
-        return false;
-    }
-    return isType(value, ['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy']);
+function unescape(string) {
+    return string &amp;&amp; reHasEscapedHtml.test(string)
+        ? string.replace(reEscapedHtml, function (chr) {
+            // @ts-ignore
+            return htmlUnescapes[chr] || "'";
+        })
+        : string || '';
 }
-export default isFunction;
+export default unescape;
 </code></pre>
         </article>
     </section>
