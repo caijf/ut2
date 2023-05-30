@@ -43,6 +43,7 @@ export { default as pickBy } from './pickBy';
  * @since 1.0.0
  */
 export { default as camelCase } from './camelCase';
+export { default as capitalize } from './capitalize';
 export { default as lowerFirst } from './lowerFirst';
 export { default as upperFirst } from './upperFirst';
 export { default as words } from './words';
