@@ -1,3 +1,4 @@
+import upperFirst from './upperFirst';
 import words from './words';
 
 /**
@@ -28,7 +29,7 @@ import words from './words';
 function camelCase(string: string, pattern?: RegExp | string) {
   return words(String(string).replace(/['\u2019]/g, ''), pattern).reduce((prev, cur, index) => {
     cur = cur.toLowerCase();
-    return prev + (index ? cur.charAt(0).toUpperCase() + cur.substring(1) : cur);
+    return prev + (index ? upperFirst(cur) : cur);
   }, '');
 }
 

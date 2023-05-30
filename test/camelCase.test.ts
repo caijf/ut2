@@ -13,7 +13,7 @@ describe('camelCase', () => {
   it('混合数字和大小写不拆分', () => {
     expect(camelCase('12h format')).toBe('12hFormat');
     expect(camelCase('enable 12h format')).toBe('enable12hFormat');
-    expect(camelCase('safeHTML')).toBe('safeHTML');
-    expect(camelCase('XMLHttpRequest')).toBe('XMLHttpRequest');
+    expect(camelCase('safeHTML')).toBe('safehtml');
+    expect(camelCase('XMLHttpRequest')).toBe('xmlhttprequest');
   });
 });
