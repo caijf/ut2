@@ -2,7 +2,7 @@ const reRegExpChar = /[\\^$.*+?\-()[\]{}|]/g;
 const reHasRegExpChar = RegExp(reRegExpChar.source);
 
 /**
- * 转义 `RegExp` 字符串中特殊的字符 `^` `$` `\\` `.` `*` `+` `?` `-` `(` `)` `[` `]` `, ` `|` 。
+ * 转义 `RegExp` 字符串中特殊的字符 `\\` `^` `$` `.` `*` `+` `?` `-` `(` `)` `[` `]` `{` `}` `|` 。
  *
  * @static
  * @alias module:String.escapeRegExp
