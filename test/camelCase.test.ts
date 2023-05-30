@@ -16,4 +16,9 @@ describe('camelCase', () => {
     expect(camelCase('safeHTML')).toBe('safehtml');
     expect(camelCase('XMLHttpRequest')).toBe('xmlhttprequest');
   });
+
+  it('自定义拆分词组', () => {
+    expect(camelCase('abcd', /ab|cd/g)).toEqual('abCd');
+    expect(camelCase('fred, barney, & pebbles', /[^, ]+/g)).toEqual('fredBarney&Pebbles');
+  });
 });
