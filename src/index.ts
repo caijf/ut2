@@ -45,8 +45,10 @@ export { default as pickBy } from './pickBy';
 export { default as camelCase } from './camelCase';
 export { default as capitalize } from './capitalize';
 export { default as kebabCase } from './kebabCase';
+export { default as lowerCase } from './lowerCase';
 export { default as lowerFirst } from './lowerFirst';
 export { default as snakeCase } from './snakeCase';
+export { default as upperCase } from './upperCase';
 export { default as upperFirst } from './upperFirst';
 export { default as words } from './words';
 
