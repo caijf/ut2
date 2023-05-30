@@ -13,17 +13,17 @@ import words from './words';
  * @returns {string} 驼峰写法的字符串。
  * @example
  *
- * camelCase('foo bar'); // fooBar
+ * camelCase('foo bar'); // 'fooBar'
  *
- * camelCase('foo-bar'); // fooBar
+ * camelCase('foo-bar'); // 'fooBar'
  *
- * camelCase('Foo Bar'); // fooBar
+ * camelCase('Foo Bar'); // 'fooBar'
  *
- * camelCase('FOO BAR'); // fooBar
+ * camelCase('FOO BAR'); // 'fooBar'
  *
- * camelCase('--FOO-BAR--'); // fooBar
+ * camelCase('--FOO-BAR--'); // 'fooBar'
  *
- * camelCase('__FOO_BAR__'); // fooBar
+ * camelCase('__FOO_BAR__'); // 'fooBar'
  *
  */
 function camelCase(string: string, pattern?: RegExp | string) {

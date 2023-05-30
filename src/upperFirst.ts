@@ -10,9 +10,9 @@ import createCaseFirst from './internals/createCaseFirst';
  * @returns {string} 转换后的字符串。
  * @example
  *
- * upperFirst('bar'); // Bar
+ * upperFirst('bar'); // 'Bar'
  *
- * upperFirst('BAR'); // BAR
+ * upperFirst('BAR'); // 'BAR'
  *
  */
 function upperFirst(string: string) {
