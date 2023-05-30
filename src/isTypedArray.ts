@@ -9,7 +9,7 @@ import isObjectLike from './isObjectLike';
  * @static
  * @alias module:Type.isTypedArray
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Typed_arrays|Typed_arrays}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Typed_arrays | Typed_arrays}
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为类型化数组，返回 `true` ，否则返回 `false` 。
  * @example
