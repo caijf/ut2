@@ -42,6 +42,7 @@ export { default as pickBy } from './pickBy';
  * @module String
  * @since 1.0.0
  */
+export { default as camelCase } from './camelCase';
 export { default as words } from './words';
 
 /**
