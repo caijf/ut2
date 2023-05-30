@@ -12,17 +12,17 @@ import splitCaseWords from './internals/splitCaseWords';
  * @returns {string} 转换后的字符串。
  * @example
  *
- * camelCase('foo bar'); // 'foo_bar'
+ * snakeCase('foo bar'); // 'foo_bar'
  *
- * camelCase('foo-bar'); // 'foo_bar'
+ * snakeCase('foo-bar'); // 'foo_bar'
  *
- * camelCase('Foo Bar'); // 'foo_bar'
+ * snakeCase('Foo Bar'); // 'foo_bar'
  *
- * camelCase('FOO BAR'); // 'foo_bar'
+ * snakeCase('FOO BAR'); // 'foo_bar'
  *
- * camelCase('--FOO-BAR--'); // 'foo_bar'
+ * snakeCase('--FOO-BAR--'); // 'foo_bar'
  *
- * camelCase('__FOO_BAR__'); // 'foo_bar'
+ * snakeCase('__FOO_BAR__'); // 'foo_bar'
  *
  */
 function snakeCase(string: string, pattern?: RegExp | string) {
