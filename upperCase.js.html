@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>words.js - ut2 </title>
+    <title>upperCase.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">words.js</h1>
+    <h1 class="page-title">upperCase.js</h1>
     
 
     
@@ -69,29 +69,35 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+            <pre class="prettyprint source linenums"><code>import splitCaseWords from './internals/splitCaseWords';
 /**
- * 拆分字符串中的词为数组。
+ * 转换字符串为空格分隔的大写单词。
  *
  * @static
- * @alias module:String.words
+ * @alias module:String.upperCase
  * @since 1.0.0
- * @see {@link https://zh.wikipedia.org/wiki/ASCII | ASCII}
- * @param {string} string 要拆分的字符串。
- * @param {RegExp|string} [pattern=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g] 匹配模式。
- * @returns {string[]} 拆分后的数组。
+ * @param {string} string 要转换的字符串。
+ * @param {RegExp|string} [pattern] 拆分词组的匹配模式。
+ * @returns {string} 大写字符串。
  * @example
  *
- * words('fred, barney, &amp; pebbles'); // ['fred', 'barney', 'pebbles']
+ * upperCase('foo bar'); // 'FOO BAR'
  *
- * words('fred, barney, &amp; pebbles', /[^, ]+/g); // ['fred', 'barney', '&amp;', 'pebbles']
+ * upperCase('foo-bar'); // 'FOO BAR'
+ *
+ * upperCase('Foo Bar'); // 'FOO BAR'
+ *
+ * upperCase('FOO BAR'); // 'FOO BAR'
+ *
+ * upperCase('--FOO-BAR--'); // 'FOO BAR'
+ *
+ * upperCase('__FOO_BAR__'); // 'FOO BAR'
  *
  */
-function words(string, pattern) {
-    if (pattern === void 0) { pattern = reAsciiWord; }
-    return string.match(pattern) || [];
+function upperCase(string, pattern) {
+    return splitCaseWords(string, pattern).reduce(function (prev, cur, index) { return prev + (index ? ' ' : '') + cur.toUpperCase(); }, '');
 }
-export default words;
+export default upperCase;
 </code></pre>
         </article>
     </section>
