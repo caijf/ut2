@@ -45,6 +45,7 @@ export { default as pickBy } from './pickBy';
 export { default as camelCase } from './camelCase';
 export { default as capitalize } from './capitalize';
 export { default as escape } from './escape';
+export { default as escapeRegExp } from './escapeRegExp';
 export { default as kebabCase } from './kebabCase';
 export { default as lowerCase } from './lowerCase';
 export { default as lowerFirst } from './lowerFirst';

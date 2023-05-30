@@ -1,8 +1,8 @@
 import { unescape } from '../src';
 
 describe('unescape', () => {
-  const escaped = '&amp;&lt;&gt;&quot;&#39;/',
-    unescaped = '&<>"\'/';
+  const escaped = '&amp;&lt;&gt;&quot;&#39;/';
+  const unescaped = '&<>"\'/';
 
   it('转换为 HTML 实体字符', () => {
     expect(unescape(escaped)).toBe(unescaped);

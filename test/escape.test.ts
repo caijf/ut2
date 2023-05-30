@@ -1,8 +1,8 @@
 import { escape, unescape } from '../src';
 
 describe('escape', () => {
-  const escaped = '&amp;&lt;&gt;&quot;&#39;/',
-    unescaped = '&<>"\'/';
+  const escaped = '&amp;&lt;&gt;&quot;&#39;/';
+  const unescaped = '&<>"\'/';
 
   it('转义字符', () => {
     expect(escape(unescaped)).toBe(escaped);
