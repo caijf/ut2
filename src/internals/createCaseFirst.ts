@@ -7,10 +7,11 @@
  */
 function createCaseFirst(methodName: 'toLowerCase' | 'toUpperCase') {
   return (string: string) => {
-    if (!string) {
+    const str = String(string);
+    if (!str) {
       return '';
     }
-    return string[0][methodName]() + string.slice(1);
+    return str[0][methodName]() + str.slice(1);
   };
 }
 

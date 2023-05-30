@@ -1,5 +1,5 @@
+import splitCaseWords from './internals/splitCaseWords';
 import upperFirst from './upperFirst';
-import words from './words';
 
 /**
  * 转换字符串为驼峰写法。
@@ -27,7 +27,7 @@ import words from './words';
  *
  */
 function camelCase(string: string, pattern?: RegExp | string) {
-  return words(String(string).replace(/['\u2019]/g, ''), pattern).reduce((prev, cur, index) => {
+  return splitCaseWords(string, pattern).reduce((prev, cur, index) => {
     cur = cur.toLowerCase();
     return prev + (index ? upperFirst(cur) : cur);
   }, '');

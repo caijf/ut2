@@ -12,4 +12,17 @@ describe('upperFirst', () => {
     expect(upperFirst('1bar')).toBe('1bar');
     expect(upperFirst('-bar')).toBe('-bar');
   });
+
+  it('错误的参数', () => {
+    // @ts-ignore
+    expect(upperFirst()).toBe('Undefined');
+    // @ts-ignore
+    expect(upperFirst(undefined)).toBe('Undefined');
+    // @ts-ignore
+    expect(upperFirst(null)).toBe('Null');
+    // @ts-ignore
+    expect(upperFirst({})).toBe('[object Object]');
+    // @ts-ignore
+    expect(upperFirst([])).toBe('');
+  });
 });

@@ -1,4 +1,4 @@
-import words from './words';
+import splitCaseWords from './internals/splitCaseWords';
 
 /**
  * 转换字符串为下划线小写。
@@ -26,7 +26,7 @@ import words from './words';
  *
  */
 function snakeCase(string: string, pattern?: RegExp | string) {
-  return words(String(string).replace(/['\u2019]/g, ''), pattern).reduce(
+  return splitCaseWords(string, pattern).reduce(
     (prev, cur, index) => prev + (index ? '_' : '') + cur.toLowerCase(),
     ''
   );
