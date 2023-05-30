@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RegExp global</title>
+</head>
+
+<body>
+  <script>
+    const reg1 = /[&<>"']/g;
+    const reg2 = RegExp(reg1.source);
+
+    const total = 1000000;
+
+    console.time('with global')
+    for (let i = 0; i < total; i++) {
+      reg1.test('<html><body></body></html>');
+    }
+    console.timeEnd('with global')
+
+    console.time('none global')
+    for (let i = 0; i < total; i++) {
+      reg2.test('<html><body></body></html>');
+    }
+    console.timeEnd('none global')
+  </script>
+</body>
+
+</html>

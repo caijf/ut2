@@ -1,0 +1,22 @@
+import { unescape } from '../src';
+
+describe('unescape', () => {
+  const escaped = '&amp;&lt;&gt;&quot;&#39;/',
+    unescaped = '&<>"\'/';
+
+  it('转换为 HTML 实体字符', () => {
+    expect(unescape(escaped)).toBe(unescaped);
+    expect(unescape('&amp;lt;')).toBe('&lt;');
+    expect(unescape('&#39;')).toBe("'");
+    expect(unescape('&#039;')).toBe("'");
+    expect(unescape('&#00039;')).toBe("'");
+    expect(unescape('&lt;script&gt;&lt;/script&gt;')).toBe('<script></script>');
+    expect(unescape('&amp;')).toBe('&');
+  });
+
+  it('不包含需要转换的字符', () => {
+    expect(unescape('abc')).toBe('abc');
+    expect(unescape('&#96;')).toBe('&#96;');
+    expect(unescape('&#x2f;')).toBe('&#x2f;');
+  });
+});
