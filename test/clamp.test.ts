@@ -10,6 +10,13 @@ describe('clamp', () => {
     expect(clamp(10.2, -5.2, 5.2)).toBe(5.2);
     expect(clamp(Infinity, -5.2, 5.2)).toBe(5.2);
   });
+  it('仅限制上限', () => {
+    expect(clamp(10, 5)).toBe(5);
+    expect(clamp(-10, 5)).toBe(-10);
+    expect(clamp(-Infinity, 5)).toBe(-Infinity);
+    expect(clamp(10.2, 5.2)).toBe(5.2);
+    expect(clamp(Infinity, 5.2)).toBe(5.2);
+  });
   it('返回 `0`', () => {
     expect(clamp(0, -5, 5)).toBe(0);
     expect(clamp(-10, 0, 5)).toBe(0);

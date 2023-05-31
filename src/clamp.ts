@@ -5,7 +5,7 @@
  * @alias module:Number.clamp
  * @since 1.0.0
  * @param {number} number 被限制的值。
- * @param {number} lower 下限。
+ * @param {number} [lower] 下限。
  * @param {number} upper 上限。
  * @returns {number} 被限制的值。
  * @example
@@ -16,21 +16,43 @@
  *
  * clamp(10, -5, 5); // 5
  *
+ * // 仅限制上限
+ * clamp(10, 5); // 5
+ *
+ * clamp(-10, 5); // -10
+ *
  */
-function clamp(number: number, lower: number, upper: number) {
-  let num = +number;
-  let low = +lower;
-  let up = +upper;
 
-  low = low === low ? low : 0;
-  up = up === up ? up : 0;
-
-  if (num === num) {
-    num = num <= up ? num : up;
-    num = num >= low ? num : low;
+function clamp(number: number, upper: number): number;
+function clamp(number: number, lower: number, upper: number): number;
+function clamp(number: number, lower?: number, upper?: number) {
+  if (upper === undefined) {
+    upper = lower;
+    lower = undefined;
   }
 
-  return num;
+  if (upper !== undefined) {
+    upper = +upper;
+    upper = upper === upper ? upper : 0;
+  }
+
+  if (lower !== undefined) {
+    lower = +lower;
+    lower = lower === lower ? lower : 0;
+  }
+
+  number = +number;
+
+  if (number === number) {
+    if (upper !== undefined) {
+      number = number <= upper ? number : upper;
+    }
+    if (lower !== undefined) {
+      number = number >= lower ? number : lower;
+    }
+  }
+
+  return number;
 }
 
 export default clamp;
