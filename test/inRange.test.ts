@@ -25,6 +25,27 @@ describe('inRange', () => {
     expect(inRange(0.3, 0.3, 0.3)).toBe(false);
     expect(inRange(1.1, 1.1, 1.1)).toBe(false);
   });
+  it('仅限制一个范围', () => {
+    expect(inRange(1, 5)).toBe(true);
+    expect(inRange(3, 5)).toBe(true);
+    expect(inRange(0, 5)).toBe(true);
+    expect(inRange(5, 5)).toBe(false);
+
+    expect(inRange(0.5, 1.5)).toBe(true);
+    expect(inRange(1.2, 1.5)).toBe(true);
+    expect(inRange(3.2, 2.5)).toBe(false);
+    expect(inRange(0.5, 1.5)).toBe(true);
+
+    expect(inRange(1, -5)).toBe(false);
+    expect(inRange(3, -5)).toBe(false);
+    expect(inRange(0, -5)).toBe(false);
+    expect(inRange(5, -5)).toBe(false);
+
+    expect(inRange(0.5, -1.5)).toBe(false);
+    expect(inRange(1.2, -1.5)).toBe(false);
+    expect(inRange(3.2, -2.5)).toBe(false);
+    expect(inRange(0.5, -1.5)).toBe(false);
+  });
   it('错误的参数', () => {
     // @ts-ignore
     expect(inRange(false, 0, 1)).toBe(true);
