@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>negate.js - ut2 </title>
+    <title>randomInt.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">negate.js</h1>
+    <h1 class="page-title">randomInt.js</h1>
     
 
     
@@ -70,40 +70,42 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 创建一个断言函数结果取反的函数。
+ * 产生一个包含 `lower` 与 `upper` 之间的随机整数。
+ *
+ * 如果参数非整数 `lower=Math.ceil(lower)` `upper=Math.floor(upper)` 。如果 `lower` 大于 `upper` 会自动交换参数。
  *
  * @static
- * @alias module:Function.negate
+ * @alias module:Number.randomInt
  * @since 1.0.0
- * @param {function} predicate 需要对结果取反的函数。
- * @returns 新的取反函数。
+ * @param {number} [lower=0] 下限。
+ * @param {number} [upper=1] 上限。
+ * @returns {number} 随机整数。
  * @example
  *
- * function isEven(num){
- *   return num % 2 === 0;
- * }
+ * randomInt(); // 0 到 1 之间的整数
  *
- * const nums = [1,2,3,4,5];
- * nums.filter(isEvent); // [2, 4]
+ * randomInt(2, 4); // 2 到 4 之间的整数
  *
- * const ne = negate(isEvent);
- * nums.filter(ne); // [1, 3, 5]
+ * randomInt(4, 2); // 2 到 4 之间的整数
+ *
+ * randomInt(1.2, 2.4); // 2
  *
  */
-function negate(predicate) {
-    var _this = this;
-    if (typeof predicate !== 'function') {
-        throw new TypeError('Expected a function');
+function randomInt(lower, upper) {
+    if (lower === void 0) { lower = 0; }
+    if (upper === void 0) { upper = 1; }
+    var min = Math.ceil(Math.min(lower, upper) || 0);
+    var max = Math.floor(Math.max(lower, upper) || 0);
+    // 如果两个值都是整数位相同，浮点数不同， 大小值的可能会互换。（如 1.2, 1.3）
+    if (min > max) {
+        // [min, max] = [max, min]
+        var temp = min;
+        min = max;
+        max = temp;
     }
-    return function () {
-        var args = [];
-        for (var _i = 0; _i &lt; arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        return !predicate.apply(_this, args);
-    };
+    return Math.floor(min + Math.random() * (max - min + 1));
 }
-export default negate;
+export default randomInt;
 </code></pre>
         </article>
     </section>
