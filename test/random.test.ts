@@ -1,16 +1,16 @@
-import { random, times } from '../src';
+import { isInteger, random, times } from '../src';
 
 describe('random', () => {
   it('默认生成 `0` 到 `1` 之间的随机数', () => {
     const arr = times(100);
-    const min = 0;
-    const max = 1;
     arr.forEach(() => {
       const rand = random();
-      expect(rand).toBeGreaterThanOrEqual(min);
-      expect(rand).toBeLessThanOrEqual(max);
+      expect(rand).toBeGreaterThanOrEqual(0);
+      expect(rand).toBeLessThanOrEqual(1);
+      expect(isInteger(rand)).toBe(false);
     });
   });
+
   it('指定范围的随机数', () => {
     const arr = times(100);
     const min = 2;
@@ -20,33 +20,17 @@ describe('random', () => {
       const rand = random(min, max);
       expect(rand).toBeGreaterThanOrEqual(min);
       expect(rand).toBeLessThanOrEqual(max);
+      expect(isInteger(rand)).toBe(false);
     });
 
     arr.forEach(() => {
       const rand = random(1.5, 1.6);
       expect(rand).toBeGreaterThanOrEqual(1.5);
       expect(rand).toBeLessThanOrEqual(1.6);
+      expect(isInteger(rand)).toBe(false);
     });
   });
-  it('指定范围的随机整数', () => {
-    const arr = times(100);
-    const min = 2;
-    const max = 6;
 
-    arr.forEach(() => {
-      const rand = random(min, max, false);
-      expect(rand).toBeGreaterThanOrEqual(min);
-      expect(rand).toBeLessThanOrEqual(max);
-      expect(rand).toBe(Math.floor(rand));
-    });
-
-    arr.forEach(() => {
-      const rand = random(0.5, 2.2, false);
-      expect(rand).toBeGreaterThanOrEqual(0.5);
-      expect(rand).toBeLessThanOrEqual(2.2);
-      expect(rand).toBe(Math.floor(rand));
-    });
-  });
   it('上限与下限相等，返回该值', () => {
     expect(random(0, 0)).toBe(0);
     expect(random(1, 1)).toBe(1);
@@ -58,19 +42,21 @@ describe('random', () => {
     // @ts-ignore
     expect(random(NaN, '0')).toBe(0);
   });
+
   it('如果指定范围小于 `1` ，强制返回随机浮点数', () => {
     const arr = times(100);
     const min = 1.5;
     const max = 2.1;
 
     arr.forEach(() => {
-      const rand = random(min, max, false);
+      const rand = random(min, max);
       expect(rand).toBeGreaterThanOrEqual(min);
       expect(rand).toBeLessThanOrEqual(max);
       expect(rand).not.toBe(Math.floor(rand));
       expect(rand).not.toBe(Math.ceil(rand));
     });
   });
+
   it('错误的参数', () => {
     // @ts-ignore
     expect(random('a', 'b')).toBe(0);
