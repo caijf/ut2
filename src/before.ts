@@ -7,7 +7,7 @@ import { normalizeNumber } from './internals/normalize';
  * @static
  * @alias module:Function.before
  * @since 1.0.0
- * @param {number} n 超过多少次不再调用 `func` ，限制调用 `func` 的次数。
+ * @param {number} n 不再调用 `func` 的次数。
  * @param {Function} func 限制执行的函数。
  * @returns {Function} 新的限定函数。
  */
