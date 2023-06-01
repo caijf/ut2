@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isNumber.js - ut2 </title>
+    <title>after.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isNumber.js</h1>
+    <h1 class="page-title">after.js</h1>
     
 
     
@@ -69,39 +69,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>import { FUNC_ERROR_TEXT } from './internals/helpers';
+import { normalizeNumber } from './internals/normalize';
 /**
- * 检查值是否为数字类型或对象。
- *
- * `Infinity` `-Infinity` `NaN` 都归类为数字。如果要排除，请使用 `isFinite` 方法。
+ * 创建一个函数，当它被调用 `n` 或更多次之后触发 `func` 。
  *
  * @static
- * @alias module:Type.isNumber
+ * @alias module:Function.after
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为数字类型或对象，返回 `true` ，否则返回 `false` 。
+ * @param {number} n 函数应该在调用多少次后执行。
+ * @param {Function} func 用来限定的函数。
+ * @returns {Function} 新的限定函数。
  * @example
  *
- * isNumber(1); // true
+ * const saves = ['profile', 'settings'];
+ * const done = after(saves.length, () => console.log('done saving!'));
  *
- * isNumber(Infinity); // true
- *
- * isNumber(Number.MIN_VALUE); // true
- *
- * isNumber(NaN); // true
- *
- * isNumber(new Number(1)); // true
- *
- * isNumber('1'); // false
- *
- * isNumber(null); // false
+ * saves.forEach(item=>{
+ *   console.log(item);
+ *   done();
+ * });
+ * // 'profile'
+ * // 'settings'
+ * // 'done saving!'
  *
  */
-function isNumber(value) {
-    return typeof value === 'number' || (isObjectLike(value) &amp;&amp; isType(value, 'Number'));
+function after(n, func) {
+    if (typeof func !== 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+    }
+    n = normalizeNumber(n);
+    return function () {
+        if (--n &lt; 1) {
+            // @ts-ignore
+            // eslint-disable-next-line prefer-rest-params
+            return func.apply(this, arguments);
+        }
+    };
 }
-export default isNumber;
+export default after;
 </code></pre>
         </article>
     </section>
