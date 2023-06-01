@@ -112,5 +112,6 @@ export { default as defaultTo } from './defaultTo';
 export { default as identity } from './identity';
 export { default as noop } from './noop';
 export { default as nthArg } from './nthArg';
+export { default as sleep } from './sleep';
 export { default as times } from './times';
 export { default as uniqueId } from './uniqueId';

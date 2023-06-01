@@ -1,0 +1,27 @@
+/**
+ * 异步方法中等待时间后继续执行。
+ *
+ * @static
+ * @alias module:Util.sleep
+ * @since 1.0.0
+ * @param {number} [ms=1000] 等待时间，单位毫秒。
+ * @returns {Promise<void>} 异步对象。
+ * @example
+ *
+ * async ()=>{
+ *   await sleep();
+ *   // do something
+ * }
+ *
+ * sleep(300).then(()=>{
+ *   // do something
+ * })
+ *
+ */
+function sleep(ms = 1000): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+export default sleep;
