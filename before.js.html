@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isObjectLike.js - ut2 </title>
+    <title>before.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isObjectLike.js</h1>
+    <h1 class="page-title">before.js</h1>
     
 
     
@@ -69,31 +69,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为类对象。
- *
- * 如果一个值不为 `null` 并且 `typeof` 结果为 `object`，则该值是类对象。
+            <pre class="prettyprint source linenums"><code>import { FUNC_ERROR_TEXT } from './internals/helpers';
+import { normalizeNumber } from './internals/normalize';
+/**
+ * 创建一个调用 `func` 的函数，调用次数不超过 `n` 次。之后再调用这个函数，将返回最后一次调用 `func` 的结果。
  *
  * @static
- * @alias module:Type.isObjectLike
+ * @alias module:Function.before
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为类对象，返回 `true` ，否则返回 `false` 。
- * @example
- *
- * isObjectLike({}); // true
- *
- * isObjectLike([1,2,3]); // true
- *
- * isObjectLike(()=>{}); // false
- *
- * isObjectLike(null); // false
- *
+ * @param {number} n 超过多少次不再调用 `func` ，限制调用 `func` 的次数。
+ * @param {Function} func 限制执行的函数。
+ * @returns {Function} 新的限定函数。
  */
-function isObjectLike(value) {
-    return value != null &amp;&amp; typeof value === 'object';
+function before(n, func) {
+    if (typeof func !== 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+    }
+    var result;
+    n = normalizeNumber(n);
+    return function () {
+        if (--n > 0) {
+            // @ts-ignore
+            // eslint-disable-next-line prefer-rest-params
+            result = func.apply(this, arguments);
+        }
+        if (n &lt;= 1) {
+            // @ts-ignore
+            func = undefined;
+        }
+        return result;
+    };
 }
-export default isObjectLike;
+export default before;
 </code></pre>
         </article>
     </section>
