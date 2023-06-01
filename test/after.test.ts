@@ -7,7 +7,7 @@ describe('after', () => {
     return fn;
   }
 
-  it('创建一个函数，在 `n` 调用后执行 `func` ', () => {
+  it('创建一个函数，在调用 `n` 次或更多次后执行 `func` ', () => {
     expect(testAfter(5, 5)).toBeCalledTimes(1);
     expect(testAfter(5, 4)).toBeCalledTimes(0);
     expect(testAfter(0, 0)).toBeCalledTimes(0);
