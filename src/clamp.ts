@@ -1,3 +1,7 @@
+import { normalizeNumber } from './internals/normalize';
+
+function clamp(number: number, upper: number): number;
+function clamp(number: number, lower: number, upper: number): number;
 /**
  * 数字限制在 `lower` 和 `upper` 之间的值。
  *
@@ -22,9 +26,6 @@
  * clamp(-10, 5); // -10
  *
  */
-
-function clamp(number: number, upper: number): number;
-function clamp(number: number, lower: number, upper: number): number;
 function clamp(number: number, lower?: number, upper?: number) {
   if (upper === undefined) {
     upper = lower;
@@ -32,13 +33,11 @@ function clamp(number: number, lower?: number, upper?: number) {
   }
 
   if (upper !== undefined) {
-    upper = +upper;
-    upper = upper === upper ? upper : 0;
+    upper = normalizeNumber(upper);
   }
 
   if (lower !== undefined) {
-    lower = +lower;
-    lower = lower === lower ? lower : 0;
+    lower = normalizeNumber(lower);
   }
 
   number = +number;

@@ -7,6 +7,8 @@ export const argType = 'Arguments';
 // @ts-ignore
 export const supportedArgumentsType = isType((() => arguments)(), argType);
 
+export const FUNC_ERROR_TEXT = 'Expected a function';
+
 export const numberIsFinite = Number.isFinite;
 export const numberIsInteger = Number.isInteger;
 export const numberIsSafeInteger = Number.isSafeInteger;

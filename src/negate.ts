@@ -1,3 +1,5 @@
+import { FUNC_ERROR_TEXT } from './internals/helpers';
+
 /**
  * 创建一个断言函数结果取反的函数。
  *
@@ -21,7 +23,7 @@
  */
 function negate<T extends (...args: any[]) => any>(this: any, predicate: T) {
   if (typeof predicate !== 'function') {
-    throw new TypeError('Expected a function');
+    throw new TypeError(FUNC_ERROR_TEXT);
   }
 
   return (...args: Parameters<T>) => {

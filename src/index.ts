@@ -12,6 +12,7 @@ export { default as nth } from './nth';
  * @module Function
  * @since 1.0.0
  */
+export { default as after } from './after';
 export { default as negate } from './negate';
 export { default as throttle } from './throttle';
 
