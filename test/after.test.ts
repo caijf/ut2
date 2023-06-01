@@ -41,4 +41,12 @@ describe('after', () => {
     expect(obj.count).toBe(1);
     expect(fn).toBeCalledTimes(1);
   });
+
+  it('非函数报异常', () => {
+    const errorFunc = function () {
+      // @ts-ignore
+      return after(1, 'a');
+    };
+    expect(errorFunc).toThrow('Expected a function');
+  });
 });

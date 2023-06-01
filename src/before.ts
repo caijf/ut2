@@ -2,7 +2,7 @@ import { FUNC_ERROR_TEXT } from './internals/helpers';
 import { normalizeNumber } from './internals/normalize';
 
 /**
- * 创建一个调用 `func` 的函数，调用次数不超过 `n` 次。之后再调用这个函数，将返回最后一次调用 `func` 的结果。
+ * 创建一个调用 `func` 的函数，调用次数少于 `n` 次。之后再调用这个函数，将返回最后一次调用 `func` 的结果。
  *
  * @static
  * @alias module:Function.before
