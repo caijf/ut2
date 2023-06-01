@@ -10,6 +10,22 @@ import { normalizeNumber } from './internals/normalize';
  * @param {number} n 不再调用 `func` 的次数。
  * @param {Function} func 限制执行的函数。
  * @returns {Function} 新的限定函数。
+ * @example
+ *
+ * let count = 0;
+ *
+ * const increment = before(3, () => {
+ *   return ++count;
+ * });
+ *
+ * increment(); // 1
+ *
+ * increment(); // 2
+ *
+ * increment(); // 2
+ *
+ * increment(); // 2
+ *
  */
 function before<T extends (...args: any[]) => any>(n: number, func: T) {
   if (typeof func !== 'function') {

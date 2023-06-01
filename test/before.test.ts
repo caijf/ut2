@@ -18,6 +18,15 @@ describe('before', () => {
     expect(testBefore(1, 0)).toBeCalledTimes(0);
     expect(testBefore(1, 1)).toBeCalledTimes(0);
     expect(testBefore(1, 3)).toBeCalledTimes(0);
+
+    let count = 0;
+    const increment = before(3, () => {
+      return ++count;
+    });
+    expect(increment()).toBe(1);
+    expect(increment()).toBe(2);
+    expect(increment()).toBe(2);
+    expect(increment()).toBe(2);
   });
 
   it('如果 `n` 不能转为数字，强制改为 `0`', () => {
