@@ -16,6 +16,7 @@ export { default as after } from './after';
 export { default as before } from './before';
 export { default as delay } from './delay';
 export { default as negate } from './negate';
+export { default as partial } from './partial';
 export { default as throttle } from './throttle';
 
 /**
