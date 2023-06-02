@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>identity.js - ut2 </title>
+    <title>delay.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">identity.js</h1>
+    <h1 class="page-title">delay.js</h1>
     
 
     
@@ -69,25 +69,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 返回第一个参数。
+            <pre class="prettyprint source linenums"><code>import { FUNC_ERROR_TEXT } from './internals/helpers';
+import { normalizeNumber } from './internals/normalize';
+/**
+ * 延迟 `wait` 毫秒后调用 `func` 。
  *
  * @static
- * @alias module:Util.identity
+ * @alias module:Function.delay
  * @since 1.0.0
- * @param {*} value 任意值。
- * @returns 返回 `value` 。
+ * @param {Function} func 要延迟的函数。
+ * @param {number} wait 要延迟的毫秒数。
+ * @param {...*} [args] 调用函数时传入的参数。
+ * @returns {number} 计时器 id 。
  * @example
  *
- * const obj = { a: 1, b: 2 };
+ * // 延迟 1000 毫秒后执行
+ * delay(function(text){
+ *   console.log(text);
+ * }, 1000, 'hello world');
  *
- * console.log(identity(obj, 1) === obj); // true
+ * // 'hello world'
  *
  */
-function identity(value) {
-    return value;
+function delay(func, wait) {
+    var args = [];
+    for (var _i = 2; _i &lt; arguments.length; _i++) {
+        args[_i - 2] = arguments[_i];
+    }
+    if (typeof func !== 'function') {
+        throw new TypeError(FUNC_ERROR_TEXT);
+    }
+    // @ts-ignore
+    var context = this;
+    wait = normalizeNumber(wait);
+    return setTimeout(function () {
+        func.apply(context, args);
+    }, wait);
 }
-export default identity;
+export default delay;
 </code></pre>
         </article>
     </section>
