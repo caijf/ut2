@@ -32,6 +32,7 @@ const reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
  *
  */
 function escape(string: string) {
+  string = String(string);
   return string && reHasUnescapedHtml.test(string)
     ? string.replace(reUnescapedHtml, (chr) => {
         // @ts-ignore

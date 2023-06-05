@@ -19,4 +19,12 @@ describe('escape', () => {
   it('转换为 HTML 实体字符', () => {
     expect(unescape(escaped)).toBe(unescaped);
   });
+
+  it('错误的参数', () => {
+    expect(escape('')).toBe('');
+    // @ts-ignore
+    expect(escape(false)).toBe('false');
+    // @ts-ignore
+    expect(escape(true)).toBe('true');
+  });
 });

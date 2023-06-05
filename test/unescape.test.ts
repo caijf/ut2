@@ -19,4 +19,12 @@ describe('unescape', () => {
     expect(unescape('&#96;')).toBe('&#96;');
     expect(unescape('&#x2f;')).toBe('&#x2f;');
   });
+
+  it('错误的参数', () => {
+    expect(unescape('')).toBe('');
+    // @ts-ignore
+    expect(unescape(false)).toBe('false');
+    // @ts-ignore
+    expect(unescape(true)).toBe('true');
+  });
 });

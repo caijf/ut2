@@ -26,6 +26,7 @@ const reHasEscapedHtml = RegExp(reEscapedHtml.source);
  * unescape('&amp;'); // '&'
  */
 function unescape(string: string) {
+  string = String(string);
   return string && reHasEscapedHtml.test(string)
     ? string.replace(reEscapedHtml, (chr) => {
         // @ts-ignore
