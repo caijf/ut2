@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>pickBy.js - ut2 </title>
+    <title>round.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">pickBy.js</h1>
+    <h1 class="page-title">round.js</h1>
     
 
     
@@ -69,47 +69,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { __read, __spreadArray } from "tslib";
-import getKeysIn from './internals/getKeysIn';
-import getSymbolsIn from './internals/getSymbolsIn';
+            <pre class="prettyprint source linenums"><code>import decimalAdjust from './internals/decimalAdjust';
 /**
- * 创建一个对象，该对象的属性从 `object` 中经 `predicate` （断言函数）判断为真值的属性。
+ * 根据精度四舍五入 `number` 。
  *
- * `predicate` 调用 2 个参数 `value` `key` 。
+ * 注：精度可以理解为保留几位小数。
  *
  * @static
- * @alias module:Object.pickBy
+ * @alias module:Math.round
  * @since 1.0.0
- * @param {object} obj 来源对象。
- * @param {function} predicate 调用每一个属性的函数。
- * @returns {object} 新对象。
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/round#小数舍入 | 小数舍入}
+ * @param {number} number 要四舍五入的值。
+ * @param {number} [precision=0] 四舍五入的精度。
+ * @returns {number} 四舍五入的值。
  * @example
  *
- * const obj = { name: "jeff", age: 18 };
+ * round(4.16); // 4
  *
- * pickBy(obj); // {}
+ * round(4.16, 1); // 4.2
  *
- * pickBy(obj, (value, key) => typeof value === 'number'); // { age: 18 }
- *
- * pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }
- *
+ * round(4160, -2); // 4200
  */
-function pickBy(obj, predicate) {
-    if (predicate === void 0) { predicate = function () { return false; }; }
-    var result = {};
-    if (obj === null) {
-        return result;
-    }
-    var allKeys = __spreadArray(__spreadArray([], __read(getKeysIn(obj)), false), __read(getSymbolsIn(obj)), false);
-    for (var i = 0; i &lt; allKeys.length; i++) {
-        var currentKey = allKeys[i];
-        if (predicate(obj[currentKey], currentKey)) {
-            result[currentKey] = obj[currentKey];
-        }
-    }
-    return result;
+function round(number, precision) {
+    return decimalAdjust('round', number, precision);
 }
-export default pickBy;
+export default round;
 </code></pre>
         </article>
     </section>
