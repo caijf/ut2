@@ -37,6 +37,7 @@ export { default as randomInt } from './randomInt';
  * @module Object
  * @since 1.0.0
  */
+export { default as merge } from './merge';
 export { default as omit } from './omit';
 export { default as omitBy } from './omitBy';
 export { default as pick } from './pick';
