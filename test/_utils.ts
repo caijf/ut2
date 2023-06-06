@@ -25,10 +25,6 @@ export const noop = () => {};
 
 export const symbol = Symbol('abc');
 
-export const args = (function () {
-  return arguments;
-})();
-
 export const toArgs = function (arr: any[]) {
   // eslint-disable-next-line prefer-spread
   return function () {
@@ -36,6 +32,8 @@ export const toArgs = function (arr: any[]) {
     // @ts-ignore
   }.apply(undefined, arr);
 };
+
+export const args = toArgs([1, 2, 3]);
 
 export const strictArgs = (function () {
   'use strict';

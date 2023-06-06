@@ -8,7 +8,6 @@ describe('isEmpty', () => {
       expect(isEmpty(item)).toBe(true);
     });
 
-    expect(isEmpty(args)).toBe(true);
     expect(isEmpty(true)).toBe(true);
     expect(isEmpty(1)).toBe(true);
     expect(isEmpty(NaN)).toBe(true);
@@ -26,6 +25,7 @@ describe('isEmpty', () => {
   });
 
   it('incorrent', () => {
+    expect(isEmpty(args)).toBe(false);
     expect(isEmpty({ a: 1, b: 2 })).toBe(false);
     expect(isEmpty([1, 2, 3])).toBe(false);
     expect(isEmpty('abc')).toBe(false);
