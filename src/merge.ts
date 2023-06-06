@@ -2,19 +2,13 @@ import isArray from './isArray';
 import isObject from './isObject';
 import isObjectLike from './isObjectLike';
 
-type Customizer<TObject, TSource, K extends keyof TSource & keyof TObject> = (
-  objValue: TObject[K],
-  srcValue: TSource[K],
-  key: K,
-  object: TObject,
-  source: TSource
-) => any;
+type Customizer = (objValue: any, srcValue: any, key: string, object: any, source: any) => any;
 
 // 内部处理合并和循环引用
-function baseMerge<TObject, TSource, K extends keyof TSource & keyof TObject>(
+function baseMerge<TObject, TSource>(
   object: TObject,
   source: TSource,
-  customizer?: Customizer<TObject, TSource, K>,
+  customizer?: Customizer,
   storage = new WeakMap()
 ) {
   const obj = Object(object);
@@ -58,10 +52,10 @@ function baseMerge<TObject, TSource, K extends keyof TSource & keyof TObject>(
   return obj;
 }
 
-function merge<TObject, TSource, K extends keyof TSource & keyof TObject>(
+function merge<TObject, TSource>(
   object: TObject,
   source: TSource,
-  customizer?: Customizer<TObject, TSource, K>
+  customizer?: Customizer
 ): TObject & TSource {
   return baseMerge(object, source, customizer);
 }
