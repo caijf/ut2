@@ -36,6 +36,8 @@ describe('ceil', () => {
     expect(ceil('5e', 1)).toBeNaN();
     // @ts-ignore
     expect(ceil('5e1e1', 2)).toBeNaN();
+    expect(ceil(2.2e-7, 2)).toBe(0.01);
+    expect(ceil(1.1111111111111111e21, 2)).toBe(1.1111111111111111e21);
   });
 
   it('保留 `0` 的符号', () => {

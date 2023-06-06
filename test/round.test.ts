@@ -17,15 +17,15 @@ describe('round', () => {
   it('反向精度', () => {
     expect(round(4160, -2)).toBe(4200);
     expect(round(51, -1)).toBe(50);
-    expect(round(-55.59, -1)).toBe(-50);
-    expect(round(-59, -1)).toBe(-50);
+    expect(round(-55.59, -1)).toBe(-60);
+    expect(round(-59, -1)).toBe(-60);
   });
 
   it('精度不是一个整数', () => {
     expect(round(4.006, NaN)).toBeNaN();
     expect(round(4.006, 1.1)).toBeNaN();
     // @ts-ignore
-    expect(round(4.006, '+2')).toBe(4);
+    expect(round(4.006, '+2')).toBe(4.01);
   });
 
   it('使用指数符号和精度', () => {
@@ -36,6 +36,8 @@ describe('round', () => {
     expect(round('5e', 1)).toBeNaN();
     // @ts-ignore
     expect(round('5e1e1', 2)).toBeNaN();
+    expect(round(2.2e-7, 2)).toBe(0);
+    expect(round(1.1111111111111111e21, 2)).toBe(1.1111111111111111e21);
   });
 
   it('保留 `0` 的符号', () => {

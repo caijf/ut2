@@ -20,7 +20,7 @@ import decimalAdjust from './internals/decimalAdjust';
  *
  * round(4160, -2); // 4200
  */
-function round(number: number, precision = 0) {
+function round(number: number, precision?: number) {
   return decimalAdjust('round', number, precision);
 }
 

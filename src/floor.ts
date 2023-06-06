@@ -20,7 +20,7 @@ import decimalAdjust from './internals/decimalAdjust';
  *
  * floor(4160, -2); // 4100
  */
-function floor(number: number, precision = 0) {
+function floor(number: number, precision?: number) {
   return decimalAdjust('floor', number, precision);
 }
 

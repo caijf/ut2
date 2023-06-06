@@ -21,7 +21,7 @@ import decimalAdjust from './internals/decimalAdjust';
  * ceil(4160, -2); // 4200
  *
  */
-function ceil(number: number, precision = 0) {
+function ceil(number: number, precision?: number) {
   return decimalAdjust('ceil', number, precision);
 }
 
