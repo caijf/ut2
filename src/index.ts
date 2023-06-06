@@ -21,6 +21,16 @@ export { default as partial } from './partial';
 export { default as throttle } from './throttle';
 
 /**
+ * 数学
+ *
+ * @module Math
+ * @since 1.0.0
+ */
+export { default as ceil } from './ceil';
+export { default as floor } from './floor';
+export { default as round } from './round';
+
+/**
  * 数字
  *
  * @module Number
