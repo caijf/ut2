@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>conformsTo.js - ut2 </title>
+    <title>merge.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">conformsTo.js</h1>
+    <h1 class="page-title">merge.js</h1>
     
 
     
@@ -69,44 +69,74 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 通过调用断言 `source` 的属性与 `object` 的相应属性值，检查 `object` 是否符合 `source` 。
- *
- * @static
- * @alias module:Util.conformsTo
- * @since 1.0.0
- * @param object 要检查的对象。
- * @param source 要断言属性是否符合的对象。
- * @returns {boolean} 如果 `object` 符合，返回 `true` ，否则返回 `false` 。
- * @example
- *
- * const object = { a: 1, b: 2 }
- *
- * conformsTo(object, { b: value => value > 1 }); // true
- *
- * conformsTo(object, { b: value => value > 2 }); // false
- *
- */
-function conformsTo(object, source) {
-    var props = Object.keys(source);
-    var length = props.length;
-    if (object == null) {
-        return !length;
+            <pre class="prettyprint source linenums"><code>import isArray from './isArray';
+import isObject from './isObject';
+import isObjectLike from './isObjectLike';
+// 内部处理合并和循环引用
+function baseMerge(object, source, customizer, storage) {
+    if (storage === void 0) { storage = new WeakMap(); }
+    var obj = Object(object);
+    if (!isObject(source) || obj === source) {
+        return obj;
     }
-    if (length === 0) {
-        return true;
-    }
-    for (var i = 0; i &lt; length; i++) {
-        var key = props[i];
-        var predicate = source[key];
-        var value = object[key];
-        if ((value === undefined &amp;&amp; !(key in object)) || !predicate(value)) {
-            return false;
+    for (var key in source) {
+        var srcValue = source[key];
+        var newValue = typeof customizer === 'function'
+            ? customizer(obj[key], srcValue, key, obj, source)
+            : undefined;
+        if (newValue === undefined) {
+            newValue = srcValue;
+        }
+        // 递归处理对象和数组
+        if (isObjectLike(newValue) &amp;&amp; key in obj &amp;&amp; !storage.has(newValue)) {
+            storage.set(newValue, true);
+            var objValue = obj[key];
+            var newObjValue = void 0;
+            if (isArray(newValue)) {
+                newObjValue = isArray(objValue) ? objValue : [];
+            }
+            else {
+                newObjValue = isObjectLike(objValue) ? objValue : {};
+            }
+            obj[key] = baseMerge(newObjValue, newValue, customizer, storage);
+        }
+        else {
+            if (newValue !== undefined || (newValue === undefined &amp;&amp; !(key in obj))) {
+                obj[key] = newValue;
+            }
         }
     }
-    return true;
+    return obj;
 }
-export default conformsTo;
+/**
+ * 递归合并 `source` 来源对象自身和继承的可枚举属性到 `object` 目标对象。
+ *
+ * 如果目标值存在，被解析为 `undefined` 的 `source` 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。
+ *
+ * @static
+ * @alias module:Object.merge
+ * @since 1.0.0
+ * @param {Object|Array} object 目标对象。
+ * @param {Object|Array} source 来源对象。
+ * @param {Function} [customizer] 自定义赋值函数。
+ * @returns {Object} 目标对象。
+ * @example
+ *
+ * const object = {
+ *   a: [{b: 2}, {d: 4}]
+ * }
+ *
+ * const other = {
+ *   a: [{c: 3},{e: 5}]
+ * }
+ *
+ * merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }
+ *
+ */
+function merge(object, source, customizer) {
+    return baseMerge(object, source, customizer);
+}
+export default merge;
 </code></pre>
         </article>
     </section>
