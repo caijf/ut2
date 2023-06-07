@@ -4,6 +4,7 @@
  * @module Array
  * @since 1.0.0
  */
+export { default as chunk } from './chunk';
 export { default as nth } from './nth';
 
 /**
