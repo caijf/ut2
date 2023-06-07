@@ -5,6 +5,7 @@
  * @since 1.0.0
  */
 export { default as chunk } from './chunk';
+export { default as compact } from './compact';
 export { default as nth } from './nth';
 
 /**
