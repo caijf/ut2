@@ -1,5 +1,6 @@
 import isArray from '../isArray';
 import isSymbol from '../isSymbol';
+import createIteratee from './createIteratee';
 
 function createExtremum<T, F extends (item: T) => any, K extends keyof T>(
   array: T[],
@@ -12,8 +13,7 @@ function createExtremum<T, F extends (item: T) => any, K extends keyof T>(
 
   let result: T | undefined, computed: number | undefined;
 
-  const internalIteratee =
-    typeof iteratee === 'function' ? iteratee : (value: any) => value[iteratee];
+  const internalIteratee = createIteratee<T, F, K>(iteratee);
 
   array.forEach((value) => {
     const current = internalIteratee(value);

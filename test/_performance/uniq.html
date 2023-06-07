@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>uniq</title>
+</head>
+
+<body>
+  <script>
+    function uniq_1(array) {
+      return array.filter((value, index, arr) => {
+        return arr.indexOf(value) === index;
+      });
+    }
+
+    function uniq_2(array) {
+      return [...new Set(array)];
+    }
+
+    function uniq_3(array) {
+      return Array.from(new Set(array));
+    }
+
+    function uniq_4(array, each) {
+      const iteratee = typeof each === 'function' ? each : (typeof each === 'string' ? value => value[each] : value => value);
+      return array.filter((value, index, arr) => {
+        const current = iteratee(value);
+        return arr.findIndex(item => iteratee(item) === current) === index;
+      });
+    }
+
+    const obj = { a: 1 };
+    const value = [2, 1, 2, 1, 'a', 2, obj, 3, 'a', 4, 8, 9, 7, 1, obj, 2, 3, 1];
+    const total = 100000;
+
+    function run() {
+      const methods = [uniq_1, uniq_2, uniq_3, uniq_4];
+
+      methods.forEach(item => {
+        console.log(item.name, item(value));
+      })
+
+      methods.forEach(item => {
+        console.time(item.name);
+        for (let i = 0; i < total; i++) {
+          item(value);
+        }
+        console.timeEnd(item.name);
+      })
+    }
+
+    run();
+
+  </script>
+</body>
+
+</html>
