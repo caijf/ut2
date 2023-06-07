@@ -1,4 +1,6 @@
-function createOperation(comparator: (value: any, other: any) => boolean) {
+type Comparator = (value: any, other: any) => boolean;
+
+function createOperation(comparator: Comparator) {
   return function (value: any, other: any) {
     if (!(typeof value === 'string' && typeof other === 'string')) {
       value = +value;
@@ -8,13 +10,13 @@ function createOperation(comparator: (value: any, other: any) => boolean) {
   };
 }
 
-function baseGt(value: any, other: any) {
+const baseGt: Comparator = (value, other) => {
   return value > other;
-}
+};
 
-function baseLt(value: any, other: any) {
+const baseLt: Comparator = (value, other) => {
   return value < other;
-}
+};
 
 /**
  * 检查 `value` 是否大于 `other` 。
