@@ -17,12 +17,28 @@ export const functionToString = Function.prototype.toString;
 
 export const objectCtorString = functionToString.call(Object);
 
-// 最大安全数字
+/**
+ * 最大安全整数
+ *
+ * @static
+ * @since 1.0.0
+ */
 export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
 
-// 最小安全数字
+/**
+ * 最小安全整数
+ *
+ * @static
+ * @since 1.0.0
+ */
 export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 
+/**
+ * 最大数组长度
+ *
+ * @static
+ * @since 1.0.0
+ */
 export const MAX_ARRAY_LENGTH = 4294967295;
 // export const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1;
 // export const HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;

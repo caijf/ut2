@@ -123,7 +123,6 @@ export { default as isWeakSet } from './isWeakSet';
  * @module Util
  * @since 1.0.0
  */
-export const version = BUILD_VERSION;
 export { default as castArray } from './castArray';
 export { default as conforms } from './conforms';
 export { default as conformsTo } from './conformsTo';
@@ -135,3 +134,7 @@ export { default as nthArg } from './nthArg';
 export { default as sleep } from './sleep';
 export { default as times } from './times';
 export { default as uniqueId } from './uniqueId';
+
+// global
+export { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MAX_ARRAY_LENGTH } from './internals/native';
+export { VERSION } from './internals/helpers';

@@ -16,3 +16,11 @@ export const numberIsSafeInteger = Number.isSafeInteger;
 export const objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
 
 export const arrayAt = Array.prototype.at;
+
+/**
+ * ut2 版本号
+ *
+ * @static
+ * @since 1.0.0
+ */
+export const VERSION = BUILD_VERSION;
