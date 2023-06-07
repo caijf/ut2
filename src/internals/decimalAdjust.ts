@@ -1,14 +1,4 @@
-/**
- * 将数字转为字符串。主要处理 `-0` 的值。
- *
- * @private
- * @param num 要转字符串的数字。
- * @returns 数字字符串。
- */
-function numberToString(num: number) {
-  const result = '' + num;
-  return result === '0' && 1 / num === -Infinity ? '-0' : result;
-}
+import { numberToString } from './normalize';
 
 /**
  * 数字调整。
