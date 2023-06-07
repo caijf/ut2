@@ -1,14 +1,14 @@
-import { minBy } from '../src';
+import { min } from '../src';
 
-describe('minBy', () => {
+describe('min', () => {
   it('basic', () => {
     const array = [1, 2, 3];
-    expect(minBy(array)).toBe(1);
+    expect(min(array)).toBe(1);
 
     const objects = [{ a: 2 }, { a: 3 }, { a: 1 }];
-    expect(minBy(objects, (item) => item.a)).toEqual({ a: 1 });
+    expect(min(objects, (item) => item.a)).toEqual({ a: 1 });
 
-    expect(minBy(objects, 'a')).toEqual({ a: 1 });
+    expect(min(objects, 'a')).toEqual({ a: 1 });
   });
 
   it('日期比较', () => {
@@ -18,18 +18,18 @@ describe('minBy', () => {
     const array = [date1, date2];
     const objects = [{ d: date1 }, { d: date2 }];
 
-    expect(minBy(array)).toBe(date2);
-    expect(minBy(objects, (item) => item.d)).toEqual({ d: date2 });
-    expect(minBy(objects, 'd')).toEqual({ d: date2 });
+    expect(min(array)).toBe(date2);
+    expect(min(objects, (item) => item.d)).toEqual({ d: date2 });
+    expect(min(objects, 'd')).toEqual({ d: date2 });
   });
 
   it('字符串比较', () => {
     const array = ['a', 'b'];
     const objects = [{ n: 'a' }, { n: 'b' }];
 
-    expect(minBy(array)).toBe('a');
-    expect(minBy(objects, (item) => item.n)).toEqual({ n: 'a' });
-    expect(minBy(objects, 'n')).toEqual({ n: 'a' });
+    expect(min(array)).toBe('a');
+    expect(min(objects, (item) => item.n)).toEqual({ n: 'a' });
+    expect(min(objects, 'n')).toEqual({ n: 'a' });
   });
 
   it('错误的参数', () => {
@@ -37,7 +37,7 @@ describe('minBy', () => {
 
     values.forEach((item) => {
       // @ts-ignore
-      expect(minBy(item)).toBeUndefined();
+      expect(min(item)).toBeUndefined();
     });
   });
 });

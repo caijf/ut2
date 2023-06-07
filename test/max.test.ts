@@ -1,14 +1,14 @@
-import { maxBy } from '../src';
+import { max } from '../src';
 
-describe('maxBy', () => {
+describe('max', () => {
   it('basic', () => {
     const array = [1, 2, 3];
-    expect(maxBy(array)).toBe(3);
+    expect(max(array)).toBe(3);
 
     const objects = [{ a: 2 }, { a: 3 }, { a: 1 }];
-    expect(maxBy(objects, (item) => item.a)).toEqual({ a: 3 });
+    expect(max(objects, (item) => item.a)).toEqual({ a: 3 });
 
-    expect(maxBy(objects, 'a')).toEqual({ a: 3 });
+    expect(max(objects, 'a')).toEqual({ a: 3 });
   });
 
   it('日期比较', () => {
@@ -18,18 +18,18 @@ describe('maxBy', () => {
     const array = [date1, date2];
     const objects = [{ d: date1 }, { d: date2 }];
 
-    expect(maxBy(array)).toBe(date1);
-    expect(maxBy(objects, (item) => item.d)).toEqual({ d: date1 });
-    expect(maxBy(objects, 'd')).toEqual({ d: date1 });
+    expect(max(array)).toBe(date1);
+    expect(max(objects, (item) => item.d)).toEqual({ d: date1 });
+    expect(max(objects, 'd')).toEqual({ d: date1 });
   });
 
   it('字符串比较', () => {
     const array = ['a', 'b'];
     const objects = [{ n: 'a' }, { n: 'b' }];
 
-    expect(maxBy(array)).toBe('b');
-    expect(maxBy(objects, (item) => item.n)).toEqual({ n: 'b' });
-    expect(maxBy(objects, 'n')).toEqual({ n: 'b' });
+    expect(max(array)).toBe('b');
+    expect(max(objects, (item) => item.n)).toEqual({ n: 'b' });
+    expect(max(objects, 'n')).toEqual({ n: 'b' });
   });
 
   it('错误的参数', () => {
@@ -37,7 +37,7 @@ describe('maxBy', () => {
 
     values.forEach((item) => {
       // @ts-ignore
-      expect(maxBy(item)).toBeUndefined();
+      expect(max(item)).toBeUndefined();
     });
   });
 });

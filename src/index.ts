@@ -32,8 +32,8 @@ export { default as throttle } from './throttle';
  */
 export { default as ceil } from './ceil';
 export { default as floor } from './floor';
-export { default as maxBy } from './maxBy';
-export { default as minBy } from './minBy';
+export { default as max } from './max';
+export { default as min } from './min';
 export { default as round } from './round';
 
 /**
