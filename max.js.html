@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArray.js - ut2 </title>
+    <title>max.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArray.js</h1>
+    <h1 class="page-title">max.js</h1>
     
 
     
@@ -69,31 +69,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `Array` 对象。
+            <pre class="prettyprint source linenums"><code>import identity from './identity';
+import { gt } from './internals/comparator';
+import createExtremum from './internals/createExtremum';
+/**
+ * 调用 `array` 中的每一个元素，来生成其值排序的标准，返回最大的值。
  *
  * @static
- * @alias module:Type.isArray
+ * @alias module:Math.max
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {Array} array 要迭代的数组。
+ * @param {Function | string} [iteratee=identity] 调用每个元素的迭代函数。
+ * @returns {*} 最大的值。
  * @example
  *
- * isArray([1, 2, 3]); // true
+ * const array = [1, 2, 3];
  *
- * isArray(document.body.children); // true
+ * max(array); // 3
  *
- * isArray('abc'); // false
+ * const objects = [{n: 1}, {n: 2}];
  *
- * isArray(1); // false
+ * max(objects, item => item.n); // {n: 2}
  *
- * isArray(()=>{}); // false
+ * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * max(objects, 'n'); // {n: 2};
  *
  */
-function isArray(value) {
-    return Array.isArray(value);
+function max(array, iteratee) {
+    if (iteratee === void 0) { iteratee = identity; }
+    return createExtremum(array, iteratee, gt);
 }
-export default isArray;
+export default max;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArray.js - ut2 </title>
+    <title>fromPairs.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArray.js</h1>
+    <h1 class="page-title">fromPairs.js</h1>
     
 
     
@@ -69,31 +69,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `Array` 对象。
+            <pre class="prettyprint source linenums"><code>import isArray from './isArray';
+/**
+ * 将键值对数组转为对象。
  *
  * @static
- * @alias module:Type.isArray
+ * @alias module:Array.fromPairs
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {Array} array 键值对数组。
+ * @returns {Object} 新对象。
  * @example
  *
- * isArray([1, 2, 3]); // true
- *
- * isArray(document.body.children); // true
- *
- * isArray('abc'); // false
- *
- * isArray(1); // false
- *
- * isArray(()=>{}); // false
+ * fromPairs([['foo', 'bar'], ['baz', 42]]); // {foo: 'bar', baz: 42}
  *
  */
-function isArray(value) {
-    return Array.isArray(value);
+function fromPairs(array) {
+    // @ts-ignore
+    var result = {};
+    if (!isArray(array)) {
+        return result;
+    }
+    array.forEach(function (item) {
+        result[item[0]] = item[1];
+    });
+    return result;
 }
-export default isArray;
+export default fromPairs;
 </code></pre>
         </article>
     </section>

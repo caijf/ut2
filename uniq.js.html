@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArray.js - ut2 </title>
+    <title>uniq.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArray.js</h1>
+    <h1 class="page-title">uniq.js</h1>
     
 
     
@@ -69,31 +69,43 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `Array` 对象。
+            <pre class="prettyprint source linenums"><code>import createIteratee from './internals/createIteratee';
+import sameValueZero from './internals/sameValueZero';
+import isArray from './isArray';
+/**
+ * 创建一个去重后的数组副本。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。只有第一次出现的元素才会被保留。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
+ *
+ * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
  * @static
- * @alias module:Type.isArray
+ * @alias module:Array.uniq
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {Array}  array 要检查的数组。
+ * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
+ * @returns {Array} 去重后的新数组。
  * @example
  *
- * isArray([1, 2, 3]); // true
+ * uniq([2, 1, 2]); // [2, 1]
  *
- * isArray(document.body.children); // true
+ * uniq(['a', NaN, 2, 1, NaN, 'a', 1]); // ['a', NaN, 2, 1]
  *
- * isArray('abc'); // false
+ * uniq([{x: 1}, {x: 2}, {x: 1}], item=>item.x); // [{x: 1}, {x: 2}]
  *
- * isArray(1); // false
- *
- * isArray(()=>{}); // false
+ * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * uniq([{x: 1}, {x: 2}, {x: 1}], 'x'); // [{x: 1}, {x: 2}]
  *
  */
-function isArray(value) {
-    return Array.isArray(value);
+function uniq(array, iteratee) {
+    if (!isArray(array)) {
+        return [];
+    }
+    var internalIteratee = createIteratee(iteratee);
+    return array.filter(function (value, index, arr) {
+        var current = internalIteratee(value);
+        return arr.findIndex(function (item) { return sameValueZero(internalIteratee(item), current); }) === index;
+    });
 }
-export default isArray;
+export default uniq;
 </code></pre>
         </article>
     </section>

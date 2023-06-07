@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArray.js - ut2 </title>
+    <title>internals/native.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArray.js</h1>
+    <h1 class="page-title">internals/native.js</h1>
     
 
     
@@ -69,31 +69,75 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `Array` 对象。
+            <pre class="prettyprint source linenums"><code>var freeGlobalThis = typeof globalThis === 'object' &amp;&amp; globalThis &amp;&amp; globalThis.Object === Object &amp;&amp; globalThis;
+var freeGlobal = typeof global === 'object' &amp;&amp; global &amp;&amp; global.Object === Object &amp;&amp; global;
+var freeSelf = typeof self === 'object' &amp;&amp; self &amp;&amp; self.Object === Object &amp;&amp; self;
+export var root = freeGlobalThis || freeGlobal || freeSelf || Function('return this')() || {};
+export var objectProto = Object.prototype;
+export var objectToString = objectProto.toString;
+export var hasOwnProperty = objectProto.hasOwnProperty;
+export var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+export var functionToString = Function.prototype.toString;
+export var objectCtorString = functionToString.call(Object);
+/**
+ * 最大安全整数
  *
  * @static
- * @alias module:Type.isArray
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
- * @example
- *
- * isArray([1, 2, 3]); // true
- *
- * isArray(document.body.children); // true
- *
- * isArray('abc'); // false
- *
- * isArray(1); // false
- *
- * isArray(()=>{}); // false
- *
  */
-function isArray(value) {
-    return Array.isArray(value);
+export var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+/**
+ * 最小安全整数
+ *
+ * @static
+ * @since 1.0.0
+ */
+export var MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
+/**
+ * 最大数组长度
+ *
+ * @static
+ * @since 1.0.0
+ */
+export var MAX_ARRAY_LENGTH = 4294967295;
+// export const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1;
+// export const HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
+// Blob 对象是否存在
+export var blobExisted = typeof Blob !== 'undefined';
+export function toSource(func) {
+    if (func !== null) {
+        try {
+            return functionToString.call(func);
+        }
+        catch (e) {
+            /* empty */
+        }
+        try {
+            return func + '';
+        }
+        catch (e) {
+            /* empty */
+        }
+    }
+    return '';
 }
-export default isArray;
+export var objectTag = '[object Object]';
+export var dataViewTag = '[object DateView]';
+export var mapTag = '[object Map]';
+export var promiseTag = '[object Promise]';
+export var setTag = '[object Set]';
+export var weakMapTag = '[object WeakMap]';
+export var dataViewExisted = typeof DataView !== 'undefined';
+export var mapExisted = typeof Map !== 'undefined';
+export var promiseExisted = typeof Promise !== 'undefined';
+export var setExisted = typeof Set !== 'undefined';
+export var weakMapExisted = typeof WeakMap !== 'undefined';
+export var initSource = function (existed, str) { return (existed ? str : ''); };
+export var dataViewCtorString = initSource(dataViewExisted, toSource(DataView));
+export var mapCtorString = initSource(mapExisted, toSource(Map));
+export var promiseCtorString = initSource(promiseExisted, toSource(Promise));
+export var setCtorString = initSource(setExisted, toSource(Set));
+export var weakMapCtorString = initSource(weakMapExisted, toSource(WeakMap));
 </code></pre>
         </article>
     </section>

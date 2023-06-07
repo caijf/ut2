@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArray.js - ut2 </title>
+    <title>compact.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArray.js</h1>
+    <h1 class="page-title">compact.js</h1>
     
 
     
@@ -69,31 +69,27 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `Array` 对象。
+            <pre class="prettyprint source linenums"><code>import isArray from './isArray';
+/**
+ * 创建一个新数组，包含原数组中所有的非假值元素。
+ *
+ * 例如 `false` `null` `0` `""` `undefined` `NaN` 都被认为是假值。
  *
  * @static
- * @alias module:Type.isArray
+ * @alias module:Array.compact
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy | Falsy}
+ * @param {Array} array 待处理的数组。
+ * @returns {Array} 过滤掉假值的新数组。
  * @example
  *
- * isArray([1, 2, 3]); // true
- *
- * isArray(document.body.children); // true
- *
- * isArray('abc'); // false
- *
- * isArray(1); // false
- *
- * isArray(()=>{}); // false
+ * compact([0, 1, false, '', 2]); // [1, 2]
  *
  */
-function isArray(value) {
-    return Array.isArray(value);
+function compact(array) {
+    return isArray(array) ? array.filter(function (item) { return !!item; }) : [];
 }
-export default isArray;
+export default compact;
 </code></pre>
         </article>
     </section>

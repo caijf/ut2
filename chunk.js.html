@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArray.js - ut2 </title>
+    <title>chunk.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArray.js</h1>
+    <h1 class="page-title">chunk.js</h1>
     
 
     
@@ -69,31 +69,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `Array` 对象。
+            <pre class="prettyprint source linenums"><code>import isArray from './isArray';
+/**
+ * 将数组拆分成多个 `size` 长度的区块，并将这些区块组成一个新数组。
+ *
+ * 如果数组无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
  *
  * @static
- * @alias module:Type.isArray
+ * @alias module:Array.chunk
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
+ * @param {Array} array 要处理的数组。
+ * @param {number} [size=1] 每个数组区块的长度。
+ * @returns {Array} 拆分区块的新数组。
  * @example
  *
- * isArray([1, 2, 3]); // true
+ * const array = ['a', 'b', 'c', 'd'];
  *
- * isArray(document.body.children); // true
+ * chunk(array, 2); // [['a', 'b'], ['c', 'd']]
  *
- * isArray('abc'); // false
- *
- * isArray(1); // false
- *
- * isArray(()=>{}); // false
+ * chunk(array, 3); // [['a', 'b', 'c'], ['d']]
  *
  */
-function isArray(value) {
-    return Array.isArray(value);
+function chunk(array, size) {
+    if (size === void 0) { size = 1; }
+    if (!isArray(array) || !(typeof size === 'number' &amp;&amp; size > 0 &amp;&amp; size % 1 === 0)) {
+        return [];
+    }
+    var length = array.length;
+    var result = Array(Math.ceil(length / size));
+    var resIndex = 0, index = 0;
+    while (index &lt; length) {
+        result[resIndex++] = array.slice(index, (index += size));
+    }
+    return result;
 }
-export default isArray;
+export default chunk;
 </code></pre>
         </article>
     </section>

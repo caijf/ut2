@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isArray.js - ut2 </title>
+    <title>internals/helpers.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isArray.js</h1>
+    <h1 class="page-title">internals/helpers.js</h1>
     
 
     
@@ -69,31 +69,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `Array` 对象。
+            <pre class="prettyprint source linenums"><code>// 主要是为了便于一些方法测试，比如一些方法要检测是否存在。
+import isType from './isType';
+export var argType = 'Arguments';
+// @ts-ignore
+export var supportedArgumentsType = isType((function () { return arguments; })(), argType);
+export var FUNC_ERROR_TEXT = 'Expected a function';
+export var numberIsFinite = Number.isFinite;
+export var numberIsInteger = Number.isInteger;
+export var numberIsSafeInteger = Number.isSafeInteger;
+export var objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
+export var arrayAt = Array.prototype.at;
+/**
+ * ut2 版本号
  *
  * @static
- * @alias module:Type.isArray
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `Array` 对象，返回 `true` ，否则返回 `false` 。
- * @example
- *
- * isArray([1, 2, 3]); // true
- *
- * isArray(document.body.children); // true
- *
- * isArray('abc'); // false
- *
- * isArray(1); // false
- *
- * isArray(()=>{}); // false
- *
  */
-function isArray(value) {
-    return Array.isArray(value);
-}
-export default isArray;
+export var VERSION = BUILD_VERSION;
 </code></pre>
         </article>
     </section>
