@@ -6,6 +6,7 @@
  */
 export { default as chunk } from './chunk';
 export { default as compact } from './compact';
+export { default as fromPairs } from './fromPairs';
 export { default as nth } from './nth';
 
 /**
