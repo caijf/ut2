@@ -4,7 +4,7 @@ import pickBy from './pickBy';
 /**
  * 创建一个对象，该对象忽略 `predicate` （断言函数）判断不是真值的属性后，`object` 自身和继承的可枚举属性组成。与 [`pickBy`](#.pickBy) 相反。
  *
- * `predicate` 调用 2 个参数 `value` `key` 。
+ * `predicate` 调用时会传入 2 个参数 `value` `key` 。
  *
  * @static
  * @alias module:Object.omitBy

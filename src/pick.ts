@@ -1,7 +1,5 @@
 import castArray from './castArray';
 
-// function pick<T extends object, K extends keyof T>(obj: T, fields: K | K[]): Pick<T, K>;
-// function pick<T extends object>(obj: T, fields?: string | string[]): Partial<T>;
 /**
  * 创建一个从 `object` 选中的属性的对象。
  *
