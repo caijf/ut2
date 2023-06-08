@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>union.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">union.js</h1>
     
 
     
@@ -69,32 +69,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `buffer` 。
+            <pre class="prettyprint source linenums"><code>import { __read, __spreadArray } from "tslib";
+import isArray from './isArray';
+import uniq from './uniq';
+/**
+ * 创建一个按顺序排列的唯一值的数组（并集）。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。与 [`uniq`](#.uniq) 相似。
  *
- * 非 Node.js 环境，始终返回 `false` 。
+ * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
  * @static
- * @alias module:Type.isBuffer
+ * @alias module:Array.union
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
+ * @param {Array} array 要检查的数组。
+ * @param {Array} [other=[]] 另一个要检查的数组。
+ * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
+ * @returns {Array} 新的联合数组。
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
+ * union([2], [1, 2]); // [2, 1]
  *
- * isBuffer({}); // false
+ * union([2.1], [1.2, 2.3], Math.floor); // [2.1, 1.2]
  *
- * isBuffer('2012'); // false
+ * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], item=>item.x); // [{x: 1}, {x: 2}]
+ *
+ * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], 'x'); // [{x: 1}, {x: 2}]
  *
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
-    }
-    return false;
+function union(array, other, iteratee) {
+    if (other === void 0) { other = []; }
+    array = isArray(array) ? array : [];
+    other = isArray(other) ? other : [];
+    return uniq(__spreadArray(__spreadArray([], __read(array), false), __read(other), false), iteratee);
 }
-export default isBuffer;
+export default union;
 </code></pre>
         </article>
     </section>

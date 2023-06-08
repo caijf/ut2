@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>zip.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">zip.js</h1>
     
 
     
@@ -69,32 +69,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `buffer` 。
- *
- * 非 Node.js 环境，始终返回 `false` 。
+            <pre class="prettyprint source linenums"><code>import unzip from './unzip';
+/**
+ * 创建一个数组，数组的第一个元素包含所有给定数组的第一元素，第二个元素包含了所有给定数组的第二元素，依此类推。
  *
  * @static
- * @alias module:Type.isBuffer
+ * @alias module:Array.zip
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
+ * @param {Array} array 要处理的分组元素数组。
+ * @returns {Array} 重组元素的新数组。
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
- *
- * isBuffer({}); // false
- *
- * isBuffer('2012'); // false
+ * zip(['barney', 'fred'], [36, 40]); // [['barney', 36], ['fred', 40]]
  *
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
+function zip() {
+    var arrays = [];
+    for (var _i = 0; _i &lt; arguments.length; _i++) {
+        arrays[_i] = arguments[_i];
     }
-    return false;
+    return unzip(arrays);
 }
-export default isBuffer;
+export default zip;
 </code></pre>
         </article>
     </section>

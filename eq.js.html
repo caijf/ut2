@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>eq.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">eq.js</h1>
     
 
     
@@ -70,31 +70,35 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `buffer` 。
- *
- * 非 Node.js 环境，始终返回 `false` 。
+ * 检查两个值是否相等。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。
  *
  * @static
- * @alias module:Type.isBuffer
+ * @alias module:Util.eq
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
+ * @param value 要比较的值。
+ * @param other 另一个要比较的值。
+ * @returns 如果两个值相等，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
+ * eq(0, -0); // true
  *
- * isBuffer({}); // false
+ * eq(1, 1); // true
  *
- * isBuffer('2012'); // false
+ * eq(NaN, NaN); // true
+ *
+ * eq('a', 'a'); // true
+ *
+ * const object = {a: 1};
+ *
+ * eq(object, {a: 1}); // false
+ *
+ * eq(object, object); // true
  *
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
-    }
-    return false;
+function eq(value, other) {
+    return value === other || (value !== value &amp;&amp; other !== other);
 }
-export default isBuffer;
+export default eq;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>gte.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">gte.js</h1>
     
 
     
@@ -69,32 +69,29 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `buffer` 。
- *
- * 非 Node.js 环境，始终返回 `false` 。
+            <pre class="prettyprint source linenums"><code>import { baseGte, createOperation } from './internals/comparator';
+/**
+ * 检查 `value` 是否大于或等于 `other` 。
  *
  * @static
- * @alias module:Type.isBuffer
+ * @alias module:Util.gte
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
+ * @param value 要比较的值。
+ * @param other 另一个要比较的值。
+ * @returns 如果 `value` 大于或等于 `other` 返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
+ * gte(1, 3); // false
  *
- * isBuffer({}); // false
+ * gte(3, 3); // true
  *
- * isBuffer('2012'); // false
+ * gte(3, 1); // true
  *
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
-    }
-    return false;
+function gte(value, other) {
+    return createOperation(baseGte)(value, other);
 }
-export default isBuffer;
+export default gte;
 </code></pre>
         </article>
     </section>

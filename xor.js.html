@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>xor.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">xor.js</h1>
     
 
     
@@ -69,32 +69,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `buffer` 。
+            <pre class="prettyprint source linenums"><code>import difference from './difference';
+import createIteratee from './internals/createIteratee';
+import intersection from './intersection';
+import isArray from './isArray';
+import union from './union';
+import uniq from './uniq';
+/**
+ * 创建一个唯一值的数组（并集-交集），该数组包含 2 个数组参数中不相同的元素。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
  *
- * 非 Node.js 环境，始终返回 `false` 。
+ * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
  * @static
- * @alias module:Type.isBuffer
+ * @alias module:Array.xor
  * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
- * @example
- *
- * isBuffer(new Blob(['a'])); // true
- *
- * isBuffer({}); // false
- *
- * isBuffer('2012'); // false
- *
+ * @param {Array} array 要检查的数组。
+ * @param {Array} [other=[]] 另一个要检查的数组。
+ * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
+ * @returns {Array} 过滤值后的新数组。
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
+function xor(array, other, iteratee) {
+    if (other === void 0) { other = []; }
+    var internalIteratee = createIteratee(iteratee);
+    if (!isArray(array) &amp;&amp; !isArray(other)) {
+        return [];
     }
-    return false;
+    if (!isArray(other)) {
+        return uniq(array, internalIteratee);
+    }
+    if (!isArray(array)) {
+        return uniq(other, internalIteratee);
+    }
+    return difference(union(array, other, internalIteratee), intersection(array, other, internalIteratee), internalIteratee);
 }
-export default isBuffer;
+export default xor;
 </code></pre>
         </article>
     </section>
