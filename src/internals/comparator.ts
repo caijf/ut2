@@ -1,6 +1,6 @@
 type Comparator = (value: any, other: any) => boolean;
 
-function createOperation(comparator: Comparator) {
+export function createOperation(comparator: Comparator) {
   return function (value: any, other: any) {
     if (!(typeof value === 'string' && typeof other === 'string')) {
       value = +value;
@@ -10,30 +10,18 @@ function createOperation(comparator: Comparator) {
   };
 }
 
-const baseGt: Comparator = (value, other) => {
+export const baseGt: Comparator = (value, other) => {
   return value > other;
 };
 
-const baseLt: Comparator = (value, other) => {
+export const baseGte: Comparator = (value, other) => {
+  return value >= other;
+};
+
+export const baseLt: Comparator = (value, other) => {
   return value < other;
 };
 
-/**
- * 检查 `value` 是否大于 `other` 。
- *
- * @private
- * @param value 要比较的值。
- * @param other 另一个要比较的值。
- * @returns 如果 `value` 大于 `other` 返回 `true` ，否则返回 `false` 。
- */
-export const gt = createOperation(baseGt);
-
-/**
- * 检查 `value` 是否小于 `other` 。
- *
- * @private
- * @param value 要比较的值。
- * @param other 另一个要比较的值。
- * @returns 如果 `value` 小于 `other` 返回 `true` ，否则返回 `false` 。
- */
-export const lt = createOperation(baseLt);
+export const baseLte: Comparator = (value, other) => {
+  return value <= other;
+};

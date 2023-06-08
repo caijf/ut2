@@ -1,5 +1,5 @@
+import gt from './gt';
 import identity from './identity';
-import { gt } from './internals/comparator';
 import createExtremum from './internals/createExtremum';
 
 /**

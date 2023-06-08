@@ -1,6 +1,6 @@
 import identity from './identity';
-import { lt } from './internals/comparator';
 import createExtremum from './internals/createExtremum';
+import lt from './lt';
 
 /**
  * 调用 `array` 中的每一个元素，来生成其值排序的标准，返回最小的值。
