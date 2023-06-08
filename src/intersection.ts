@@ -1,5 +1,5 @@
+import eq from './eq';
 import createIteratee from './internals/createIteratee';
-import sameValueZero from './internals/sameValueZero';
 import isArray from './isArray';
 
 /**
@@ -41,7 +41,7 @@ function intersection<T, F extends (value: T) => any, K extends keyof T>(
     const current = internalIteratee(item);
 
     if (
-      other.findIndex((value) => sameValueZero(internalIteratee(value), current)) !== -1 &&
+      other.findIndex((value) => eq(internalIteratee(value), current)) !== -1 &&
       !caches.includes(current)
     ) {
       caches.push(current);

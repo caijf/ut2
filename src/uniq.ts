@@ -1,5 +1,5 @@
+import eq from './eq';
 import createIteratee from './internals/createIteratee';
-import sameValueZero from './internals/sameValueZero';
 import isArray from './isArray';
 
 /**
@@ -33,7 +33,7 @@ function uniq<T, F extends (value: T) => any, K extends keyof T>(array: T[], ite
   const internalIteratee = createIteratee<T, F, K>(iteratee);
   return array.filter((value, index, arr) => {
     const current = internalIteratee(value);
-    return arr.findIndex((item) => sameValueZero(internalIteratee(item), current)) === index;
+    return arr.findIndex((item) => eq(internalIteratee(item), current)) === index;
   });
 }
 

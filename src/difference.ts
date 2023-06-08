@@ -1,5 +1,5 @@
+import eq from './eq';
 import createIteratee from './internals/createIteratee';
-import sameValueZero from './internals/sameValueZero';
 import isArray from './isArray';
 
 /**
@@ -44,7 +44,7 @@ function difference<T, F extends (value: T) => any, K extends keyof T>(
     const current = internalIteratee(item);
     // 注意此处不能使用 `find` ，如果值存在 `undefined` 不好处理。
     // 为什么不直接使用 `includes` (includes 比较用的是 sameValueZero)，因为要支持 iteratee 。
-    return values.findIndex((value) => sameValueZero(internalIteratee(value), current)) === -1;
+    return values.findIndex((value) => eq(internalIteratee(value), current)) === -1;
   });
 }
 
