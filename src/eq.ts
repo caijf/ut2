@@ -4,9 +4,9 @@
  * @static
  * @alias module:Util.eq
  * @since 1.0.0
- * @param value 要比较的值。
- * @param other 另一个要比较的值。
- * @returns 如果两个值相等，返回 `true` ，否则返回 `false` 。
+ * @param {*} value 要比较的值。
+ * @param {*} other 另一个要比较的值。
+ * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
  * @example
  *
  * eq(0, -0); // true
