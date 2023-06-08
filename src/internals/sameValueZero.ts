@@ -1,3 +1,14 @@
+// const arr = [-0, NaN];
+// arr.includes(NaN); // true
+// arr.includes(0); // true
+// arr.includes(+0); // true
+// arr.includes(-0); // true
+//
+// arr.indexOf(NaN); // -1
+// arr.indexOf(0); // 0
+// arr.indexOf(+0); // 0
+// arr.indexOf(-0); // 0
+
 /**
  * 检查两个值是否相等。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。
  *

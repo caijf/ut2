@@ -10,6 +10,12 @@ describe('uniq', () => {
     expect(uniq(objects, (item) => item.a)).toEqual([{ a: 2 }, { a: 3 }, { a: 1 }]);
   });
 
+  it('`+0` `-0` 全等于 `0`', () => {
+    expect(uniq([-0, +0, 0])).toEqual([-0]);
+    expect(uniq([+0, -0, 0])).toEqual([+0]);
+    expect(uniq([0, +0, -0])).toEqual([0]);
+  });
+
   it('包含 `NaN`', () => {
     const array = [NaN, 1, 2, NaN, 3, 2, NaN];
     expect(uniq(array)).toEqual([NaN, 1, 2, 3]);
