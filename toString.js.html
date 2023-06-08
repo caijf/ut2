@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>capitalize.js - ut2 </title>
+    <title>toString.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">capitalize.js</h1>
+    <h1 class="page-title">toString.js</h1>
     
 
     
@@ -69,26 +69,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import upperFirst from './upperFirst';
+            <pre class="prettyprint source linenums"><code>import isArray from './isArray';
+import isSymbol from './isSymbol';
+function baseToString(value) {
+    if (typeof value === 'string') {
+        return value;
+    }
+    if (isArray(value)) {
+        return "".concat(value.map(baseToString));
+    }
+    if (isSymbol(value)) {
+        return value.toString();
+    }
+    var result = '' + value;
+    return result == '0' &amp;&amp; 1 / value === -Infinity ? '-0' : result;
+}
 /**
- * 转换字符串首字母大写，剩下为小写。
+ * 转换 `value` 为字符串。`null` 和 `undefined` 将返回空字符串。`-0` 将被转换为 `"-0"` 。
  *
  * @static
- * @alias module:String.capitalize
+ * @alias module:Util.toString
  * @since 1.0.0
- * @param string 要转换的字符串。
- * @returns {string} 首字母大写的字符串。
+ * @param value 要处理的值。
+ * @returns 转换后的字符串。
  * @example
  *
- * capitalize('bar'); // 'Bar'
+ * toString(null); // ''
  *
- * capitalize('BAR'); // 'Bar'
+ * toString(-0); // '-0'
+ *
+ * // 数组中的 `null` `undefined` 返回 'null' 'undefined'
+ * toString([undefined, null]); // 'undefined,null'
+ *
+ * toString('a'); // 'a'
+ *
+ * toString(3); // '3'
  *
  */
-function capitalize(string) {
-    return upperFirst(String(string).toLowerCase());
+function toString(value) {
+    return value == null ? '' : baseToString(value);
 }
-export default capitalize;
+export default toString;
 </code></pre>
         </article>
     </section>
