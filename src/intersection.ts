@@ -12,7 +12,7 @@ import isArray from './isArray';
  * @since 1.0.0
  * @param {Array} array 要检查的数组。
  * @param {Array} other 另一个要检查的数组。
- * @param {Function | string} iteratee 迭代函数，调用每个元素。
+ * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
  * @returns {Array} 包含所有传入数组交集元素的新数组。
  * @example
  *

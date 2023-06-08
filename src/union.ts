@@ -9,10 +9,10 @@ import uniq from './uniq';
  * @static
  * @alias module:Array.union
  * @since 1.0.0
- * @param array 要检查的数组。
- * @param other 另一个要检查的数组。
- * @param iteratee 迭代函数，调用每个元素。
- * @returns 新的联合数组。
+ * @param {Array} array 要检查的数组。
+ * @param {Array} [other=[]] 另一个要检查的数组。
+ * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
+ * @returns {Array} 新的联合数组。
  * @example
  *
  * union([2], [1, 2]); // [2, 1]

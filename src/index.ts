@@ -12,6 +12,7 @@ export { default as intersection } from './intersection';
 export { default as nth } from './nth';
 export { default as union } from './union';
 export { default as uniq } from './uniq';
+export { default as xor } from './xor';
 
 /**
  * 函数
