@@ -8,6 +8,7 @@ describe('uniq', () => {
     expect(uniq(array)).toEqual([2, 1, 'a']);
     expect(uniq(objects, 'a')).toEqual([{ a: 2 }, { a: 3 }, { a: 1 }]);
     expect(uniq(objects, (item) => item.a)).toEqual([{ a: 2 }, { a: 3 }, { a: 1 }]);
+    expect(uniq([2.1, 2.2], Math.floor)).toEqual([2.1]);
   });
 
   it('`+0` `-0` 全等于 `0`', () => {

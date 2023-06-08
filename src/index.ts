@@ -10,6 +10,7 @@ export { default as difference } from './difference';
 export { default as fromPairs } from './fromPairs';
 export { default as intersection } from './intersection';
 export { default as nth } from './nth';
+export { default as union } from './union';
 export { default as uniq } from './uniq';
 
 /**
