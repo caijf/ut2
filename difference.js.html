@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>times.js - ut2 </title>
+    <title>difference.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">times.js</h1>
+    <h1 class="page-title">difference.js</h1>
     
 
     
@@ -69,46 +69,49 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import identity from './identity';
-import { MAX_ARRAY_LENGTH, MAX_SAFE_INTEGER } from './internals/native';
-import isInteger from './isInteger';
-import isFinite from './isFinite';
+            <pre class="prettyprint source linenums"><code>import createIteratee from './internals/createIteratee';
+import sameValueZero from './internals/sameValueZero';
+import isArray from './isArray';
 /**
- * 调用 `iteratee` `n` 次，每次调用返回的结果存入到数组中。
+ * 创建一个 `array` 排除 `values` 值的新数组。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
  *
- * `iteratee` 调用传入 1 个参数 `index` 。
+ * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
  * @static
- * @alias module:Util.times
+ * @alias module:Array.difference
  * @since 1.0.0
- * @param {number} n 调用 `iteratee` 的次数。
- * @param {Function} [iteratee=identity] 每次迭代调用的函数。
- * @returns {Array} 调用结果的数组。
+ * @param array 要检查的数组。
+ * @param values 排除的值。
+ * @param iteratee 迭代函数，调用每个元素。
+ * @returns 过滤值后的新数组。
  * @example
  *
- * times(3); // [0, 1, 2]
+ * difference([3, 1, 2], [4, 2]); // [3, 1]
  *
- * times(3, String); // ['0', '1', '2']
+ * difference([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor); // [3.1, 1.3]
  *
- * times(4, () => 0); // [0, 0, 0, 0]
+ * difference([{x: 2}, {x: 1}], [{x: 1}], item=>item.x); // [{x: 2}]
+ *
+ * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * difference([{x: 2}, {x: 1}], [{x: 1}], 'x'); // [{x: 2}]
  *
  */
-function times(n, iteratee) {
-    if (iteratee === void 0) { iteratee = identity; }
-    if (n &lt; 1 || n > MAX_SAFE_INTEGER) {
+function difference(array, values, iteratee) {
+    if (!isArray(array)) {
         return [];
     }
-    var index = 0;
-    var length = Math.min(isInteger(n) ? n : Math.floor(isFinite(n) ? n : 0), MAX_ARRAY_LENGTH);
-    var result = Array(length);
-    var func = typeof iteratee === 'function' ? iteratee : identity;
-    while (index &lt; length) {
-        result[index] = func(index);
-        index++;
+    if (!isArray(values)) {
+        return array;
     }
-    return result;
+    var internalIteratee = createIteratee(iteratee);
+    return array.filter(function (item) {
+        var current = internalIteratee(item);
+        // 注意此处不能使用 `find` ，如果值存在 `undefined` 不好处理。
+        // 为什么不直接使用 `includes` (includes 比较用的是 sameValueZero)，因为要支持 iteratee 。
+        return values.findIndex(function (value) { return sameValueZero(internalIteratee(value), current); }) === -1;
+    });
 }
-export default times;
+export default difference;
 </code></pre>
         </article>
     </section>
