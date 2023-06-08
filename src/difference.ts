@@ -10,10 +10,10 @@ import isArray from './isArray';
  * @static
  * @alias module:Array.difference
  * @since 1.0.0
- * @param array 要检查的数组。
- * @param values 排除的值。
- * @param iteratee 迭代函数，调用每个元素。
- * @returns 过滤值后的新数组。
+ * @param {Array} array 要检查的数组。
+ * @param {Array} values 排除的值。
+ * @param {Function | string} iteratee 迭代函数，调用每个元素。
+ * @returns {Array} 过滤值后的新数组。
  * @example
  *
  * difference([3, 1, 2], [4, 2]); // [3, 1]
