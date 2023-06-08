@@ -5,6 +5,8 @@ function fromPairs<P extends string | number | symbol>(array: any[][]): Record<P
 /**
  * 将键值对数组转为对象。
  *
+ * 与 [Object.entries](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) 正好相反。
+ *
  * @static
  * @alias module:Array.fromPairs
  * @since 1.0.0
