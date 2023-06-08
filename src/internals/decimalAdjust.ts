@@ -1,4 +1,4 @@
-import { numberToString } from './normalize';
+import toString from '../toString';
 
 /**
  * 数字调整。
@@ -26,11 +26,11 @@ function decimalAdjust(type: 'floor' | 'ceil' | 'round', value: number, precisio
   }
 
   // 移动
-  let pair = numberToString(value).split('e');
+  let pair = toString(value).split('e');
   value = func(+(pair[0] + 'e' + (pair[1] ? +pair[1] + precision : precision)));
 
   // 向前移
-  pair = numberToString(value).split('e');
+  pair = toString(value).split('e');
   return +(pair[0] + 'e' + (pair[1] ? +pair[1] - precision : -precision));
 }
 
