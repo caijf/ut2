@@ -1,5 +1,6 @@
+import defaultTo from './defaultTo';
 import { FUNC_ERROR_TEXT } from './internals/helpers';
-import { normalizeNumber } from './internals/normalize';
+import toNumber from './toNumber';
 
 /**
  * 创建一个函数，当它被调用 `n` 或更多次之后触发 `func` 。
@@ -28,7 +29,7 @@ function after<T extends (...args: any[]) => any>(n: number, func: T) {
   if (typeof func !== 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
-  n = normalizeNumber(n);
+  n = defaultTo(toNumber(n), 0);
   return function () {
     if (--n < 1) {
       // @ts-ignore

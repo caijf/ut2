@@ -1,5 +1,6 @@
+import defaultTo from './defaultTo';
 import { FUNC_ERROR_TEXT } from './internals/helpers';
-import { normalizeNumber } from './internals/normalize';
+import toNumber from './toNumber';
 
 /**
  * 创建一个防抖动函数，该函数会从上一次被调用后，延迟 `wait` 毫秒数后调用 `func` 方法。
@@ -53,7 +54,7 @@ function debounce<T extends (...args: any[]) => any>(
     lastThis: any,
     result: ReturnType<T>;
 
-  wait = normalizeNumber(wait);
+  wait = defaultTo(toNumber(wait), 0);
 
   function shouldInvoke(time: number) {
     if (lastCallTime === undefined) {

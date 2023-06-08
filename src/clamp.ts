@@ -1,4 +1,5 @@
-import { normalizeNumber } from './internals/normalize';
+import defaultTo from './defaultTo';
+import toNumber from './toNumber';
 
 function clamp(number: number, upper: number): number;
 function clamp(number: number, lower: number, upper: number): number;
@@ -33,11 +34,11 @@ function clamp(number: number, lower?: number, upper?: number) {
   }
 
   if (upper !== undefined) {
-    upper = normalizeNumber(upper);
+    upper = defaultTo(toNumber(upper), 0);
   }
 
   if (lower !== undefined) {
-    lower = normalizeNumber(lower);
+    lower = defaultTo(toNumber(lower), 0);
   }
 
   number = +number;

@@ -1,5 +1,6 @@
+import defaultTo from './defaultTo';
 import { FUNC_ERROR_TEXT } from './internals/helpers';
-import { normalizeNumber } from './internals/normalize';
+import toNumber from './toNumber';
 
 /**
  * 延迟 `wait` 毫秒后调用 `func` 。
@@ -28,7 +29,7 @@ function delay<T extends (...args: any[]) => any>(func: T, wait: number, ...args
 
   // @ts-ignore
   const context = this;
-  wait = normalizeNumber(wait);
+  wait = defaultTo(toNumber(wait), 0);
 
   return setTimeout(() => {
     func.apply(context, args);
