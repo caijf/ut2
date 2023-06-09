@@ -1,3 +1,5 @@
+import isSymbol from '../isSymbol';
+
 /**
  * 创建迭代函数。
  *
@@ -9,7 +11,8 @@ function createIteratee<T, F extends (value: T) => any, K extends keyof T>(itera
   if (typeof iteratee === 'function') {
     return iteratee;
   }
-  if (typeof iteratee === 'string') {
+  // 属性键值可能为 Symbol, string, number
+  if (typeof iteratee === 'string' || typeof iteratee === 'number' || isSymbol(iteratee)) {
     return (value: any) => value[iteratee];
   }
   return (value: any) => value;

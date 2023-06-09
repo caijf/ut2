@@ -17,6 +17,14 @@ export { default as xor } from './xor';
 export { default as zip } from './zip';
 
 /**
+ * 集合
+ *
+ * @module Collection
+ * @since 1.0.0
+ */
+export { default as countBy } from './countBy';
+
+/**
  * 函数
  *
  * @module Function
