@@ -18,7 +18,7 @@ export const objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
 export const arrayAt = Array.prototype.at;
 
 /**
- * ut2 版本号
+ * ut2 版本号。
  *
  * @static
  * @since 1.0.0

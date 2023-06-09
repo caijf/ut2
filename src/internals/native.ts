@@ -18,31 +18,31 @@ export const functionToString = Function.prototype.toString;
 export const objectCtorString = functionToString.call(Object);
 
 /**
- * 最大安全整数
+ * 最大安全整数。
  *
  * @static
  * @since 1.0.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER | MAX_SAFE_INTEGER}
  */
 export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
 
 /**
- * 最小安全整数
+ * 最小安全整数。
  *
  * @static
  * @since 1.0.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_SAFE_INTEGER | MIN_SAFE_INTEGER}
  */
 export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 
 /**
- * 最大数组长度 `Math.pow(2,32) - 1`
+ * 最大数组长度 `Math.pow(2,32) - 1` 。
  *
  * @static
  * @since 1.0.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length | length}
  */
 export const MAX_ARRAY_LENGTH = 4294967295;
-// export const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1;
-// export const HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
 
 // Blob 对象是否存在
 export const blobExisted = typeof Blob !== 'undefined';
