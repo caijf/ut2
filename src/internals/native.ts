@@ -34,10 +34,11 @@ export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
 export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 
 /**
- * 最大数组长度
+ * 最大数组长度 `Math.pow(2,32) - 1`
  *
  * @static
  * @since 1.0.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length | length}
  */
 export const MAX_ARRAY_LENGTH = 4294967295;
 // export const MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1;

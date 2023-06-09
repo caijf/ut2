@@ -1,30 +1,30 @@
-import { toNumber } from '../src';
+import { toFinite } from '../src';
 import { symbol } from './_utils';
 
-describe('toNumber', () => {
+describe('toFinite', () => {
   it('basic', () => {
-    expect(toNumber(3.2)).toBe(3.2);
-    expect(toNumber('3.2')).toBe(3.2);
-    expect(toNumber(-0)).toBe(-0);
-    expect(toNumber('-0')).toBe(-0);
-    expect(toNumber('0')).toBe(0);
-    expect(toNumber(NaN)).toBe(NaN);
-    expect(toNumber(Infinity)).toBe(Infinity);
-    expect(toNumber(-Infinity)).toBe(-Infinity);
+    expect(toFinite(3.2)).toBe(3.2);
+    expect(toFinite('3.2')).toBe(3.2);
+    expect(toFinite(-0)).toBe(-0);
+    expect(toFinite('-0')).toBe(-0);
+    expect(toFinite('0')).toBe(0);
+    expect(toFinite(NaN)).toBe(0);
+    expect(toFinite(Infinity)).toBe(Number.MAX_VALUE);
+    expect(toFinite(-Infinity)).toBe(-Number.MAX_VALUE);
   });
 
   it('带符号的 `0`', () => {
-    expect(toNumber(0)).toBe(0);
-    expect(toNumber(-0)).toBe(-0);
-    expect(toNumber('0')).toBe(0);
-    expect(toNumber('-0')).toBe(-0);
+    expect(toFinite(0)).toBe(0);
+    expect(toFinite(-0)).toBe(-0);
+    expect(toFinite('0')).toBe(0);
+    expect(toFinite('-0')).toBe(-0);
   });
 
   it('原始数字类型', () => {
     const values = [0, 1, 1.2, -1, -1.2, NaN, Infinity, -Infinity, Number.MIN_VALUE];
-    const result = [0, 1, 1.2, -1, -1.2, NaN, Infinity, -Infinity, Number.MIN_VALUE];
+    const result = [0, 1, 1.2, -1, -1.2, 0, Number.MAX_VALUE, -Number.MAX_VALUE, Number.MIN_VALUE];
     values.forEach((item, i) => {
-      expect(toNumber(item)).toBe(result[i]);
+      expect(toFinite(item)).toBe(result[i]);
     });
   });
 
@@ -50,11 +50,11 @@ describe('toNumber', () => {
       1e308,
       5e-324,
       5e-324,
-      Infinity,
-      NaN
+      Number.MAX_VALUE,
+      0
     ];
     values.forEach((item, i) => {
-      expect(toNumber(item)).toBe(result[i]);
+      expect(toFinite(item)).toBe(result[i]);
     });
   });
 
@@ -70,30 +70,30 @@ describe('toNumber', () => {
       '0X1a2b3c',
       '-0X1a2b3c'
     ];
-    const result = [42, 42, 5, 5349, 5349, 1, 1715004, 1715004, NaN];
+    const result = [42, 42, 5, 5349, 5349, 1, 1715004, 1715004, 0];
     values.forEach((item, i) => {
-      expect(toNumber(item)).toBe(result[i]);
+      expect(toFinite(item)).toBe(result[i]);
     });
   });
 
-  it('`Symbol` 类型转为 `NaN`', () => {
-    expect(toNumber(symbol)).toBeNaN();
+  it('`Symbol` 类型转为 `0`', () => {
+    expect(toFinite(symbol)).toBe(0);
   });
 
   it('空字符、空格、undefined、null转数字', () => {
-    expect(toNumber('')).toBe(0);
-    expect(toNumber(' ')).toBe(0);
-    expect(toNumber(undefined)).toBe(NaN);
+    expect(toFinite('')).toBe(0);
+    expect(toFinite(' ')).toBe(0);
+    expect(toFinite(undefined)).toBe(0);
     // @ts-ignore
-    expect(toNumber()).toBe(NaN);
-    expect(toNumber(null)).toBe(0);
+    expect(toFinite()).toBe(0);
+    expect(toFinite(null)).toBe(0);
   });
 
   it('隐式转换', () => {
     const values1: any[] = [{}, [], [1], [1, 2]];
-    const result1 = [NaN, 0, 1, NaN];
+    const result1 = [0, 0, 1, 0];
     values1.forEach((item, i) => {
-      expect(toNumber(item)).toBe(result1[i]);
+      expect(toFinite(item)).toBe(result1[i]);
     });
 
     const values2: any[] = [
@@ -159,9 +159,9 @@ describe('toNumber', () => {
         }
       }
     ];
-    const result2 = [NaN, 2.2, 1.1, 1.1, NaN, NaN, 1715004, 1715004, 5349, 5349, 42, 42];
+    const result2 = [0, 2.2, 1.1, 1.1, 0, 0, 1715004, 1715004, 5349, 5349, 42, 42];
     values2.forEach((item, i) => {
-      expect(toNumber(item)).toBe(result2[i]);
+      expect(toFinite(item)).toBe(result2[i]);
     });
   });
 });

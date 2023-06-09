@@ -146,7 +146,11 @@ export { default as noop } from './noop';
 export { default as nthArg } from './nthArg';
 export { default as sleep } from './sleep';
 export { default as times } from './times';
+export { default as toFinite } from './toFinite';
+export { default as toInteger } from './toInteger';
+export { default as toLength } from './toLength';
 export { default as toNumber } from './toNumber';
+export { default as toSafeInteger } from './toSafeInteger';
 export { default as toString } from './toString';
 export { default as uniqueId } from './uniqueId';
 

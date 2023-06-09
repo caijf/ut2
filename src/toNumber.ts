@@ -20,17 +20,21 @@ const reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
  * @returns {number} 转换后的数字。
  * @example
  *
- * _.toNumber(3.2); // 3.2
+ * toNumber(3.2); // 3.2
  *
- * _.toNumber('3.2'); // 3.2
+ * toNumber('3.2'); // 3.2
  *
- * _.toNumber(-0); // -0
+ * toNumber(-0); // -0
  *
- * _.toNumber('-0'); // -0
+ * toNumber('-0'); // -0
  *
- * _.toNumber('0'); // 0
+ * toNumber('0'); // 0
  *
- * _.toNumber(Infinity); // Infinity
+ * toNumber(NaN); // NaN
+ *
+ * toNumber(Infinity); // Infinity
+ *
+ * toNumber(-Infinity); // -Infinity
  *
  */
 function toNumber(value: any) {
