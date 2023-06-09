@@ -21,8 +21,8 @@ function baseToString(value: any) {
  * @static
  * @alias module:Util.toString
  * @since 1.0.0
- * @param value 要处理的值。
- * @returns 转换后的字符串。
+ * @param {*} value 要处理的值。
+ * @returns {string} 转换后的字符串。
  * @example
  *
  * toString(null); // ''

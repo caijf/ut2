@@ -6,9 +6,9 @@ import castArray from './castArray';
  * @static
  * @alias module:Object.omit
  * @since 1.0.0
- * @param {object} obj 来源对象。
+ * @param {Object} obj 来源对象。
  * @param {string|string[]} [fields] 要被忽略的属性。
- * @returns {object} 新对象。
+ * @returns {Object} 新对象。
  * @example
  *
  * const obj = { name: "jeff", age: 18 };

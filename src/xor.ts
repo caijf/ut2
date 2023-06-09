@@ -17,6 +17,17 @@ import uniq from './uniq';
  * @param {Array} [other=[]] 另一个要检查的数组。
  * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
  * @returns {Array} 过滤值后的新数组。
+ * @example
+ *
+ * intersection([2, 1, 1], [4, 2]); // [1, 4]
+ *
+ * intersection([2.1, 1.2], [4.3, 2.4], Math.floor); // [1.2, 4.3]
+ *
+ * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], item=>item.x); // [{x: 2}]
+ *
+ * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], 'x'); // [{x: 2}]
+ *
  */
 function xor<T, F extends (value: T) => any, K extends keyof T>(
   array: T[],

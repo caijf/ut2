@@ -6,7 +6,7 @@ import upperFirst from './upperFirst';
  * @static
  * @alias module:String.capitalize
  * @since 1.0.0
- * @param string 要转换的字符串。
+ * @param {string} string 要转换的字符串。
  * @returns {string} 首字母大写的字符串。
  * @example
  *

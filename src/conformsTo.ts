@@ -4,8 +4,8 @@
  * @static
  * @alias module:Util.conformsTo
  * @since 1.0.0
- * @param object 要检查的对象。
- * @param source 要断言属性是否符合的对象。
+ * @param {Object} object 要检查的对象。
+ * @param {Object} source 要断言属性是否符合的对象。
  * @returns {boolean} 如果 `object` 符合，返回 `true` ，否则返回 `false` 。
  * @example
  *

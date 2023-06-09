@@ -9,9 +9,9 @@ import pickBy from './pickBy';
  * @static
  * @alias module:Object.omitBy
  * @since 1.0.0
- * @param {object} obj 来源对象。
- * @param {function} predicate 调用每一个属性的函数。
- * @returns {object} 新对象。
+ * @param {Object} obj 来源对象。
+ * @param {Function} predicate 调用每一个属性的函数。
+ * @returns {Object} 新对象。
  * @example
  *
  * const obj = { name: "jeff", age: 18 };

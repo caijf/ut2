@@ -5,7 +5,7 @@
  * @alias module:Util.constant
  * @since 1.0.0
  * @param {*} value 新函数返回的值。
- * @returns {function} 返回新的常量函数。
+ * @returns {Function} 返回新的常量函数。
  * @example
  *
  * const obj = { a: 1 }

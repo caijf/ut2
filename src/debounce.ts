@@ -16,7 +16,7 @@ import toNumber from './toNumber';
  * @param {Function} func 要防抖动的函数。
  * @param {number} [wait=0] 需要延迟的毫秒数。
  * @param {boolean} [immediate=false] 是否在延迟开始前调用。
- * @returns 防抖动函数。
+ * @returns {Function} 防抖动函数。
  * @example
  *
  * function calculateLayout(e){

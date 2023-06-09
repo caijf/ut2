@@ -6,8 +6,8 @@ import conformsTo from './conformsTo';
  * @static
  * @alias module:Util.conforms
  * @since 1.0.0
- * @param source 要断言属性是否符合的对象。
- * @returns {function} 新的函数。
+ * @param {Object} source 要断言属性是否符合的对象。
+ * @returns {Function} 新的函数。
  * @example
  *
  * const objs =  [
