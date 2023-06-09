@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isSafeInteger.js - ut2 </title>
+    <title>orderBy.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isSafeInteger.js</h1>
+    <h1 class="page-title">orderBy.js</h1>
     
 
     
@@ -69,40 +69,48 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { MAX_SAFE_INTEGER } from './internals/native';
-import { numberIsSafeInteger } from './internals/helpers';
-import isInteger from './isInteger';
+            <pre class="prettyprint source linenums"><code>import identity from './identity';
+import createIteratee from './internals/createIteratee';
+import { compareMultiple } from './internals/compare';
+import isArray from './isArray';
 /**
- * 检查值是否为安全整数。
+ * 创建一个元素数组，以迭代函数处理的结果排序。如果没有指定排序，默认为升序排序。
  *
- * 同 `Number.isSafeInteger` 。
+ * `asc` 升序， `desc` 降序，默认执行稳定排序，也就是说相同元素会保持原始排序。
  *
- * 如果一个整数是一个 `IEEE-754` 双精度数字，它不是四舍五入的不安全整数的结果，那么它就是安全的。安全整数范围为 `-(2^53 - 1)` 到 `2^53 - 1` 之间的整数，包含 `-(2^53 - 1)` 和 `2^53 - 1`。
+ * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
  * @static
- * @alias module:Type.isSafeInteger
+ * @alias module:Collection.orderBy
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为安全整数，返回 `true` ，否则返回 `false` 。
- * @example
- *
- * isSafeInteger(1); // true
- *
- * isSafeInteger(Infinity); // false
- *
- * isSafeInteger(Number.MIN_VALUE); // false
- *
- * isSafeInteger('1'); // false
- *
- * isSafeInteger(null); // false
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort | sort}
+ * @param {Array} collection 一个用来迭代的集合。
+ * @param {Function|string|Array} [iteratees] 排序的迭代函数。
+ * @param {'asc'|'desc'|Array} [orders] 迭代函数的排序顺序。
+ * @returns {Array} 排序后的新数组。
  *
  */
-function isSafeInteger(value) {
-    return numberIsSafeInteger
-        ? numberIsSafeInteger(value)
-        : isInteger(value) &amp;&amp; Math.abs(value) &lt;= MAX_SAFE_INTEGER;
+function orderBy(collection, iteratees, orders) {
+    var result = [];
+    iteratees = (isArray(iteratees) ? iteratees : iteratees !== undefined ? [iteratees] : [identity]);
+    orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : ['asc']);
+    if (isArray(collection)) {
+        collection.forEach(function (item, index) {
+            var criteria = iteratees.map(function (iteratee) {
+                return createIteratee(iteratee)(item);
+            });
+            result.push({
+                criteria: criteria,
+                index: index,
+                value: item
+            });
+        });
+    }
+    return result
+        .sort(function (a, b) { return compareMultiple(a, b, orders); })
+        .map(function (item) { return item.value; });
 }
-export default isSafeInteger;
+export default orderBy;
 </code></pre>
         </article>
     </section>

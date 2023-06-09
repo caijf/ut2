@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>isSafeInteger.js - ut2 </title>
+    <title>countBy.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isSafeInteger.js</h1>
+    <h1 class="page-title">countBy.js</h1>
     
 
     
@@ -69,40 +69,48 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { MAX_SAFE_INTEGER } from './internals/native';
-import { numberIsSafeInteger } from './internals/helpers';
-import isInteger from './isInteger';
+            <pre class="prettyprint source linenums"><code>import createIteratee from './internals/createIteratee';
+import isArray from './isArray';
 /**
- * 检查值是否为安全整数。
+ * 创建一个组成对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果，每个 `key` 对应的值是 `iteratee` 返回该 `key` 的次数。
  *
- * 同 `Number.isSafeInteger` 。
- *
- * 如果一个整数是一个 `IEEE-754` 双精度数字，它不是四舍五入的不安全整数的结果，那么它就是安全的。安全整数范围为 `-(2^53 - 1)` 到 `2^53 - 1` 之间的整数，包含 `-(2^53 - 1)` 和 `2^53 - 1`。
+ * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
  * @static
- * @alias module:Type.isSafeInteger
+ * @alias module:Collection.countBy
  * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为安全整数，返回 `true` ，否则返回 `false` 。
+ * @param {Array} collection 一个用来迭代的集合。
+ * @param {Function|string} [iteratee] 迭代函数，用来转换键。
+ * @returns {Object} 组成集合对象。
  * @example
  *
- * isSafeInteger(1); // true
+ * countBy([6, 4, 6]); // {'6': 2, '4': 1}
  *
- * isSafeInteger(Infinity); // false
+ * countBy([6.1, 4.2, 6.3], Math.floor); // {'6': 2, '4': 1}
  *
- * isSafeInteger(Number.MIN_VALUE); // false
+ * countBy([{n: 6.1}, {n: 4.2}, {n: 6.3}], item=>Math.floor(item.n)); // {'6': 2, '4': 1}
  *
- * isSafeInteger('1'); // false
- *
- * isSafeInteger(null); // false
+ * // 迭代函数可以直接写入属性。
+ * countBy(['one', 'two', 'three'], 'length'); // {'3': 2, '5': 1}
  *
  */
-function isSafeInteger(value) {
-    return numberIsSafeInteger
-        ? numberIsSafeInteger(value)
-        : isInteger(value) &amp;&amp; Math.abs(value) &lt;= MAX_SAFE_INTEGER;
+function countBy(collection, iteratee) {
+    var result = {};
+    if (isArray(collection)) {
+        var internalIteratee_1 = createIteratee(iteratee);
+        collection.forEach(function (item) {
+            var key = internalIteratee_1(item);
+            if (key in result) {
+                ++result[key];
+            }
+            else {
+                result[key] = 1;
+            }
+        });
+    }
+    return result;
 }
-export default isSafeInteger;
+export default countBy;
 </code></pre>
         </article>
     </section>
