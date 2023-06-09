@@ -21,7 +21,7 @@ import createExtremum from './internals/createExtremum';
  *
  * max(objects, item => item.n); // {n: 2}
  *
- * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * // 迭代函数可以直接写入属性。
  * max(objects, 'n'); // {n: 2};
  *
  */

@@ -22,7 +22,7 @@ import isArray from './isArray';
  *
  * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], item=>item.x); // [{x: 1}]
  *
- * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * // 迭代函数可以直接写入属性。
  * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], 'x'); // [{x: 1}]
  *
  */

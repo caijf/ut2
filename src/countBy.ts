@@ -20,6 +20,9 @@ import isArray from './isArray';
  *
  * countBy([{n: 6.1}, {n: 4.2}, {n: 6.3}], item=>Math.floor(item.n)); // {'6': 2, '4': 1}
  *
+ * // 迭代函数可以直接写入属性。
+ * countBy(['one', 'two', 'three'], 'length'); // {'3': 2, '5': 1}
+ *
  */
 function countBy<T, F extends (value: T) => any, K extends keyof T>(
   collection: T[],

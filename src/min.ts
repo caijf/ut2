@@ -21,7 +21,7 @@ import lt from './lt';
  *
  * min(objects, item => item.n); // {n: 1}
  *
- * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
+ * // 迭代函数可以直接写入属性。
  * min(objects, 'n'); // {n: 1};
  */
 function min<T, F extends (item: T) => any, K extends keyof T>(
