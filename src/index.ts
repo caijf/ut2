@@ -24,6 +24,7 @@ export { default as zip } from './zip';
  */
 export { default as countBy } from './countBy';
 export { default as groupBy } from './groupBy';
+export { default as keyBy } from './keyBy';
 
 /**
  * 函数
