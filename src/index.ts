@@ -23,6 +23,7 @@ export { default as zip } from './zip';
  * @since 1.0.0
  */
 export { default as countBy } from './countBy';
+export { default as groupBy } from './groupBy';
 
 /**
  * 函数
