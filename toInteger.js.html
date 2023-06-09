@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>xor.js - ut2 </title>
+    <title>toInteger.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">xor.js</h1>
+    <h1 class="page-title">toInteger.js</h1>
     
 
     
@@ -69,51 +69,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import difference from './difference';
-import createIteratee from './internals/createIteratee';
-import intersection from './intersection';
-import isArray from './isArray';
-import union from './union';
-import uniq from './uniq';
+            <pre class="prettyprint source linenums"><code>import toNumber from './toNumber';
 /**
- * 创建一个唯一值的数组（并集-交集），该数组包含 2 个数组参数中不相同的元素。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
+ * 转换 `value` 为一个整数。
  *
- * `iteratee` 调用时会传入 1 个参数 `value` 。
+ * 注意: 这个方法基于 [ToIntegerOrInfinity](https://tc39.es/ecma262/#sec-tointegerorinfinity) ，区别在于 `-0` 会返回 `-0` 。
  *
  * @static
- * @alias module:Array.xor
+ * @alias module:Util.toInteger
  * @since 1.0.0
- * @param {Array} array 要检查的数组。
- * @param {Array} [other=[]] 另一个要检查的数组。
- * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
- * @returns {Array} 过滤值后的新数组。
+ * @param {*} value 要转换的值。
+ * @returns {number} 转换后的整数。
  * @example
  *
- * intersection([2, 1, 1], [4, 2]); // [1, 4]
+ * toInteger(3.2); // 3
  *
- * intersection([2.1, 1.2], [4.3, 2.4], Math.floor); // [1.2, 4.3]
+ * toInteger('3.2'); // 3
  *
- * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], item=>item.x); // [{x: 2}]
+ * toInteger(-0); // -0
  *
- * // 如果迭代元素为对象，迭代函数可以直接写入对象属性。
- * intersection([{x: 1}, {x: 1}, {x: 2}, {x: 2}], [{x: 1}], 'x'); // [{x: 2}]
+ * toInteger('-0'); // -0
+ *
+ * toInteger('0'); // 0
+ *
+ * toInteger(NaN); // 0
+ *
+ * toInteger(Infinity); // Infinity
+ *
+ * toInteger(-Infinity); // -Infinity
  *
  */
-function xor(array, other, iteratee) {
-    if (other === void 0) { other = []; }
-    var internalIteratee = createIteratee(iteratee);
-    if (!isArray(array) &amp;&amp; !isArray(other)) {
-        return [];
+function toInteger(value) {
+    var result = toNumber(value);
+    // NaN -0 +0 0 Infinity -Infinity
+    if (!result || result === Infinity || result === -Infinity) {
+        return result === result ? result : 0;
     }
-    if (!isArray(other)) {
-        return uniq(array, internalIteratee);
-    }
-    if (!isArray(array)) {
-        return uniq(other, internalIteratee);
-    }
-    return difference(union(array, other, internalIteratee), intersection(array, other, internalIteratee), internalIteratee);
+    var remainder = result % 1;
+    return remainder ? result - remainder : result;
 }
-export default xor;
+export default toInteger;
 </code></pre>
         </article>
     </section>
