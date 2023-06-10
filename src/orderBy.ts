@@ -18,6 +18,24 @@ import isArray from './isArray';
  * @param {Function|string|Array} [iteratees] 排序的迭代函数。
  * @param {'asc'|'desc'|Array} [orders] 迭代函数的排序顺序。
  * @returns {Array} 排序后的新数组。
+ * @example
+ *
+ * const array = [2, 1, 3, 5, 4];
+ *
+ * orderBy(array);; // [1, 2, 3, 4, 5]
+ *
+ * orderBy(array, item=>item, 'desc');; // [5, 4, 3, 2, 1]
+ *
+ * const objects = [
+ *   { a: 'x', b: 3 },
+ *   { a: 'y', b: 4 },
+ *   { a: 'x', b: 1 },
+ *   { a: 'y', b: 2 }
+ * ];
+ *
+ * orderBy(objects, 'b'); // [{ a: 'x', b: 1 },{ a: 'y', b: 2 },{ a: 'x', b: 3 },{ a: 'y', b: 4 }]
+ *
+ * orderBy(objects, ['a', 'b'], ['asc', 'desc']); // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
  *
  */
 function orderBy<T, F extends (value: T) => any, K extends keyof T>(
@@ -30,10 +48,7 @@ function orderBy<T, F extends (value: T) => any, K extends keyof T>(
   iteratees = (
     isArray(iteratees) ? iteratees : iteratees !== undefined ? [iteratees] : [identity]
   ) as (F | K)[];
-  orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : ['asc']) as (
-    | 'asc'
-    | 'desc'
-  )[];
+  orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : []) as ('asc' | 'desc')[];
 
   if (isArray(collection)) {
     collection.forEach((item, index) => {
