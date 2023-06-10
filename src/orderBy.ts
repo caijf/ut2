@@ -37,6 +37,8 @@ import isArray from './isArray';
  *
  * orderBy(objects, ['a', 'b'], ['asc', 'desc']); // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
  *
+ * orderBy(objects, ['a', item=>item.b], ['asc', 'desc']); // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
+ *
  */
 function orderBy<T, F extends (value: T) => any, K extends keyof T>(
   collection: T[],
