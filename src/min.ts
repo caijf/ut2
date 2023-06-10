@@ -5,6 +5,8 @@ import lt from './lt';
 /**
  * 调用 `array` 中的每一个元素，来生成其值排序的标准，返回最小的值。
  *
+ * `iteratee` 调用时会传入 1 个参数 `value`。
+ *
  * @static
  * @alias module:Math.min
  * @since 1.0.0

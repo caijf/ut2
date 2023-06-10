@@ -5,6 +5,8 @@ import createExtremum from './internals/createExtremum';
 /**
  * 调用 `array` 中的每一个元素，来生成其值排序的标准，返回最大的值。
  *
+ * `iteratee` 调用时会传入 1 个参数 `value`。
+ *
  * @static
  * @alias module:Math.max
  * @since 1.0.0
