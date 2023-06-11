@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>eq.js - ut2 </title>
+    <title>shuffle.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">eq.js</h1>
+    <h1 class="page-title">shuffle.js</h1>
     
 
     
@@ -69,36 +69,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查两个值是否相等。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。
+            <pre class="prettyprint source linenums"><code>import isArray from './isArray';
+import randomInt from './randomInt';
+/**
+ * 创建一个被打乱的数组。使用 [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) 版本。
  *
  * @static
- * @alias module:Util.eq
+ * @alias module:Array.shuffle
  * @since 1.0.0
- * @param {*} value 要比较的值。
- * @param {*} other 另一个要比较的值。
- * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
+ * @param {Array} array 要打乱的数组。
+ * @returns {Array} 打乱的数组。
  * @example
  *
- * eq(0, -0); // true
+ * shuffle([1, 2, 3, 4]); // [2, 4, 3, 1]
  *
- * eq(1, 1); // true
- *
- * eq(NaN, NaN); // true
- *
- * eq('a', 'a'); // true
- *
- * const object = {a: 1};
- *
- * eq(object, {a: 1}); // false
- *
- * eq(object, object); // true
+ * shuffle([1, 2, 3, 4]); // [3, 2, 1, 4]
  *
  */
-function eq(value, other) {
-    return value === other || (value !== value &amp;&amp; other !== other);
+function shuffle(array) {
+    if (!isArray(array) || array.length &lt; 1) {
+        return [];
+    }
+    var result = array.slice();
+    var length = result.length;
+    var lastIndex = length - 1;
+    var index = -1;
+    while (++index &lt; length) {
+        var rand = randomInt(index, lastIndex);
+        var value = result[rand];
+        result[rand] = result[index];
+        result[index] = value;
+    }
+    return result;
 }
-export default eq;
+export default shuffle;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://www.caijinfeng.com/favicon.ico" />
-    <title>eq.js - ut2 </title>
+    <title>partition.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -59,7 +59,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">eq.js</h1>
+    <h1 class="page-title">partition.js</h1>
     
 
     
@@ -69,36 +69,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查两个值是否相等。使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。
+            <pre class="prettyprint source linenums"><code>import createIteratee from './internals/createIteratee';
+import isArray from './isArray';
+/**
+ * 创建一个分成两组的元素数组，第一组包含 `predicate`（断言函数）返回为 [`truthy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)（真值）的元素，第二组包含 `predicate`（断言函数）返回为 [`falsy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy)（假值）的元素。
+ *
+ * `predicate` 调用时会传入 1 个参数 `value`。
  *
  * @static
- * @alias module:Util.eq
+ * @alias module:Collection.partition
  * @since 1.0.0
- * @param {*} value 要比较的值。
- * @param {*} other 另一个要比较的值。
- * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
+ * @param {Array} collection 一个用来迭代的集合。
+ * @param {Function|string} [predicate=identity] 每次迭代调用的断言函数。
+ * @returns {Array} 分组后的数组。
  * @example
  *
- * eq(0, -0); // true
+ * const users = [
+ *   { user: 'barney', age: 36, active: false },
+ *   { user: 'fred', age: 40, active: true },
+ *   { user: 'pebbles', age: 1, active: false }
+ * ];
  *
- * eq(1, 1); // true
+ * partition(users, item => item.active);
+ * // [
+ * //   [{ user: 'fred', age: 40, active: true }],
+ * //   [{ user: 'barney', age: 36, active: false }, { user: 'pebbles', age: 1, active: false }]
+ * // ]
  *
- * eq(NaN, NaN); // true
- *
- * eq('a', 'a'); // true
- *
- * const object = {a: 1};
- *
- * eq(object, {a: 1}); // false
- *
- * eq(object, object); // true
+ * // 迭代函数可以直接写入属性。
+ * partition(users, 'active');
+ * // [
+ * //   [{ user: 'fred', age: 40, active: true }],
+ * //   [{ user: 'barney', age: 36, active: false }, { user: 'pebbles', age: 1, active: false }]
+ * // ]
  *
  */
-function eq(value, other) {
-    return value === other || (value !== value &amp;&amp; other !== other);
+function partition(collection, predicate) {
+    var result = [[], []];
+    if (isArray(collection)) {
+        var internalIteratee_1 = createIteratee(predicate);
+        collection.forEach(function (item) {
+            result[internalIteratee_1(item) ? 0 : 1].push(item);
+        });
+    }
+    return result;
 }
-export default eq;
+export default partition;
 </code></pre>
         </article>
     </section>
