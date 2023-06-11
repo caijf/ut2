@@ -28,7 +28,7 @@ describe('chunk', () => {
   });
 
   it('错误的参数', () => {
-    const errorSizeValues = [1.2, NaN, null, {}, [], false, true, ''];
+    const errorSizeValues = [NaN, {}, 0];
     errorSizeValues.forEach((item) => {
       // @ts-ignore
       expect(chunk(array, item)).toEqual([]);

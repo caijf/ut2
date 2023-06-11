@@ -1,4 +1,5 @@
 import isArray from './isArray';
+import toLength from './toLength';
 
 /**
  * 将数组拆分成多个 `size` 长度的区块，并将这些区块组成一个新数组。
@@ -21,7 +22,8 @@ import isArray from './isArray';
  *
  */
 function chunk<T>(array: T[], size = 1) {
-  if (!isArray(array) || !(typeof size === 'number' && size > 0 && size % 1 === 0)) {
+  size = toLength(size);
+  if (!isArray(array) || size < 1) {
     return [];
   }
 
