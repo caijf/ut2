@@ -20,10 +20,18 @@ import isArray from './isArray';
  *   { user: 'pebbles', age: 1, active: false }
  * ];
  *
- * partition(users, item => item.active); // [[{ user: 'fred', age: 40, active: true }], [{ user: 'barney', age: 36, active: false }, { user: 'pebbles', age: 1, active: false }]]
+ * partition(users, item => item.active);
+ * // [
+ * //   [{ user: 'fred', age: 40, active: true }],
+ * //   [{ user: 'barney', age: 36, active: false }, { user: 'pebbles', age: 1, active: false }]
+ * // ]
  *
  * // 迭代函数可以直接写入属性。
- * partition(users, 'active'); // [[{ user: 'fred', age: 40, active: true }], [{ user: 'barney', age: 36, active: false }, { user: 'pebbles', age: 1, active: false }]]
+ * partition(users, 'active');
+ * // [
+ * //   [{ user: 'fred', age: 40, active: true }],
+ * //   [{ user: 'barney', age: 36, active: false }, { user: 'pebbles', age: 1, active: false }]
+ * // ]
  *
  */
 function partition<T, F extends (value: T) => any, K extends keyof T>(
