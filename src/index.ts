@@ -26,6 +26,7 @@ export { default as countBy } from './countBy';
 export { default as groupBy } from './groupBy';
 export { default as keyBy } from './keyBy';
 export { default as orderBy } from './orderBy';
+export { default as partition } from './partition';
 
 /**
  * 函数
