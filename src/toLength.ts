@@ -2,7 +2,7 @@ import { MAX_ARRAY_LENGTH } from './internals/native';
 import toInteger from './toInteger';
 
 /**
- * 转换 `value` 为类数组对象的长度整数。
+ * 转换 `value` 为数组对象的长度整数。
  *
  * @static
  * @alias module:Util.toLength
