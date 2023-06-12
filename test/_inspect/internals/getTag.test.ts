@@ -14,7 +14,7 @@ jest.mock('../../../src/internals/native.ts', () => {
       if (typeArray.includes(result)) {
         return '[object Object]';
       }
-      return Object.prototype.toString;
+      return result;
     }
   };
 });
