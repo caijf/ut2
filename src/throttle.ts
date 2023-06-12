@@ -13,7 +13,7 @@ import debounce from './debounce';
  * @since 1.0.0
  * @param {Function} func 要节流的函数。
  * @param {number} [wait=0] 需要节流的毫秒数。
- * @param {boolean} [immediate=false] 是否在节流开始前调用。
+ * @param {boolean} [immediate=true] 是否在节流开始前调用。
  * @returns 节流函数。
  * @example
  *

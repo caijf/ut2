@@ -32,6 +32,37 @@ describe('throttle', () => {
     expect(fn).toBeCalledTimes(5);
   });
 
+  it('等待时间内调用', () => {
+    const fn = jest.fn();
+    const throttled = throttle(fn, 100);
+
+    throttled();
+    expect(fn).toBeCalledTimes(1);
+
+    jest.advanceTimersByTime(50);
+    throttled();
+    expect(fn).toBeCalledTimes(1);
+
+    throttled();
+    expect(fn).toBeCalledTimes(1);
+
+    jest.advanceTimersByTime(50);
+    expect(fn).toBeCalledTimes(2);
+
+    jest.advanceTimersByTime(100);
+    expect(fn).toBeCalledTimes(2);
+
+    throttled();
+    expect(fn).toBeCalledTimes(3);
+
+    jest.advanceTimersByTime(80);
+    throttled();
+    expect(fn).toBeCalledTimes(3);
+
+    jest.advanceTimersByTime(20);
+    expect(fn).toBeCalledTimes(4);
+  });
+
   it('`wait` 毫秒内执行一次', () => {
     const fn = jest.fn((value: string) => value);
     const throttled = throttle(fn, 100);

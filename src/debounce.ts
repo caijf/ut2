@@ -81,7 +81,13 @@ function debounce<T extends (...args: any[]) => any>(
     lastArgs = args;
 
     const time = Date.now();
-    const isInvoke = shouldInvoke(time); // 是否可以调用
+    const isInvoke = shouldInvoke(time); // 是否可以立即调用
+
+    const waitTime = !__throttle__
+      ? wait
+      : !isInvoke && lastCallTime !== undefined && timer === undefined
+      ? wait - (time - lastCallTime)
+      : wait;
 
     lastCallTime = time;
 
@@ -102,7 +108,7 @@ function debounce<T extends (...args: any[]) => any>(
       timer = setTimeout(() => {
         timer = undefined;
         invokeFunc(Date.now());
-      }, wait);
+      }, waitTime);
     }
 
     return result;
