@@ -88,17 +88,182 @@
 <p><a href="https://npmjs.com/package/ut2"><img src="https://img.shields.io/npm/v/ut2.svg" alt="npm"></a> <a href="https://github.com/caijf/ut2/actions/workflows/ci.yml"><img src="https://github.com/caijf/ut2/actions/workflows/ci.yml/badge.svg" alt="Build and Deploy Docs"></a> <a href="https://codecov.io/gh/caijf/ut2"><img src="https://codecov.io/gh/caijf/ut2/branch/main/graph/badge.svg?token=XKTS0H7085" alt="codecov"></a> <img src="https://img.shields.io/npm/dt/ut2" alt="npm"> <img src="https://img.shields.io/github/license/caijf/ut2.svg" alt="GitHub"></p>
 <p>一个现代 JavaScript 实用工具库。</p>
 <p><a href="https://caijf.github.io/ut2/index.html">点击查看在线文档</a>。</p>
+<h2>比较</h2>
+<p><strong>与其他工具库对比（<a href="https://lodash.com/"><code>lodash</code></a>、<a href="https://underscorejs.org/"><code>underscore</code></a>）</strong></p>
+<ul>
+<li>使用 ES API 开发，并剔除原生支持的大量方法（<code>forEach</code>、<code>filter</code>、<code>Array.from</code>、<code>Object.keys</code>、<code>Object.entries</code>、<code>Object.create</code> ……）。</li>
+<li>使用 TypeScript 实现， 提供类型定义。</li>
+<li>导出 <code>es</code> <code>cjs</code> <code>umd</code> 模块格式，支持不同开发环境使用。</li>
+</ul>
 <h2>使用</h2>
 <h3><code>es</code> 或 <code>node</code> 开发环境</h3>
 <p>安装依赖</p>
+<h4>npm</h4>
 <pre class="prettyprint source lang-shell"><code>npm install ut2
 </code></pre>
-<p>或者你使用 <code>yarn</code></p>
+<h4>yarn</h4>
 <pre class="prettyprint source lang-shell"><code>yarn add ut2
 </code></pre>
-<h3>浏览器引入</h3>
+<h3>浏览器原生开发环境</h3>
 <p>如果你的项目使用的是原生方式开发，可以在浏览器中使用 <code>script</code> 标签直接引入文件，并使用全局变量 <code>ut2</code> 。</p>
-<p><code>npm</code> 包的 <code>ut2/dist</code> 目录下提供了 <code>UMD</code> 包 <code>ut2.js</code> 以及 <code>ut2.min.js</code>。你也可以通过 <a href="https://unpkg.com/browse/ut2/dist/">UNPKG</a> 下载到本地进行使用。或者直接使用 <a href="https://unpkg.com/ut2/dist/ut2.min.js">UNPKG 线上版本</a><sup> <em>注意版本</em> </sup>。</p></article>
+<p><code>npm</code> 包的 <code>ut2/dist</code> 目录下提供了 <code>UMD</code> 包 <code>ut2.js</code> 以及 <code>ut2.min.js</code>。你也可以通过 <a href="https://unpkg.com/browse/ut2/dist/">UNPKG</a> 下载到本地进行使用。或者直接使用 <a href="https://unpkg.com/ut2/dist/ut2.min.js">UNPKG 线上版本</a><sup> <em>注意版本</em> </sup>。</p>
+<h3>示例</h3>
+<p>所有方法都在 <code>ut2</code> 模块中。</p>
+<pre class="prettyprint source lang-javascript"><code>import { debounce } from 'ut2';
+
+const debounced = debounce(() => {
+  // do something
+}, 300);
+</code></pre>
+<h2>API</h2>
+<blockquote>
+<p>下列方法全部在 <code>ut2</code> 模块直接导出，分类只是为了可读性。</p>
+<p><code>import { throttle, chunk, max } from 'ut2'</code></p>
+</blockquote>
+<ul>
+<li>Array 数组
+<ul>
+<li>chunk - 拆分成多个 <code>size</code> 长度的区块。</li>
+<li>compact - 剔除假值元素。</li>
+<li>difference - 排除部分值。</li>
+<li>formPairs - 将键值对转为对象。</li>
+<li>intersection - 数组交集。</li>
+<li>nth - 获取第 <code>n</code> 个元素。</li>
+<li>shuffle - 打乱数组。</li>
+<li>union - 并集去重。</li>
+<li>uniq - 数组去重。</li>
+<li>unzip - 数组分组。</li>
+<li>xor - 先并集再排除交集部分。</li>
+<li>zip - 数组参数分组。</li>
+</ul>
+</li>
+<li>Collection 集合
+<ul>
+<li>countBy - 统计数量。</li>
+<li>groupBy - 对象分组。</li>
+<li>keyBy - 转为对象。</li>
+<li>orderBy - 排序。</li>
+<li>partition - 拆分真值和假值。</li>
+</ul>
+</li>
+<li>Function 函数
+<ul>
+<li>after - 调用 <code>n</code> 或更多次之后触发。</li>
+<li>before - 调用次数少于 <code>n</code> 次之前触发。</li>
+<li>debounce - 防抖函数。</li>
+<li>delay - 延迟触发。</li>
+<li>negate - 否定断言。</li>
+<li>partial - 预设部分参数。</li>
+<li>throttle - 节流函数。</li>
+</ul>
+</li>
+<li>Math 数学
+<ul>
+<li>ceil - 向上舍入。</li>
+<li>floor - 向下舍入。</li>
+<li>max - 取最大值。</li>
+<li>min - 取最小值。</li>
+<li>round - 四舍五入。</li>
+</ul>
+</li>
+<li>Number 数字
+<ul>
+<li>clamp - 限制数字范围。</li>
+<li>inRange - 是否在范围内。</li>
+<li>random - 随机小数。</li>
+<li>randomInt - 随机整数。</li>
+</ul>
+</li>
+<li>Object 对象
+<ul>
+<li>merge - 递归对象或数组进行合并。</li>
+<li>omit - 排除部分属性。</li>
+<li>omitBy - 根据方法，排除部分属性。</li>
+<li>pick - 选择部分属性。</li>
+<li>pickBy - 根据方法，选择部分属性。</li>
+</ul>
+</li>
+<li>String 字符串
+<ul>
+<li>camelCase - 驼峰小写。</li>
+<li>capitalize - 首字母大写，其余小写。</li>
+<li>escape - 转义 <code>&amp;</code> <code>&lt;</code> <code>&gt;</code> <code>&quot;</code> <code>'</code> 为 HTML 实体字符。</li>
+<li>escapeRegExp - 转义为 <code>RegExp</code> 字符串中的特殊字符。</li>
+<li>kebabCase - 连接符分隔小写。</li>
+<li>lowerCase - 空格分隔小写。</li>
+<li>lowerFirst - 首字母小写。</li>
+<li>snakeCase - 下划线分隔小写</li>
+<li>unescape - 转义字符串中的 HTML 实体字符 <code>&amp;amp;</code> <code>&amp;lt;</code> <code>&amp;quot;</code> <code>&amp;#39;</code>。</li>
+<li>upperCase - 空格分隔大写。</li>
+<li>upperFirst - 首字母大写。</li>
+<li>words - 拆分词组。</li>
+</ul>
+</li>
+<li>Type 类型
+<ul>
+<li>isArguments - <code>arguments</code> 对象。</li>
+<li>isArray - <code>Array</code> 对象。</li>
+<li>isArrayBuffer - <code>ArrayBuffer</code> 对象。</li>
+<li>isArrayLike - 类数组。</li>
+<li>isArrayLikeObject - 类数组对象。</li>
+<li>isBlob - <code>Blob</code> 对象。</li>
+<li>isBoolean - 布尔类型或对象。</li>
+<li>isBuffer - <code>buffer</code> 对象。</li>
+<li>isDate - <code>Date</code> 对象。</li>
+<li>isElement - <code>Dom</code> 元素。</li>
+<li>isEmpty - 空对象、数组、<code>Map</code>、<code>Set</code>。</li>
+<li>isError - <code>Error</code> 对象。</li>
+<li>isFinite - 有限数字。</li>
+<li>isFunction - <code>Function</code> 对象。</li>
+<li>isInteger - 整数。</li>
+<li>isLength - 有效的类数组长度。</li>
+<li>isMap - <code>Map</code> 对象。</li>
+<li>isNaN - <code>NaN</code> 。</li>
+<li>isNil - <code>undefined</code> 或 <code>null</code> 。</li>
+<li>isNull - <code>null</code> 。</li>
+<li>isNumber - 数字类型或对象。</li>
+<li>isObject - 对象。</li>
+<li>isObjectLike - 类对象。</li>
+<li>isPlainObject - 普通对象。</li>
+<li>isPromiseLike - 类 <code>Promise</code> 对象。</li>
+<li>isRegExp - <code>RegExp</code> 对象。</li>
+<li>isSafeInteger - 安全整数。</li>
+<li>isSet - <code>Set</code> 对象。</li>
+<li>isString - 字符串类型或对象。</li>
+<li>isSymbol - <code>Symbol</code> 类型或对象。</li>
+<li>isTypedArray - 类型化数组。</li>
+<li>isUndefined - <code>undefined</code> 。</li>
+<li>isWeakMap - <code>WeakMap</code> 对象。</li>
+<li>isWeakSet - <code>WeakSet</code> 对象。</li>
+</ul>
+</li>
+<li>Util 实用工具
+<ul>
+<li>castArray - 包装成数组。</li>
+<li>conforms - 创建断言对象属性的方法。</li>
+<li>conformsTo - 断言对象属性。</li>
+<li>constant - 返回自身的函数。</li>
+<li>defaultTo - 默认值。</li>
+<li>eq - 等于。</li>
+<li>gt - 大于。</li>
+<li>gte - 大于等于</li>
+<li>identity - 返回第一个参数的函数。</li>
+<li>lt - 小于。</li>
+<li>lte - 小于等于。</li>
+<li>noop - 空函数。</li>
+<li>nthArg - 返回指定位置参数的函数。</li>
+<li>sleep - 返回 <code>promise</code> 延迟。</li>
+<li>times - 迭代执行次数。</li>
+<li>toFinite - 转为有限数字。</li>
+<li>toInteger - 转为整数。</li>
+<li>toLength - 转为数组长度整数。</li>
+<li>toNumber - 转为数字。</li>
+<li>toSafeInteger - 转为安全整数。</li>
+<li>toString - 转为字符串。</li>
+<li>uniqueId - 唯一 ID。</li>
+</ul>
+</li>
+</ul></article>
     </section>
 
 
@@ -113,7 +278,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 03:12:46 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 06:41:34 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
