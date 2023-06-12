@@ -64,7 +64,7 @@ export function toSource(func: any) {
 }
 
 export const objectTag = '[object Object]';
-export const dataViewTag = '[object DateView]';
+export const dataViewTag = '[object DataView]';
 export const mapTag = '[object Map]';
 export const promiseTag = '[object Promise]';
 export const setTag = '[object Set]';
