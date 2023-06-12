@@ -4,7 +4,7 @@
 
 一个现代 JavaScript 实用工具库。
 
-[点击查看在线文档](https://caijf.github.io/ut2/index.html)。
+[点击查看在线文档]。
 
 ## 比较
 
@@ -52,7 +52,7 @@ const debounced = debounce(() => {
 
 ## API
 
-> 下列方法全部在 `ut2` 模块直接导出，分类只是为了可读性。
+> 下列方法全部在 `ut2` 模块直接导出，分类只是为了可读性。你可以[点击查看在线文档]，了解更多信息。
 >
 > `import { throttle, chunk, max } from 'ut2'`
 
@@ -176,3 +176,4 @@ const debounced = debounce(() => {
 [npm-url]: https://npmjs.com/package/ut2
 [`lodash`]: https://lodash.com/
 [`underscore`]: https://underscorejs.org/
+[点击查看在线文档]: https://caijf.github.io/ut2/index.html
