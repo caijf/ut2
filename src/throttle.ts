@@ -1,4 +1,4 @@
-import debounce from './debounce';
+import { baseDebounce } from './debounce';
 
 /**
  * 创建一个节流函数，该函数在 `wait` 毫秒数内最多执行一次 `func` 方法。
@@ -36,7 +36,7 @@ import debounce from './debounce';
  *
  */
 function throttle<T extends (...args: any[]) => any>(func: T, wait = 0, immediate = true) {
-  return debounce(func, wait, immediate, true);
+  return baseDebounce(func, wait, immediate, true);
 }
 
 export default throttle;

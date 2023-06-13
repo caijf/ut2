@@ -32,13 +32,31 @@ describe('debounce', () => {
     expect(debounced('g')).toBe('f');
   });
 
+  it('延迟前调用', () => {
+    const fn = jest.fn();
+    const debounced = debounce(fn, 100, true);
+
+    expect(fn).toBeCalledTimes(0);
+    debounced();
+    expect(fn).toBeCalledTimes(1);
+
+    debounced();
+    expect(fn).toBeCalledTimes(1);
+
+    jest.advanceTimersByTime(50);
+    expect(fn).toBeCalledTimes(1);
+
+    jest.advanceTimersByTime(50);
+    expect(fn).toBeCalledTimes(2);
+  });
+
   it('上一次调用的 `wait` 后执行', () => {
-    const fn = jest.fn((value: string) => value);
+    const fn = jest.fn();
     const debounced = debounce(fn, 100);
 
     expect(fn).toBeCalledTimes(0);
 
-    debounced('a');
+    debounced();
     expect(fn).toBeCalledTimes(0);
 
     jest.advanceTimersByTime(99);
