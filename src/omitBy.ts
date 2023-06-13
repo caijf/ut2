@@ -10,20 +10,20 @@ import pickBy from './pickBy';
  * @alias module:Object.omitBy
  * @since 1.0.0
  * @param {Object} obj 来源对象。
- * @param {Function} predicate 调用每一个属性的函数。
+ * @param {Function} [predicate] 调用每一个属性的函数。
  * @returns {Object} 新对象。
  * @example
  *
  * const obj = { name: "jeff", age: 18 };
  *
- * omitBy(obj); // {}
+ * omitBy(obj); // { name: "jeff", age: 18 }
  *
- * omitBy(obj, (value, key) => typeof value === 'number'); // { name: "jeff" }
+ * omitBy(obj, (value) => typeof value === 'number'); // { name: "jeff" }
  *
- * omitBy(obj, (value, key) => value); // {}
+ * omitBy(obj, (value) => value); // {}
  *
  */
-function omitBy<T extends object>(obj: T, predicate: (value: any, key: any) => any = () => true) {
+function omitBy<T extends object>(obj: T, predicate: (value: any, key: any) => any = () => false) {
   return pickBy(obj, negate(predicate));
 }
 

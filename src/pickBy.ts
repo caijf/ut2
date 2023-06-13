@@ -10,7 +10,7 @@ import getSymbolsIn from './internals/getSymbolsIn';
  * @alias module:Object.pickBy
  * @since 1.0.0
  * @param {Object} obj 来源对象。
- * @param {Function} predicate 调用每一个属性的函数。
+ * @param {Function} [predicate] 调用每一个属性的函数。
  * @returns {Object} 新对象。
  * @example
  *
@@ -18,9 +18,9 @@ import getSymbolsIn from './internals/getSymbolsIn';
  *
  * pickBy(obj); // {}
  *
- * pickBy(obj, (value, key) => typeof value === 'number'); // { age: 18 }
+ * pickBy(obj, (value) => typeof value === 'number'); // { age: 18 }
  *
- * pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }
+ * pickBy(obj, (value) => value); // { name: "jeff", age: 18 }
  *
  */
 function pickBy<T extends object>(obj: T, predicate: (value: any, key: any) => any = () => false) {

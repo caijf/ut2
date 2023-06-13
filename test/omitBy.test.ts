@@ -5,7 +5,7 @@ describe('omitBy', () => {
   const obj = { name: 'jeff', age: 18, [symbol]: 'some val' };
 
   it('basic', () => {
-    expect(omitBy(obj)).toEqual({});
+    expect(omitBy(obj)).toEqual({ name: 'jeff', age: 18, [symbol]: 'some val' });
     expect(omitBy(obj, isString)).toEqual({ age: 18 });
   });
 
@@ -26,7 +26,7 @@ describe('omitBy', () => {
       }
     );
 
-    expect(omitBy(o)).toEqual({});
+    expect(omitBy(o)).toEqual({ age: 18 });
     expect(omitBy(o, (v, k) => k === 'age')).toEqual({});
     expect(omitBy(o, (v, k) => k === 'name')).toEqual({ age: 18 });
   });
