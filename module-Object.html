@@ -417,7 +417,7 @@ merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }</code></pre>
 
     
 
-    <h4 class="name" id=".omit"><span class="type-signature type-signature-static">(static) </span>omit<span class="signature">(obj, fields<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".omit"><span class="type-signature type-signature-static">(static) </span>omit<span class="signature">(object, fields<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -524,7 +524,7 @@ omit(obj, ['name', 'age']); // {}</code></pre>
 
         <tr>
             
-                <td class="name"><code>obj</code></td>
+                <td class="name"><code>object</code></td>
             
 
             <td class="type">
@@ -639,7 +639,7 @@ omit(obj, ['name', 'age']); // {}</code></pre>
 
     
 
-    <h4 class="name" id=".omitBy"><span class="type-signature type-signature-static">(static) </span>omitBy<span class="signature">(obj, predicate)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".omitBy"><span class="type-signature type-signature-static">(static) </span>omitBy<span class="signature">(object, predicate<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -708,11 +708,11 @@ omit(obj, ['name', 'age']); // {}</code></pre>
     
     <pre class="prettyprint"><code>const obj = { name: "jeff", age: 18 };
 
-omitBy(obj); // {}
+omitBy(obj); // { name: "jeff", age: 18 }
 
-omitBy(obj, (value, key) => typeof value === 'number'); // { name: "jeff" }
+omitBy(obj, (value) => typeof value === 'number'); // { name: "jeff" }
 
-omitBy(obj, (value, key) => value); // {}</code></pre>
+omitBy(obj, (value) => value); // {}</code></pre>
 
 
 
@@ -730,6 +730,8 @@ omitBy(obj, (value, key) => value); // {}</code></pre>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
         
 
@@ -742,7 +744,7 @@ omitBy(obj, (value, key) => value); // {}</code></pre>
 
         <tr>
             
-                <td class="name"><code>obj</code></td>
+                <td class="name"><code>object</code></td>
             
 
             <td class="type">
@@ -755,6 +757,14 @@ omitBy(obj, (value, key) => value); // {}</code></pre>
             
             </td>
 
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -779,6 +789,16 @@ omitBy(obj, (value, key) => value); // {}</code></pre>
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -836,7 +856,7 @@ omitBy(obj, (value, key) => value); // {}</code></pre>
 
     
 
-    <h4 class="name" id=".pick"><span class="type-signature type-signature-static">(static) </span>pick<span class="signature">(obj, fields<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".pick"><span class="type-signature type-signature-static">(static) </span>pick<span class="signature">(object, fields<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -943,7 +963,7 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
 
         <tr>
             
-                <td class="name"><code>obj</code></td>
+                <td class="name"><code>object</code></td>
             
 
             <td class="type">
@@ -1058,7 +1078,7 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
 
     
 
-    <h4 class="name" id=".pickBy"><span class="type-signature type-signature-static">(static) </span>pickBy<span class="signature">(obj, predicate)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id=".pickBy"><span class="type-signature type-signature-static">(static) </span>pickBy<span class="signature">(obj, predicate<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -1129,9 +1149,9 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
 
 pickBy(obj); // {}
 
-pickBy(obj, (value, key) => typeof value === 'number'); // { age: 18 }
+pickBy(obj, (value) => typeof value === 'number'); // { age: 18 }
 
-pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }</code></pre>
+pickBy(obj, (value) => value); // { name: "jeff", age: 18 }</code></pre>
 
 
 
@@ -1148,6 +1168,8 @@ pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }</code></pre>
 
         <th>Type</th>
 
+        
+        <th>Attributes</th>
         
 
         
@@ -1175,6 +1197,14 @@ pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }</code></pre>
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
@@ -1198,6 +1228,16 @@ pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }</code></pre>
             
             </td>
 
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
             
 
             
@@ -1270,7 +1310,7 @@ pickBy(obj, (value, key) => value); // { name: "jeff", age: 18 }</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Jun 12 2023 09:11:28 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Tue Jun 13 2023 06:27:49 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
