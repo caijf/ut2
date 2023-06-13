@@ -4,13 +4,13 @@ import getSymbols from './getSymbols';
  * 创建一个数组，包含自身以及继承的可枚举 `symbol` 属性。
  *
  * @private
- * @param {Object} obj 要查询的对象
+ * @param {Object} object 要查询的对象
  * @returns {Symbol[]} 可枚举的 `symbol` 属性数组
  */
-function getSymbolsIn(obj: object) {
+function getSymbolsIn(object: object) {
   const result = [];
 
-  let o = Object(obj);
+  let o = Object(object);
 
   while (o) {
     result.push(...getSymbols(o));

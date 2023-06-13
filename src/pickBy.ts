@@ -23,19 +23,22 @@ import getSymbolsIn from './internals/getSymbolsIn';
  * pickBy(obj, (value) => value); // { name: "jeff", age: 18 }
  *
  */
-function pickBy<T extends object>(obj: T, predicate: (value: any, key: any) => any = () => false) {
+function pickBy<T extends object>(
+  object: T,
+  predicate: (value: any, key: any) => any = () => false
+) {
   const result: Partial<T> = {};
 
-  if (obj === null) {
+  if (object === null) {
     return result;
   }
 
-  const allKeys = [...getKeysIn(obj), ...getSymbolsIn(obj)] as (keyof T)[];
+  const allKeys = [...getKeysIn(object), ...getSymbolsIn(object)] as (keyof T)[];
 
   for (let i = 0; i < allKeys.length; i++) {
     const currentKey = allKeys[i];
-    if (predicate(obj[currentKey], currentKey)) {
-      result[currentKey] = obj[currentKey];
+    if (predicate(object[currentKey], currentKey)) {
+      result[currentKey] = object[currentKey];
     }
   }
 

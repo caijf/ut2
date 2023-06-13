@@ -22,8 +22,8 @@ function conforms<
   K extends keyof T,
   S extends object = Record<string, (value: T[K]) => any>
 >(source: S) {
-  return function (obj: T) {
-    return conformsTo(obj, source);
+  return function (object: T) {
+    return conformsTo(object, source);
   };
 }
 

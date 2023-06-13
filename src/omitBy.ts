@@ -9,7 +9,7 @@ import pickBy from './pickBy';
  * @static
  * @alias module:Object.omitBy
  * @since 1.0.0
- * @param {Object} obj 来源对象。
+ * @param {Object} object 来源对象。
  * @param {Function} [predicate] 调用每一个属性的函数。
  * @returns {Object} 新对象。
  * @example
@@ -23,8 +23,11 @@ import pickBy from './pickBy';
  * omitBy(obj, (value) => value); // {}
  *
  */
-function omitBy<T extends object>(obj: T, predicate: (value: any, key: any) => any = () => false) {
-  return pickBy(obj, negate(predicate));
+function omitBy<T extends object>(
+  object: T,
+  predicate: (value: any, key: any) => any = () => false
+) {
+  return pickBy(object, negate(predicate));
 }
 
 export default omitBy;

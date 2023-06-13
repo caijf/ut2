@@ -8,7 +8,7 @@ import castArray from './castArray';
  * @static
  * @alias module:Object.pick
  * @since 1.0.0
- * @param {Object} obj 来源对象。
+ * @param {Object} object 来源对象。
  * @param {string|string[]} [fields] 选中的属性。
  * @returns {Object} 新对象。
  * @example
@@ -23,14 +23,14 @@ import castArray from './castArray';
  * // 选取多个属性
  * pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }
  */
-function pick<T extends object, K extends keyof T>(obj: T, fields: K | K[] = []) {
+function pick<T extends object, K extends keyof T>(object: T, fields: K | K[] = []) {
   const result: Record<any, any> = {};
   const fieldArr = castArray(fields);
 
   for (let i = 0; i < fieldArr.length; i++) {
     const field = fieldArr[i];
-    if (field in obj) {
-      result[field] = obj[field];
+    if (field in object) {
+      result[field] = object[field];
     }
   }
 
