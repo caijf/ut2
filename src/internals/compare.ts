@@ -1,4 +1,10 @@
+import isSymbol from '../isSymbol';
+
 export function compareAsc(value: any, other: any) {
+  if (isSymbol(value) || isSymbol(other)) {
+    return 0;
+  }
+
   if (value > other) {
     return 1;
   } else if (value < other) {
@@ -8,6 +14,10 @@ export function compareAsc(value: any, other: any) {
 }
 
 export function compareDesc(value: any, other: any) {
+  if (isSymbol(value) || isSymbol(other)) {
+    return 0;
+  }
+
   if (value > other) {
     return -1;
   } else if (value < other) {

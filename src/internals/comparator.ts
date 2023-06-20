@@ -1,10 +1,12 @@
+import toNumber from '../toNumber';
+
 type Comparator = (value: any, other: any) => boolean;
 
 export function createOperation(comparator: Comparator) {
   return function (value: any, other: any) {
     if (!(typeof value === 'string' && typeof other === 'string')) {
-      value = +value;
-      other = +other;
+      value = toNumber(value);
+      other = toNumber(other);
     }
     return comparator(value, other);
   };

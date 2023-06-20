@@ -37,5 +37,9 @@ describe('clamp', () => {
     expect(clamp(-10, 'a', 5)).toBe(0);
     // @ts-ignore
     expect(clamp('a', 'a', 'a')).toBeNaN();
+    // @ts-ignore
+    expect(clamp(Symbol(), {})).toBeNaN();
+    // @ts-ignore
+    expect(clamp({}, Symbol(), {})).toBeNaN();
   });
 });

@@ -65,5 +65,8 @@ describe('random', () => {
 
     expect(random(5, NaN)).toBeLessThanOrEqual(5);
     expect(random(5, NaN)).toBeGreaterThanOrEqual(0);
+
+    // @ts-ignore
+    expect(random(Symbol(), {})).toBe(0);
   });
 });

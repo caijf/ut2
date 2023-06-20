@@ -1,3 +1,5 @@
+import toFinite from './toFinite';
+
 /**
  * 产生一个包含 `lower` 与 `upper` 之间的随机浮点数。
  *
@@ -21,8 +23,10 @@
  *
  */
 function random(lower = 0, upper = 1) {
-  const min = Math.min(lower, upper) || 0;
-  const max = Math.max(lower, upper) || 0;
+  lower = toFinite(lower);
+  upper = toFinite(upper);
+  const min = Math.min(lower, upper);
+  const max = Math.max(lower, upper);
   return min + Math.random() * (max - min);
 }
 

@@ -63,5 +63,9 @@ describe('inRange', () => {
     expect(inRange('1', NaN, 1)).toBe(false);
     // @ts-ignore
     expect(inRange('1', 0, NaN)).toBe(false);
+    // @ts-ignore
+    expect(inRange(Symbol(), {}, NaN)).toBe(false);
+    // @ts-ignore
+    expect(inRange(Symbol(), {})).toBe(false);
   });
 });
