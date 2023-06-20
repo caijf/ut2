@@ -1,3 +1,6 @@
+import isFinite from '../isFinite';
+import toInteger from '../toInteger';
+import toNumber from '../toNumber';
 import toString from '../toString';
 
 /**
@@ -12,17 +15,11 @@ import toString from '../toString';
 function decimalAdjust(type: 'floor' | 'ceil' | 'round', value: number, precision = 0) {
   const func = Math[type];
 
-  // 如果没有定义或为 0
-  if (typeof precision === 'undefined' || +precision === 0) {
+  value = toNumber(value);
+  precision = Math.min(toInteger(precision), 292);
+
+  if (precision === 0 || !isFinite(value)) {
     return func(value);
-  }
-
-  value = +value;
-  precision = +precision;
-
-  // 如果值不是数字或者 precision 不是整数
-  if (isNaN(value) || !(typeof precision === 'number' && precision % 1 === 0)) {
-    return NaN;
   }
 
   // 移动
