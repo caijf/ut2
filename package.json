@@ -23,6 +23,7 @@
     "lint:fix": "npm run lint:js -- --fix",
     "prettier": "prettier --write **/*",
     "commit": "cz",
+    "prepublishOnly": "npm test && npm run build",
     "tsc": "tsc --noEmit"
   },
   "repository": {
