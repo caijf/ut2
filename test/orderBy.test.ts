@@ -72,5 +72,11 @@ describe('orderBy', () => {
       // @ts-ignore
       expect(orderBy(item)).toEqual([]);
     });
+
+    // symbol 类型的值不参与比较
+    expect(orderBy([symbol, {}, []])).toEqual([symbol, [], {}]);
+    expect(orderBy([{}, symbol, []])).toEqual([{}, symbol, []]);
+    expect(orderBy([{}, [], symbol])).toEqual([[], {}, symbol]);
+    expect(orderBy([[], {}, symbol])).toEqual([[], {}, symbol]);
   });
 });

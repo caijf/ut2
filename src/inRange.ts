@@ -1,3 +1,5 @@
+import toNumber from './toNumber';
+
 /**
  * 检查数字是否在 `start` 与 `end` 之间，但不包括 `end` 。
  *
@@ -31,6 +33,9 @@
  *
  */
 function inRange(number: number, start: number, end = 0) {
+  number = toNumber(number);
+  start = toNumber(start);
+  end = toNumber(end);
   return number >= Math.min(start, end) && number < Math.max(start, end);
 }
 

@@ -41,7 +41,7 @@ function clamp(number: number, lower?: number, upper?: number) {
     lower = defaultTo(toNumber(lower), 0);
   }
 
-  number = +number;
+  number = toNumber(number);
 
   if (number === number) {
     if (upper !== undefined) {

@@ -1,3 +1,5 @@
+import toFinite from './toFinite';
+
 /**
  * 产生一个包含 `lower` 与 `upper` 之间的随机整数。
  *
@@ -21,6 +23,8 @@
  *
  */
 function randomInt(lower = 0, upper = 1) {
+  lower = toFinite(lower);
+  upper = toFinite(upper);
   let min = Math.ceil(Math.min(lower, upper) || 0);
   let max = Math.floor(Math.max(lower, upper) || 0);
 

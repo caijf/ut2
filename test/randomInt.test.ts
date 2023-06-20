@@ -92,5 +92,8 @@ describe('randomInt', () => {
 
     expect(randomInt(5, NaN)).toBeLessThanOrEqual(5);
     expect(randomInt(5, NaN)).toBeGreaterThanOrEqual(0);
+
+    // @ts-ignore
+    expect(randomInt(Symbol(), {})).toBe(0);
   });
 });
