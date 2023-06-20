@@ -1,4 +1,5 @@
 import { eq } from '../src';
+import { symbol } from './_utils';
 
 describe('eq', () => {
   it('使用 `SameValueZero` 对两个值进行比较', () => {
@@ -24,5 +25,13 @@ describe('eq', () => {
     const obj = { a: 1 };
     expect(eq(obj, obj)).toBe(true);
     expect(eq(obj, { a: 1 })).toBe(false);
+  });
+
+  it('`Symbol` 值', () => {
+    expect(eq(symbol, 1)).toBe(false);
+    expect(eq(symbol, {})).toBe(false);
+    expect(eq(symbol, [])).toBe(false);
+    expect(eq(symbol, null)).toBe(false);
+    expect(eq(symbol, symbol)).toBe(true);
   });
 });

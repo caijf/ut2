@@ -1,4 +1,5 @@
 import { lt } from '../src';
+import { symbol } from './_utils';
 
 describe('lt', () => {
   it('`value` 小于 `other` 返回 `true`', () => {
@@ -11,5 +12,13 @@ describe('lt', () => {
     expect(lt(3, 3)).toBe(false);
     expect(lt('d', 'a')).toBe(false);
     expect(lt('d', 'd')).toBe(false);
+  });
+
+  it('`Symbol` 值', () => {
+    expect(lt(symbol, 1)).toBe(false);
+    expect(lt(symbol, {})).toBe(false);
+    expect(lt(symbol, [])).toBe(false);
+    expect(lt(symbol, null)).toBe(false);
+    expect(lt(symbol, symbol)).toBe(false);
   });
 });

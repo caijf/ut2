@@ -1,4 +1,5 @@
 import { gt } from '../src';
+import { symbol } from './_utils';
 
 describe('gt', () => {
   it('`value` 大于 `other` 返回 `true`', () => {
@@ -11,5 +12,13 @@ describe('gt', () => {
     expect(gt(3, 3)).toBe(false);
     expect(gt('a', 'd')).toBe(false);
     expect(gt('d', 'd')).toBe(false);
+  });
+
+  it('`Symbol` 值', () => {
+    expect(gt(symbol, 1)).toBe(false);
+    expect(gt(symbol, {})).toBe(false);
+    expect(gt(symbol, [])).toBe(false);
+    expect(gt(symbol, null)).toBe(false);
+    expect(gt(symbol, symbol)).toBe(false);
   });
 });

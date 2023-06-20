@@ -78,5 +78,10 @@ describe('orderBy', () => {
     expect(orderBy([{}, symbol, []])).toEqual([{}, symbol, []]);
     expect(orderBy([{}, [], symbol])).toEqual([[], {}, symbol]);
     expect(orderBy([[], {}, symbol])).toEqual([[], {}, symbol]);
+
+    expect(orderBy([symbol, {}, []], (item) => item, 'desc')).toEqual([symbol, {}, []]);
+    expect(orderBy([{}, symbol, []], (item) => item, 'desc')).toEqual([{}, symbol, []]);
+    expect(orderBy([{}, [], symbol], (item) => item, 'desc')).toEqual([{}, [], symbol]);
+    expect(orderBy([[], {}, symbol], (item) => item, 'desc')).toEqual([{}, [], symbol]);
   });
 });
