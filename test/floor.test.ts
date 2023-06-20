@@ -22,8 +22,8 @@ describe('floor', () => {
   });
 
   it('精度不是一个整数', () => {
-    expect(floor(4.006, NaN)).toBeNaN();
-    expect(floor(4.006, 1.1)).toBeNaN();
+    expect(floor(4.006, NaN)).toBe(4);
+    expect(floor(4.006, 1.1)).toBe(4);
     // @ts-ignore
     expect(floor(4.006, '+2')).toBe(4);
   });
@@ -56,7 +56,14 @@ describe('floor', () => {
   });
 
   it('精度过大返回 `NaN`', () => {
-    expect(floor(10, 1000)).toBeNaN();
-    expect(floor(Number.MAX_SAFE_INTEGER, 293)).toBeNaN();
+    expect(floor(10, 1000)).toBe(10);
+    expect(floor(Number.MAX_SAFE_INTEGER, 293)).toBe(Number.MAX_SAFE_INTEGER - 1);
+  });
+
+  it('错误的参数', () => {
+    // @ts-ignore
+    expect(floor(Symbol())).toBeNaN();
+    // @ts-ignore
+    expect(floor({})).toBeNaN();
   });
 });

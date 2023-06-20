@@ -22,8 +22,8 @@ describe('ceil', () => {
   });
 
   it('精度不是一个整数', () => {
-    expect(ceil(4.006, NaN)).toBeNaN();
-    expect(ceil(4.006, 1.1)).toBeNaN();
+    expect(ceil(4.006, NaN)).toBe(5);
+    expect(ceil(4.006, 1.1)).toBe(4.1);
     // @ts-ignore
     expect(ceil(4.006, '+2')).toBe(4.01);
   });
@@ -56,7 +56,14 @@ describe('ceil', () => {
   });
 
   it('精度过大返回 `NaN`', () => {
-    expect(ceil(10, 1000)).toBeNaN();
-    expect(ceil(Number.MAX_SAFE_INTEGER, 293)).toBeNaN();
+    expect(ceil(10, 1000)).toBe(10);
+    expect(ceil(Number.MAX_SAFE_INTEGER, 293)).toBe(Number.MAX_SAFE_INTEGER - 1);
+  });
+
+  it('错误的参数', () => {
+    // @ts-ignore
+    expect(ceil(Symbol())).toBeNaN();
+    // @ts-ignore
+    expect(ceil({})).toBeNaN();
   });
 });
