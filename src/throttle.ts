@@ -1,4 +1,4 @@
-import { baseDebounce } from './debounce';
+import baseDebounce from './internals/baseDebounce';
 
 /**
  * 创建一个节流函数，该函数在 `wait` 毫秒数内最多执行一次 `func` 方法。
