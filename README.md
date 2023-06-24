@@ -10,9 +10,9 @@
 
 **与其他工具库对比（[`lodash`]、[`underscore`]）**
 
-- 使用 ES API 开发，并剔除原生支持的大量方法（`forEach`、`filter`、`Object.keys`、`Object.entries` ……）。
-- 使用 TypeScript 实现， 提供类型定义。
-- 导出 `es` `cjs` `umd` 模块格式，支持不同开发环境使用。
+- 基于 ES2015+ 标准，无需原生支持的方法（`forEach`、`filter`、`Object.keys`、`Object.entries` ……）。
+- 使用 TypeScript 实现，提供类型定义。
+- 导出 `es`、`cjs`、`umd` 模块格式，支持不同开发环境使用。
 
 ## 使用
 
