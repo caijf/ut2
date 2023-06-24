@@ -1,5 +1,4 @@
-import getKeysIn from './internals/getKeysIn';
-import getSymbolsIn from './internals/getSymbolsIn';
+import allKeysIn from './allKeysIn';
 
 /**
  * 创建一个对象，该对象的属性从 `object` 中经 `predicate` （断言函数）判断为真值的属性。
@@ -33,7 +32,7 @@ function pickBy<T extends object>(
     return result;
   }
 
-  const allKeys = [...getKeysIn(object), ...getSymbolsIn(object)] as (keyof T)[];
+  const allKeys = allKeysIn(object) as (keyof T)[];
 
   for (let i = 0; i < allKeys.length; i++) {
     const currentKey = allKeys[i];
