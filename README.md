@@ -10,7 +10,7 @@
 
 **与其他工具库对比（[`lodash`]、[`underscore`]）**
 
-- 使用 ES API 开发，并剔除原生支持的大量方法（`forEach`、`filter`、`Array.from`、`Object.keys`、`Object.entries`、`Object.create` ……）。
+- 使用 ES API 开发，并剔除原生支持的大量方法（`forEach`、`filter`、`Object.keys`、`Object.entries` ……）。
 - 使用 TypeScript 实现， 提供类型定义。
 - 导出 `es` `cjs` `umd` 模块格式，支持不同开发环境使用。
 
@@ -95,6 +95,9 @@ const debounced = debounce(() => {
   - random - 随机小数。
   - randomInt - 随机整数。
 - Object 对象
+  - allKeys - 对象自身的可枚举属性（包含 `Symbol` 属性）。
+  - allKeysIn - 对象自身及继承的可枚举属性（包含 `Symbol` 属性）。
+  - keysIn - 对象自身及继承的可枚举属性（不包含 `Symbol` 属性）。
   - merge - 递归对象或数组进行合并。
   - omit - 排除部分属性。
   - omitBy - 根据方法，排除部分属性。
