@@ -11,7 +11,7 @@ import isObject from './isObject';
  * @alias module:Object.allKeysIn
  * @since 1.1.0
  * @param {Object} object 要查询的对象。
- * @returns {string[]} 对象自身及继承的可枚举属性名(包含 `Symbol` 属性)数组。
+ * @returns {Array<string|symbol>} 对象自身及继承的可枚举属性名(包含 `Symbol` 属性)数组。
  * @example
  *
  * function Foo(){
