@@ -23,6 +23,24 @@ describe('allKeysIn', () => {
     expect(allKeysIn(foo)).toEqual(['a', 'c', Symbol.for('b'), Symbol.for('d')]);
   });
 
+  it('类对象', () => {
+    const arr = ['a', 'b', 'c'];
+    expect(allKeysIn(arr)).toEqual(['0', '1', '2']);
+
+    const map = new Map([
+      ['a', 1],
+      ['b', 2],
+      ['c', 3]
+    ]);
+    expect(allKeysIn(map)).toEqual([]);
+
+    const str = Object('a');
+    expect(allKeysIn(str)).toEqual(['0']);
+
+    const num = Object(1);
+    expect(allKeysIn(num)).toEqual([]);
+  });
+
   it('错误的参数', () => {
     const values = [null, [], 1, '', 'a', NaN, undefined];
     values.forEach((item) => {
