@@ -39,6 +39,20 @@ describe('pick', () => {
     });
   });
 
+  it('可选继承属性', () => {
+    function Foo(this: any) {
+      this.name = 'jeff';
+      this[Symbol.for('a')] = 'a';
+    }
+    Foo.prototype.age = 18;
+    Foo.prototype[Symbol.for('b')] = 'b';
+
+    expect(pick(new (Foo as any)(), ['age', Symbol.for('b')])).toEqual({
+      age: 18,
+      [Symbol.for('b')]: 'b'
+    });
+  });
+
   it('允许选取不可枚举的属性', () => {
     const o = Object.defineProperties(
       {},

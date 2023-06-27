@@ -27,12 +27,11 @@ function pick<T extends object, K extends keyof T>(object: T, fields: K | K[] = 
   const result: Record<any, any> = {};
   const fieldArr = castArray(fields);
 
-  for (let i = 0; i < fieldArr.length; i++) {
-    const field = fieldArr[i];
+  fieldArr.forEach((field) => {
     if (field in object) {
       result[field] = object[field];
     }
-  }
+  });
 
   return result as Pick<T, K>;
 }

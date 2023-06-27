@@ -32,14 +32,13 @@ function pickBy<T extends object>(
     return result;
   }
 
-  const allKeys = allKeysIn(object) as (keyof T)[];
+  const keys = allKeysIn(object) as (keyof T)[];
 
-  for (let i = 0; i < allKeys.length; i++) {
-    const currentKey = allKeys[i];
-    if (predicate(object[currentKey], currentKey)) {
-      result[currentKey] = object[currentKey];
+  keys.forEach((key) => {
+    if (predicate(object[key], key)) {
+      result[key] = object[key];
     }
-  }
+  });
 
   return result;
 }

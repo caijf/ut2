@@ -9,6 +9,22 @@ describe('omitBy', () => {
     expect(omitBy(obj, isString)).toEqual({ age: 18 });
   });
 
+  it('包含继承的可枚举属性', () => {
+    function Foo(this: any) {
+      this.name = 'jeff';
+      this[Symbol.for('a')] = 'a';
+    }
+    Foo.prototype.age = 18;
+    Foo.prototype[Symbol.for('b')] = 'b';
+
+    expect(omitBy(new (Foo as any)())).toEqual({
+      name: 'jeff',
+      age: 18,
+      [Symbol.for('a')]: 'a',
+      [Symbol.for('b')]: 'b'
+    });
+  });
+
   it('不支持不可枚举的键值', () => {
     const o = Object.defineProperties(
       {},

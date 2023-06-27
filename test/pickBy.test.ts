@@ -14,6 +14,20 @@ describe('pickBy', () => {
     expect(pickBy(null, isString)).toEqual({});
   });
 
+  it('可选继承属性', () => {
+    function Foo(this: any) {
+      this.name = 'jeff';
+      this[Symbol.for('a')] = 'a';
+    }
+    Foo.prototype.age = 18;
+    Foo.prototype[Symbol.for('b')] = 'b';
+
+    expect(pickBy(new (Foo as any)(), (value) => value === 18 || value === 'b')).toEqual({
+      age: 18,
+      [Symbol.for('b')]: 'b'
+    });
+  });
+
   it('不支持不可枚举的键值', () => {
     const o = Object.defineProperties(
       {},
