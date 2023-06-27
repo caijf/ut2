@@ -1,3 +1,4 @@
+import allKeysIn from './allKeysIn';
 import castArray from './castArray';
 
 /**
@@ -24,15 +25,17 @@ import castArray from './castArray';
  *
  */
 function omit<T extends object, K extends keyof T>(object: T, fields: K | K[] = []) {
-  const shallowCopy = { ...object };
+  const keys = allKeysIn(object) as K[];
   const fieldArr = castArray(fields);
+  const result: Record<any, any> = {};
 
-  for (let i = 0; i < fieldArr.length; i++) {
-    const field = fieldArr[i];
-    delete shallowCopy[field];
-  }
+  keys.forEach((key) => {
+    if (!fieldArr.includes(key)) {
+      result[key] = object[key];
+    }
+  });
 
-  return shallowCopy as Omit<T, K>;
+  return result as Omit<T, K>;
 }
 
 export default omit;

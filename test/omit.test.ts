@@ -12,6 +12,22 @@ describe('omit', () => {
     expect(originObj).not.toBe(copy);
   });
 
+  it('包含继承的可枚举属性', () => {
+    function Foo(this: any) {
+      this.name = 'jeff';
+      this[Symbol.for('a')] = 'a';
+    }
+    Foo.prototype.age = 18;
+    Foo.prototype[Symbol.for('b')] = 'b';
+
+    expect(omit(new (Foo as any)())).toEqual({
+      name: 'jeff',
+      age: 18,
+      [Symbol.for('a')]: 'a',
+      [Symbol.for('b')]: 'b'
+    });
+  });
+
   it('string', () => {
     expect(omit(obj, 'age')).toEqual({ name: 'jeff' });
     // @ts-ignore
