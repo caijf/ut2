@@ -23,6 +23,16 @@ describe('allKeysIn', () => {
     expect(allKeysIn(foo)).toEqual(['a', 'c', Symbol.for('b'), Symbol.for('d')]);
   });
 
+  it('包含不重复的 `Symbol` 属性', () => {
+    function Foo(this: any) {
+      this[Symbol.for('b')] = 2;
+    }
+    Foo.prototype[Symbol.for('b')] = 4;
+
+    const foo = new (Foo as any)();
+    expect(allKeysIn(foo)).toEqual([Symbol.for('b')]);
+  });
+
   it('类对象', () => {
     const arr = ['a', 'b', 'c'];
     expect(allKeysIn(arr)).toEqual(['0', '1', '2']);

@@ -14,7 +14,9 @@ function getSymbolsIn(object: object) {
 
   while (o) {
     getSymbols(o).forEach((item) => {
-      result.push(item);
+      if (result.indexOf(item) === -1) {
+        result.push(item);
+      }
     });
     o = Object.getPrototypeOf(o);
   }
