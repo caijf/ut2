@@ -32,7 +32,7 @@ function union<T, F extends (value: T) => any, K extends keyof T>(
 ) {
   array = isArray(array) ? array : [];
   other = isArray(other) ? other : [];
-  return uniq([...array, ...other], iteratee);
+  return uniq(array.concat(other), iteratee);
 }
 
 export default union;

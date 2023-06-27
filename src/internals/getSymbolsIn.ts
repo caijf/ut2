@@ -8,12 +8,14 @@ import getSymbols from './getSymbols';
  * @returns {Symbol[]} 可枚举的 `symbol` 属性数组
  */
 function getSymbolsIn(object: object) {
-  const result = [];
+  const result: symbol[] = [];
 
   let o = Object(object);
 
   while (o) {
-    result.push(...getSymbols(o));
+    getSymbols(o).forEach((item) => {
+      result.push(item);
+    });
     o = Object.getPrototypeOf(o);
   }
 

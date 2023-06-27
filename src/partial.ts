@@ -119,7 +119,7 @@ function partial<TS extends any[], T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R>(
 function partial(func: any, ...args: any[]) {
   return function (...remainingArgs: any[]) {
     // @ts-ignore
-    return func.apply(this, [...args, ...remainingArgs]);
+    return func.apply(this, args.concat(remainingArgs));
   };
 }
 
