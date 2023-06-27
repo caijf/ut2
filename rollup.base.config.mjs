@@ -5,15 +5,8 @@ import typescript from '@rollup/plugin-typescript';
 
 import pkg from './package.json' assert { type: "json" };
 
-// 字符串中的链接符转为驼峰
-function toCamel(str) {
-  return str.replace(/-(.{1})/g, (m, p1) => {
-    return /[a-z]/.test(p1) ? p1.toUpperCase() : p1;
-  });
-}
-
 export const pkgName = pkg.name;
-export const globalName = toCamel(pkg.name);
+export const globalName = pkgName;
 export const umdDir = `dist`;
 export const esmDir = `es`;
 export const cjsDir = `lib`;
