@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isBuffer.js - ut2 </title>
+    <title>keysIn.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBuffer.js</h1>
+    <h1 class="page-title">keysIn.js</h1>
     
 
     
@@ -70,32 +70,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `buffer` 。
+            <pre class="prettyprint source linenums"><code>import getKeysIn from './internals/getKeysIn';
+import isObject from './isObject';
+/**
+ * 创建一个数组，包含对象自身及继承的可枚举属性（不包含 `Symbol` 属性）。
  *
- * 非 Node.js 环境，始终返回 `false` 。
+ * 同 `key...in` 。
  *
  * @static
- * @alias module:Type.isBuffer
- * @since 1.0.0
- * @param {*} value 要检查的值
- * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
+ * @alias module:Object.keysIn
+ * @since 1.1.0
+ * @param {Object} object 要查询的对象。
+ * @returns {string[]} 对象自身及继承的可枚举属性名(不包含 `Symbol` 属性)数组。
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
+ * function Foo(){
+ *   this.a = 1;
+ *   this[Symbol.for('b')] = 2;
+ * }
+ * Foo.prototype.c = 3;
+ * Foo.prototype[Symbol.for('d')] = 4;
  *
- * isBuffer({}); // false
- *
- * isBuffer('2012'); // false
+ * keysIn(new Foo); // ['a', 'c']
  *
  */
-function isBuffer(value) {
-    if (typeof Buffer === 'function' &amp;&amp; typeof Buffer.isBuffer === 'function') {
-        return Buffer.isBuffer(value);
+function keysIn(object) {
+    if (!isObject(object)) {
+        return [];
     }
-    return false;
+    return getKeysIn(object);
 }
-export default isBuffer;
+export default keysIn;
 </code></pre>
         </article>
     </section>
