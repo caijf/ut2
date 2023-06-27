@@ -61,7 +61,7 @@ const debounced = debounce(() => {
   - compact - 剔除假值元素。
   - difference - 排除部分值。
   - formPairs - 将键值对转为对象。
-  - intersection - 数组交集。
+  - intersection - 交集去重。
   - nth - 获取第 `n` 个元素。
   - shuffle - 打乱数组。
   - union - 并集去重。
