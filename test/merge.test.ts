@@ -176,6 +176,22 @@ describe('merge', () => {
     expect(actual).toEqual({ a: { b: [0, 1, 2] } });
   });
 
+  it('包含 `Symbol` 属性值', () => {
+    function Foo(this: any) {
+      this.a = 1;
+      this[Symbol.for('a')] = 2;
+    }
+    Foo.prototype.b = 3;
+    Foo.prototype[Symbol.for('b')] = 4;
+
+    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)())).toEqual({
+      a: 1,
+      b: 3,
+      [Symbol.for('a')]: 2,
+      [Symbol.for('b')]: 4
+    });
+  });
+
   it('错误的参数', () => {
     const boolObj = Object(false);
     boolObj.a = true;

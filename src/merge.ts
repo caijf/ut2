@@ -1,3 +1,4 @@
+import allKeysIn from './allKeysIn';
 import isArray from './isArray';
 import isObject from './isObject';
 import isObjectLike from './isObjectLike';
@@ -17,7 +18,10 @@ function baseMerge<TObject, TSource>(
     return obj;
   }
 
-  for (const key in source) {
+  const keys = allKeysIn(source as object);
+
+  keys.forEach((key) => {
+    // @ts-ignore
     const srcValue = source[key];
     let newValue =
       typeof customizer === 'function'
@@ -47,13 +51,13 @@ function baseMerge<TObject, TSource>(
         obj[key] = newValue;
       }
     }
-  }
+  });
 
   return obj;
 }
 
 /**
- * 递归合并 `source` 来源对象自身和继承的可枚举属性到 `object` 目标对象。
+ * 递归合并 `source` 来源对象自身和继承的可枚举属性（包含 `Symbol` 属性）到 `object` 目标对象。
  *
  * 如果目标值存在，被解析为 `undefined` 的 `source` 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。
  *
