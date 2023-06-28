@@ -36,10 +36,8 @@ import isArray from './isArray';
  * orderBy(objects, 'b');
  * // [{ a: 'x', b: 1 },{ a: 'y', b: 2 },{ a: 'x', b: 3 },{ a: 'y', b: 4 }]
  *
+ * // 迭代函数可以直接写入属性。
  * orderBy(objects, ['a', 'b'], ['asc', 'desc']);
- * // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
- *
- * orderBy(objects, ['a', item=>item.b], ['asc', 'desc']);
  * // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
  *
  */
