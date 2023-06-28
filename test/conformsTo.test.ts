@@ -1,4 +1,4 @@
-import { conformsTo } from '../src';
+import { conformsTo, isNumber, isString } from '../src';
 
 describe('conformsTo', () => {
   const objs = [
@@ -85,6 +85,16 @@ describe('conformsTo', () => {
     Foo.prototype.b = 2;
 
     expect(conformsTo(new (Foo as any)(), { b: (value) => value > 1 })).toBe(true);
+  });
+
+  it('包含 `Symbol` 属性', () => {
+    const object = {
+      [Symbol.for('a')]: 1,
+      [Symbol.for('b')]: 'b'
+    };
+    expect(conformsTo(object, { [Symbol.for('a')]: isNumber, [Symbol.for('b')]: isString })).toBe(
+      true
+    );
   });
 
   it('`object` 为 null', () => {
