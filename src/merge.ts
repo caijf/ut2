@@ -3,7 +3,13 @@ import isArray from './isArray';
 import isObject from './isObject';
 import isObjectLike from './isObjectLike';
 
-type Customizer = (objValue: any, srcValue: any, key: string, object: any, source: any) => any;
+type Customizer = (
+  objValue: any,
+  srcValue: any,
+  key: string | symbol,
+  object: any,
+  source: any
+) => any;
 
 // 内部处理合并和循环引用
 function baseMerge<TObject, TSource>(
@@ -25,7 +31,7 @@ function baseMerge<TObject, TSource>(
     const srcValue = source[key];
     let newValue =
       typeof customizer === 'function'
-        ? customizer(obj[key], srcValue as any, key as any, obj, source)
+        ? customizer(obj[key], srcValue, key, obj, source)
         : undefined;
 
     if (newValue === undefined) {
