@@ -1,3 +1,5 @@
+import toString from '../toString';
+
 /**
  * 生成一个首个字符串处理的函数。
  *
@@ -7,7 +9,7 @@
  */
 function createCaseFirst(methodName: 'toLowerCase' | 'toUpperCase') {
   return (string: string) => {
-    const str = String(string);
+    const str = toString(string);
     if (!str) {
       return '';
     }

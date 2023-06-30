@@ -1,3 +1,5 @@
+import toString from './toString';
+
 const htmlUnescapes = {
   '&amp;': '&',
   '&lt;': '<',
@@ -26,7 +28,7 @@ const reHasEscapedHtml = RegExp(reEscapedHtml.source);
  * unescape('&amp;'); // '&'
  */
 function unescape(string: string) {
-  string = String(string);
+  string = toString(string);
   return string && reHasEscapedHtml.test(string)
     ? string.replace(reEscapedHtml, (chr) => {
         // @ts-ignore

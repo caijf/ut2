@@ -1,7 +1,7 @@
 import isArray from './isArray';
 import isSymbol from './isSymbol';
 
-function baseToString(value: any) {
+function baseToString(value: any): string {
   if (typeof value === 'string') {
     return value;
   }

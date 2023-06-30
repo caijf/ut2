@@ -1,3 +1,4 @@
+import toString from '../toString';
 import words from '../words';
 
 /**
@@ -9,7 +10,7 @@ import words from '../words';
  * @returns {string[]} 拆分后的数组。
  */
 function splitCaseWords(string: string, pattern?: RegExp | string) {
-  return words(String(string).replace(/['\u2019]/g, ''), pattern);
+  return words(toString(string).replace(/['\u2019]/g, ''), pattern);
 }
 
 export default splitCaseWords;

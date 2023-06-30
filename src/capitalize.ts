@@ -1,3 +1,4 @@
+import toString from './toString';
 import upperFirst from './upperFirst';
 
 /**
@@ -16,7 +17,7 @@ import upperFirst from './upperFirst';
  *
  */
 function capitalize(string: string) {
-  return upperFirst(String(string).toLowerCase());
+  return upperFirst(toString(string).toLowerCase());
 }
 
 export default capitalize;

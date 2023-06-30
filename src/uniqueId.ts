@@ -1,3 +1,5 @@
+import toString from './toString';
+
 // 计数器
 let idCounter = 0;
 
@@ -20,7 +22,7 @@ let idCounter = 0;
  */
 function uniqueId(prefix = '') {
   const id = ++idCounter;
-  return String(prefix) + id;
+  return toString(prefix) + id;
 }
 
 export default uniqueId;
