@@ -16,11 +16,11 @@ describe('lowerFirst', () => {
 
   it('错误的参数', () => {
     // @ts-ignore
-    expect(lowerFirst()).toBe('undefined');
+    expect(lowerFirst()).toBe('');
     // @ts-ignore
-    expect(lowerFirst(undefined)).toBe('undefined');
+    expect(lowerFirst(undefined)).toBe('');
     // @ts-ignore
-    expect(lowerFirst(null)).toBe('null');
+    expect(lowerFirst(null)).toBe('');
     // @ts-ignore
     expect(lowerFirst({})).toBe('[object Object]');
     // @ts-ignore

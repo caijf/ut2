@@ -15,11 +15,11 @@ describe('upperFirst', () => {
 
   it('错误的参数', () => {
     // @ts-ignore
-    expect(upperFirst()).toBe('Undefined');
+    expect(upperFirst()).toBe('');
     // @ts-ignore
-    expect(upperFirst(undefined)).toBe('Undefined');
+    expect(upperFirst(undefined)).toBe('');
     // @ts-ignore
-    expect(upperFirst(null)).toBe('Null');
+    expect(upperFirst(null)).toBe('');
     // @ts-ignore
     expect(upperFirst({})).toBe('[object Object]');
     // @ts-ignore
