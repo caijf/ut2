@@ -22,7 +22,7 @@ import { blobExisted } from './internals/native';
  * isBlob('2012'); // false
  *
  */
-function isBlob(value: any) {
+function isBlob(value: any): value is Blob {
   // instanceof 不支持跨域对象判断，如来自 iframe 的 Blob 对象
   return (blobExisted && value instanceof Blob) || isType(value, ['Blob', 'File']);
 }

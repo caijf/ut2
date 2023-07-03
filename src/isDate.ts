@@ -17,7 +17,7 @@ import isObjectLike from './isObjectLike';
  * isDate('Mon April 23 2012'); // false
  *
  */
-function isDate(value: any) {
+function isDate(value: any): value is Date {
   return nodeIsDate ? nodeIsDate(value) : isObjectLike(value) && isType(value, 'Date');
 }
 

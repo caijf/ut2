@@ -20,7 +20,7 @@ import { MAX_SAFE_INTEGER } from './internals/native';
  * isLength(Number.Infinity); // false
  *
  */
-function isLength(value: any) {
+function isLength(value: any): value is number {
   return typeof value === 'number' && value > -1 && value % 1 === 0 && value <= MAX_SAFE_INTEGER;
 }
 

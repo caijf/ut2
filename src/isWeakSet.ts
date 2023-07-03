@@ -16,7 +16,7 @@ import isObjectLike from './isObjectLike';
  * isWeakSet(new Set); // false
  *
  */
-function isWeakSet(value: any) {
+function isWeakSet(value: any): value is WeakSet<any> {
   return isObjectLike(value) && isType(value, 'WeakSet');
 }
 

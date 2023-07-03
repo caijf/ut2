@@ -17,7 +17,7 @@
  * isBuffer('2012'); // false
  *
  */
-function isBuffer(value: any) {
+function isBuffer(value: any): value is Buffer {
   if (typeof Buffer === 'function' && typeof Buffer.isBuffer === 'function') {
     return Buffer.isBuffer(value);
   }

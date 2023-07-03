@@ -16,7 +16,7 @@ import isObjectLike from './isObjectLike';
  * isWeakMap(new Map); // false
  *
  */
-function isWeakMap(value: any) {
+function isWeakMap(value: any): value is WeakMap<any, any> {
   return isObjectLike(value) && isType(value, 'WeakMap');
 }
 

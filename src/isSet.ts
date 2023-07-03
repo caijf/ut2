@@ -17,7 +17,7 @@ import isObjectLike from './isObjectLike';
  * isSet(new WeakSet); // false
  *
  */
-function isSet(value: any) {
+function isSet(value: any): value is Set<any> {
   return nodeIsSet ? nodeIsSet(value) : isObjectLike(value) && isType(value, 'Set');
 }
 

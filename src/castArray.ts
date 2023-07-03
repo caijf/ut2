@@ -1,3 +1,5 @@
+import isArray from './isArray';
+
 /**
  * 如果值不是数组，则将其转换为数组。
  *
@@ -28,7 +30,7 @@ function castArray<T>(value?: T | T[]): T[] {
   if (!arguments.length) {
     return [];
   }
-  return Array.isArray(value) ? value : [value as T];
+  return isArray(value) ? value : [value as T];
 }
 
 export default castArray;

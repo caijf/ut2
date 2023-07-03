@@ -24,7 +24,7 @@ import isFinite from './isFinite';
  * isInteger(null); // false
  *
  */
-function isInteger(value: any) {
+function isInteger(value: any): value is number {
   return numberIsInteger ? numberIsInteger(value) : isFinite(value) && Math.floor(value) === value;
 }
 

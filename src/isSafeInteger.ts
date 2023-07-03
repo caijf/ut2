@@ -27,7 +27,7 @@ import isInteger from './isInteger';
  * isSafeInteger(null); // false
  *
  */
-function isSafeInteger(value: any) {
+function isSafeInteger(value: any): value is number {
   return numberIsSafeInteger
     ? numberIsSafeInteger(value)
     : isInteger(value) && Math.abs(value) <= MAX_SAFE_INTEGER;
