@@ -28,7 +28,7 @@ import toInteger from './toInteger';
  * toSafeInteger(-Infinity); // -9007199254740991
  *
  */
-function toSafeInteger(value: any) {
+function toSafeInteger(value: any): number {
   if (!value) {
     return value === 0 ? value : 0;
   }

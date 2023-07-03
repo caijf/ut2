@@ -29,7 +29,7 @@ import toInteger from './toInteger';
  * toLength(-Infinity); // 0
  *
  */
-function toLength(value: any) {
+function toLength(value: any): number {
   value = toInteger(value);
   if (!value) {
     return 0;

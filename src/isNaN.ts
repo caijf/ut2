@@ -20,7 +20,7 @@ import isNumber from './isNumber';
  * isNaN(1); // false
  *
  */
-function isNaN(value: any) {
+function isNaN(value: any): boolean {
   return isNumber(value) && root.isNaN(value);
 }
 

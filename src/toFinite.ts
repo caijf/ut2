@@ -29,7 +29,7 @@ const MAX_VALUE = 1.7976931348623157e308;
  * toSafeInteger(-Infinity); // -1.7976931348623157e+308
  *
  */
-function toFinite(value: any) {
+function toFinite(value: any): number {
   if (!value) {
     return value === 0 ? value : 0;
   }

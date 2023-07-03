@@ -37,7 +37,7 @@ const reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
  * toNumber(-Infinity); // -Infinity
  *
  */
-function toNumber(value: any) {
+function toNumber(value: any): number {
   if (typeof value === 'number') {
     return value;
   }

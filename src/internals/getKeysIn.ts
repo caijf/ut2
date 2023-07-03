@@ -6,7 +6,7 @@
  * @returns {string[]} 对象可枚举的属性
  */
 function getKeysIn(object: object) {
-  const result = [];
+  const result: string[] = [];
   for (const key in object) {
     result.push(key);
   }
