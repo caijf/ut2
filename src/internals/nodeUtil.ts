@@ -1,11 +1,11 @@
 import { root } from './native';
 
 // `exports`
-const freeExports = typeof exports === 'object' && exports && !exports.nodeType;
+const freeExports = typeof exports === 'object' && exports && !exports.nodeType && exports;
 
 // @ts-ignore
 // `module`
-const freeModule = freeExports && typeof module === 'object' && module && !module.nodeType;
+const freeModule = freeExports && typeof module === 'object' && module && !module.nodeType && module;
 
 // `module.exports`
 const moduleExports = freeModule && freeModule.exports === freeExports;

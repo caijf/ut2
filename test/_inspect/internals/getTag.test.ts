@@ -20,8 +20,8 @@ jest.mock('../../../src/internals/native.ts', () => {
 });
 
 import isType from '../../../src/internals/isType';
-import '../../isMap.test';
-import '../../isSet.test';
+import '../isMap.test';
+import '../isSet.test';
 import '../../isWeakMap.test';
 
 describe('dataview & promise', () => {

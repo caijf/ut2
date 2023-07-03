@@ -4,7 +4,7 @@
   "trailingComma": "none",
   "useTabs": false,
   "semi": true,
-  "printWidth": 100,
+  "printWidth": 150,
   "bracketSpacing": true,
   "arrowParens": "always",
   "proseWrap": "never"
