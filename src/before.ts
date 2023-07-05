@@ -20,15 +20,8 @@ import toNumber from './toNumber';
  * });
  *
  * increment(); // 1
- *
  * increment(); // 2
- *
  * increment(); // 2 返回之前的结果
- *
- * // 只执行一次
- * const once = function (func){
- *   before(2, func);
- * }
  *
  */
 function before<T extends (...args: any[]) => any>(n: number, func: T) {
