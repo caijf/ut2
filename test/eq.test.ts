@@ -7,9 +7,10 @@ describe('eq', () => {
     expect(eq()).toBe(true);
     // @ts-ignore
     expect(eq(undefined)).toBe(true);
-    expect(eq(0, -0)).toBe(true);
     expect(eq(0, +0)).toBe(true);
+    expect(eq(0, -0)).toBe(true);
     expect(eq(-0, +0)).toBe(true);
+    expect(eq(0n, -0n)).toBe(true);
     expect(eq(NaN, NaN)).toBe(true);
     expect(eq(1, 1)).toBe(true);
     expect(eq('a', 'a')).toBe(true);
@@ -33,5 +34,14 @@ describe('eq', () => {
     expect(eq(symbol, [])).toBe(false);
     expect(eq(symbol, null)).toBe(false);
     expect(eq(symbol, symbol)).toBe(true);
+  });
+
+  it('strictCheck', () => {
+    expect(eq(0, +0, true)).toBe(true);
+    expect(eq(0n, -0n, true)).toBe(true);
+    expect(eq(NaN, NaN, true)).toBe(true);
+
+    expect(eq(0, -0, true)).toBe(false);
+    expect(eq(-0, +0, true)).toBe(false);
   });
 });

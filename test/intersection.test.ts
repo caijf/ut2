@@ -7,9 +7,7 @@ describe('intersection', () => {
     expect(intersection([2.1, 2.3, 3, 4.5], [2], Math.floor)).toEqual([2.1]);
     expect(intersection([2.1, 2.3, 3, 4.5], [2], (item) => Math.floor(item))).toEqual([2.1]);
     expect(intersection([{ n: 1 }, { n: 2 }, { n: 1 }], [{ n: 1 }], 'n')).toEqual([{ n: 1 }]);
-    expect(intersection([{ n: 1 }, { n: 2 }, { n: 1 }], [{ n: 1 }], (item) => item.n)).toEqual([
-      { n: 1 }
-    ]);
+    expect(intersection([{ n: 1 }, { n: 2 }, { n: 1 }], [{ n: 1 }], (item) => item.n)).toEqual([{ n: 1 }]);
   });
 
   it('返回一个数组中的唯一值', () => {
@@ -30,11 +28,13 @@ describe('intersection', () => {
     const obj = { a: 1 };
     expect(intersection([obj, { a: 1 }, ''], [{ a: 1 }])).toEqual([]);
     expect(intersection([obj, { a: 1 }, ''], [obj])).toEqual([obj]);
-    expect(
-      intersection([obj, { a: 1 }, ''], [{ a: 1 }], (item) =>
-        typeof item === 'object' ? item.a : item
-      )
-    ).toEqual([obj]);
+    expect(intersection([obj, { a: 1 }, ''], [{ a: 1 }], (item) => (typeof item === 'object' ? item.a : item))).toEqual([obj]);
+  });
+
+  it('strickCheck', () => {
+    expect(intersection([-0, 0, +0], [0], undefined, true)).toEqual([0]);
+    expect(intersection([-0, 0, +0], [-0], undefined, true)).toEqual([-0]);
+    expect(intersection([-0, 0, +0], [+0], undefined, true)).toEqual([0]);
   });
 
   it('错误的参数', () => {

@@ -29,6 +29,12 @@ describe('uniq', () => {
     expect(uniq(array)).toEqual([obj, 1, 2, [], {}, { a: 1 }]);
   });
 
+  it('strictCheck', () => {
+    expect(uniq([-0, +0, 0], undefined, true)).toEqual([-0, 0]);
+    expect(uniq([+0, -0, 0], undefined, true)).toEqual([0, -0]);
+    expect(uniq([0, +0, -0], undefined, true)).toEqual([0, -0]);
+  });
+
   it('错误的参数', () => {
     const values = [null, false, true, 1, '', { a: 1 }];
     values.forEach((item) => {

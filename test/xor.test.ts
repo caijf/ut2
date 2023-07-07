@@ -3,13 +3,7 @@ import { xor } from '../src';
 describe('xor', () => {
   it('返回两个数组的差集', () => {
     expect(xor([2, 1], [2, 3])).toEqual([1, 3]);
-    expect(xor([2, 'a', NaN, 1, NaN], [NaN, null, undefined, 2, 3])).toEqual([
-      'a',
-      1,
-      null,
-      undefined,
-      3
-    ]);
+    expect(xor([2, 'a', NaN, 1, NaN], [NaN, null, undefined, 2, 3])).toEqual(['a', 1, null, undefined, 3]);
     expect(xor([2.1, 2.3, 3, 4.5], [2], Math.floor)).toEqual([3, 4.5]);
     expect(xor([2.1, 2.3, 3, 4.5], [2], (item) => Math.floor(item))).toEqual([3, 4.5]);
     expect(xor([{ n: 1 }, { n: 2 }, { n: 1 }], [{ n: 1 }], 'n')).toEqual([{ n: 2 }]);
@@ -34,9 +28,13 @@ describe('xor', () => {
     const obj = { a: 1 };
     expect(xor([obj, { a: 1 }, ''], [{ a: 1 }])).toEqual([obj, { a: 1 }, '', { a: 1 }]);
     expect(xor([obj, { a: 1 }, ''], [obj])).toEqual([{ a: 1 }, '']);
-    expect(
-      xor([obj, { a: 1 }, ''], [{ a: 1 }], (item) => (typeof item === 'object' ? item.a : item))
-    ).toEqual(['']);
+    expect(xor([obj, { a: 1 }, ''], [{ a: 1 }], (item) => (typeof item === 'object' ? item.a : item))).toEqual(['']);
+  });
+
+  it('strictCheck', () => {
+    expect(xor([-0, 0, +0], [0], undefined, true)).toEqual([-0]);
+    expect(xor([-0, 0, +0], [-0], undefined, true)).toEqual([0]);
+    expect(xor([-0, 0, +0], [+0], undefined, true)).toEqual([-0]);
   });
 
   it('错误的参数', () => {

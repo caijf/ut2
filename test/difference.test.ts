@@ -41,11 +41,13 @@ describe('difference', () => {
     const obj = { a: 1 };
     expect(difference([obj, { a: 1 }, ''], [{ a: 1 }])).toEqual([obj, { a: 1 }, '']);
     expect(difference([obj, { a: 1 }, ''], [obj])).toEqual([{ a: 1 }, '']);
-    expect(
-      difference([obj, { a: 1 }, ''], [{ a: 1 }], (item) =>
-        typeof item === 'object' ? item.a : item
-      )
-    ).toEqual(['']);
+    expect(difference([obj, { a: 1 }, ''], [{ a: 1 }], (item) => (typeof item === 'object' ? item.a : item))).toEqual(['']);
+  });
+
+  it('strictCheck', () => {
+    expect(difference([-0, 0, +0], [0], undefined, true)).toEqual([-0]);
+    expect(difference([-0, 0, +0], [-0], undefined, true)).toEqual([0, 0]);
+    expect(difference([-0, 0, +0], [+0], undefined, true)).toEqual([-0]);
   });
 
   it('错误的参数', () => {

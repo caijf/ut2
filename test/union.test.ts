@@ -4,22 +4,11 @@ describe('union', () => {
   it('返回两个数组的并集', () => {
     expect(union([2], [2, 1])).toEqual([2, 1]);
     expect(union([2], [2, 1])).toEqual([2, 1]);
-    expect(union([2, 'a', NaN, 1, NaN], [NaN, null, undefined, 2, 3])).toEqual([
-      2,
-      'a',
-      NaN,
-      1,
-      null,
-      undefined,
-      3
-    ]);
+    expect(union([2, 'a', NaN, 1, NaN], [NaN, null, undefined, 2, 3])).toEqual([2, 'a', NaN, 1, null, undefined, 3]);
     expect(union([2.1, 2.3, 3, 4.5], [2], Math.floor)).toEqual([2.1, 3, 4.5]);
     expect(union([2.1, 2.3, 3, 4.5], [2], (item) => Math.floor(item))).toEqual([2.1, 3, 4.5]);
     expect(union([{ n: 1 }, { n: 2 }, { n: 1 }], [{ n: 1 }], 'n')).toEqual([{ n: 1 }, { n: 2 }]);
-    expect(union([{ n: 1 }, { n: 2 }, { n: 1 }], [{ n: 1 }], (item) => item.n)).toEqual([
-      { n: 1 },
-      { n: 2 }
-    ]);
+    expect(union([{ n: 1 }, { n: 2 }, { n: 1 }], [{ n: 1 }], (item) => item.n)).toEqual([{ n: 1 }, { n: 2 }]);
   });
 
   it('返回一个数组中的唯一值', () => {
@@ -40,9 +29,13 @@ describe('union', () => {
     const obj = { a: 1 };
     expect(union([obj, { a: 1 }, ''], [{ a: 1 }])).toEqual([obj, { a: 1 }, '', { a: 1 }]);
     expect(union([obj, { a: 1 }, ''], [obj])).toEqual([obj, { a: 1 }, '']);
-    expect(
-      union([obj, { a: 1 }, ''], [{ a: 1 }], (item) => (typeof item === 'object' ? item.a : item))
-    ).toEqual([obj, '']);
+    expect(union([obj, { a: 1 }, ''], [{ a: 1 }], (item) => (typeof item === 'object' ? item.a : item))).toEqual([obj, '']);
+  });
+
+  it('strictCheck', () => {
+    expect(union([-0, +0, 0], [+0], undefined, true)).toEqual([-0, 0]);
+    expect(union([+0, -0, 0], [-0], undefined, true)).toEqual([0, -0]);
+    expect(union([0, +0, -0], [0], undefined, true)).toEqual([0, -0]);
   });
 
   it('错误的参数', () => {
