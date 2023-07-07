@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isDate.js - ut2 </title>
+    <title>once.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isDate.js</h1>
+    <h1 class="page-title">once.js</h1>
     
 
     
@@ -70,28 +70,33 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
-import { nodeIsDate } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
+            <pre class="prettyprint source linenums"><code>import before from './before';
 /**
- * 检查值是否为 `Date` 对象。
+ * 创建一个只能调用 `func` 一次的函数。重复调用将返回第一次调用 `func` 的结果。
  *
  * @static
- * @alias module:Type.isDate
- * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `Date` 对象，返回 `true` ，否则返回 `false` 。
+ * @alias module:Function.once
+ * @since 1.2.0
+ * @requires module:Function.before
+ * @param {Function} func 限制执行的函数。
+ * @returns {Function} 新的限定函数。
  * @example
  *
- * isDate(new Date); // true
+ * let count = 0;
  *
- * isDate('Mon April 23 2012'); // false
+ * const increment = _.once(()=>{
+ *   return ++count;
+ * });
+ *
+ * increment(); // 1
+ * increment(); // 1
+ * increment(); // 1
  *
  */
-function isDate(value) {
-    return nodeIsDate ? nodeIsDate(value) : isObjectLike(value) &amp;&amp; isType(value, 'Date');
+function once(func) {
+    return before(2, func);
 }
-export default isDate;
+export default once;
 </code></pre>
         </article>
     </section>
