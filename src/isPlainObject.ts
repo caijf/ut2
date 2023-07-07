@@ -18,11 +18,11 @@ import isObjectLike from './isObjectLike';
  *
  * isPlainObject(new Foo); // false
  *
- * isObject([1,2,3]); // false
+ * isPlainObject([1,2,3]); // false
  *
- * isObject({ a: 1, b: 2 }); // true
+ * isPlainObject({ a: 1, b: 2 }); // true
  *
- * isObject(Object.create(null)); // true
+ * isPlainObject(Object.create(null)); // true
  *
  */
 function isPlainObject(value: any) {
@@ -38,11 +38,7 @@ function isPlainObject(value: any) {
 
   const Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
   // 这里如果直接比较 proto.constructor === Object ，iframe 嵌套会导致结果不准确。
-  return (
-    typeof Ctor === 'function' &&
-    Ctor instanceof Ctor &&
-    functionToString.call(Ctor) === objectCtorString
-  );
+  return typeof Ctor === 'function' && Ctor instanceof Ctor && functionToString.call(Ctor) === objectCtorString;
 }
 
 export default isPlainObject;

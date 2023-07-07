@@ -13,13 +13,13 @@ import before from './before';
  *
  * let count = 0;
  *
- * const add = _.once(()=>{
+ * const increment = _.once(()=>{
  *   return ++count;
  * });
  *
- * add(); // 1
- * add(); // 1
- * add(); // 1
+ * increment(); // 1
+ * increment(); // 1
+ * increment(); // 1
  *
  */
 function once<T extends (...args: any[]) => any>(func: T) {

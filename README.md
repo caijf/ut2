@@ -81,6 +81,7 @@ const debounced = debounce(() => {
   - debounce - 防抖函数。
   - delay - 延迟触发。
   - negate - 否定断言。
+  - once - 只执行一次。
   - partial - 预设部分参数。
   - throttle - 节流函数。
 - Math 数学

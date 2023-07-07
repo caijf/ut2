@@ -11,13 +11,13 @@ import isObjectLike from './isObjectLike';
  * @returns {boolean} 如果值为类数组对象，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isArrayLike([1, 2, 3]); // true
+ * isArrayLikeObject([1, 2, 3]); // true
  *
- * isArrayLike(document.body.children); // true
+ * isArrayLikeObject(document.body.children); // true
  *
- * isArrayLike('abc'); // false
+ * isArrayLikeObject('abc'); // false
  *
- * isArrayLike(()=>{}); // false
+ * isArrayLikeObject(()=>{}); // false
  *
  */
 function isArrayLikeObject(value: any) {

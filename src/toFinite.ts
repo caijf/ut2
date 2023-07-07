@@ -12,21 +12,21 @@ const MAX_VALUE = 1.7976931348623157e308;
  * @returns {number} 转换后的数字。
  * @example
  *
- * toSafeInteger(3.2); // 3.2
+ * toFinite(3.2); // 3.2
  *
- * toSafeInteger('3.2'); // 3.2
+ * toFinite('3.2'); // 3.2
  *
- * toSafeInteger(-0); // -0
+ * toFinite(-0); // -0
  *
- * toSafeInteger('-0'); // -0
+ * toFinite('-0'); // -0
  *
- * toSafeInteger('0'); // 0
+ * toFinite('0'); // 0
  *
- * toSafeInteger(NaN); // 0
+ * toFinite(NaN); // 0
  *
- * toSafeInteger(Infinity); // 1.7976931348623157e+308
+ * toFinite(Infinity); // 1.7976931348623157e+308
  *
- * toSafeInteger(-Infinity); // -1.7976931348623157e+308
+ * toFinite(-Infinity); // -1.7976931348623157e+308
  *
  */
 function toFinite(value: any): number {

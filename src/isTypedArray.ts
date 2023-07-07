@@ -14,9 +14,9 @@ import isObjectLike from './isObjectLike';
  * @returns {boolean} 如果值为类型化数组，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * ut2.isTypedArray(new Uint8Array); // true
+ * isTypedArray(new Uint8Array); // true
  *
- * ut2.isTypedArray([]); // false
+ * isTypedArray([]); // false
  *
  */
 function isTypedArray(value: any) {

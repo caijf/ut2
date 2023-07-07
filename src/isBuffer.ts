@@ -10,7 +10,7 @@
  * @returns {boolean} 如果值为 `buffer` ，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * isBuffer(new Blob(['a'])); // true
+ * isBuffer(new Buffer(2)); // true
  *
  * isBuffer({}); // false
  *
