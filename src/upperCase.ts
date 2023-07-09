@@ -7,7 +7,7 @@ import splitCaseWords from './internals/splitCaseWords';
  * @alias module:String.upperCase
  * @since 1.0.0
  * @param {string} string 要转换的字符串。
- * @param {RegExp|string} [pattern] 拆分词组的匹配模式。
+ * @param {RegExp | string} [pattern] 拆分词组的匹配模式。
  * @returns {string} 大写字符串。
  * @example
  *
@@ -25,10 +25,7 @@ import splitCaseWords from './internals/splitCaseWords';
  *
  */
 function upperCase(string: string, pattern?: RegExp | string) {
-  return splitCaseWords(string, pattern).reduce(
-    (prev, cur, index) => prev + (index ? ' ' : '') + cur.toUpperCase(),
-    ''
-  );
+  return splitCaseWords(string, pattern).reduce((prev, cur, index) => prev + (index ? ' ' : '') + cur.toUpperCase(), '');
 }
 
 export default upperCase;

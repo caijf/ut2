@@ -10,7 +10,7 @@ import isArray from './isArray';
  * @alias module:Collection.keyBy
  * @since 1.0.0
  * @param {Array} collection 一个用来迭代的集合。
- * @param {Function|string} [iteratee] 迭代函数，用来转换键。
+ * @param {Function | string} [iteratee] 迭代函数，用来转换键。
  * @returns {Object} 组成聚合对象。
  * @example
  *
@@ -24,10 +24,7 @@ import isArray from './isArray';
  * keyBy(['one', 'two', 'three'], 'length'); // {'3': 'two', '5': 'three'}
  *
  */
-function keyBy<T, F extends (value: T) => any, K extends keyof T>(
-  collection: T[],
-  iteratee?: F | K
-) {
+function keyBy<T, F extends (value: T) => any, K extends keyof T>(collection: T[], iteratee?: F | K) {
   const result: Record<string | number | symbol, T> = {};
 
   if (isArray(collection)) {

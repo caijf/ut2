@@ -8,7 +8,7 @@ import castArray from './castArray';
  * @alias module:Object.omit
  * @since 1.0.0
  * @param {Object} object 来源对象。
- * @param {string|string[]} [fields] 要被忽略的属性。
+ * @param {string | string[]} [fields] 要被忽略的属性。
  * @returns {Object} 新对象。
  * @example
  *

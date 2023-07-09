@@ -10,7 +10,7 @@ import isArray from './isArray';
  * @alias module:Collection.partition
  * @since 1.0.0
  * @param {Array} collection 一个用来迭代的集合。
- * @param {Function|string} [predicate=identity] 每次迭代调用的断言函数。
+ * @param {Function | string} [predicate=identity] 每次迭代调用的断言函数。
  * @returns {Array} 分组后的数组。
  * @example
  *
@@ -34,10 +34,7 @@ import isArray from './isArray';
  * // ]
  *
  */
-function partition<T, F extends (value: T) => any, K extends keyof T>(
-  collection: T[],
-  predicate?: F | K
-) {
+function partition<T, F extends (value: T) => any, K extends keyof T>(collection: T[], predicate?: F | K) {
   const result: [T[], T[]] = [[], []];
   if (isArray(collection)) {
     const internalIteratee = createIteratee<T, F, K>(predicate);

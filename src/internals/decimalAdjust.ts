@@ -7,9 +7,9 @@ import toString from '../toString';
  * 数字调整。
  *
  * @private
- * @param {'floor'|'ceil'|'round'}  type  调整的类型。
- * @param {number}  value 要调整的数字。
- * @param {number} precision  指数（调整基数的10个对数）。
+ * @param {'floor' | 'ceil' | 'round'} type 调整的类型。
+ * @param {number} value 要调整的数字。
+ * @param {number} precision 指数（调整基数的10个对数）。
  * @returns {number} 调整后的数字。
  */
 function decimalAdjust(type: 'floor' | 'ceil' | 'round', value: number, precision = 0) {

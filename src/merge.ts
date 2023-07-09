@@ -3,21 +3,10 @@ import isArray from './isArray';
 import isObject from './isObject';
 import isObjectLike from './isObjectLike';
 
-type Customizer = (
-  objValue: any,
-  srcValue: any,
-  key: string | symbol,
-  object: any,
-  source: any
-) => any;
+type Customizer = (objValue: any, srcValue: any, key: string | symbol, object: any, source: any) => any;
 
 // 内部处理合并和循环引用
-function baseMerge<TObject, TSource>(
-  object: TObject,
-  source: TSource,
-  customizer?: Customizer,
-  storage = new WeakMap()
-) {
+function baseMerge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, storage = new WeakMap()) {
   const obj = Object(object);
 
   if (!isObject(source) || obj === source) {
@@ -29,10 +18,7 @@ function baseMerge<TObject, TSource>(
   keys.forEach((key) => {
     // @ts-ignore
     const srcValue = source[key];
-    let newValue =
-      typeof customizer === 'function'
-        ? customizer(obj[key], srcValue, key, obj, source)
-        : undefined;
+    let newValue = typeof customizer === 'function' ? customizer(obj[key], srcValue, key, obj, source) : undefined;
 
     if (newValue === undefined) {
       newValue = srcValue;
@@ -70,8 +56,8 @@ function baseMerge<TObject, TSource>(
  * @static
  * @alias module:Object.merge
  * @since 1.0.0
- * @param {Object|Array} object 目标对象。
- * @param {Object|Array} source 来源对象。
+ * @param {Object | Array} object 目标对象。
+ * @param {Object | Array} source 来源对象。
  * @param {Function} [customizer] 自定义赋值函数。
  * @returns {Object} 目标对象。
  * @example
@@ -87,11 +73,7 @@ function baseMerge<TObject, TSource>(
  * merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }
  *
  */
-function merge<TObject, TSource>(
-  object: TObject,
-  source: TSource,
-  customizer?: Customizer
-): TObject & TSource {
+function merge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer): TObject & TSource {
   return baseMerge(object, source, customizer);
 }
 

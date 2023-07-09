@@ -8,7 +8,7 @@ import splitCaseWords from './internals/splitCaseWords';
  * @since 1.0.0
  * @see {@link https://en.wikipedia.org/wiki/Letter_case#Special_case_styles | kebab case}
  * @param {string} string 要转换的字符串。
- * @param {RegExp|string} [pattern] 拆分词组的匹配模式。
+ * @param {RegExp | string} [pattern] 拆分词组的匹配模式。
  * @returns {string} 转换后的字符串。
  * @example
  *
@@ -26,10 +26,7 @@ import splitCaseWords from './internals/splitCaseWords';
  *
  */
 function kebabCase(string: string, pattern?: RegExp | string) {
-  return splitCaseWords(string, pattern).reduce(
-    (prev, cur, index) => prev + (index ? '-' : '') + cur.toLowerCase(),
-    ''
-  );
+  return splitCaseWords(string, pattern).reduce((prev, cur, index) => prev + (index ? '-' : '') + cur.toLowerCase(), '');
 }
 
 export default kebabCase;

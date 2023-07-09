@@ -9,7 +9,7 @@ import castArray from './castArray';
  * @alias module:Object.pick
  * @since 1.0.0
  * @param {Object} object 来源对象。
- * @param {string|string[]} [fields] 选中的属性。
+ * @param {string | string[]} [fields] 选中的属性。
  * @returns {Object} 新对象。
  * @example
  *
