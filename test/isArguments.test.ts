@@ -2,12 +2,12 @@ import { isArguments } from '../src';
 import { falsy, truthy, noop, symbol, args, strictArgs } from './_utils';
 
 describe('isArguments', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isArguments(args)).toBe(true);
     expect(isArguments(strictArgs)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isArguments(item)).toBe(false);
     });

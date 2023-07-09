@@ -2,11 +2,11 @@ import { isSet } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isSet', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isSet(new Set())).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isSet(item)).toBe(false);
     });

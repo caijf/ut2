@@ -5,12 +5,12 @@ import { isElement } from '../src';
 import { args, falsy, symbol, truthy } from './_utils';
 
 describe('isElement', () => {
-  it('corrent', () => {
+  it('correct', () => {
     // console.log(document.b);
     expect(isElement(document.body)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isElement(item)).toBe(false);
     });

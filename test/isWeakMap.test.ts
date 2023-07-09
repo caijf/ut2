@@ -2,11 +2,11 @@ import { isWeakMap } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isWeakMap', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isWeakMap(new WeakMap())).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isWeakMap(item)).toBe(false);
     });

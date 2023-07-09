@@ -2,11 +2,11 @@ import { isNull } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isNull', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isNull(null)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     const expected = falsy.map((item) => item === null);
     const actual = falsy.map(isNull);
 

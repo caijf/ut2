@@ -2,14 +2,14 @@ import { isString } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isString', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isString('abc')).toBe(true);
     expect(isString('')).toBe(true);
     expect(isString(new String('abc'))).toBe(true);
     expect(isString(Object('abc'))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy
       .filter((item) => item !== '')
       .forEach((item) => {

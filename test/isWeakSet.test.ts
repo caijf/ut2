@@ -2,11 +2,11 @@ import { isWeakSet } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isWeakSet', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isWeakSet(new WeakSet())).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isWeakSet(item)).toBe(false);
     });

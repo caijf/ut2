@@ -2,13 +2,13 @@ import { isNaN } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isNaN', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isNaN(NaN)).toBe(true);
     expect(isNaN(new Number(NaN))).toBe(true);
     expect(isNaN(Object(NaN))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     const expected = falsy.map((item) => item !== item);
     const actual = falsy.map(isNaN);
 

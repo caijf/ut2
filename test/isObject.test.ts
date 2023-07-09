@@ -2,7 +2,7 @@ import { isObject } from '../src';
 import { args, falsy, noop, symbol } from './_utils';
 
 describe('isObject', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isObject({})).toBe(true);
     expect(isObject([1, 2, 3])).toBe(true);
     expect(isObject(noop)).toBe(true);
@@ -18,7 +18,7 @@ describe('isObject', () => {
     expect(isObject(Object(symbol))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     const values = [...falsy, true, 1, 'a', symbol];
     values.forEach((item) => {
       expect(isObject(item)).toBe(false);

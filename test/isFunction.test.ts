@@ -2,7 +2,7 @@ import { isFunction } from '../src';
 import { args, falsy, noop, symbol } from './_utils';
 
 describe('isFunction', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isFunction(noop)).toBe(true);
     expect(isFunction(function () {})).toBe(true);
     expect(isFunction(new Function())).toBe(true);
@@ -13,7 +13,7 @@ describe('isFunction', () => {
     expect(isFunction(Proxy)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isFunction(item)).toBe(false);
     });

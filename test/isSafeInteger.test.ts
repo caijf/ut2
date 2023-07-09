@@ -2,27 +2,15 @@ import { isSafeInteger } from '../src';
 import { args, symbol } from './_utils';
 
 describe('isSafeInteger', () => {
-  it('corrent', () => {
+  it('correct', () => {
     const values = [-1, 0, 1, Math.pow(2, 53) - 1, -(Math.pow(2, 53) - 1)];
     values.forEach((item) => {
       expect(isSafeInteger(item)).toBe(true);
     });
   });
 
-  it('incorrent', () => {
-    const values = [
-      Math.pow(2, 53),
-      2e64,
-      3.14,
-      Math.PI,
-      Number.MIN_VALUE,
-      Infinity,
-      -Infinity,
-      '10',
-      true,
-      false,
-      null
-    ];
+  it('incorrect', () => {
+    const values = [Math.pow(2, 53), 2e64, 3.14, Math.PI, Number.MIN_VALUE, Infinity, -Infinity, '10', true, false, null];
     values.forEach((item) => {
       expect(isSafeInteger(item)).toBe(false);
     });

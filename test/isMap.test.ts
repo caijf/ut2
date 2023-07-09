@@ -2,11 +2,11 @@ import { isMap } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isMap', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isMap(new Map())).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isMap(item)).toBe(false);
     });

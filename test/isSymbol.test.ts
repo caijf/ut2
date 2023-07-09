@@ -2,13 +2,13 @@ import { isSymbol } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isSymbol', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isSymbol(symbol)).toBe(true);
     expect(isSymbol(Object(symbol))).toBe(true);
     expect(isSymbol(Symbol.iterator)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isSymbol(item)).toBe(false);
     });

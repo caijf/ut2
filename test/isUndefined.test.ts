@@ -2,14 +2,14 @@ import { isUndefined } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isUndefined', () => {
-  it('corrent', () => {
+  it('correct', () => {
     // @ts-ignore
     expect(isUndefined()).toBe(true);
     expect(isUndefined(undefined)).toBe(true);
     expect(isUndefined(void 0)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy
       .filter((item) => item !== undefined)
       .forEach((item) => {

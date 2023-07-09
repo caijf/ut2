@@ -2,7 +2,7 @@ import { isNumber } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isNumber', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isNumber(1)).toBe(true);
     expect(isNumber(new Number(1))).toBe(true);
     expect(isNumber(Object(1))).toBe(true);
@@ -12,7 +12,7 @@ describe('isNumber', () => {
     expect(isNumber(NaN)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     const expected = falsy.map((item) => typeof item === 'number');
     const actual = falsy.map(isNumber);
 

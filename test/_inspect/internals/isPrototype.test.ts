@@ -16,7 +16,7 @@ describe('isPrototype', () => {
     expect(isPrototype(Foo.prototype)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     function Foo() {}
     Foo.prototype = {};
     Foo.prototype.constructor = undefined;

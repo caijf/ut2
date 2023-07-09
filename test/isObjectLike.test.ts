@@ -2,7 +2,7 @@ import { isObjectLike } from '../src';
 import { args, falsy, noop, symbol } from './_utils';
 
 describe('isObjectLike', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isObjectLike({})).toBe(true);
     expect(isObjectLike([1, 2, 3])).toBe(true);
     expect(isObjectLike(args)).toBe(true);
@@ -17,7 +17,7 @@ describe('isObjectLike', () => {
     expect(isObjectLike(Object(symbol))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     const values = [...falsy, true, 1, 'a', symbol, noop];
     values.forEach((item) => {
       expect(isObjectLike(item)).toBe(false);

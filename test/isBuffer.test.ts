@@ -2,11 +2,11 @@ import { isBuffer } from '../src';
 import { args, falsy, symbol, truthy } from './_utils';
 
 describe('isBuffer', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isBuffer(new Buffer(2))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isBuffer(item)).toBe(false);
     });

@@ -2,7 +2,7 @@ import { isArrayLike } from '../src';
 import { args, falsy, noop, symbol } from './_utils';
 
 describe('isArrayLike', () => {
-  it('corrent', () => {
+  it('correct', () => {
     const values = [args, [1, 2, 3], { '0': 'a', length: 1 }, '', 'abc'];
     values.forEach((item) => {
       expect(isArrayLike(item)).toBe(true);
@@ -11,7 +11,7 @@ describe('isArrayLike', () => {
     expect(isArrayLike(new Buffer(0))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy
       .filter((item) => item !== '')
       .forEach((item) => {

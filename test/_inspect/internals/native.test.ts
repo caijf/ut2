@@ -1,7 +1,7 @@
 import { toSource, initSource } from '../../../src/internals/native';
 
 describe('toSource', () => {
-  it('incorrent', () => {
+  it('incorrect', () => {
     expect(toSource(null)).toBe('');
     expect(toSource(undefined)).toBe('undefined');
 
@@ -27,9 +27,7 @@ describe('MAX_SAFE_INTEGER, MIN_SAFE_INTEGER', () => {
     MIN_SAFE_INTEGER: undefined
   }));
 
-  const { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } = jest.createMockFromModule<any>(
-    '../../../src/internals/native'
-  );
+  const { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER } = jest.createMockFromModule<any>('../../../src/internals/native');
 
   expect(MAX_SAFE_INTEGER).toBe(9007199254740991);
   expect(MIN_SAFE_INTEGER).toBe(-9007199254740991);

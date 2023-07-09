@@ -2,14 +2,14 @@ import { isInteger } from '../src';
 import { args, symbol } from './_utils';
 
 describe('isInteger', () => {
-  it('corrent', () => {
+  it('correct', () => {
     const values = [-1, 0, 1, 2e64, Math.pow(2, 53)];
     values.forEach((item) => {
       expect(isInteger(item)).toBe(true);
     });
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     const values = [3.14, Math.PI, Number.MIN_VALUE, Infinity, -Infinity, '10', true, false, null];
     values.forEach((item) => {
       expect(isInteger(item)).toBe(false);

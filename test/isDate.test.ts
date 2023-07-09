@@ -2,11 +2,11 @@ import { isDate } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isDate', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isDate(new Date())).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isDate(item)).toBe(false);
     });

@@ -2,7 +2,7 @@ import { isNil } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isNil', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isNil(null)).toBe(true);
     expect(isNil(undefined)).toBe(true);
     // @ts-ignore
@@ -10,7 +10,7 @@ describe('isNil', () => {
     expect(isNil(void 0)).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     const expected = falsy.map((item) => item == null);
     const actual = falsy.map(isNil);
 

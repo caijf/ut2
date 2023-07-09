@@ -2,7 +2,7 @@ import { isEmpty } from '../src';
 import { args, toArgs, falsy, noop, symbol } from './_utils';
 
 describe('isEmpty', () => {
-  it('corrent', () => {
+  it('correct', () => {
     const values = [...falsy, [], {}];
     values.forEach((item) => {
       expect(isEmpty(item)).toBe(true);
@@ -24,7 +24,7 @@ describe('isEmpty', () => {
     expect(isEmpty((a, b) => {})).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     expect(isEmpty(args)).toBe(false);
     expect(isEmpty({ a: 1, b: 2 })).toBe(false);
     expect(isEmpty([1, 2, 3])).toBe(false);

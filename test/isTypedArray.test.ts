@@ -2,7 +2,7 @@ import { isTypedArray } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isTypedArray', () => {
-  it('corrent', () => {
+  it('correct', () => {
     const typedArrays = [
       new Float32Array(new ArrayBuffer(24)),
       new Float64Array(new ArrayBuffer(24)),
@@ -22,7 +22,7 @@ describe('isTypedArray', () => {
     });
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isTypedArray(item)).toBe(false);
     });

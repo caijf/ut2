@@ -5,7 +5,7 @@ import { isError } from '../src';
 import { args, falsy, symbol, truthy } from './_utils';
 
 describe('isError', () => {
-  it('corrent', () => {
+  it('correct', () => {
     const errors = [
       new Error(),
       new EvalError(),
@@ -34,7 +34,7 @@ describe('isError', () => {
     expect(isError(new (CustomError as any)())).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isError(item)).toBe(false);
     });

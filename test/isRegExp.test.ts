@@ -2,12 +2,12 @@ import { isRegExp } from '../src';
 import { args, falsy, symbol } from './_utils';
 
 describe('isRegExp', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isRegExp(/abc/)).toBe(true);
     expect(isRegExp(new RegExp('abc'))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isRegExp(item)).toBe(false);
     });

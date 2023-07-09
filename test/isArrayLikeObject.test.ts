@@ -2,14 +2,14 @@ import { isArrayLikeObject } from '../src';
 import { args, falsy, noop, symbol } from './_utils';
 
 describe('isArrayLikeObject', () => {
-  it('corrent', () => {
+  it('correct', () => {
     const values = [args, [1, 2, 3], { '0': 'a', length: 1 }];
     values.forEach((item) => {
       expect(isArrayLikeObject(item)).toBe(true);
     });
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isArrayLikeObject(item)).toBe(false);
     });

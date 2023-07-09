@@ -2,13 +2,13 @@ import { isArray } from '../src';
 import { falsy, noop, symbol, args } from './_utils';
 
 describe('isArray', () => {
-  it('corrent', () => {
+  it('correct', () => {
     expect(isArray([])).toBe(true);
     expect(isArray([1, 2, 3])).toBe(true);
     expect(isArray(new Array(2))).toBe(true);
   });
 
-  it('incorrent', () => {
+  it('incorrect', () => {
     falsy.forEach((item) => {
       expect(isArray(item)).toBe(false);
     });
