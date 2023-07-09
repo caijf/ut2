@@ -1,3 +1,5 @@
+import sameValue from './internals/sameValue';
+
 /**
  * 检查两个值是否相等。
  *
@@ -32,7 +34,7 @@
  */
 function eq(value: any, other: any, strictCheck = false) {
   if (strictCheck) {
-    return Object.is(value, other);
+    return sameValue(value, other);
   }
   return value === other || (value !== value && other !== other);
 }
