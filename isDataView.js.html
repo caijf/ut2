@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>orderBy.js - ut2 </title>
+    <title>isDataView.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">orderBy.js</h1>
+    <h1 class="page-title">isDataView.js</h1>
     
 
     
@@ -70,69 +70,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import identity from './identity';
-import createIteratee from './internals/createIteratee';
-import { compareMultiple } from './internals/compare';
-import isArray from './isArray';
+            <pre class="prettyprint source linenums"><code>import isType from './internals/isType';
 /**
- * 创建一个元素数组，以迭代函数处理的结果排序。如果没有指定排序，默认为升序排序。
- *
- * `asc` 升序， `desc` 降序，默认执行稳定排序，也就是说相同元素会保持原始排序。
- *
- * `iteratee` 调用时会传入 1 个参数 `value` 。
+ * 检查值是否为 `DataView` 对象。
  *
  * @static
- * @alias module:Collection.orderBy
- * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort | sort}
- * @param {Array} collection 一个用来迭代的集合。
- * @param {Function|string|Array} [iteratees] 排序的迭代函数。
- * @param {'asc'|'desc'|Array} [orders] 迭代函数的排序顺序。
- * @returns {Array} 排序后的新数组。
+ * @alias module:Type.isDataView
+ * @since 1.2.0
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为 `DataView` 对象，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * const array = [2, 1, 3, 5, 4];
- *
- * orderBy(array);; // [1, 2, 3, 4, 5]
- *
- * orderBy(array, item=>item, 'desc');; // [5, 4, 3, 2, 1]
- *
- * const objects = [
- *   { a: 'x', b: 3 },
- *   { a: 'y', b: 4 },
- *   { a: 'x', b: 1 },
- *   { a: 'y', b: 2 }
- * ];
- *
- * orderBy(objects, 'b');
- * // [{ a: 'x', b: 1 },{ a: 'y', b: 2 },{ a: 'x', b: 3 },{ a: 'y', b: 4 }]
- *
- * // 迭代函数可以直接写入属性。
- * orderBy(objects, ['a', 'b'], ['asc', 'desc']);
- * // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
+ * isDataView(new DataView(new ArrayBuffer(8))); // true
  *
  */
-function orderBy(collection, iteratees, orders) {
-    var result = [];
-    iteratees = (isArray(iteratees) ? iteratees : iteratees !== undefined ? [iteratees] : [identity]);
-    orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : []);
-    if (isArray(collection)) {
-        collection.forEach(function (item, index) {
-            var criteria = iteratees.map(function (iteratee) {
-                return createIteratee(iteratee)(item);
-            });
-            result.push({
-                criteria: criteria,
-                index: index,
-                value: item
-            });
-        });
-    }
-    return result
-        .sort(function (a, b) { return compareMultiple(a, b, orders); })
-        .map(function (item) { return item.value; });
+function isDataView(value) {
+    return isType(value, 'DataView');
 }
-export default orderBy;
+export default isDataView;
 </code></pre>
         </article>
     </section>
