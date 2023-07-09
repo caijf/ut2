@@ -6,6 +6,7 @@ import {
   isArray,
   isBlob,
   isBoolean,
+  isDataView,
   isDate,
   isElement,
   isEmpty,
@@ -42,6 +43,12 @@ describe('iframe vars', () => {
 
   it('isBoolean', () => {
     expect(isBoolean(childObject.boolean)).toBe(true);
+  });
+
+  it('isDataView', () => {
+    if (typeof DataView !== 'undefined') {
+      expect(isDataView(childObject.dataView)).toBe(true);
+    }
   });
 
   it('isDate', () => {

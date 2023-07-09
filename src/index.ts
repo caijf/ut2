@@ -115,6 +115,7 @@ export { default as isArrayLikeObject } from './isArrayLikeObject';
 export { default as isBlob } from './isBlob';
 export { default as isBoolean } from './isBoolean';
 export { default as isBuffer } from './isBuffer';
+export { default as isDataView } from './isDataView';
 export { default as isDate } from './isDate';
 export { default as isElement } from './isElement';
 export { default as isEmpty } from './isEmpty';

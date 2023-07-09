@@ -126,6 +126,7 @@ const debounced = debounce(() => {
   - isBlob - `Blob` 对象。
   - isBoolean - 布尔类型或对象。
   - isBuffer - `buffer` 对象。
+  - isDataView - `DataView` 对象。
   - isDate - `Date` 对象。
   - isElement - `Dom` 元素。
   - isEmpty - 空对象、数组、`Map`、`Set`。

@@ -24,6 +24,9 @@
     // isBoolean
     console.assert(ut2.isBoolean(childObject.boolean), childObject.boolean);
 
+    // isDataView
+    console.assert(typeof DataView !== 'undefined' ? ut2.isBoolean(childObject.dataView) : true, childObject.dataView);
+
     // isDate
     console.assert(ut2.isDate(childObject.date), childObject.date);
 
