@@ -1,5 +1,3 @@
-import sameValue from './internals/sameValue';
-
 /**
  * 检查两个值是否相等。
  *
@@ -15,7 +13,7 @@ import sameValue from './internals/sameValue';
  * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * eq(0, -0); // true
+ * eq(-0, 0); // true
  *
  * eq(1, 1); // true
  *
@@ -33,10 +31,10 @@ import sameValue from './internals/sameValue';
  *
  */
 function eq(value: any, other: any, strictCheck = false) {
-  if (strictCheck) {
-    return sameValue(value, other);
+  if (value === other) {
+    return strictCheck ? value !== 0 || 1 / value === 1 / other : true;
   }
-  return value === other || (value !== value && other !== other);
+  return value !== value && other !== other;
 }
 
 export default eq;
