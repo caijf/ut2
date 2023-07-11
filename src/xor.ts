@@ -18,7 +18,7 @@ import uniq from './uniq';
  * @param {Array} array 要检查的数组。
  * @param {Array} [other=[]] 另一个要检查的数组。
  * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
- * @param {boolean} [strictCheck=false] 严格比较，区分 `+0` `-0`。
+ * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`，默认 `false` 。
  * @returns {Array} 过滤值后的新数组。
  * @example
  *
