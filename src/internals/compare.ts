@@ -1,26 +1,47 @@
 import isSymbol from '../isSymbol';
+import toString from '../toString';
 
 export function compareAsc(value: any, other: any) {
-  if (isSymbol(value) || isSymbol(other)) {
+  if (isSymbol(value) && isSymbol(other)) {
     return 0;
   }
-
-  if (value > other) {
+  if (isSymbol(value)) {
     return 1;
-  } else if (value < other) {
+  }
+  if (isSymbol(other)) {
+    return -1;
+  }
+
+  const valStr = toString(value);
+  const othStr = toString(other);
+
+  if (valStr > othStr) {
+    return 1;
+  }
+  if (valStr < othStr) {
     return -1;
   }
   return 0;
 }
 
 export function compareDesc(value: any, other: any) {
-  if (isSymbol(value) || isSymbol(other)) {
+  if (isSymbol(value) && isSymbol(other)) {
     return 0;
   }
-
-  if (value > other) {
+  if (isSymbol(value)) {
     return -1;
-  } else if (value < other) {
+  }
+  if (isSymbol(other)) {
+    return 1;
+  }
+
+  const valStr = toString(value);
+  const othStr = toString(other);
+
+  if (valStr > othStr) {
+    return -1;
+  }
+  if (valStr < othStr) {
     return 1;
   }
   return 0;
