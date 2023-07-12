@@ -1,6 +1,7 @@
 // 主要是为了便于一些方法测试，比如一些方法要检测是否存在。
 
 import isType from './isType';
+import { arrayProto } from './native';
 
 export const argType = 'Arguments';
 
@@ -15,7 +16,7 @@ export const numberIsSafeInteger = Number.isSafeInteger;
 
 export const objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
 
-export const arrayAt = Array.prototype.at;
+export const arrayAt = arrayProto.at;
 
 /**
  * ut2 版本号。

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   hasOwnProperty,
   objectToString,
@@ -17,7 +18,8 @@ import {
   mapCtorString,
   promiseCtorString,
   setCtorString,
-  weakMapCtorString
+  weakMapCtorString,
+  symToStringTag
 } from './native';
 
 /**
@@ -28,12 +30,12 @@ import {
  * @returns 对象名称
  */
 function getRawTag(value: any) {
-  const isOwn = hasOwnProperty.call(value, Symbol.toStringTag);
-  const tag = value[Symbol.toStringTag];
+  const isOwn = hasOwnProperty.call(value, symToStringTag!);
+  const tag = value[symToStringTag!];
   let unmasked = false;
 
   try {
-    value[Symbol.toStringTag] = undefined;
+    value[symToStringTag!] = undefined;
     unmasked = true;
   } catch (e) {
     /* empty */
@@ -43,9 +45,9 @@ function getRawTag(value: any) {
 
   if (unmasked) {
     if (isOwn) {
-      value[Symbol.toStringTag] = tag;
+      value[symToStringTag!] = tag;
     } else {
-      delete value[Symbol.toStringTag];
+      delete value[symToStringTag!];
     }
   }
   return result;
@@ -59,9 +61,7 @@ function getRawTag(value: any) {
  * @returns 对象名称
  */
 function _getTag(value: any) {
-  return Symbol && Symbol.toStringTag && Symbol.toStringTag in Object(value)
-    ? getRawTag(value)
-    : objectToString.call(value);
+  return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString.call(value);
 }
 
 let getTag = _getTag;

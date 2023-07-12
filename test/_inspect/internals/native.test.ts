@@ -1,4 +1,21 @@
+const sym = Symbol;
+// @ts-ignore
+// eslint-disable-next-line no-global-assign
+Symbol = undefined;
+
 import { toSource, initSource } from '../../../src/internals/native';
+
+describe('symbol', () => {
+  afterAll(() => {
+    // @ts-ignore
+    // eslint-disable-next-line no-global-assign
+    Symbol = sym;
+  });
+
+  it('symbol is undefined', () => {
+    expect(Symbol).toBeUndefined();
+  });
+});
 
 describe('toSource', () => {
   it('incorrect', () => {

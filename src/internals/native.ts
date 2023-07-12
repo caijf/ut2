@@ -1,5 +1,4 @@
-const freeGlobalThis =
-  typeof globalThis === 'object' && globalThis && globalThis.Object === Object && globalThis;
+const freeGlobalThis = typeof globalThis === 'object' && globalThis && globalThis.Object === Object && globalThis;
 const freeGlobal = typeof global === 'object' && global && global.Object === Object && global;
 const freeSelf = typeof self === 'object' && self && self.Object === Object && self;
 
@@ -16,6 +15,14 @@ export const propertyIsEnumerable = objectProto.propertyIsEnumerable;
 export const functionToString = Function.prototype.toString;
 
 export const objectCtorString = functionToString.call(Object);
+
+export const symbolProto = Symbol ? Symbol.prototype : undefined;
+export const symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+export const symbolToString = symbolProto ? symbolProto.toString : undefined;
+export const symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+export const arrayProto = Array.prototype;
+export const arrSlice = Array.prototype.slice;
 
 /**
  * 最大安全整数。
@@ -62,6 +69,17 @@ export function toSource(func: any) {
   }
   return '';
 }
+
+export const numberTag = '[object Number]';
+export const booleanTag = '[object Boolean]';
+export const stringTag = '[object String]';
+export const dateTag = '[object Date]';
+export const regExpTag = '[object RegExp]';
+export const symbolTag = '[object Symbol]';
+export const errorTag = '[object Error]';
+export const arrayBufferTag = '[object ArrayBuffer]';
+export const argumentsTag = '[object Arguments]';
+export const arrayTag = '[object Array]';
 
 export const objectTag = '[object Object]';
 export const dataViewTag = '[object DataView]';

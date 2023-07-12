@@ -1,9 +1,6 @@
 const nativeActual = jest.requireActual('../../../src/internals/native.ts');
 const typeArray = ['DataView', 'Map', 'Promise', 'Set', 'WeakMap'].map((item) => `[object ${item}]`);
 
-// @ts-ignore
-jest.spyOn(globalThis, 'Symbol').mockImplementation(undefined);
-
 jest.mock('../../../src/internals/native.ts', () => {
   return {
     ...nativeActual,

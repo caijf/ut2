@@ -10,6 +10,7 @@ import {
   isDate,
   isElement,
   isEmpty,
+  isEqual,
   isError,
   isFunction,
   isMap,
@@ -24,6 +25,7 @@ import {
   isWeakMap,
   isWeakSet
 } from '../../src';
+import { toArgs } from '../_utils';
 import './iframe-vars.js';
 
 declare const childObject: any;
@@ -63,8 +65,15 @@ describe('iframe vars', () => {
     expect(isEmpty(childObject.map)).toBe(true);
     expect(isEmpty(childObject.set)).toBe(true);
     expect(isEmpty(childObject.args)).toBe(true);
-
     expect(isEmpty(childObject.array)).toBe(false);
+  });
+
+  it('isEqual', () => {
+    expect(isEqual(childObject.map, new Map())).toBe(true);
+    expect(isEqual(childObject.set, new Set())).toBe(true);
+    expect(isEqual(childObject.args, toArgs([]))).toBe(true);
+    expect(isEqual(childObject.array, [1])).toBe(true);
+    expect(isEqual(childObject.object, { a: 1 })).toBe(true);
   });
 
   it('isError', () => {

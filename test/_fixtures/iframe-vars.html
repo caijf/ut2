@@ -39,6 +39,12 @@
     console.assert(ut2.isEmpty(childObject.args), childObject.args);
     console.assert(!ut2.isEmpty(childObject.array), childObject.array);
 
+    // isEqual
+    console.assert(ut2.isEqual(childObject.array, [1]), childObject.array);
+    console.assert(!ut2.isEqual(childObject.array, [2]), childObject.array);
+    console.assert(ut2.isEqual(childObject.object, { a: 1 }), childObject.object);
+    console.assert(!ut2.isEqual(childObject.object, { a: 2 }), childObject.object);
+
     // isError
     console.assert(ut2.isError(childObject.error), childObject.error);
     console.assert(ut2.isError(childObject.evalError), childObject.evalError);

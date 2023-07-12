@@ -119,6 +119,7 @@ export { default as isDataView } from './isDataView';
 export { default as isDate } from './isDate';
 export { default as isElement } from './isElement';
 export { default as isEmpty } from './isEmpty';
+export { default as isEqual } from './isEqual';
 export { default as isError } from './isError';
 export { default as isFinite } from './isFinite';
 export { default as isFunction } from './isFunction';
