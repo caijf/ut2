@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>ceil.js - ut2 </title>
+    <title>isEqual.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ceil.js</h1>
+    <h1 class="page-title">isEqual.js</h1>
     
 
     
@@ -70,32 +70,250 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import decimalAdjust from './internals/decimalAdjust';
+            <pre class="prettyprint source linenums"><code>import allKeys from './allKeys';
+import eq from './eq';
+import getTag from './internals/getTag';
+import { argumentsTag, arrSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, hasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolTag, symbolValueOf } from './internals/native';
+import isBuffer from './isBuffer';
+import isFunction from './isFunction';
+import isNil from './isNil';
+import isObjectLike from './isObjectLike';
+import isTypedArray from './isTypedArray';
+import orderBy from './orderBy';
+function mapToArray(map) {
+    var result = [];
+    map.forEach(function (value, key) {
+        result.push([key, value]);
+    });
+    return orderBy(result, function (item) { return item[0]; });
+}
+function setToArray(set) {
+    var result = [];
+    set.forEach(function (value) {
+        result.push(value);
+    });
+    return orderBy(result);
+}
+function argToArray(arg) {
+    return arrSlice.call(arg);
+}
+function toBufferView(bufferSource) {
+    return new Uint8Array(bufferSource.buffer || bufferSource, bufferSource.byteOffset || 0, bufferSource.byteLength);
+}
+function isDomNode(obj) {
+    return isObjectLike(obj) &amp;&amp; typeof obj.nodeType === 'number' &amp;&amp; typeof obj.nodeName === 'string' &amp;&amp; typeof obj.isEqualNode === 'function';
+}
+function isEqualDeep(value, other, customizer, strictCheck, valueStack, otherStack) {
+    // 如果两个值相等，直接返回 true
+    if (eq(value, other, strictCheck)) {
+        return true;
+    }
+    var valType = typeof value;
+    var othType = typeof other;
+    // 严格比较时，不同类型返回 false
+    // 例如，`1` `Object(1)` 不相等
+    if (strictCheck &amp;&amp; valType !== othType) {
+        return false;
+    }
+    // 存在 null 或 undefined 或 都不是对象类型
+    if (isNil(value) || isNil(other) || (valType !== 'object' &amp;&amp; othType !== 'object')) {
+        return false;
+    }
+    // 对象标签
+    var tag = getTag(value);
+    if (tag !== getTag(other)) {
+        return false;
+    }
+    var convert;
+    switch (tag) {
+        case numberTag:
+            return eq(+value, +other, strictCheck);
+        case booleanTag:
+        case dateTag:
+            // 日期转为毫秒数进行比较，而无效日期转为 `NaN` 。如果是严格比较，无效日期不相等。
+            return strictCheck ? +value === +other : eq(+value, +other);
+        case stringTag:
+        case regExpTag:
+            return '' + value === '' + other;
+        case symbolTag:
+            return symbolValueOf ? symbolValueOf.call(value) === symbolValueOf.call(other) : false;
+        case errorTag:
+            return value.name == other.name &amp;&amp; value.message == other.message;
+        case dataViewTag:
+        case arrayBufferTag:
+            if (value.byteLength !== other.byteLength || (value.byteOffset &amp;&amp; value.byteOffset !== other.byteOffset)) {
+                return false;
+            }
+            convert = toBufferView;
+            break;
+        case mapTag:
+            convert = mapToArray;
+            break;
+        case setTag:
+            convert = setToArray;
+            break;
+        case argumentsTag:
+            convert = argToArray;
+            break;
+    }
+    if (convert) {
+        return isEqualDeep(convert(value), convert(other), customizer, strictCheck, valueStack, otherStack);
+    }
+    // 使用 DOM3 isEqualNode 方法比较 （IE>=9）
+    if (isDomNode(value) &amp;&amp; isDomNode(other)) {
+        return value.isEqualNode(other);
+    }
+    var areArrays = tag === arrayTag;
+    if (!areArrays &amp;&amp; isTypedArray(value)) {
+        if (value.byteLength !== other.byteLength) {
+            return false;
+        }
+        if (value.buffer === other.buffer &amp;&amp; value.byteOffset === other.byteOffset) {
+            return true;
+        }
+        areArrays = true;
+    }
+    // Buffer 对象处理
+    if (isBuffer(value)) {
+        if (!isBuffer(other)) {
+            return false;
+        }
+        areArrays = true;
+    }
+    // 假设循环结构是相等的。
+    valueStack = valueStack || [];
+    otherStack = otherStack || [];
+    var length = valueStack.length;
+    while (length--) {
+        // 遍历对象的堆栈，如果存在循环依赖，立即进行比较。
+        if (valueStack[length] === value) {
+            return otherStack[length] === other;
+        }
+    }
+    // 将对象添加到遍历对象的堆栈中。
+    valueStack.push(value);
+    otherStack.push(other);
+    var result = true;
+    var hasCustomizer = typeof customizer === 'function';
+    // 递归比较对象和数组
+    if (areArrays) {
+        // 比较数组长度
+        length = value.length;
+        if (length !== other.length) {
+            return false;
+        }
+        // 深度比较数组
+        while (length--) {
+            if (hasCustomizer) {
+                var compared = customizer(value[length], other[length], length, value, other, valueStack, otherStack);
+                if (compared !== undefined) {
+                    result = !!compared;
+                    break;
+                }
+            }
+            if (!isEqualDeep(value[length], other[length], customizer, strictCheck, valueStack, otherStack)) {
+                result = false;
+                break;
+            }
+        }
+    }
+    else if (tag === objectTag) {
+        // 深度比较对象
+        var keys = allKeys(value);
+        length = keys.length;
+        if (allKeys(other).length !== length) {
+            return false;
+        }
+        // 跳过构造函数比较
+        var skipCtor = false;
+        while (length--) {
+            var key = keys[length];
+            if (hasCustomizer) {
+                var compared = customizer(value[key], other[key], key, value, other, valueStack, otherStack);
+                if (compared !== undefined) {
+                    result = !!compared;
+                    break;
+                }
+            }
+            if (!(hasOwnProperty.call(other, key) &amp;&amp; isEqualDeep(value[key], other[key], customizer, strictCheck, valueStack, otherStack))) {
+                result = false;
+                break;
+            }
+            // constructor 作为属性，非构建函数时
+            if (!skipCtor &amp;&amp; key === 'constructor') {
+                skipCtor = true;
+            }
+        }
+        if (result &amp;&amp; !skipCtor) {
+            // 不同构造函数的对象不是等价的。
+            var valCtor = value.constructor;
+            var othCtor = other.constructor;
+            if (valCtor !== othCtor &amp;&amp; !(isFunction(valCtor) &amp;&amp; valCtor instanceof valCtor &amp;&amp; isFunction(othCtor) &amp;&amp; othCtor instanceof othCtor) &amp;&amp; 'constructor' in value &amp;&amp; 'constructor' in other) {
+                result = false;
+            }
+        }
+    }
+    else {
+        result = false;
+    }
+    // 从遍历对象的堆栈中删除
+    valueStack.pop();
+    otherStack.pop();
+    return result;
+}
 /**
- * 根据精度向上舍入 `number` 。
+ * 深度比较两个值是否相等。
  *
- * 注：精度可以理解为保留几位小数。
+ * 支持比较 `boolean` `number` `string` `symbol` `array` `array buffer` `date` `error` `map` `object` `regexp` `set` `typed array` 类型。对象只比较自身的属性，不包括继承和不可枚举的属性。
+ *
+ * 如果 `strictCheck=true` , 以下值不相等：
+ *
+ * 1. `0` `-0`
+ * 2. `typeof` 不同类型，如 `1` `Object(1)`
+ * 3. 无效日期对象，如 `new Date('')` `new Date('abc')`
  *
  * @static
- * @alias module:Math.ceil
- * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/round#小数舍入 | 小数舍入}
- * @param {number} number 要向上舍入的值。
- * @param {number} [precision=0] 向上舍入的精度。
- * @returns {number} 向上舍入的值。
+ * @alias module:Language.isEqual
+ * @since 1.3.0
+ * @param {*} value 要比较的值。
+ * @param {*} other 另一个要比较的值。
+ * @param {Function} [customizer] 自定义比较。
+ * @param {boolean} [strictCheck=false] 严格比较，默认 `false` 。
+ * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
  * @example
  *
- * ceil(4.16); // 5
+ * const value = { a: 1, b: -0 }
+ * const other = { a: 1, b: 0 }
  *
- * ceil(4.16, 1); // 4.2
+ * isEqual(value, other); // true
+ * value === other // false
  *
- * ceil(4160, -2); // 4200
+ * // 严格比较
+ * isEqual(value, other, undefined, true); // false
+ *
+ * // 自定义比较
+ * function customizer(value, other){
+ *   if(typeof value === 'string' &amp;&amp; typeof other === 'string'){
+ *     return true;
+ *   }
+ * }
+ * isEqual('a', 'b', customizer); // true
+ * isEqual(['a'], ['b'], customizer); // true
+ * isEqual({foo: 'a'}, {foo: 'b'}, customizer); // true
  *
  */
-function ceil(number, precision) {
-    return decimalAdjust('ceil', number, precision);
+function isEqual(value, other, customizer, strictCheck) {
+    if (strictCheck === void 0) { strictCheck = false; }
+    // 自定义比较
+    if (typeof customizer === 'function') {
+        var result = customizer(value, other);
+        if (result !== undefined) {
+            return !!result;
+        }
+    }
+    return isEqualDeep(value, other, customizer, strictCheck);
 }
-export default ceil;
+export default isEqual;
 </code></pre>
         </article>
     </section>
