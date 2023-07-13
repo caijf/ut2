@@ -6,7 +6,7 @@ import isObjectLike from './isObjectLike';
  * 检查值是否为 `RegExp` 对象。
  *
  * @static
- * @alias module:Type.isRegExp
+ * @alias module:Language.isRegExp
  * @since 1.0.0
  * @param {*} value 要检查的值
  * @returns {boolean} 如果值为 `RegExp` 对象，返回 `true` ，否则返回 `false` 。

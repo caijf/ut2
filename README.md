@@ -84,6 +84,43 @@ const debounced = debounce(() => {
   - once - 只执行一次。
   - partial - 预设部分参数。
   - throttle - 节流函数。
+- Language 语言
+  - isArguments - `arguments` 对象。
+  - isArray - `Array` 对象。
+  - isArrayBuffer - `ArrayBuffer` 对象。
+  - isArrayLike - 类数组。
+  - isArrayLikeObject - 类数组对象。
+  - isBlob - `Blob` 对象。
+  - isBoolean - 布尔类型或对象。
+  - isBuffer - `Buffer` 对象。
+  - isDataView - `DataView` 对象。
+  - isDate - `Date` 对象。
+  - isElement - `Dom` 元素。
+  - isEqual - 深比较。
+  - isEmpty - 空对象、数组、`Map`、`Set`。
+  - isError - `Error` 对象。
+  - isFinite - 有限数字。
+  - isFunction - `Function` 对象。
+  - isInteger - 整数。
+  - isLength - 有效的类数组长度。
+  - isMap - `Map` 对象。
+  - isNaN - `NaN` 。
+  - isNil - `undefined` 或 `null` 。
+  - isNull - `null` 。
+  - isNumber - 数字类型或对象。
+  - isObject - 对象。
+  - isObjectLike - 类对象。
+  - isPlainObject - 普通对象。
+  - isPromiseLike - 类 `Promise` 对象。
+  - isRegExp - `RegExp` 对象。
+  - isSafeInteger - 安全整数。
+  - isSet - `Set` 对象。
+  - isString - 字符串类型或对象。
+  - isSymbol - `Symbol` 类型或对象。
+  - isTypedArray - 类型化数组。
+  - isUndefined - `undefined` 。
+  - isWeakMap - `WeakMap` 对象。
+  - isWeakSet - `WeakSet` 对象。
 - Math 数学
   - ceil - 向上舍入。
   - floor - 向下舍入。
@@ -117,42 +154,6 @@ const debounced = debounce(() => {
   - upperCase - 空格分隔大写。
   - upperFirst - 首字母大写。
   - words - 拆分词组。
-- Type 类型
-  - isArguments - `arguments` 对象。
-  - isArray - `Array` 对象。
-  - isArrayBuffer - `ArrayBuffer` 对象。
-  - isArrayLike - 类数组。
-  - isArrayLikeObject - 类数组对象。
-  - isBlob - `Blob` 对象。
-  - isBoolean - 布尔类型或对象。
-  - isBuffer - `buffer` 对象。
-  - isDataView - `DataView` 对象。
-  - isDate - `Date` 对象。
-  - isElement - `Dom` 元素。
-  - isEmpty - 空对象、数组、`Map`、`Set`。
-  - isError - `Error` 对象。
-  - isFinite - 有限数字。
-  - isFunction - `Function` 对象。
-  - isInteger - 整数。
-  - isLength - 有效的类数组长度。
-  - isMap - `Map` 对象。
-  - isNaN - `NaN` 。
-  - isNil - `undefined` 或 `null` 。
-  - isNull - `null` 。
-  - isNumber - 数字类型或对象。
-  - isObject - 对象。
-  - isObjectLike - 类对象。
-  - isPlainObject - 普通对象。
-  - isPromiseLike - 类 `Promise` 对象。
-  - isRegExp - `RegExp` 对象。
-  - isSafeInteger - 安全整数。
-  - isSet - `Set` 对象。
-  - isString - 字符串类型或对象。
-  - isSymbol - `Symbol` 类型或对象。
-  - isTypedArray - 类型化数组。
-  - isUndefined - `undefined` 。
-  - isWeakMap - `WeakMap` 对象。
-  - isWeakSet - `WeakSet` 对象。
 - Util 实用工具
   - castArray - 包装成数组。
   - conforms - 创建断言对象属性的方法。

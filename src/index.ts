@@ -45,6 +45,49 @@ export { default as partial } from './partial';
 export { default as throttle } from './throttle';
 
 /**
+ * 语言
+ *
+ * @module Language
+ * @since 1.0.0
+ */
+export { default as isArguments } from './isArguments';
+export { default as isArray } from './isArray';
+export { default as isArrayBuffer } from './isArrayBuffer';
+export { default as isArrayLike } from './isArrayLike';
+export { default as isArrayLikeObject } from './isArrayLikeObject';
+export { default as isBlob } from './isBlob';
+export { default as isBoolean } from './isBoolean';
+export { default as isBuffer } from './isBuffer';
+export { default as isDataView } from './isDataView';
+export { default as isDate } from './isDate';
+export { default as isElement } from './isElement';
+export { default as isEmpty } from './isEmpty';
+export { default as isEqual } from './isEqual';
+export { default as isError } from './isError';
+export { default as isFinite } from './isFinite';
+export { default as isFunction } from './isFunction';
+export { default as isInteger } from './isInteger';
+export { default as isLength } from './isLength';
+export { default as isMap } from './isMap';
+export { default as isNaN } from './isNaN';
+export { default as isNil } from './isNil';
+export { default as isNull } from './isNull';
+export { default as isNumber } from './isNumber';
+export { default as isObject } from './isObject';
+export { default as isObjectLike } from './isObjectLike';
+export { default as isPlainObject } from './isPlainObject';
+export { default as isPromiseLike } from './isPromiseLike';
+export { default as isRegExp } from './isRegExp';
+export { default as isSafeInteger } from './isSafeInteger';
+export { default as isSet } from './isSet';
+export { default as isString } from './isString';
+export { default as isSymbol } from './isSymbol';
+export { default as isTypedArray } from './isTypedArray';
+export { default as isUndefined } from './isUndefined';
+export { default as isWeakMap } from './isWeakMap';
+export { default as isWeakSet } from './isWeakSet';
+
+/**
  * 数学
  *
  * @module Math
@@ -100,49 +143,6 @@ export { default as unescape } from './unescape';
 export { default as upperCase } from './upperCase';
 export { default as upperFirst } from './upperFirst';
 export { default as words } from './words';
-
-/**
- * 类型检测
- *
- * @module Type
- * @since 1.0.0
- */
-export { default as isArguments } from './isArguments';
-export { default as isArray } from './isArray';
-export { default as isArrayBuffer } from './isArrayBuffer';
-export { default as isArrayLike } from './isArrayLike';
-export { default as isArrayLikeObject } from './isArrayLikeObject';
-export { default as isBlob } from './isBlob';
-export { default as isBoolean } from './isBoolean';
-export { default as isBuffer } from './isBuffer';
-export { default as isDataView } from './isDataView';
-export { default as isDate } from './isDate';
-export { default as isElement } from './isElement';
-export { default as isEmpty } from './isEmpty';
-export { default as isEqual } from './isEqual';
-export { default as isError } from './isError';
-export { default as isFinite } from './isFinite';
-export { default as isFunction } from './isFunction';
-export { default as isInteger } from './isInteger';
-export { default as isLength } from './isLength';
-export { default as isMap } from './isMap';
-export { default as isNaN } from './isNaN';
-export { default as isNil } from './isNil';
-export { default as isNull } from './isNull';
-export { default as isNumber } from './isNumber';
-export { default as isObject } from './isObject';
-export { default as isObjectLike } from './isObjectLike';
-export { default as isPlainObject } from './isPlainObject';
-export { default as isPromiseLike } from './isPromiseLike';
-export { default as isRegExp } from './isRegExp';
-export { default as isSafeInteger } from './isSafeInteger';
-export { default as isSet } from './isSet';
-export { default as isString } from './isString';
-export { default as isSymbol } from './isSymbol';
-export { default as isTypedArray } from './isTypedArray';
-export { default as isUndefined } from './isUndefined';
-export { default as isWeakMap } from './isWeakMap';
-export { default as isWeakSet } from './isWeakSet';
 
 /**
  * 工具

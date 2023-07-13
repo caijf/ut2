@@ -10,7 +10,7 @@ import isInteger from './isInteger';
  * 如果一个整数是一个 `IEEE-754` 双精度数字，它不是四舍五入的不安全整数的结果，那么它就是安全的。安全整数范围为 `-(2^53 - 1)` 到 `2^53 - 1` 之间的整数，包含 `-(2^53 - 1)` 和 `2^53 - 1`。
  *
  * @static
- * @alias module:Type.isSafeInteger
+ * @alias module:Language.isSafeInteger
  * @since 1.0.0
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为安全整数，返回 `true` ，否则返回 `false` 。
@@ -28,9 +28,7 @@ import isInteger from './isInteger';
  *
  */
 function isSafeInteger(value: any): value is number {
-  return numberIsSafeInteger
-    ? numberIsSafeInteger(value)
-    : isInteger(value) && Math.abs(value) <= MAX_SAFE_INTEGER;
+  return numberIsSafeInteger ? numberIsSafeInteger(value) : isInteger(value) && Math.abs(value) <= MAX_SAFE_INTEGER;
 }
 
 export default isSafeInteger;

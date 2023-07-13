@@ -1,25 +1,7 @@
 import allKeys from './allKeys';
 import eq from './eq';
 import getTag from './internals/getTag';
-import {
-  argumentsTag,
-  arrSlice,
-  arrayBufferTag,
-  arrayTag,
-  booleanTag,
-  dataViewTag,
-  dateTag,
-  errorTag,
-  hasOwnProperty,
-  mapTag,
-  numberTag,
-  objectTag,
-  regExpTag,
-  setTag,
-  stringTag,
-  symbolTag,
-  symbolValueOf
-} from './internals/native';
+import { argumentsTag, arrSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, hasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolTag, symbolValueOf } from './internals/native';
 import isBuffer from './isBuffer';
 import isFunction from './isFunction';
 import isNil from './isNil';
@@ -55,15 +37,7 @@ function isDomNode(obj: any) {
   return isObjectLike(obj) && typeof obj.nodeType === 'number' && typeof obj.nodeName === 'string' && typeof obj.isEqualNode === 'function';
 }
 
-type Customizer = (
-  objValue: any,
-  othValue: any,
-  key?: number | string | symbol,
-  object?: any,
-  other?: any,
-  valueStack?: any[],
-  otherStack?: any[]
-) => void | undefined | boolean;
+type Customizer = (objValue: any, othValue: any, key?: number | string | symbol, object?: any, other?: any, valueStack?: any[], otherStack?: any[]) => void | undefined | boolean;
 
 function isEqualDeep(value: any, other: any, customizer?: Customizer, strictCheck?: boolean, valueStack?: any[], otherStack?: any[]): boolean {
   // 如果两个值相等，直接返回 true
@@ -226,12 +200,7 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
       // 不同构造函数的对象不是等价的。
       const valCtor = value.constructor;
       const othCtor = other.constructor;
-      if (
-        valCtor !== othCtor &&
-        !(isFunction(valCtor) && valCtor instanceof valCtor && isFunction(othCtor) && othCtor instanceof othCtor) &&
-        'constructor' in value &&
-        'constructor' in other
-      ) {
+      if (valCtor !== othCtor && !(isFunction(valCtor) && valCtor instanceof valCtor && isFunction(othCtor) && othCtor instanceof othCtor) && 'constructor' in value && 'constructor' in other) {
         result = false;
       }
     }
@@ -258,7 +227,7 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
  * 3. 无效日期对象，如 `new Date('')` `new Date('abc')`
  *
  * @static
- * @alias module:Type.isEqual
+ * @alias module:Language.isEqual
  * @since 1.3.0
  * @param {*} value 要比较的值。
  * @param {*} other 另一个要比较的值。

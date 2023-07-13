@@ -7,7 +7,7 @@ import { numberIsFinite } from './internals/helpers';
  * 同 `Number.isFinite` 。
  *
  * @static
- * @alias module:Type.isFinite
+ * @alias module:Language.isFinite
  * @since 1.0.0
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为有限数字，返回 `true` ，否则返回 `false` 。

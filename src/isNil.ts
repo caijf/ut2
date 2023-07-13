@@ -2,7 +2,7 @@
  * 检查值是否为 `undefined` 或 `null` 。
  *
  * @static
- * @alias module:Type.isNil
+ * @alias module:Language.isNil
  * @since 1.0.0
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为 `undefined` 或 `null` ，返回 `true` ，否则返回 `false` 。

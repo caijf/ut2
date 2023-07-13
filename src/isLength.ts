@@ -4,7 +4,7 @@ import { MAX_SAFE_INTEGER } from './internals/native';
  * 检查值是否为有效的类数组长度。
  *
  * @static
- * @alias module:Type.isLength
+ * @alias module:Language.isLength
  * @since 1.0.0
  * @see {@link https://tc39.es/ecma262/#sec-tolength | ToLength}
  * @param {*} value 要检查的值。

@@ -7,7 +7,7 @@ import { blobExisted } from './internals/native';
  * 浏览器环境的 `Blob` 或 `File` 对象，或其他继承自 `Blob` 的实例，都将返回 `true` 。
  *
  * @static
- * @alias module:Type.isBlob
+ * @alias module:Language.isBlob
  * @since 1.0.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/Blob | Blob}
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/File | File}

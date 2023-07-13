@@ -12,7 +12,7 @@ import isSet from './isSet';
  * 非上述类型值，都将被认为是空的。
  *
  * @static
- * @alias module:Type.isEmpty
+ * @alias module:Language.isEmpty
  * @since 1.0.0
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为空，返回 `true` ，否则返回 `false` 。

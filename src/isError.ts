@@ -7,7 +7,7 @@ import isObjectLike from './isObjectLike';
  * 继承自 `Error` 的对象，如 `EvalError` `RangeError` `ReferenceError` `SyntaxError` `TypeError` `URIError` `AggregateError`，都将返回 `true` 。
  *
  * @static
- * @alias module:Type.isError
+ * @alias module:Language.isError
  * @since 1.0.0
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为 `Error` 或 `DOMException` 对象，返回 `true` ，否则返回 `false` 。
