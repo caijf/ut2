@@ -2,13 +2,16 @@ import isSymbol from '../isSymbol';
 import toString from '../toString';
 
 export function compareAsc(value: any, other: any) {
-  if (isSymbol(value) && isSymbol(other)) {
+  const valueIsSymbol = isSymbol(value);
+  const otherIsSymbol = isSymbol(other);
+
+  if (valueIsSymbol && otherIsSymbol) {
     return 0;
   }
-  if (isSymbol(value)) {
+  if (valueIsSymbol) {
     return 1;
   }
-  if (isSymbol(other)) {
+  if (otherIsSymbol) {
     return -1;
   }
 
@@ -25,13 +28,16 @@ export function compareAsc(value: any, other: any) {
 }
 
 export function compareDesc(value: any, other: any) {
-  if (isSymbol(value) && isSymbol(other)) {
+  const valueIsSymbol = isSymbol(value);
+  const otherIsSymbol = isSymbol(other);
+
+  if (valueIsSymbol && otherIsSymbol) {
     return 0;
   }
-  if (isSymbol(value)) {
+  if (valueIsSymbol) {
     return -1;
   }
-  if (isSymbol(other)) {
+  if (otherIsSymbol) {
     return 1;
   }
 
