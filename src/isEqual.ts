@@ -14,7 +14,7 @@ function mapToArray(map: Map<any, any>) {
   map.forEach((value, key) => {
     result.push([key, value]);
   });
-  return orderBy(result, (item) => item[0]);
+  return orderBy(result, [0, 1]);
 }
 
 function setToArray(set: Set<any>) {

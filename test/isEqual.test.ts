@@ -444,6 +444,46 @@ describe('isEqual', () => {
     expect(isEqual(map1, map2)).toBe(true);
   });
 
+  it('比较 `Map` 相同的键值引用，不同的值', () => {
+    const obj1 = { n: 1 };
+    const obj2 = { n: 2 };
+    const map1 = new Map([
+      [obj1, 10],
+      [obj2, 100]
+    ]);
+    const map2 = new Map([
+      [obj2, 100],
+      [obj1, 10]
+    ]);
+
+    expect(isEqual(map1, map2)).toBe(true);
+
+    // 下面示例同传递性的循环引用
+    const map3 = new Map([
+      [obj1, 100],
+      [obj2, 10]
+    ]);
+    expect(isEqual(map1, map3)).toBe(false);
+    expect(isEqual(map2, map3)).toBe(false);
+
+    // 同时存在 Symbol 类型的键和值没有排序，所以不相等。
+    const sym1 = Symbol.for('a');
+    const sym2 = Symbol('b');
+    const map4 = new Map();
+    const map5 = new Map();
+
+    map4.set(sym1, Symbol.for('x'));
+    map4.set(sym2, Symbol.for('y'));
+    map5.set(sym2, Symbol.for('y'));
+    map5.set(sym1, Symbol.for('x'));
+    expect(isEqual(map4, map5)).toBe(false);
+
+    // 只要键或值存在可排序字段，即可正常比较
+    map4.set(sym1, 1);
+    map5.set(sym1, 1);
+    expect(isEqual(map4, map5)).toBe(true);
+  });
+
   it('比较 `Promise`', () => {
     const promise1 = Promise.resolve(1);
     const promise2 = Promise.resolve(2);
