@@ -4,24 +4,13 @@ import toString from '../toString';
 export function compareAsc(value: any, other: any) {
   const valueIsSymbol = isSymbol(value);
   const otherIsSymbol = isSymbol(other);
+  const valueStr = toString(value);
+  const otherStr = toString(other);
 
-  if (valueIsSymbol && otherIsSymbol) {
-    return 0;
-  }
-  if (valueIsSymbol) {
+  if (!otherIsSymbol && (valueIsSymbol || valueStr > otherStr)) {
     return 1;
   }
-  if (otherIsSymbol) {
-    return -1;
-  }
-
-  const valStr = toString(value);
-  const othStr = toString(other);
-
-  if (valStr > othStr) {
-    return 1;
-  }
-  if (valStr < othStr) {
+  if (!valueIsSymbol && (otherIsSymbol || valueStr < otherStr)) {
     return -1;
   }
   return 0;
@@ -30,24 +19,13 @@ export function compareAsc(value: any, other: any) {
 export function compareDesc(value: any, other: any) {
   const valueIsSymbol = isSymbol(value);
   const otherIsSymbol = isSymbol(other);
+  const valueStr = toString(value);
+  const otherStr = toString(other);
 
-  if (valueIsSymbol && otherIsSymbol) {
-    return 0;
-  }
-  if (valueIsSymbol) {
+  if (!otherIsSymbol && (valueIsSymbol || valueStr > otherStr)) {
     return -1;
   }
-  if (otherIsSymbol) {
-    return 1;
-  }
-
-  const valStr = toString(value);
-  const othStr = toString(other);
-
-  if (valStr > othStr) {
-    return -1;
-  }
-  if (valStr < othStr) {
+  if (!valueIsSymbol && (otherIsSymbol || valueStr < otherStr)) {
     return 1;
   }
   return 0;
