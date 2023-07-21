@@ -8,7 +8,7 @@ describe('isArrayLike', () => {
       expect(isArrayLike(item)).toBe(true);
     });
 
-    expect(isArrayLike(new Buffer(0))).toBe(true);
+    expect(isArrayLike(Buffer.alloc(0))).toBe(true);
   });
 
   it('incorrect', () => {

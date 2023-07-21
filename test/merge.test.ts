@@ -81,15 +81,7 @@ describe('merge', () => {
 
   it('合并特殊对象值', () => {
     function Foo() {}
-    const values = [
-      new (Foo as any)(),
-      new Boolean(),
-      new Date(),
-      new Number(),
-      new String(),
-      new RegExp(''),
-      Foo
-    ];
+    const values = [new (Foo as any)(), new Boolean(), new Date(), new Number(), new String(), new RegExp(''), Foo];
 
     values.map((item) => {
       const actual = merge({}, { a: item, b: { c: item } });
@@ -99,7 +91,7 @@ describe('merge', () => {
   });
 
   it('合并 buffer 值', () => {
-    const buffer = new Buffer([1]);
+    const buffer = Buffer.from([1]);
     const actual = merge({}, { value: buffer });
 
     expect(isBuffer(actual.value)).toBe(true);

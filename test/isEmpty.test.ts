@@ -15,7 +15,7 @@ describe('isEmpty', () => {
     expect(isEmpty(symbol)).toBe(true);
     // @ts-ignore
     expect(isEmpty()).toBe(true);
-    expect(isEmpty(new Buffer(0))).toBe(true);
+    expect(isEmpty(Buffer.alloc(0))).toBe(true);
     expect(isEmpty(new Date())).toBe(true);
     expect(isEmpty(new Error())).toBe(true);
     expect(isEmpty(noop)).toBe(true);
@@ -29,7 +29,7 @@ describe('isEmpty', () => {
     expect(isEmpty({ a: 1, b: 2 })).toBe(false);
     expect(isEmpty([1, 2, 3])).toBe(false);
     expect(isEmpty('abc')).toBe(false);
-    expect(isEmpty(new Buffer(1))).toBe(false);
+    expect(isEmpty(Buffer.alloc(1))).toBe(false);
     expect(isEmpty(toArgs([1, 2, 3]))).toBe(false);
   });
 

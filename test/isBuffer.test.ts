@@ -2,8 +2,12 @@ import { isBuffer } from '../src';
 import { args, falsy, symbol, truthy } from './_utils';
 
 describe('isBuffer', () => {
+  const buf1 = Buffer.alloc(2);
+  const buf2 = Buffer.from([1]);
+
   it('correct', () => {
-    expect(isBuffer(new Buffer(2))).toBe(true);
+    expect(isBuffer(buf1)).toBe(true);
+    expect(isBuffer(buf2)).toBe(true);
   });
 
   it('incorrect', () => {
@@ -28,7 +32,8 @@ describe('isBuffer', () => {
     // @ts-ignore
     const spyBuffer = jest.spyOn(globalThis, 'Buffer').mockImplementation(() => undefined);
 
-    expect(isBuffer(new Buffer(2))).toBe(false);
+    expect(isBuffer(buf1)).toBe(false);
+    expect(isBuffer(buf2)).toBe(false);
 
     spyBuffer.mockRestore();
   });

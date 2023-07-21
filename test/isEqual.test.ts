@@ -378,9 +378,9 @@ describe('isEqual', () => {
 
   it('比较 `Buffer`', () => {
     if (Buffer) {
-      const buffer = new Buffer([1]);
-      expect(isEqual(buffer, new Buffer([1]))).toBe(true);
-      expect(isEqual(buffer, new Buffer([2]))).toBe(false);
+      const buffer = Buffer.from([1]);
+      expect(isEqual(buffer, Buffer.from([1]))).toBe(true);
+      expect(isEqual(buffer, Buffer.from([2]))).toBe(false);
       expect(isEqual(buffer, new Uint8Array([1]))).toBe(false);
     }
   });
