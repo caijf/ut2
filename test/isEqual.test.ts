@@ -640,6 +640,16 @@ describe('isEqual', () => {
     });
   });
 
+  it('自定义比较方法开始和最后正确，中间部分错误', () => {
+    expect(
+      isEqual([1, 2, 3], [1, 'b', 3], (a, b) => {
+        if (typeof a !== 'object') {
+          return a === b;
+        }
+      })
+    ).toBe(false);
+  });
+
   it('自定义比较方法非函数，处理比较', () => {
     const values = [false, null, '', 'abc', 1, 0, NaN, {}, [], symbol];
     values.forEach((item) => {

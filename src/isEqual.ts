@@ -158,13 +158,14 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
       if (hasCustomizer) {
         const compared = customizer(value[length], other[length], length, value, other, valueStack, otherStack);
         if (compared !== undefined) {
-          result = !!compared;
-          break;
+          if (!compared) {
+            return false;
+          }
+          continue;
         }
       }
       if (!isEqualDeep(value[length], other[length], customizer, strictCheck, valueStack, otherStack)) {
-        result = false;
-        break;
+        return false;
       }
     }
   } else if (tag === objectTag) {
@@ -181,13 +182,14 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
       if (hasCustomizer) {
         const compared = customizer(value[key], other[key], key, value, other, valueStack, otherStack);
         if (compared !== undefined) {
-          result = !!compared;
-          break;
+          if (!compared) {
+            return false;
+          }
+          continue;
         }
       }
       if (!(hasOwnProperty.call(other, key) && isEqualDeep(value[key], other[key], customizer, strictCheck, valueStack, otherStack))) {
-        result = false;
-        break;
+        return false;
       }
 
       // constructor 作为属性，非构建函数时
@@ -196,12 +198,12 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
       }
     }
 
-    if (result && !skipCtor) {
+    if (!skipCtor) {
       // 不同构造函数的对象不是等价的。
       const valCtor = value.constructor;
       const othCtor = other.constructor;
       if (valCtor !== othCtor && !(isFunction(valCtor) && valCtor instanceof valCtor && isFunction(othCtor) && othCtor instanceof othCtor) && 'constructor' in value && 'constructor' in other) {
-        result = false;
+        return false;
       }
     }
   } else {
