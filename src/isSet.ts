@@ -1,6 +1,6 @@
-import isType from './internals/isType';
+import { checkType } from './internals/checkType';
+import { setTag } from './internals/native';
 import { nodeIsSet } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
 
 /**
  * 检查值是否为 `Set` 对象。
@@ -18,7 +18,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isSet(value: any): value is Set<any> {
-  return nodeIsSet ? nodeIsSet(value) : isObjectLike(value) && isType(value, 'Set');
+  return nodeIsSet ? nodeIsSet(value) : checkType(value, setTag);
 }
 
 export default isSet;

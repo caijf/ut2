@@ -1,4 +1,5 @@
-import isType from './internals/isType';
+import { checkTypes } from './internals/checkType';
+import { typedArrayTags } from './internals/native';
 import { nodeIsTypedArray } from './internals/nodeUtil';
 import isLength from './isLength';
 import isObjectLike from './isObjectLike';
@@ -23,7 +24,7 @@ function isTypedArray(value: any) {
   if (nodeIsTypedArray) {
     return nodeIsTypedArray(value);
   }
-  return isObjectLike(value) && isLength(value.length) && isType(value, ['Float32Array', 'Float64Array', 'Int8Array', 'Int16Array', 'Int32Array', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'BigInt64Array', 'BigUint64Array']);
+  return isObjectLike(value) && isLength(value.length) && checkTypes(value, typedArrayTags);
 }
 
 export default isTypedArray;

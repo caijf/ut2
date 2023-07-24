@@ -1,5 +1,5 @@
-import { functionToString, hasOwnProperty, objectCtorString } from './internals/native';
-import isType from './internals/isType';
+import { functionToString, hasOwnProperty, objectCtorString, objectTag } from './internals/native';
+import { checkType } from './internals/checkType';
 import isObjectLike from './isObjectLike';
 
 /**
@@ -26,7 +26,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isPlainObject(value: any) {
-  if (!isObjectLike(value) || !isType(value, 'Object')) {
+  if (!isObjectLike(value) || !checkType(value, objectTag)) {
     return false;
   }
   const proto = Object.getPrototypeOf(Object(value));

@@ -1,5 +1,5 @@
-import isType from './internals/isType';
-import isObjectLike from './isObjectLike';
+import { checkType } from './internals/checkType';
+import { weakMapTag } from './internals/native';
 
 /**
  * 检查值是否为 `WeakMap` 对象。
@@ -17,7 +17,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isWeakMap(value: any): value is WeakMap<any, any> {
-  return isObjectLike(value) && isType(value, 'WeakMap');
+  return checkType(value, weakMapTag);
 }
 
 export default isWeakMap;

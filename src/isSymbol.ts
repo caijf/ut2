@@ -1,5 +1,5 @@
-import isType from './internals/isType';
-import isObjectLike from './isObjectLike';
+import { checkType } from './internals/checkType';
+import { symbolTag } from './internals/native';
 
 /**
  * 检查值是否为 `Symbol` 类型或对象。
@@ -19,7 +19,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isSymbol(value: any) {
-  return typeof value === 'symbol' || (isObjectLike(value) && isType(value, 'Symbol'));
+  return typeof value === 'symbol' || checkType(value, symbolTag);
 }
 
 export default isSymbol;

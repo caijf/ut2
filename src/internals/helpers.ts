@@ -1,12 +1,12 @@
 // 主要是为了便于一些方法测试，比如一些方法要检测是否存在。
 
-import isType from './isType';
-import { arrayProto } from './native';
+import { checkType } from './checkType';
+import { argumentsTag, arrayProto } from './native';
 
 export const argType = 'Arguments';
 
 // @ts-ignore
-export const supportedArgumentsType = isType((() => arguments)(), argType);
+export const supportedArgumentsType = checkType((() => arguments)(), argumentsTag);
 
 export const FUNC_ERROR_TEXT = 'Expected a function';
 

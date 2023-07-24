@@ -1,4 +1,5 @@
-import isType from './internals/isType';
+import { checkTypes } from './internals/checkType';
+import { domExceptionTag, errorTag } from './internals/native';
 import isObjectLike from './isObjectLike';
 
 /**
@@ -19,10 +20,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isError(value: any) {
-  if (!isObjectLike(value)) {
-    return false;
-  }
-  return value instanceof Error || isType(value, ['Error', 'DOMException']);
+  return isObjectLike(value) && (value instanceof Error || checkTypes(value, [errorTag, domExceptionTag]));
 }
 
 export default isError;

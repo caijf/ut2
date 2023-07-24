@@ -1,6 +1,6 @@
-import isType from './internals/isType';
+import { checkType } from './internals/checkType';
+import { regExpTag } from './internals/native';
 import { nodeIsRegExp } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
 
 /**
  * 检查值是否为 `RegExp` 对象。
@@ -18,7 +18,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isRegExp(value: any) {
-  return nodeIsRegExp ? nodeIsRegExp(value) : isObjectLike(value) && isType(value, 'RegExp');
+  return nodeIsRegExp ? nodeIsRegExp(value) : checkType(value, regExpTag);
 }
 
 export default isRegExp;

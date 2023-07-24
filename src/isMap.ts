@@ -1,6 +1,6 @@
-import isType from './internals/isType';
+import { checkType } from './internals/checkType';
+import { mapTag } from './internals/native';
 import { nodeIsMap } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
 
 /**
  * 检查值是否为 `Map` 对象。
@@ -18,7 +18,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isMap(value: any): value is Map<any, any> {
-  return nodeIsMap ? nodeIsMap(value) : isObjectLike(value) && isType(value, 'Map');
+  return nodeIsMap ? nodeIsMap(value) : checkType(value, mapTag);
 }
 
 export default isMap;

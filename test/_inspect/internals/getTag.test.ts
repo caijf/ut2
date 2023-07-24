@@ -14,7 +14,7 @@ jest.mock('../../../src/internals/native.ts', () => {
   };
 });
 
-import isType from '../../../src/internals/isType';
+import { checkType } from '../../../src/internals/checkType';
 import '../isMap.test';
 import '../isSet.test';
 import '../../isDataView.test';
@@ -22,7 +22,7 @@ import '../../isWeakMap.test';
 
 describe('dataview & promise', () => {
   it('basic', () => {
-    expect(isType(new DataView(new ArrayBuffer(1)), 'DataView')).toBe(true);
-    expect(isType(Promise.resolve(), 'Promise')).toBe(true);
+    expect(checkType(new DataView(new ArrayBuffer(1)), '[object DataView]')).toBe(true);
+    expect(checkType(Promise.resolve(), '[object Promise]')).toBe(true);
   });
 });

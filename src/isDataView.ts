@@ -1,4 +1,5 @@
-import isType from './internals/isType';
+import { checkType } from './internals/checkType';
+import { dataViewTag } from './internals/native';
 
 /**
  * 检查值是否为 `DataView` 对象。
@@ -14,7 +15,7 @@ import isType from './internals/isType';
  *
  */
 function isDataView(value: any) {
-  return isType(value, 'DataView');
+  return checkType(value, dataViewTag);
 }
 
 export default isDataView;

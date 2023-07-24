@@ -1,5 +1,5 @@
-import isType from './internals/isType';
-import isObjectLike from './isObjectLike';
+import { checkType } from './internals/checkType';
+import { stringTag } from './internals/native';
 
 /**
  * 检查值是否为字符串类型或对象。
@@ -19,7 +19,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isString(value: any) {
-  return typeof value === 'string' || (isObjectLike(value) && isType(value, 'String'));
+  return typeof value === 'string' || checkType(value, stringTag);
 }
 
 export default isString;

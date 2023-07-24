@@ -1,6 +1,6 @@
-import isType from './internals/isType';
+import { checkType } from './internals/checkType';
+import { arrayBufferTag } from './internals/native';
 import { nodeIsArrayBuffer } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
 
 /**
  * 检查值是否为 `ArrayBuffer` 对象。
@@ -20,7 +20,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isArrayBuffer(value: any) {
-  return nodeIsArrayBuffer ? nodeIsArrayBuffer(value) : isObjectLike(value) && isType(value, 'ArrayBuffer');
+  return nodeIsArrayBuffer ? nodeIsArrayBuffer(value) : checkType(value, arrayBufferTag);
 }
 
 export default isArrayBuffer;

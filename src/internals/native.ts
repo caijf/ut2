@@ -70,6 +70,10 @@ export function toSource(func: any) {
   return '';
 }
 
+function wrapTags(tags: string[]) {
+  return tags.map((item) => '[object ' + item + ']');
+}
+
 export const numberTag = '[object Number]';
 export const booleanTag = '[object Boolean]';
 export const stringTag = '[object String]';
@@ -80,6 +84,12 @@ export const errorTag = '[object Error]';
 export const arrayBufferTag = '[object ArrayBuffer]';
 export const argumentsTag = '[object Arguments]';
 export const arrayTag = '[object Array]';
+export const typedArrayTags = wrapTags(['Float32Array', 'Float64Array', 'Int8Array', 'Int16Array', 'Int32Array', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'BigInt64Array', 'BigUint64Array']);
+export const functionTags = wrapTags(['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy']);
+export const weakSetTag = '[object WeakSet]';
+export const blobTag = '[object Blob]';
+export const fileTag = '[object Blob]';
+export const domExceptionTag = '[object DOMException]';
 
 export const objectTag = '[object Object]';
 export const dataViewTag = '[object DataView]';

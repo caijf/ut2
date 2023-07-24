@@ -1,4 +1,5 @@
-import isType from './internals/isType';
+import { checkTypes } from './internals/checkType';
+import { functionTags } from './internals/native';
 import isObject from './isObject';
 
 /**
@@ -22,7 +23,7 @@ function isFunction(value: any) {
   if (!isObject(value)) {
     return false;
   }
-  return isType(value, ['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy']);
+  return checkTypes(value, functionTags);
 }
 
 export default isFunction;

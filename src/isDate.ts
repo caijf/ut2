@@ -1,6 +1,6 @@
-import isType from './internals/isType';
+import { checkType } from './internals/checkType';
+import { dateTag } from './internals/native';
 import { nodeIsDate } from './internals/nodeUtil';
-import isObjectLike from './isObjectLike';
 
 /**
  * 检查值是否为 `Date` 对象。
@@ -18,7 +18,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isDate(value: any): value is Date {
-  return nodeIsDate ? nodeIsDate(value) : isObjectLike(value) && isType(value, 'Date');
+  return nodeIsDate ? nodeIsDate(value) : checkType(value, dateTag);
 }
 
 export default isDate;

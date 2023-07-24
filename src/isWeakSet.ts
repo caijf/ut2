@@ -1,5 +1,5 @@
-import isType from './internals/isType';
-import isObjectLike from './isObjectLike';
+import { checkType } from './internals/checkType';
+import { weakSetTag } from './internals/native';
 
 /**
  * 检查值是否为 `WeakSet` 对象。
@@ -17,7 +17,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isWeakSet(value: any): value is WeakSet<any> {
-  return isObjectLike(value) && isType(value, 'WeakSet');
+  return checkType(value, weakSetTag);
 }
 
 export default isWeakSet;
