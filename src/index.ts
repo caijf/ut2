@@ -69,6 +69,7 @@ export { default as isFunction } from './isFunction';
 export { default as isInteger } from './isInteger';
 export { default as isLength } from './isLength';
 export { default as isMap } from './isMap';
+export { default as isMatch } from './isMatch';
 export { default as isNaN } from './isNaN';
 export { default as isNil } from './isNil';
 export { default as isNull } from './isNull';
