@@ -3,7 +3,7 @@ import { esmDir, cjsDir, input, plugins } from './rollup.base.config.mjs';
 
 export default defineConfig({
   input,
-  external: ['tslib'],
+  // external: ['tslib'],
   treeshake: {
     preset: 'safest'
   },
