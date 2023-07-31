@@ -102,6 +102,7 @@ const debounced = debounce(() => {
   - isInteger - 整数。
   - isLength - 有效的类数组长度。
   - isMap - `Map` 对象。
+  - isMatch - 普通对象部分匹配的深比较。
   - isNaN - `NaN` 。
   - isNil - `undefined` 或 `null` 。
   - isNull - `null` 。
