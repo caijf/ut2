@@ -10,7 +10,7 @@ function isDeepComparable(object: any, source: any) {
 
 type Customizer = (objValue: any, srcValue: any, key?: number | string | symbol, object?: any, source?: any, objStack?: any[], srcStack?: any[]) => void | undefined | boolean;
 
-function baseIsMatch(object: Record<string | symbol, any>, source: Record<string | symbol, any>, customizer?: Customizer, strictCheck?: boolean, objStack?: any[], srcStack?: any[]) {
+function baseIsMatch(object: Record<string | symbol, any>, source: Record<string | symbol, any>, customizer?: Customizer, strictCheck?: boolean, objStack?: any[], srcStack?: any[], executedCustomizer = false) {
   const hasCustomizer = typeof customizer === 'function';
 
   if (isDeepComparable(object, source)) {
@@ -54,7 +54,7 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
       }
 
       // 循环对象
-      if (!baseIsMatch(object[key], source[key], customizer, strictCheck, objStack, srcStack)) {
+      if (!baseIsMatch(object[key], source[key], customizer, strictCheck, objStack, srcStack, true)) {
         return false;
       }
     }
@@ -70,12 +70,13 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
     object,
     source,
     (objValue, srcValue, k, obj, src) => {
-      if (hasCustomizer) {
+      if (!executedCustomizer && hasCustomizer) {
         const compared = customizer(objValue, srcValue, k, obj, src, objStack, srcStack);
         if (compared !== undefined) {
           return compared;
         }
       }
+      executedCustomizer = false;
       if (isDeepComparable(objValue, srcValue)) {
         return baseIsMatch(objValue, srcValue, customizer, strictCheck, objStack, srcStack);
       }
@@ -128,14 +129,14 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
  *
  */
 function isMatch(object: object, source: object, customizer?: Customizer, strictCheck = false) {
-  if (typeof customizer === 'function' && isDeepComparable(object, source)) {
+  if (typeof customizer === 'function') {
     const compared = customizer(object, source);
     if (compared !== undefined) {
       return !!compared;
     }
   }
 
-  return baseIsMatch(object, source, customizer, strictCheck);
+  return baseIsMatch(object, source, customizer, strictCheck, undefined, undefined, true);
 }
 
 export default isMatch;

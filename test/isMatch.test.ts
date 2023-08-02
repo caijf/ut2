@@ -202,15 +202,14 @@ describe('isMatch', () => {
 
   it('自定义比较方法参数', () => {
     const argsList: any[] = [];
-    const obj1: any = { a: [1, 2], b: null };
-    const obj2: any = { a: [1, 2], b: null };
+    const obj1: any = { a: [1, 2], b: null, c: 1 };
+    const obj2: any = { a: [1, 2], b: null, c: 1 };
 
     const expected = [
       [obj1, obj2],
+      [obj1.c, obj2.c, 'c', obj1, obj2],
       [obj1.b, obj2.b, 'b', obj1, obj2],
-      [obj1.b, obj2.b, undefined, undefined, undefined],
       [obj1.a, obj2.a, 'a', obj1, obj2],
-      [obj1.a, obj2.a, undefined, undefined, undefined],
       [obj1.a[1], obj2.a[1], 1, obj1.a, obj2.a],
       [obj1.a[0], obj2.a[0], 0, obj1.a, obj2.a]
     ];
