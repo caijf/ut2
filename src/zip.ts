@@ -6,7 +6,7 @@ import unzip from './unzip';
  * @static
  * @alias module:Array.zip
  * @since 1.0.0
- * @param {Array} array 要处理的分组元素数组。
+ * @param {...Array} array 要处理的分组元素数组。
  * @returns {Array} 重组元素的新数组。
  * @example
  *
