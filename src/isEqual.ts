@@ -37,7 +37,7 @@ function isDomNode(obj: any) {
   return isObjectLike(obj) && typeof obj.nodeType === 'number' && typeof obj.nodeName === 'string' && typeof obj.isEqualNode === 'function';
 }
 
-type Customizer = (objValue: any, othValue: any, key?: number | string | symbol, object?: any, other?: any, valueStack?: any[], otherStack?: any[]) => void | undefined | boolean;
+type Customizer = (objValue: any, othValue: any, key?: number | string | symbol, object?: any, other?: any, valueStack?: any[], otherStack?: any[]) => void | boolean;
 
 function isEqualDeep(value: any, other: any, customizer?: Customizer, strictCheck?: boolean, valueStack?: any[], otherStack?: any[]): boolean {
   // 如果两个值相等，直接返回 true

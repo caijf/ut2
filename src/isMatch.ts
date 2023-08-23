@@ -8,7 +8,7 @@ function isDeepComparable(object: any, source: any) {
   return checkType(object, objectTag) && checkType(source, objectTag);
 }
 
-type Customizer = (objValue: any, srcValue: any, key?: number | string | symbol, object?: any, source?: any, objStack?: any[], srcStack?: any[]) => void | undefined | boolean;
+type Customizer = (objValue: any, srcValue: any, key?: number | string | symbol, object?: any, source?: any, objStack?: any[], srcStack?: any[]) => void | boolean;
 
 function baseIsMatch(object: Record<string | symbol, any>, source: Record<string | symbol, any>, customizer?: Customizer, strictCheck?: boolean, objStack?: any[], srcStack?: any[], executedCustomizer = false) {
   const hasCustomizer = typeof customizer === 'function';
@@ -40,17 +40,14 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
         return false;
       }
 
-      let compared: void | undefined | boolean;
-
       if (hasCustomizer) {
-        compared = customizer(object[key], source[key], key, object, source, objStack, srcStack);
-      }
-
-      if (compared !== undefined) {
-        if (!compared) {
-          return false;
+        const compared = customizer(object[key], source[key], key, object, source, objStack, srcStack);
+        if (compared !== undefined) {
+          if (!compared) {
+            return false;
+          }
+          continue;
         }
-        continue;
       }
 
       // 循环对象
