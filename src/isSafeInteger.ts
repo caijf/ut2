@@ -1,5 +1,4 @@
-import { MAX_SAFE_INTEGER } from './internals/native';
-import { numberIsSafeInteger } from './internals/helpers';
+import { MAX_SAFE_INTEGER, numberIsSafeInteger } from './internals/native';
 import isInteger from './isInteger';
 
 /**

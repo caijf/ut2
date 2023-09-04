@@ -1,5 +1,4 @@
-import { checkType } from './internals/checkType';
-import { stringTag } from './internals/native';
+import { objectToString, stringTag } from './internals/native';
 
 /**
  * 检查值是否为字符串类型或对象。
@@ -19,7 +18,7 @@ import { stringTag } from './internals/native';
  *
  */
 function isString(value: any) {
-  return typeof value === 'string' || checkType(value, stringTag);
+  return typeof value === 'string' || objectToString.call(value) === stringTag;
 }
 
 export default isString;

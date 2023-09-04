@@ -1,3 +1,4 @@
+import symbolToString from './internals/symbolToString';
 import isArray from './isArray';
 import isSymbol from './isSymbol';
 
@@ -9,7 +10,7 @@ function baseToString(value: any): string {
     return `${value.map(baseToString)}`;
   }
   if (isSymbol(value)) {
-    return value.toString();
+    return symbolToString ? symbolToString.call(value) : '';
   }
   const result = '' + value;
   return result == '0' && 1 / value === -Infinity ? '-0' : result;

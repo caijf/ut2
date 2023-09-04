@@ -42,5 +42,6 @@ describe('toString', () => {
 
   it('`Symbol` 类型转字符串', () => {
     expect(toString(Symbol('a'))).toBe('Symbol(a)');
+    expect(toString(Symbol.for('a'))).toBe('Symbol(a)');
   });
 });

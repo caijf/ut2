@@ -1,4 +1,4 @@
-import { checkType } from './internals/checkType';
+import getTagWithBugfix from './internals/getTagWithBugfix';
 import { weakMapTag } from './internals/native';
 
 /**
@@ -17,7 +17,7 @@ import { weakMapTag } from './internals/native';
  *
  */
 function isWeakMap(value: any): value is WeakMap<any, any> {
-  return checkType(value, weakMapTag);
+  return getTagWithBugfix(value) === weakMapTag;
 }
 
 export default isWeakMap;

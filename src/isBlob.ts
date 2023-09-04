@@ -1,5 +1,7 @@
-import { checkTypes } from './internals/checkType';
-import { blobExisted, blobTag, fileTag } from './internals/native';
+import { blobTag, objectToString } from './internals/native';
+
+// Blob 对象是否存在
+const blobExisted = typeof Blob !== 'undefined';
 
 /**
  * 检查值是否为 `Blob` 对象。
@@ -24,7 +26,10 @@ import { blobExisted, blobTag, fileTag } from './internals/native';
  */
 function isBlob(value: any): value is Blob {
   // instanceof 不支持跨域对象判断，如来自 iframe 的 Blob 对象
-  return (blobExisted && value instanceof Blob) || checkTypes(value, [blobTag, fileTag]);
+  if (blobExisted && value instanceof Blob) {
+    return true;
+  }
+  return objectToString.call(value) === blobTag;
 }
 
 export default isBlob;

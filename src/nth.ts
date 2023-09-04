@@ -1,4 +1,4 @@
-import { arrayAt } from './internals/helpers';
+import { arrayAt } from './internals/native';
 import isArrayLike from './isArrayLike';
 
 /**

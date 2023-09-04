@@ -1,5 +1,4 @@
-import { checkTypes } from './internals/checkType';
-import { functionTags } from './internals/native';
+import { functionTags, objectToString } from './internals/native';
 
 /**
  * 检查值是否为 `Function` 对象 。
@@ -19,7 +18,11 @@ import { functionTags } from './internals/native';
  *
  */
 function isFunction(value: any) {
-  return typeof value === 'function' || checkTypes(value, functionTags);
+  if (typeof value === 'function') {
+    return true;
+  }
+  const tag = objectToString.call(value);
+  return functionTags.some((item) => item === tag);
 }
 
 export default isFunction;

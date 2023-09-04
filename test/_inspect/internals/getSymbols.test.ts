@@ -1,10 +1,10 @@
-import getSymbols from '../../../src/internals/getSymbols';
+const nativeActual = jest.requireActual('../../../src/internals/native.ts');
+jest.mock('../../../src/internals/native.ts', () => ({
+  ...nativeActual,
+  objectGetOwnPropertySymbols: undefined
+}));
 
-jest.mock('../../../src/internals/helpers.ts', () => {
-  return {
-    objectGetOwnPropertySymbols: undefined
-  };
-});
+import getSymbols from '../../../src/internals/getSymbols';
 
 describe('getSymbols', () => {
   it('兼容不支持 Object.getOwnPropertySymbols ', () => {

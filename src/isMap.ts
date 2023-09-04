@@ -1,4 +1,4 @@
-import { checkType } from './internals/checkType';
+import getTagWithBugfix from './internals/getTagWithBugfix';
 import { mapTag } from './internals/native';
 import { nodeIsMap } from './internals/nodeUtil';
 
@@ -18,7 +18,10 @@ import { nodeIsMap } from './internals/nodeUtil';
  *
  */
 function isMap(value: any): value is Map<any, any> {
-  return nodeIsMap ? nodeIsMap(value) : checkType(value, mapTag);
+  if (nodeIsMap) {
+    return nodeIsMap(value);
+  }
+  return getTagWithBugfix(value) === mapTag;
 }
 
 export default isMap;

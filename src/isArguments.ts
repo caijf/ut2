@@ -1,7 +1,6 @@
-import { argumentsTag, hasOwnProperty, propertyIsEnumerable } from './internals/native';
+import { argumentsTag, hasOwnProperty, objectToString, propertyIsEnumerable } from './internals/native';
 import { supportedArgumentsType } from './internals/helpers';
 import isObjectLike from './isObjectLike';
-import { checkType } from './internals/checkType';
 
 /**
  * 检查值是否为 `arguments` 对象。
@@ -20,7 +19,7 @@ import { checkType } from './internals/checkType';
  */
 function isArguments(value: any) {
   if (supportedArgumentsType) {
-    return checkType(value, argumentsTag);
+    return objectToString.call(value) === argumentsTag;
   }
   return isObjectLike(value) && hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
 }

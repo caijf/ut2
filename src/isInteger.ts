@@ -1,4 +1,4 @@
-import { numberIsInteger } from './internals/helpers';
+import { numberIsInteger } from './internals/native';
 import isFinite from './isFinite';
 
 /**

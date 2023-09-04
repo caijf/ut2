@@ -1,4 +1,4 @@
-import { objectGetOwnPropertySymbols } from './helpers';
+import { objectGetOwnPropertySymbols } from './native';
 import { propertyIsEnumerable } from './native';
 
 /**
@@ -13,9 +13,7 @@ function getSymbols(object: object) {
     return [];
   }
 
-  return objectGetOwnPropertySymbols(object).filter((item) =>
-    propertyIsEnumerable.call(object, item)
-  );
+  return objectGetOwnPropertySymbols(object).filter((item) => propertyIsEnumerable.call(object, item));
 }
 
 export default getSymbols;

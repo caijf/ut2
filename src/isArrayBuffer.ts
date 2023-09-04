@@ -1,5 +1,4 @@
-import { checkType } from './internals/checkType';
-import { arrayBufferTag } from './internals/native';
+import { arrayBufferTag, objectToString } from './internals/native';
 import { nodeIsArrayBuffer } from './internals/nodeUtil';
 
 /**
@@ -20,7 +19,7 @@ import { nodeIsArrayBuffer } from './internals/nodeUtil';
  *
  */
 function isArrayBuffer(value: any) {
-  return nodeIsArrayBuffer ? nodeIsArrayBuffer(value) : checkType(value, arrayBufferTag);
+  return nodeIsArrayBuffer ? nodeIsArrayBuffer(value) : objectToString.call(value) === arrayBufferTag;
 }
 
 export default isArrayBuffer;

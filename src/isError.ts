@@ -1,5 +1,4 @@
-import { checkTypes } from './internals/checkType';
-import { domExceptionTag, errorTag } from './internals/native';
+import { domExceptionTag, errorTag, objectToString } from './internals/native';
 import isObjectLike from './isObjectLike';
 
 /**
@@ -20,7 +19,14 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isError(value: any) {
-  return isObjectLike(value) && (value instanceof Error || checkTypes(value, [errorTag, domExceptionTag]));
+  if (!isObjectLike(value)) {
+    return false;
+  }
+  if (value instanceof Error) {
+    return true;
+  }
+  const tag = objectToString.call(value);
+  return tag === errorTag || tag === domExceptionTag;
 }
 
 export default isError;

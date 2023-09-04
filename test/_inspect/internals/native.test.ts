@@ -3,8 +3,6 @@ const sym = Symbol;
 // eslint-disable-next-line no-global-assign
 Symbol = undefined;
 
-import { toSource, initSource } from '../../../src/internals/native';
-
 describe('symbol', () => {
   afterAll(() => {
     // @ts-ignore
@@ -14,26 +12,6 @@ describe('symbol', () => {
 
   it('symbol is undefined', () => {
     expect(Symbol).toBeUndefined();
-  });
-});
-
-describe('toSource', () => {
-  it('incorrect', () => {
-    expect(toSource(null)).toBe('');
-    expect(toSource(undefined)).toBe('undefined');
-
-    const obj = {
-      toString() {
-        throw new Error('some error');
-      }
-    };
-    expect(toSource(obj)).toBe('');
-  });
-});
-
-describe('initSource', () => {
-  it('non exited', () => {
-    expect(initSource(false, 'abc')).toBe('');
   });
 });
 

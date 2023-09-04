@@ -1,4 +1,4 @@
-import { checkType } from './internals/checkType';
+import getTagWithBugfix from './internals/getTagWithBugfix';
 import { dataViewTag } from './internals/native';
 
 /**
@@ -15,7 +15,7 @@ import { dataViewTag } from './internals/native';
  *
  */
 function isDataView(value: any) {
-  return checkType(value, dataViewTag);
+  return getTagWithBugfix(value) === dataViewTag;
 }
 
 export default isDataView;

@@ -1,5 +1,4 @@
-import { checkType } from './internals/checkType';
-import { weakSetTag } from './internals/native';
+import { objectToString, weakSetTag } from './internals/native';
 
 /**
  * 检查值是否为 `WeakSet` 对象。
@@ -17,7 +16,7 @@ import { weakSetTag } from './internals/native';
  *
  */
 function isWeakSet(value: any): value is WeakSet<any> {
-  return checkType(value, weakSetTag);
+  return objectToString.call(value) === weakSetTag;
 }
 
 export default isWeakSet;

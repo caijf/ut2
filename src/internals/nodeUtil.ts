@@ -1,4 +1,4 @@
-import { root } from './native';
+import root from './root';
 
 // `exports`
 const freeExports = typeof exports === 'object' && exports && !exports.nodeType && exports;

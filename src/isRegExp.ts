@@ -1,5 +1,4 @@
-import { checkType } from './internals/checkType';
-import { regExpTag } from './internals/native';
+import { objectToString, regExpTag } from './internals/native';
 import { nodeIsRegExp } from './internals/nodeUtil';
 
 /**
@@ -18,7 +17,7 @@ import { nodeIsRegExp } from './internals/nodeUtil';
  *
  */
 function isRegExp(value: any) {
-  return nodeIsRegExp ? nodeIsRegExp(value) : checkType(value, regExpTag);
+  return nodeIsRegExp ? nodeIsRegExp(value) : objectToString.call(value) === regExpTag;
 }
 
 export default isRegExp;

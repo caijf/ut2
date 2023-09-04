@@ -1,5 +1,4 @@
-import { checkTypes } from './internals/checkType';
-import { typedArrayTags } from './internals/native';
+import { objectToString, typedArrayTags } from './internals/native';
 import { nodeIsTypedArray } from './internals/nodeUtil';
 import isLength from './isLength';
 import isObjectLike from './isObjectLike';
@@ -24,7 +23,11 @@ function isTypedArray(value: any) {
   if (nodeIsTypedArray) {
     return nodeIsTypedArray(value);
   }
-  return isObjectLike(value) && isLength(value.length) && checkTypes(value, typedArrayTags);
+  if (isObjectLike(value) && isLength(value.length)) {
+    const tag = objectToString.call(value);
+    return typedArrayTags.some((item) => item === tag);
+  }
+  return false;
 }
 
 export default isTypedArray;

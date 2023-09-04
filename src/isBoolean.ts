@@ -1,5 +1,4 @@
-import { checkType } from './internals/checkType';
-import { booleanTag } from './internals/native';
+import { booleanTag, objectToString } from './internals/native';
 
 /**
  * 检查值是否为布尔类型或对象。
@@ -23,7 +22,7 @@ import { booleanTag } from './internals/native';
  *
  */
 function isBoolean(value: any) {
-  return value === true || value === false || checkType(value, booleanTag);
+  return value === true || value === false || objectToString.call(value) === booleanTag;
 }
 
 export default isBoolean;

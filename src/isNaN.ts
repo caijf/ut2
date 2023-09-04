@@ -1,4 +1,4 @@
-import { root } from './internals/native';
+import root from './internals/root';
 import isNumber from './isNumber';
 
 /**

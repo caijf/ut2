@@ -1,6 +1,8 @@
-import { functionToString, hasOwnProperty, objectCtorString, objectTag } from './internals/native';
-import { checkType } from './internals/checkType';
+import getTag from './internals/getTag';
+import { functionToString, hasOwnProperty, objectTag } from './internals/native';
 import isObjectLike from './isObjectLike';
+
+const objectCtorString = functionToString.call(Object);
 
 /**
  * 检查值是否为普通对象，即由 `Object` 构造函数创建或 `[[Prototype]]` 为 `null` 的对象。
@@ -26,7 +28,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isPlainObject(value: any) {
-  if (!isObjectLike(value) || !checkType(value, objectTag)) {
+  if (!isObjectLike(value) || getTag(value) !== objectTag) {
     return false;
   }
   const proto = Object.getPrototypeOf(Object(value));

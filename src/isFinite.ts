@@ -1,5 +1,5 @@
-import { root } from './internals/native';
-import { numberIsFinite } from './internals/helpers';
+import root from './internals/root';
+import { numberIsFinite } from './internals/native';
 
 /**
  * 检查值是否为有限数字。

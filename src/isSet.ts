@@ -1,4 +1,4 @@
-import { checkType } from './internals/checkType';
+import getTagWithBugfix from './internals/getTagWithBugfix';
 import { setTag } from './internals/native';
 import { nodeIsSet } from './internals/nodeUtil';
 
@@ -18,7 +18,7 @@ import { nodeIsSet } from './internals/nodeUtil';
  *
  */
 function isSet(value: any): value is Set<any> {
-  return nodeIsSet ? nodeIsSet(value) : checkType(value, setTag);
+  return nodeIsSet ? nodeIsSet(value) : getTagWithBugfix(value) === setTag;
 }
 
 export default isSet;

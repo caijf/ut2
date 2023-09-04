@@ -1,7 +1,8 @@
 import allKeys from './allKeys';
 import eq from './eq';
-import getTag from './internals/getTag';
-import { argumentsTag, arrSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, hasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolTag, symbolValueOf } from './internals/native';
+import getTagWithBugfix from './internals/getTagWithBugfix';
+import { argumentsTag, arrSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, hasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolTag } from './internals/native';
+import symbolValueOf from './internals/symbolValueOf';
 import isBuffer from './isBuffer';
 import isFunction from './isFunction';
 import isNil from './isNil';
@@ -60,8 +61,8 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
   }
 
   // 对象标签
-  const tag = getTag(value);
-  if (tag !== getTag(other)) {
+  const tag = getTagWithBugfix(value);
+  if (tag !== getTagWithBugfix(other)) {
     return false;
   }
 
