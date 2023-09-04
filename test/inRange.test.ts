@@ -18,6 +18,13 @@ describe('inRange', () => {
     expect(inRange(0, 5, 1)).toBe(false);
     expect(inRange(5, 5, 1)).toBe(false);
   });
+  it('不包含结束范围', () => {
+    expect(inRange(1, 1)).toBe(false);
+    expect(inRange(0, -5, 0)).toBe(false);
+    expect(inRange(0.1, -0.1, 0.1)).toBe(false);
+    expect(inRange(0.3, -0.3, 0.3)).toBe(false);
+    expect(inRange(1.1, -1.1, 1.1)).toBe(false);
+  });
   it('开始范围和结束范围一样，始终返回 `false`', () => {
     expect(inRange(1, 1, 1)).toBe(false);
     expect(inRange(0, 0, 0)).toBe(false);
