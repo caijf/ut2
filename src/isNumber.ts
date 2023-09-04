@@ -27,7 +27,7 @@ import { numberTag, objectToString } from './internals/native';
  * isNumber(null); // false
  *
  */
-function isNumber(value: any) {
+function isNumber(value: any): value is number {
   return typeof value === 'number' || objectToString.call(value) === numberTag;
 }
 

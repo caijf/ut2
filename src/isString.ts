@@ -17,7 +17,7 @@ import { objectToString, stringTag } from './internals/native';
  * isString(1); // false
  *
  */
-function isString(value: any) {
+function isString(value: any): value is string {
   return typeof value === 'string' || objectToString.call(value) === stringTag;
 }
 

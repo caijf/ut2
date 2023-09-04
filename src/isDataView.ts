@@ -14,7 +14,7 @@ import { dataViewTag } from './internals/native';
  * isDataView(new DataView(new ArrayBuffer(8))); // true
  *
  */
-function isDataView(value: any) {
+function isDataView(value: any): value is DataView {
   return getTagWithBugfix(value) === dataViewTag;
 }
 

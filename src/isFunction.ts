@@ -17,7 +17,7 @@ import { functionTags, objectToString } from './internals/native';
  * isFunction(/x/); // false
  *
  */
-function isFunction(value: any) {
+function isFunction(value: any): value is (...args: any[]) => any {
   if (typeof value === 'function') {
     return true;
   }

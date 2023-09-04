@@ -17,7 +17,7 @@ import { objectToString, symbolTag } from './internals/native';
  * isSymbol("abc"); // false
  *
  */
-function isSymbol(value: any) {
+function isSymbol(value: any): value is symbol {
   return typeof value === 'symbol' || objectToString.call(value) === symbolTag;
 }
 

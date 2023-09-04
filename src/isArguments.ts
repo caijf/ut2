@@ -17,7 +17,7 @@ import isObjectLike from './isObjectLike';
  * isArguments([1, 2, 3]); // false
  *
  */
-function isArguments(value: any) {
+function isArguments(value: any): value is IArguments {
   if (supportedArgumentsType) {
     return objectToString.call(value) === argumentsTag;
   }

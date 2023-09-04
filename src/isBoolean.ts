@@ -21,7 +21,7 @@ import { booleanTag, objectToString } from './internals/native';
  * isBoolean(null); // false
  *
  */
-function isBoolean(value: any) {
+function isBoolean(value: any): value is boolean {
   return value === true || value === false || objectToString.call(value) === booleanTag;
 }
 

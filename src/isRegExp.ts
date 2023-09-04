@@ -16,7 +16,7 @@ import { nodeIsRegExp } from './internals/nodeUtil';
  * isRegExp('/abc/'); // false
  *
  */
-function isRegExp(value: any) {
+function isRegExp(value: any): value is RegExp {
   return nodeIsRegExp ? nodeIsRegExp(value) : objectToString.call(value) === regExpTag;
 }
 
