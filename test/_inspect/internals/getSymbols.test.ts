@@ -1,8 +1,11 @@
-const nativeActual = jest.requireActual('../../../src/internals/native.ts');
-jest.mock('../../../src/internals/native.ts', () => ({
-  ...nativeActual,
-  objectGetOwnPropertySymbols: undefined
-}));
+jest.mock('../../../src/internals/native.ts', () => {
+  const originalModule = jest.requireActual('../../../src/internals/native.ts');
+
+  return {
+    ...originalModule,
+    objectGetOwnPropertySymbols: undefined
+  };
+});
 
 import getSymbols from '../../../src/internals/getSymbols';
 

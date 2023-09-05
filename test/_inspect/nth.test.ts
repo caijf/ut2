@@ -1,7 +1,10 @@
-const nativeActual = jest.requireActual('../../src/internals/native.ts');
-jest.mock('../../src/internals/native.ts', () => ({
-  ...nativeActual,
-  arrayAt: undefined
-}));
+jest.mock('../../src/internals/native.ts', () => {
+  const originalModule = jest.requireActual('../../src/internals/native.ts');
+
+  return {
+    ...originalModule,
+    arrayAt: undefined
+  };
+});
 
 import '../nth.test';

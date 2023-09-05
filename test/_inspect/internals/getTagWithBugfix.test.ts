@@ -1,9 +1,10 @@
-const nativeActual = jest.requireActual('../../../src/internals/native.ts');
 const typeArray = ['DataView', 'Map', 'Promise', 'Set', 'WeakMap'].map((item) => `[object ${item}]`);
 
 jest.mock('../../../src/internals/native.ts', () => {
+  const originalModule = jest.requireActual('../../../src/internals/native.ts');
+
   return {
-    ...nativeActual,
+    ...originalModule,
     objectToString() {
       const result = Object.prototype.toString.call(this);
       if (typeArray.includes(result)) {
@@ -14,9 +15,19 @@ jest.mock('../../../src/internals/native.ts', () => {
   };
 });
 
+jest.mock('../../../src/internals/nodeUtil.ts', () => {
+  const originalModule = jest.requireActual('../../../src/internals/nodeUtil.ts');
+
+  return {
+    ...originalModule,
+    nodeIsMap: undefined,
+    nodeIsSet: undefined
+  };
+});
+
 import getTagWithBugfix from '../../../src/internals/getTagWithBugfix';
-import '../isMap.test';
-import '../isSet.test';
+import '../../isMap.test';
+import '../../isSet.test';
 import '../../isDataView.test';
 import '../../isWeakMap.test';
 

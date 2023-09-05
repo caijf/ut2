@@ -1,8 +1,11 @@
-const nativeActual = jest.requireActual('../../src/internals/native.ts');
-jest.mock('../../src/internals/native.ts', () => ({
-  ...nativeActual,
-  symbolProto: undefined
-}));
+jest.mock('../../src/internals/native.ts', () => {
+  const originalModule = jest.requireActual('../../src/internals/native.ts');
+
+  return {
+    ...originalModule,
+    symbolProto: undefined
+  };
+});
 
 import { toString } from '../../src';
 
