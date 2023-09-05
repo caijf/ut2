@@ -1,14 +1,15 @@
 import allKeys from './allKeys';
 import eq from './eq';
 import getTagWithBugfix from './internals/getTagWithBugfix';
-import { argumentsTag, arrSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, hasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolTag } from './internals/native';
-import symbolValueOf from './internals/symbolValueOf';
+import { argumentsTag, arrSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, hasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolProto, symbolTag } from './internals/native';
 import isBuffer from './isBuffer';
 import isFunction from './isFunction';
 import isNil from './isNil';
 import isObjectLike from './isObjectLike';
 import isTypedArray from './isTypedArray';
 import orderBy from './orderBy';
+
+const symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
 
 function mapToArray(map: Map<any, any>) {
   const result: [any, any][] = [];
