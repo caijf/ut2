@@ -1,5 +1,5 @@
 import getTag from './internals/getTag';
-import { functionToString, hasOwnProperty, objectTag } from './internals/native';
+import { functionToString, hasOwnProperty, objectGetPrototypeOf, objectTag } from './internals/native';
 import isObjectLike from './isObjectLike';
 
 const objectCtorString = functionToString.call(Object);
@@ -31,7 +31,7 @@ function isPlainObject(value: any) {
   if (!isObjectLike(value) || getTag(value) !== objectTag) {
     return false;
   }
-  const proto = Object.getPrototypeOf(Object(value));
+  const proto = objectGetPrototypeOf(Object(value));
 
   // Object.create(null)
   if (proto === null) {

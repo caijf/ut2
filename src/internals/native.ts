@@ -1,20 +1,19 @@
 export const objectProto = Object.prototype;
-
 export const objectToString = objectProto.toString;
-
 export const objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
-
+export const objectGetPrototypeOf = Object.getPrototypeOf;
+export const objectKeys = Object.keys;
 export const hasOwnProperty = objectProto.hasOwnProperty;
-
 export const propertyIsEnumerable = objectProto.propertyIsEnumerable;
 
 export const functionToString = Function.prototype.toString;
 
-export const symbolProto = Symbol ? Symbol.prototype : undefined;
-export const symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+const symbolExisted = typeof Symbol !== 'undefined';
+export const symbolProto = symbolExisted ? Symbol.prototype : undefined;
+export const symToStringTag = symbolExisted ? Symbol.toStringTag : undefined;
 
 export const arrayProto = Array.prototype;
-export const arrSlice = Array.prototype.slice;
+export const arrSlice = arrayProto.slice;
 export const arrayAt = arrayProto.at;
 
 export const numberIsFinite = Number.isFinite;

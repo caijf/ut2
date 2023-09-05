@@ -18,8 +18,11 @@
  *
  */
 function isBuffer(value: any): value is Buffer {
-  if (typeof Buffer === 'function' && typeof Buffer.isBuffer === 'function') {
-    return Buffer.isBuffer(value);
+  if (typeof Buffer === 'function') {
+    const { isBuffer } = Buffer;
+    if (typeof isBuffer === 'function') {
+      return isBuffer(value);
+    }
   }
   return false;
 }

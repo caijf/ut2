@@ -1,4 +1,5 @@
 import getSymbols from './getSymbols';
+import { objectGetPrototypeOf } from './native';
 
 /**
  * 创建一个数组，包含自身以及继承的可枚举 `symbol` 属性。
@@ -18,7 +19,7 @@ function getSymbolsIn(object: object) {
         result.push(item);
       }
     });
-    o = Object.getPrototypeOf(o);
+    o = objectGetPrototypeOf(o);
   }
 
   return result;

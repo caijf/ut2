@@ -1,4 +1,5 @@
 import getSymbols from './internals/getSymbols';
+import { objectKeys } from './internals/native';
 import isObject from './isObject';
 
 /**
@@ -27,7 +28,7 @@ function allKeys<T extends object>(object: T) {
   if (!isObject(object)) {
     return [];
   }
-  return (Object.keys(object) as (string | symbol)[]).concat(getSymbols(object));
+  return (objectKeys(object) as (string | symbol)[]).concat(getSymbols(object));
 }
 
 export default allKeys;
