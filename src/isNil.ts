@@ -20,7 +20,7 @@
  *
  * isNil(1); // false
  */
-function isNil(value: any) {
+function isNil(value: any): value is undefined | null {
   return value == null;
 }
 
