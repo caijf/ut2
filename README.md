@@ -18,16 +18,16 @@
 
 安装依赖
 
-#### npm
-
 ```shell
 npm install ut2
 ```
 
-#### yarn
-
 ```shell
 yarn add ut2
+```
+
+```shell
+pnpm add ut2
 ```
 
 ### 浏览器原生开发环境
