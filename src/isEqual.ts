@@ -1,7 +1,7 @@
 import allKeys from './allKeys';
 import eq from './eq';
 import getTagWithBugfix from './internals/getTagWithBugfix';
-import { argumentsTag, arrSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, hasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolProto, symbolTag } from './internals/native';
+import { argumentsTag, arrayProtoSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, objectProtoHasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolProto, symbolTag } from './internals/native';
 import isBuffer from './isBuffer';
 import isFunction from './isFunction';
 import isNil from './isNil';
@@ -28,7 +28,7 @@ function setToArray(set: Set<any>) {
 }
 
 function argToArray(arg: IArguments) {
-  return arrSlice.call(arg);
+  return arrayProtoSlice.call(arg);
 }
 
 function toBufferView(bufferSource: any) {
@@ -190,7 +190,7 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
           continue;
         }
       }
-      if (!(hasOwnProperty.call(other, key) && isEqualDeep(value[key], other[key], customizer, strictCheck, valueStack, otherStack))) {
+      if (!(objectProtoHasOwnProperty.call(other, key) && isEqualDeep(value[key], other[key], customizer, strictCheck, valueStack, otherStack))) {
         return false;
       }
 

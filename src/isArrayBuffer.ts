@@ -1,4 +1,4 @@
-import { arrayBufferTag, objectToString } from './internals/native';
+import { arrayBufferTag, objectProtoToString } from './internals/native';
 import { nodeIsArrayBuffer } from './internals/nodeUtil';
 
 /**
@@ -19,7 +19,7 @@ import { nodeIsArrayBuffer } from './internals/nodeUtil';
  *
  */
 function isArrayBuffer(value: any) {
-  return nodeIsArrayBuffer ? nodeIsArrayBuffer(value) : objectToString.call(value) === arrayBufferTag;
+  return nodeIsArrayBuffer ? nodeIsArrayBuffer(value) : objectProtoToString.call(value) === arrayBufferTag;
 }
 
 export default isArrayBuffer;

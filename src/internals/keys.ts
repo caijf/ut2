@@ -1,5 +1,5 @@
 import isPrototype from './isPrototype';
-import { hasOwnProperty, objectKeys } from './native';
+import { objectProtoHasOwnProperty, objectKeys } from './native';
 
 /**
  * 获取对象的键，忽略 `constructor` 。
@@ -14,7 +14,7 @@ function keys(value: object) {
   }
   const result = [];
   for (const key in Object(value)) {
-    if (hasOwnProperty.call(value, key) && key !== 'constructor') {
+    if (objectProtoHasOwnProperty.call(value, key) && key !== 'constructor') {
       result.push(key);
     }
   }

@@ -1,4 +1,4 @@
-import { objectToString, objectTag, dataViewTag, mapTag, promiseTag, setTag, weakMapTag } from './native';
+import { objectProtoToString, objectTag, dataViewTag, mapTag, promiseTag, setTag, weakMapTag } from './native';
 import { toSource } from './helpers';
 import getTag from './getTag';
 
@@ -19,11 +19,11 @@ let getTagWithBugfix = getTag;
 // 以下数据类型执行 `Object.prototype.toString` 返回错误结果 `[object Object]`：
 // ie11 的 DataView、Map、Set、WeakMap ，node.js 版本 < 6 的 Promise 。
 if (
-  (dataViewExisted && objectToString.call(new DataView(new ArrayBuffer(1))) !== dataViewTag) ||
-  (mapExisted && objectToString.call(new Map()) !== mapTag) ||
-  (promiseExisted && objectToString.call(Promise.resolve()) !== promiseTag) ||
-  (setExisted && objectToString.call(new Set()) !== setTag) ||
-  (weakMapExisted && objectToString.call(new WeakMap()) !== weakMapTag)
+  (dataViewExisted && objectProtoToString.call(new DataView(new ArrayBuffer(1))) !== dataViewTag) ||
+  (mapExisted && objectProtoToString.call(new Map()) !== mapTag) ||
+  (promiseExisted && objectProtoToString.call(Promise.resolve()) !== promiseTag) ||
+  (setExisted && objectProtoToString.call(new Set()) !== setTag) ||
+  (weakMapExisted && objectProtoToString.call(new WeakMap()) !== weakMapTag)
 ) {
   getTagWithBugfix = function (value: any) {
     const result = getTag(value);

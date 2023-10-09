@@ -1,8 +1,8 @@
 import getTag from './internals/getTag';
-import { functionToString, hasOwnProperty, objectGetPrototypeOf, objectTag } from './internals/native';
+import { functionProtoToString, objectProtoHasOwnProperty, objectGetPrototypeOf, objectTag } from './internals/native';
 import isObjectLike from './isObjectLike';
 
-const objectCtorString = functionToString.call(Object);
+const objectCtorString = functionProtoToString.call(Object);
 
 /**
  * 检查值是否为普通对象，即由 `Object` 构造函数创建或 `[[Prototype]]` 为 `null` 的对象。
@@ -38,9 +38,9 @@ function isPlainObject(value: any) {
     return true;
   }
 
-  const Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  const Ctor = objectProtoHasOwnProperty.call(proto, 'constructor') && proto.constructor;
   // 这里如果直接比较 proto.constructor === Object ，iframe 嵌套会导致结果不准确。
-  return typeof Ctor === 'function' && Ctor instanceof Ctor && functionToString.call(Ctor) === objectCtorString;
+  return typeof Ctor === 'function' && Ctor instanceof Ctor && functionProtoToString.call(Ctor) === objectCtorString;
 }
 
 export default isPlainObject;

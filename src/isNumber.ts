@@ -1,4 +1,4 @@
-import { numberTag, objectToString } from './internals/native';
+import { numberTag, objectProtoToString } from './internals/native';
 
 /**
  * 检查值是否为数字类型或对象。
@@ -28,7 +28,7 @@ import { numberTag, objectToString } from './internals/native';
  *
  */
 function isNumber(value: any): value is number {
-  return typeof value === 'number' || objectToString.call(value) === numberTag;
+  return typeof value === 'number' || objectProtoToString.call(value) === numberTag;
 }
 
 export default isNumber;

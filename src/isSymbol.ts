@@ -1,4 +1,4 @@
-import { objectToString, symbolTag } from './internals/native';
+import { objectProtoToString, symbolTag } from './internals/native';
 
 /**
  * 检查值是否为 `Symbol` 类型或对象。
@@ -18,7 +18,7 @@ import { objectToString, symbolTag } from './internals/native';
  *
  */
 function isSymbol(value: any): value is symbol {
-  return typeof value === 'symbol' || objectToString.call(value) === symbolTag;
+  return typeof value === 'symbol' || objectProtoToString.call(value) === symbolTag;
 }
 
 export default isSymbol;

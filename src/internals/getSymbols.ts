@@ -1,5 +1,4 @@
-import { objectGetOwnPropertySymbols } from './native';
-import { propertyIsEnumerable } from './native';
+import { objectGetOwnPropertySymbols, objectProtoPropertyIsEnumerable } from './native';
 
 /**
  * 创建一个数组，包含自身的可枚举 `symbol` 属性。
@@ -13,7 +12,7 @@ function getSymbols(object: object) {
     return [];
   }
 
-  return objectGetOwnPropertySymbols(object).filter((item) => propertyIsEnumerable.call(object, item));
+  return objectGetOwnPropertySymbols(object).filter((item) => objectProtoPropertyIsEnumerable.call(object, item));
 }
 
 export default getSymbols;

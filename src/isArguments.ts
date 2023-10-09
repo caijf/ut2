@@ -1,4 +1,4 @@
-import { argumentsTag, hasOwnProperty, objectToString, propertyIsEnumerable } from './internals/native';
+import { argumentsTag, objectProtoHasOwnProperty, objectProtoToString, objectProtoPropertyIsEnumerable } from './internals/native';
 import { supportedArgumentsType } from './internals/helpers';
 import isObjectLike from './isObjectLike';
 
@@ -19,9 +19,9 @@ import isObjectLike from './isObjectLike';
  */
 function isArguments(value: any): value is IArguments {
   if (supportedArgumentsType) {
-    return objectToString.call(value) === argumentsTag;
+    return objectProtoToString.call(value) === argumentsTag;
   }
-  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') && !propertyIsEnumerable.call(value, 'callee');
+  return isObjectLike(value) && objectProtoHasOwnProperty.call(value, 'callee') && !objectProtoPropertyIsEnumerable.call(value, 'callee');
 }
 
 export default isArguments;

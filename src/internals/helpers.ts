@@ -1,4 +1,4 @@
-import { argumentsTag, functionToString, objectToString } from './native';
+import { argumentsTag, functionProtoToString, objectProtoToString } from './native';
 
 /**
  * ut2 版本号。
@@ -9,14 +9,14 @@ import { argumentsTag, functionToString, objectToString } from './native';
 export const VERSION = BUILD_VERSION;
 
 // @ts-ignore
-export const supportedArgumentsType = objectToString.call((() => arguments)()) === argumentsTag;
+export const supportedArgumentsType = objectProtoToString.call((() => arguments)()) === argumentsTag;
 
 export const FUNC_ERROR_TEXT = 'Expected a function';
 
 export function toSource(func: any) {
   if (func !== null) {
     try {
-      return functionToString.call(func);
+      return functionProtoToString.call(func);
     } catch (e) {
       /* empty */
     }

@@ -1,4 +1,4 @@
-import { blobTag, objectToString } from './internals/native';
+import { blobTag, objectProtoToString } from './internals/native';
 
 // Blob 对象是否存在
 const blobExisted = typeof Blob !== 'undefined';
@@ -29,7 +29,7 @@ function isBlob(value: any): value is Blob {
   if (blobExisted && value instanceof Blob) {
     return true;
   }
-  return objectToString.call(value) === blobTag;
+  return objectProtoToString.call(value) === blobTag;
 }
 
 export default isBlob;

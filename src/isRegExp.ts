@@ -1,4 +1,4 @@
-import { objectToString, regExpTag } from './internals/native';
+import { objectProtoToString, regExpTag } from './internals/native';
 import { nodeIsRegExp } from './internals/nodeUtil';
 
 /**
@@ -17,7 +17,7 @@ import { nodeIsRegExp } from './internals/nodeUtil';
  *
  */
 function isRegExp(value: any): value is RegExp {
-  return nodeIsRegExp ? nodeIsRegExp(value) : objectToString.call(value) === regExpTag;
+  return nodeIsRegExp ? nodeIsRegExp(value) : objectProtoToString.call(value) === regExpTag;
 }
 
 export default isRegExp;

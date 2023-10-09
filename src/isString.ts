@@ -1,4 +1,4 @@
-import { objectToString, stringTag } from './internals/native';
+import { objectProtoToString, stringTag } from './internals/native';
 
 /**
  * 检查值是否为字符串类型或对象。
@@ -18,7 +18,7 @@ import { objectToString, stringTag } from './internals/native';
  *
  */
 function isString(value: any): value is string {
-  return typeof value === 'string' || objectToString.call(value) === stringTag;
+  return typeof value === 'string' || objectProtoToString.call(value) === stringTag;
 }
 
 export default isString;

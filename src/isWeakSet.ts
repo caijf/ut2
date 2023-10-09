@@ -1,4 +1,4 @@
-import { objectToString, weakSetTag } from './internals/native';
+import { objectProtoToString, weakSetTag } from './internals/native';
 
 /**
  * 检查值是否为 `WeakSet` 对象。
@@ -16,7 +16,7 @@ import { objectToString, weakSetTag } from './internals/native';
  *
  */
 function isWeakSet(value: any): value is WeakSet<any> {
-  return objectToString.call(value) === weakSetTag;
+  return objectProtoToString.call(value) === weakSetTag;
 }
 
 export default isWeakSet;

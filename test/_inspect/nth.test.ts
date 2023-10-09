@@ -3,7 +3,7 @@ jest.mock('../../src/internals/native.ts', () => {
 
   return {
     ...originalModule,
-    arrayAt: undefined
+    arrayProtoAt: undefined
   };
 });
 

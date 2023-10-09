@@ -1,4 +1,4 @@
-import { dateTag, objectToString } from './internals/native';
+import { dateTag, objectProtoToString } from './internals/native';
 import { nodeIsDate } from './internals/nodeUtil';
 
 /**
@@ -17,7 +17,7 @@ import { nodeIsDate } from './internals/nodeUtil';
  *
  */
 function isDate(value: any): value is Date {
-  return nodeIsDate ? nodeIsDate(value) : objectToString.call(value) === dateTag;
+  return nodeIsDate ? nodeIsDate(value) : objectProtoToString.call(value) === dateTag;
 }
 
 export default isDate;

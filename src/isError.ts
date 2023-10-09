@@ -1,4 +1,4 @@
-import { domExceptionTag, errorTag, objectToString } from './internals/native';
+import { domExceptionTag, errorTag, objectProtoToString } from './internals/native';
 import isObjectLike from './isObjectLike';
 
 /**
@@ -25,7 +25,7 @@ function isError(value: any) {
   if (value instanceof Error) {
     return true;
   }
-  const tag = objectToString.call(value);
+  const tag = objectProtoToString.call(value);
   return tag === errorTag || tag === domExceptionTag;
 }
 

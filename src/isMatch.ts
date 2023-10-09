@@ -1,10 +1,10 @@
 import allKeys from './allKeys';
-import { objectTag, objectToString } from './internals/native';
+import { objectTag, objectProtoToString } from './internals/native';
 import isEqual from './isEqual';
 
 // 是否需要深比较
 function isDeepComparable(object: any, source: any) {
-  return objectToString.call(object) === objectTag && objectToString.call(source) === objectTag;
+  return objectProtoToString.call(object) === objectTag && objectProtoToString.call(source) === objectTag;
 }
 
 type Customizer = (objValue: any, srcValue: any, key?: number | string | symbol, object?: any, source?: any, objStack?: any[], srcStack?: any[]) => void | boolean;

@@ -5,7 +5,7 @@ jest.mock('../../../src/internals/native.ts', () => {
 
   return {
     ...originalModule,
-    objectToString() {
+    objectProtoToString() {
       const result = Object.prototype.toString.call(this);
       if (typeArray.includes(result)) {
         return '[object Object]';
