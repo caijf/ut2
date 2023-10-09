@@ -1,4 +1,4 @@
-import { MAX_SAFE_INTEGER, numberIsSafeInteger } from './internals/native';
+import { MAX_SAFE_INTEGER, mathAbs, numberIsSafeInteger } from './internals/native';
 import isInteger from './isInteger';
 
 /**
@@ -27,7 +27,7 @@ import isInteger from './isInteger';
  *
  */
 function isSafeInteger(value: any): value is number {
-  return numberIsSafeInteger ? numberIsSafeInteger(value) : isInteger(value) && Math.abs(value) <= MAX_SAFE_INTEGER;
+  return numberIsSafeInteger ? numberIsSafeInteger(value) : isInteger(value) && mathAbs(value) <= MAX_SAFE_INTEGER;
 }
 
 export default isSafeInteger;

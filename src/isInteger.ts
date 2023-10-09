@@ -1,4 +1,4 @@
-import { numberIsInteger } from './internals/native';
+import { mathFloor, numberIsInteger } from './internals/native';
 import isFinite from './isFinite';
 
 /**
@@ -25,7 +25,7 @@ import isFinite from './isFinite';
  *
  */
 function isInteger(value: any): value is number {
-  return numberIsInteger ? numberIsInteger(value) : isFinite(value) && Math.floor(value) === value;
+  return numberIsInteger ? numberIsInteger(value) : isFinite(value) && mathFloor(value) === value;
 }
 
 export default isInteger;

@@ -1,3 +1,4 @@
+import { mathCeil } from './internals/native';
 import isArray from './isArray';
 import toLength from './toLength';
 
@@ -28,7 +29,7 @@ function chunk<T>(array: T[], size = 1) {
   }
 
   const length = array.length;
-  const result: T[][] = Array(Math.ceil(length / size));
+  const result: T[][] = Array(mathCeil(length / size));
   let resIndex = 0,
     index = 0;
 

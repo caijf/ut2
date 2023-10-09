@@ -18,6 +18,13 @@ export const arrayProto = Array.prototype;
 export const arrayProtoSlice = arrayProto.slice;
 export const arrayProtoAt = arrayProto.at;
 
+export const mathMin = Math.min;
+export const mathMax = Math.max;
+export const mathRandom = Math.random;
+export const mathFloor = Math.floor;
+export const mathCeil = Math.ceil;
+export const mathAbs = Math.abs;
+
 export const numberIsFinite = Number.isFinite;
 export const numberIsInteger = Number.isInteger;
 export const numberIsSafeInteger = Number.isSafeInteger;

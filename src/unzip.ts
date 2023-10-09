@@ -1,3 +1,4 @@
+import { mathMax } from './internals/native';
 import isArray from './isArray';
 import isArrayLikeObject from './isArrayLikeObject';
 
@@ -23,7 +24,7 @@ function unzip(array: any[][]) {
   let length = 0;
   array = array.filter((group) => {
     if (isArrayLikeObject(group)) {
-      length = Math.max(group.length, length);
+      length = mathMax(group.length, length);
       return true;
     }
     return false;

@@ -1,5 +1,5 @@
 import identity from './identity';
-import { MAX_ARRAY_LENGTH, MAX_SAFE_INTEGER } from './internals/native';
+import { MAX_ARRAY_LENGTH, MAX_SAFE_INTEGER, mathFloor, mathMin } from './internals/native';
 import isInteger from './isInteger';
 import isFinite from './isFinite';
 
@@ -31,7 +31,7 @@ function times<T>(n: number, iteratee = identity): T[] {
   }
 
   let index = 0;
-  const length = Math.min(isInteger(n) ? n : Math.floor(isFinite(n) ? n : 0), MAX_ARRAY_LENGTH);
+  const length = mathMin(isInteger(n) ? n : mathFloor(isFinite(n) ? n : 0), MAX_ARRAY_LENGTH);
   const result = Array(length);
   const func = typeof iteratee === 'function' ? iteratee : identity;
 

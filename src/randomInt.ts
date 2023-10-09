@@ -1,3 +1,4 @@
+import { mathCeil, mathFloor, mathMax, mathMin, mathRandom } from './internals/native';
 import toFinite from './toFinite';
 
 /**
@@ -25,8 +26,8 @@ import toFinite from './toFinite';
 function randomInt(lower = 0, upper = 1) {
   lower = toFinite(lower);
   upper = toFinite(upper);
-  let min = Math.ceil(Math.min(lower, upper) || 0);
-  let max = Math.floor(Math.max(lower, upper) || 0);
+  let min = mathCeil(mathMin(lower, upper) || 0);
+  let max = mathFloor(mathMax(lower, upper) || 0);
 
   // 如果两个值都是整数位相同，浮点数不同， 大小值的可能会互换。（如 1.2, 1.3）
   if (min > max) {
@@ -36,7 +37,7 @@ function randomInt(lower = 0, upper = 1) {
     max = temp;
   }
 
-  return Math.floor(min + Math.random() * (max - min + 1));
+  return mathFloor(min + mathRandom() * (max - min + 1));
 }
 
 export default randomInt;

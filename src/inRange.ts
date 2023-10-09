@@ -1,3 +1,4 @@
+import { mathMax, mathMin } from './internals/native';
 import toNumber from './toNumber';
 
 /**
@@ -36,7 +37,7 @@ function inRange(number: number, start: number, end = 0) {
   number = toNumber(number);
   start = toNumber(start);
   end = toNumber(end);
-  return number >= Math.min(start, end) && number < Math.max(start, end);
+  return number >= mathMin(start, end) && number < mathMax(start, end);
 }
 
 export default inRange;

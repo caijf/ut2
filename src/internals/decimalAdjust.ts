@@ -2,6 +2,7 @@ import isFinite from '../isFinite';
 import toInteger from '../toInteger';
 import toNumber from '../toNumber';
 import toString from '../toString';
+import { mathMin } from './native';
 
 /**
  * 数字调整。
@@ -16,7 +17,7 @@ function decimalAdjust(type: 'floor' | 'ceil' | 'round', value: number, precisio
   const func = Math[type];
 
   value = toNumber(value);
-  precision = Math.min(toInteger(precision), 292);
+  precision = mathMin(toInteger(precision), 292);
 
   if (precision === 0 || !isFinite(value)) {
     return func(value);

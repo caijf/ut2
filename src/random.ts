@@ -1,3 +1,4 @@
+import { mathMax, mathMin, mathRandom } from './internals/native';
 import toFinite from './toFinite';
 
 /**
@@ -25,9 +26,9 @@ import toFinite from './toFinite';
 function random(lower = 0, upper = 1) {
   lower = toFinite(lower);
   upper = toFinite(upper);
-  const min = Math.min(lower, upper);
-  const max = Math.max(lower, upper);
-  return min + Math.random() * (max - min);
+  const min = mathMin(lower, upper);
+  const max = mathMax(lower, upper);
+  return min + mathRandom() * (max - min);
 }
 
 export default random;
