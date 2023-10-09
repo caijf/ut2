@@ -12,7 +12,7 @@ jobs:
   matrix_test:
     strategy:
       matrix:
-        version: [14, 16, 18, 20]
+        version: [16, 18, 20]
     runs-on: ubuntu-latest
     environment: github-pages
     steps:
