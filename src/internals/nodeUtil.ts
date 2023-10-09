@@ -1,5 +1,3 @@
-import root from './root';
-
 // `exports`
 const freeExports = typeof exports === 'object' && exports && !exports.nodeType && exports;
 
@@ -7,21 +5,12 @@ const freeExports = typeof exports === 'object' && exports && !exports.nodeType 
 // `module`
 const freeModule = freeExports && typeof module === 'object' && module && !module.nodeType && module;
 
-// `module.exports`
-const moduleExports = freeModule && freeModule.exports === freeExports;
-
-// `process` from Node.js
-const freeProcess = moduleExports && root.process;
-
 const nodeUtil = (function () {
   try {
     const types = freeModule && freeModule.require && freeModule.require('util').types;
     if (types) {
       return types;
     }
-
-    // Legacy `process.binding('util')` for Node.js < 10
-    return freeProcess && freeProcess.binding && freeProcess.binding('util');
   } catch (e) {
     /* empty */
   }
