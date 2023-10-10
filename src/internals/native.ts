@@ -29,6 +29,10 @@ export const numberIsFinite = Number.isFinite;
 export const numberIsInteger = Number.isInteger;
 export const numberIsSafeInteger = Number.isSafeInteger;
 
+export const globalThisExisted = typeof globalThis === 'object' && globalThis;
+export const globalExisted = typeof global === 'object' && global;
+export const selfExisted = typeof self === 'object' && self;
+
 /**
  * 最大安全整数。
  *
