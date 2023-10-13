@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>性能测试</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      ;
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ccc;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: 5px;
+    }
+
+    thead th {
+      background-color: #eee;
+    }
+
+    td {
+      text-align: right;
+    }
+
+    tr.fastest td {
+      background-color: #33691E;
+      color: #fff;
+    }
+
+    tr:nth-child(6n+1),
+    tr:nth-child(6n+2),
+    tr:nth-child(6n+3) {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>性能测试</h1>
+  <p>测试结果受运行环境影响，仅供参考。运行时请耐心等待几分钟。<input type="color" value="#33691E" disabled /> 表示执行最快的。</p>
+  <br />
+  <p id="cache" style="display: none; font-size: 13px; color: #666;">当前读取缓存结果，缓存日期 <span id="cacheDate"></span> 。<button
+      id="cacheClearButton">点击清除缓存并重新测试</button></p>
+  <br />
+  <table>
+    <thead>
+      <tr>
+        <th>方法说明</th>
+        <th>测试用例</th>
+        <th>实际调用</th>
+        <th>每秒执行次数</th>
+        <th>波动范围</th>
+        <th>抽样次数</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
+  <script>var underscore = _.noConflict();</script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script src="https://unpkg.com/platform@1.3.6/platform.js"></script>
+  <script src="https://unpkg.com/benchmark@2.1.4/benchmark.js"></script>
+  <script src="https://unpkg.com/ut2@1.5.2/dist/ut2.min.js"></script>
+  <script src="https://unpkg.com/cache2@1.0.4/dist/cache2.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+  <script src="./fastest.js"></script>
+  <script>
+    const storage = new Cache2('ut2', {
+      storage: window.localStorage
+    });
+    const cacheKey = 'benchmark-result';
+    const cache = storage.get(cacheKey);
+
+    const oCacheElement = document.getElementById('cache');
+    const oCacheDateElement = document.getElementById('cacheDate');
+    const oCacheClearButton = document.getElementById('cacheClearButton');
+
+    let result;
+
+    if (cache) {
+      result = cache.data;
+      oCacheElement.style.display = '';
+      oCacheDateElement.innerHTML = dayjs(cache.date).format('YYYY-MM-DD HH:mm:ss');
+    } else {
+      result = fastest({
+        Benchmark, ut2, underscore, lodash: _
+      });
+      storage.set(cacheKey, {
+        date: Date.now(),
+        data: result
+      });
+    }
+
+    oCacheClearButton.addEventListener('click', function () {
+      storage.del(cacheKey);
+      location.reload();
+    });
+
+    const keys = Object.keys(result);
+
+    const fragment = document.createDocumentFragment();
+    const libs = ['underscore', 'lodash', 'ut2'];
+
+    keys.forEach(key => {
+      const methods = result[key];
+      methods.forEach((item, index) => {
+        libs.forEach((libItem, libIndex) => {
+          const tr = document.createElement('tr');
+
+          if (libItem === item.$fastest) {
+            tr.setAttribute('class', 'fastest');
+          }
+
+          if (index === 0 && libIndex === 0) {
+            const th = document.createElement('th');
+            th.setAttribute('rowspan', methods.length * 3);
+            th.innerHTML = key;
+            tr.appendChild(th);
+          }
+
+          if (libIndex === 0) {
+            const th = document.createElement('th');
+            th.setAttribute('rowspan', 3);
+            th.innerHTML = item.$case;
+            tr.appendChild(th);
+          }
+          const td1 = document.createElement('td');
+          const td2 = document.createElement('td');
+          const td3 = document.createElement('td');
+          const td4 = document.createElement('td');
+
+          td1.innerHTML = item[libItem].case;
+          td2.innerHTML = item[libItem].hz;
+          td3.innerHTML = item[libItem].rme;
+          td4.innerHTML = item[libItem].sampled;
+
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          tr.appendChild(td4);
+
+          fragment.appendChild(tr);
+        });
+      });
+    });
+
+    const oTbody = document.querySelector('tbody');
+    oTbody.innerHTML = '';
+    oTbody.appendChild(fragment);
+  </script>
+</body>
+
+</html>
