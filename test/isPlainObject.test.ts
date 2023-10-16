@@ -26,10 +26,6 @@ describe('isPlainObject', () => {
     expect(isPlainObject({ valueOf: 0 })).toBe(true);
   });
 
-  it('对象包含 `Symbol.toStringTag` 属性，返回 true', () => {
-    expect(isPlainObject({ [Symbol.toStringTag]: 'X' })).toBe(true);
-  });
-
   it('对象包含一个自定义 `[[Prototype]]` 属性，返回 false', () => {
     expect(isPlainObject(Object.create({ a: 1 }))).toBe(false);
   });

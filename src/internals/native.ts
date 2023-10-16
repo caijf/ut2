@@ -12,7 +12,6 @@ export const functionProtoToString = functionProto.toString;
 
 const symbolExisted = typeof Symbol !== 'undefined';
 export const symbolProto = symbolExisted ? Symbol.prototype : undefined;
-export const symbolToStringTag = symbolExisted ? Symbol.toStringTag : undefined;
 
 export const arrayProto = Array.prototype;
 export const arrayProtoSlice = arrayProto.slice;
