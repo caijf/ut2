@@ -1,6 +1,7 @@
-import { argumentsTag, objectProtoHasOwnProperty, objectProtoToString, objectProtoPropertyIsEnumerable } from './internals/native';
+import { argumentsTag, objectProtoHasOwnProperty, objectProtoPropertyIsEnumerable } from './internals/native';
 import { supportedArgumentsType } from './internals/helpers';
 import isObjectLike from './isObjectLike';
+import getTag from './internals/getTag';
 
 /**
  * 检查值是否为 `arguments` 对象。
@@ -19,7 +20,7 @@ import isObjectLike from './isObjectLike';
  */
 function isArguments(value: any): value is IArguments {
   if (supportedArgumentsType) {
-    return objectProtoToString.call(value) === argumentsTag;
+    return getTag(value) === argumentsTag;
   }
   return isObjectLike(value) && objectProtoHasOwnProperty.call(value, 'callee') && !objectProtoPropertyIsEnumerable.call(value, 'callee');
 }

@@ -1,4 +1,5 @@
-import { argumentsTag, functionProtoToString, objectProtoToString } from './native';
+import getTag from './getTag';
+import { argumentsTag, functionProtoToString } from './native';
 
 /**
  * ut2 版本号。
@@ -9,7 +10,7 @@ import { argumentsTag, functionProtoToString, objectProtoToString } from './nati
 export const VERSION = BUILD_VERSION;
 
 // @ts-ignore
-export const supportedArgumentsType = objectProtoToString.call((() => arguments)()) === argumentsTag;
+export const supportedArgumentsType = getTag((() => arguments)()) === argumentsTag;
 
 export const FUNC_ERROR_TEXT = 'Expected a function';
 

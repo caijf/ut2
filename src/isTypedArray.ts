@@ -1,4 +1,5 @@
-import { objectProtoToString, typedArrayTags } from './internals/native';
+import getTag from './internals/getTag';
+import { typedArrayTags } from './internals/native';
 import { nodeIsTypedArray } from './internals/nodeUtil';
 import isLength from './isLength';
 import isObjectLike from './isObjectLike';
@@ -24,7 +25,7 @@ function isTypedArray(value: any) {
     return nodeIsTypedArray(value);
   }
   if (isObjectLike(value) && isLength(value.length)) {
-    const tag = objectProtoToString.call(value);
+    const tag = getTag(value);
     return typedArrayTags.some((item) => item === tag);
   }
   return false;

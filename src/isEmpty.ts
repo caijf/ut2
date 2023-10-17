@@ -1,8 +1,8 @@
+import getTag from './internals/getTag';
 import keys from './internals/keys';
+import { mapTag, setTag } from './internals/native';
 import isArrayLike from './isArrayLike';
-import isMap from './isMap';
 import isObjectLike from './isObjectLike';
-import isSet from './isSet';
 
 /**
  * 检查值是否为空对象。
@@ -42,7 +42,8 @@ function isEmpty(value: any) {
     return true;
   }
 
-  if (isMap(value) || isSet(value)) {
+  const tag = getTag(value);
+  if (tag === mapTag || tag === setTag) {
     return !value.size;
   }
 

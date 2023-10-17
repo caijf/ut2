@@ -1,4 +1,5 @@
-import { functionTags, objectProtoToString } from './internals/native';
+import getTag from './internals/getTag';
+import { functionTags } from './internals/native';
 
 /**
  * 检查值是否为 `Function` 对象 。
@@ -21,7 +22,7 @@ function isFunction(value: any): value is (...args: any[]) => any {
   if (typeof value === 'function') {
     return true;
   }
-  const tag = objectProtoToString.call(value);
+  const tag = getTag(value);
   return functionTags.some((item) => item === tag);
 }
 
