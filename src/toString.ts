@@ -15,7 +15,7 @@ function baseToString(value: any): string {
     return symbolToString ? symbolToString.call(value) : '';
   }
   const result = '' + value;
-  return result == '0' && 1 / value === -Infinity ? '-0' : result;
+  return result === '0' && 1 / value === -Infinity ? '-0' : result;
 }
 
 /**

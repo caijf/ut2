@@ -82,7 +82,7 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
     case symbolTag:
       return symbolValueOf ? symbolValueOf.call(value) === symbolValueOf.call(other) : false;
     case errorTag:
-      return value.name == other.name && value.message == other.message;
+      return value.name === other.name && value.message === other.message;
     case dataViewTag:
     case arrayBufferTag:
       if (value.byteLength !== other.byteLength || (value.byteOffset && value.byteOffset !== other.byteOffset)) {
