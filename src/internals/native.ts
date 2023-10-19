@@ -15,7 +15,6 @@ export const symbolProto = symbolExisted ? Symbol.prototype : undefined;
 
 export const arrayProto = Array.prototype;
 export const arrayProtoSlice = arrayProto.slice;
-export const arrayProtoAt = arrayProto.at;
 
 export const mathMin = Math.min;
 export const mathMax = Math.max;

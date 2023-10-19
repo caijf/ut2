@@ -1,4 +1,3 @@
-import { arrayProtoAt } from './internals/native';
 import isArrayLike from './isArrayLike';
 
 /**
@@ -26,11 +25,8 @@ function nth<T = any>(array: T[], n = 0): T {
     return undefined as any;
   }
 
-  if (typeof arrayProtoAt === 'function') {
-    return arrayProtoAt.call(array, n);
-  }
-  const index = n < 0 ? n + array.length : n;
-  return array[index];
+  n += n < 0 ? array.length : 0;
+  return array[n];
 }
 
 export default nth;
