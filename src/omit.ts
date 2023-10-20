@@ -30,7 +30,7 @@ function omit<T extends object, K extends keyof T>(object: T, fields: K | K[] = 
   const result: Record<any, any> = {};
 
   keys.forEach((key) => {
-    if (!fieldArr.includes(key)) {
+    if (fieldArr.indexOf(key) === -1) {
       result[key] = object[key];
     }
   });

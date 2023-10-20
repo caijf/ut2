@@ -1,3 +1,4 @@
+import { stubFlase } from './internals/helpers';
 import negate from './negate';
 import pickBy from './pickBy';
 
@@ -23,10 +24,7 @@ import pickBy from './pickBy';
  * omitBy(obj, (value) => value); // {}
  *
  */
-function omitBy<T extends object>(
-  object: T,
-  predicate: (value: any, key: any) => any = () => false
-) {
+function omitBy<T extends object>(object: T, predicate: (value: any, key: any) => any = stubFlase) {
   return pickBy(object, negate(predicate));
 }
 

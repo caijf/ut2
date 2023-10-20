@@ -1,4 +1,5 @@
 import allKeysIn from './allKeysIn';
+import { stubFlase } from './internals/helpers';
 
 /**
  * 创建一个对象，该对象的属性从 `object` 中经 `predicate` （断言函数）判断为真值的属性。
@@ -22,10 +23,7 @@ import allKeysIn from './allKeysIn';
  * pickBy(obj, (value) => value); // { name: "jeff", age: 18 }
  *
  */
-function pickBy<T extends object>(
-  object: T,
-  predicate: (value: any, key: any) => any = () => false
-) {
+function pickBy<T extends object>(object: T, predicate: (value: any, key: any) => any = stubFlase) {
   const result: Partial<T> = {};
 
   if (object === null) {

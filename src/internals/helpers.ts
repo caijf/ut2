@@ -29,3 +29,5 @@ export function toSource(func: any) {
   }
   return '';
 }
+
+export const stubFlase = () => false;
