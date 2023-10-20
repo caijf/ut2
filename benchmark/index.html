@@ -5,18 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>性能测试</title>
+  <!-- modern browser -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ie 11 -->
+  <!-- <script src="https://unpkg.com/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      ;
-    }
-
-    body {
-      padding: 20px;
-    }
-
     table,
     th,
     td {
@@ -31,11 +26,18 @@
 
     th,
     td {
-      padding: 5px;
+      padding: 2px 5px;
     }
 
     thead th {
-      background-color: #eee;
+      background-color: #ddd;
+      white-space: nowrap;
+    }
+
+    tbody th,
+    td {
+      word-wrap: break-word;
+      word-break: break-all;
     }
 
     td {
@@ -43,7 +45,7 @@
     }
 
     tr.fastest td {
-      background-color: #33691E;
+      background-color: #E60000;
       color: #fff;
     }
 
@@ -56,87 +58,140 @@
 </head>
 
 <body>
-  <h1>性能测试</h1>
-  <p>测试结果受运行环境影响，仅供参考。运行时请耐心等待几分钟。<input type="color" value="#33691E" disabled /> 表示执行最快的。</p>
-  <br />
-  <p id="cache" style="display: none; font-size: 13px; color: #666;">当前读取缓存结果，缓存日期 <span id="cacheDate"></span> 。<button
-      id="cacheClearButton">点击清除缓存并重新测试</button></p>
-  <br />
-  <table>
-    <thead>
-      <tr>
-        <th>方法说明</th>
-        <th>测试用例</th>
-        <th>实际调用</th>
-        <th>每秒执行次数</th>
-        <th>波动范围</th>
-        <th>抽样次数</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <div class="w-full p-5 mx-auto">
+    <h1 class="text-2xl mb-2">性能测试</h1>
+    <p class="mb-2">使用 benchmark 测试 ut2 对比 underscore 和 lodash 的性能。</p>
+    <p class="text-sm text-gray-500">工具库版本：<span id="lib-version"></span></p>
+    <div class="my-5">选择方法：<span id="form"></span></div>
+    <div id="action" class="mb-5"><button
+        class="p-2 bg-purple-600 hover:bg-purple-500 rounded-lg text-white shadow-md">点击运行测试</button>
+    </div>
+    <p id="tip-running" class="text-lg text-gray-600 mb-5" style="display: none;">运行中...</p>
+    <p id="tip-cache" class="text-sm text-gray-600 my-5" style="display: none; ">当前读取 <span id="tip-cache-date"></span>
+      运行结果，点击上面按钮可重新运行。</p>
+    <div id="result" style="display: none;">
+      <table class="border font-mono">
+        <thead>
+          <tr>
+            <!-- <th>方法</th> -->
+            <th>测试用例</th>
+            <th>库</th>
+            <th>实际调用</th>
+            <th>结果</th>
+            <th>每秒执行次数</th>
+            <th>波动范围</th>
+            <th>抽样次数</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p class="my-5 text-xs text-gray-600"><input type="color" value="#E60000" class="align-middle" disabled />
+        表示执行最快的。受运行环境和参数影响，仅供参考。</p>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
   <script>var underscore = _.noConflict();</script>
   <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-  <script src="https://unpkg.com/platform@1.3.6/platform.js"></script>
-  <script src="https://unpkg.com/benchmark@2.1.4/benchmark.js"></script>
-  <script src="https://unpkg.com/ut2@1.5.2/dist/ut2.min.js"></script>
-  <script src="https://unpkg.com/cache2@1.0.4/dist/cache2.min.js"></script>
-  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+  <script src="https://unpkg.com/platform@1/platform.js"></script>
+  <script src="https://unpkg.com/benchmark@2/benchmark.js"></script>
+  <script src="https://unpkg.com/ut2@1/dist/ut2.min.js"></script>
+  <!-- <script src="../dist/ut2.min.js"></script> -->
+  <script src="https://unpkg.com/cache2@1/dist/cache2.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1/dayjs.min.js"></script>
   <script src="./fastest.js"></script>
   <script>
-    const storage = new Cache2('ut2', {
+    const categoryConfig = fastest.config;
+    const cache = new Cache2('benchmark', {
       storage: window.localStorage
     });
-    const cacheKey = 'benchmark-result';
-    const cache = storage.get(cacheKey);
+    const selectedCacheKey = '__selected__';
 
-    const oCacheElement = document.getElementById('cache');
-    const oCacheDateElement = document.getElementById('cacheDate');
-    const oCacheClearButton = document.getElementById('cacheClearButton');
+    // 添加 select
+    const oForm = document.getElementById('form');
+    const oSelect = document.createElement('select');
+    categoryConfig.forEach(function (item) {
+      const oOptgroup = document.createElement('optgroup');
+      oOptgroup.setAttribute('label', item.category);
 
-    let result;
+      item.list.forEach(function (subItem) {
+        const oOption = document.createElement('option');
+        oOption.setAttribute('value', subItem.method);
+        oOption.innerHTML = subItem.method;
 
-    if (cache) {
-      result = cache.data;
-      oCacheElement.style.display = '';
-      oCacheDateElement.innerHTML = dayjs(cache.date).format('YYYY-MM-DD HH:mm:ss');
-    } else {
-      result = fastest({
-        Benchmark, ut2, underscore, lodash: _
+        oOptgroup.appendChild(oOption);
       });
-      storage.set(cacheKey, {
-        date: Date.now(),
-        data: result
-      });
-    }
 
-    oCacheClearButton.addEventListener('click', function () {
-      storage.del(cacheKey);
-      location.reload();
+      oSelect.appendChild(oOptgroup);
+    });
+    const cacheData = cache.get(selectedCacheKey);
+    oSelect.value = cacheData || categoryConfig[0].list[0].method;
+    oForm.appendChild(oSelect);
+
+    oSelect.addEventListener('change', function (e) {
+      cache.set(selectedCacheKey, e.target.value);
+      renderResultWithCache();
     });
 
-    const keys = Object.keys(result);
+    // 各工具库版本
+    const oLibVersion = document.getElementById('lib-version');
+    oLibVersion.innerHTML = 'ut2@' + ut2.VERSION + ', lodash@' + _.VERSION + ', underscore@' + underscore.VERSION;
 
-    const fragment = document.createDocumentFragment();
+    // 测试
     const libs = ['underscore', 'lodash', 'ut2'];
+    const oResult = document.getElementById('result');
+    const oTbody = oResult.querySelector('tbody');
+    const oAction = document.getElementById('action');
+    const oRunButton = oAction.querySelector('button');
+    const oTipRunning = document.getElementById('tip-running');
+    const oTipCache = document.getElementById('tip-cache');
+    const oTipCacheDate = document.getElementById('tip-cache-date');
 
-    keys.forEach(key => {
-      const methods = result[key];
-      methods.forEach((item, index) => {
-        libs.forEach((libItem, libIndex) => {
+    oRunButton.addEventListener('click', function () {
+      runTest();
+    });
+
+    function runTest() {
+      const method = oSelect.value;
+
+      if (!method) {
+        alert('请选择测试方法');
+        return;
+      }
+
+      oTbody.innerHTML = '';
+      oResult.style.display = 'none';
+      oAction.style.display = 'none';
+      oTipRunning.style.display = 'block';
+      oTipCache.style.display = 'none';
+      cache.del(method);
+
+      setTimeout(function () {
+        const result = fastest({
+          Benchmark: Benchmark,
+          ut2: ut2,
+          underscore: underscore,
+          lodash: _,
+          methods: method
+        })[method];
+
+        cache.set(method, result);
+        oAction.style.display = 'block';
+        oTipRunning.style.display = 'none';
+
+        renderResult(result);
+      }, 100);
+    }
+
+    function renderResult(data) {
+      const fragment = document.createDocumentFragment();
+
+      data.forEach(function (item, index) {
+        libs.forEach(function (libItem, libIndex) {
           const tr = document.createElement('tr');
 
           if (libItem === item.$fastest) {
             tr.setAttribute('class', 'fastest');
-          }
-
-          if (index === 0 && libIndex === 0) {
-            const th = document.createElement('th');
-            th.setAttribute('rowspan', methods.length * 3);
-            th.innerHTML = key;
-            tr.appendChild(th);
           }
 
           if (libIndex === 0) {
@@ -145,29 +200,63 @@
             th.innerHTML = item.$case;
             tr.appendChild(th);
           }
+          const td0 = document.createElement('td');
           const td1 = document.createElement('td');
           const td2 = document.createElement('td');
           const td3 = document.createElement('td');
           const td4 = document.createElement('td');
+          const td5 = document.createElement('td');
 
-          td1.innerHTML = item[libItem].case;
-          td2.innerHTML = item[libItem].hz;
-          td3.innerHTML = item[libItem].rme;
-          td4.innerHTML = item[libItem].sampled;
+          td0.innerHTML = '<div style="white-space: nowrap;">' + libItem + '</div>';
+          td1.innerHTML = item[libItem].existed ? item[libItem].case : 'unsupported';
+          td2.innerHTML = item[libItem].existed ? JSON.stringify(item[libItem].result) : '-';
+          td3.innerHTML = item[libItem].existed ? item[libItem].hz : '-';
+          td4.innerHTML = item[libItem].existed ? item[libItem].rme : '-';
+          td5.innerHTML = item[libItem].existed ? item[libItem].sampled : '-';
 
+          tr.appendChild(td0);
           tr.appendChild(td1);
           tr.appendChild(td2);
           tr.appendChild(td3);
           tr.appendChild(td4);
+          tr.appendChild(td5);
 
           fragment.appendChild(tr);
         });
       });
-    });
 
-    const oTbody = document.querySelector('tbody');
-    oTbody.innerHTML = '';
-    oTbody.appendChild(fragment);
+      oTbody.innerHTML = '';
+      oTbody.appendChild(fragment);
+      oResult.style.display = 'block';
+    }
+
+    function renderResultWithCache() {
+      const method = oSelect.value;
+      if (!method) {
+        return;
+      }
+
+      const cacheData = cache.get(method);
+      if (!cacheData) {
+        oTipRunning.style.display = 'none';
+        oTipCache.style.display = 'none';
+        oTbody.innerHTML = '';
+        oResult.style.display = 'none';
+        return;
+      }
+
+      oTipRunning.style.display = 'none';
+      oTipCache.style.display = 'block';
+      oTipCacheDate.innerHTML = dayjs(cache.getLastModified(method)).format('YYYY-MM-DD HH:mm:ss');
+
+      renderResult(cacheData);
+    }
+
+    function init() {
+      renderResultWithCache();
+    }
+
+    init();
   </script>
 </body>
 
