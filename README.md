@@ -16,7 +16,7 @@
 
 兼容现代浏览器 [Firefox](https://www.firefox.com.cn/)、[Chrome](https://www.google.cn/chrome/index.html)、[Safari](https://www.apple.com.cn/safari/)、[Opera](https://www.opera.com/zh-cn)，以及 [Node.js >= 10](https://nodejs.org/) 。
 
-如果要兼容 IE 系列浏览器，建议使用 [@babel/preset-env](https://babeljs.io/docs/babel-preset-env) 设置对应的 `targets` 。
+如果要兼容 IE 系列浏览器，需要提供相应的 Polyfill 支持，建议使用 [@babel/preset-env](https://babeljs.io/docs/babel-preset-env) 设置对应的 `targets` 。
 
 ## 使用
 
