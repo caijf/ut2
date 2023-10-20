@@ -10,7 +10,7 @@
  *
  * const obj = { a: 1, b: 2 };
  *
- * console.log(identity(obj, 1) === obj); // true
+ * console.log(identity(obj) === obj); // true
  *
  */
 

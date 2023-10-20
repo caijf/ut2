@@ -3,7 +3,7 @@ import { baseLte, createOperation } from './internals/comparator';
 /**
  * 检查 `value` 是否小于或等于 `other` 。
  *
- * @static
+ * @function
  * @alias module:Util.lte
  * @since 1.0.0
  * @param {*} value 要比较的值。
@@ -18,8 +18,6 @@ import { baseLte, createOperation } from './internals/comparator';
  * lte(3, 1); // false
  *
  */
-function lte(value: any, other: any) {
-  return createOperation(baseLte)(value, other);
-}
+const lte = createOperation(baseLte);
 
 export default lte;

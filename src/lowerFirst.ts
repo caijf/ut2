@@ -3,7 +3,7 @@ import createCaseFirst from './internals/createCaseFirst';
 /**
  * 转换字符串第一个字符为小写。
  *
- * @static
+ * @function
  * @alias module:String.lowerFirst
  * @since 1.0.0
  * @param {string} string 要转换的字符串。
@@ -15,8 +15,6 @@ import createCaseFirst from './internals/createCaseFirst';
  * lowerFirst('BAR'); // 'bAR'
  *
  */
-function lowerFirst(string: string) {
-  return createCaseFirst('toLowerCase')(string);
-}
+const lowerFirst = createCaseFirst('toLowerCase');
 
 export default lowerFirst;

@@ -1,5 +1,4 @@
-import gt from './gt';
-import identity from './identity';
+import { baseGt } from './internals/comparator';
 import createExtremum from './internals/createExtremum';
 
 /**
@@ -27,11 +26,8 @@ import createExtremum from './internals/createExtremum';
  * max(objects, 'n'); // {n: 2};
  *
  */
-function max<T, F extends (item: T) => any, K extends keyof T>(
-  array: T[],
-  iteratee: F | K = identity as any
-) {
-  return createExtremum(array, iteratee, gt);
+function max<T, F extends (item: T) => any, K extends keyof T>(array: T[], iteratee?: F | K) {
+  return createExtremum(array, baseGt, iteratee);
 }
 
 export default max;

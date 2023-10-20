@@ -3,7 +3,7 @@ import createCaseFirst from './internals/createCaseFirst';
 /**
  * 转换字符串第一个字符为大写。
  *
- * @static
+ * @function
  * @alias module:String.upperFirst
  * @since 1.0.0
  * @param {string} string 要转换的字符串。
@@ -15,8 +15,6 @@ import createCaseFirst from './internals/createCaseFirst';
  * upperFirst('BAR'); // 'BAR'
  *
  */
-function upperFirst(string: string) {
-  return createCaseFirst('toUpperCase')(string);
-}
+const upperFirst = createCaseFirst('toUpperCase');
 
 export default upperFirst;

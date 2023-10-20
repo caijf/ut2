@@ -1,6 +1,7 @@
 import eq from './eq';
 import createIteratee from './internals/createIteratee';
 import isArray from './isArray';
+import isUndefined from './isUndefined';
 
 /**
  * 创建一个去重后的数组副本。只有第一次出现的元素才会被保留。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
@@ -37,11 +38,17 @@ function uniq<T, F extends (value: T) => any, K extends keyof T>(array: T[], ite
     return [];
   }
 
-  const internalIteratee = createIteratee<T, F, K>(iteratee);
-  return array.filter((value, index, arr) => {
-    const current = internalIteratee(value);
-    return arr.findIndex((item) => eq(internalIteratee(item), current, strickCheck)) === index;
-  });
+  if (isUndefined(iteratee)) {
+    return array.filter((value, index, arr) => {
+      return arr.findIndex((item) => eq(item, value, strickCheck)) === index;
+    });
+  } else {
+    const internalIteratee = createIteratee<T, F, K>(iteratee);
+    return array.filter((value, index, arr) => {
+      const current = internalIteratee(value);
+      return arr.findIndex((item) => eq(internalIteratee(item), current, strickCheck)) === index;
+    });
+  }
 }
 
 export default uniq;

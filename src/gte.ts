@@ -3,7 +3,7 @@ import { baseGte, createOperation } from './internals/comparator';
 /**
  * 检查 `value` 是否大于或等于 `other` 。
  *
- * @static
+ * @function
  * @alias module:Util.gte
  * @since 1.0.0
  * @param {*} value 要比较的值。
@@ -18,8 +18,6 @@ import { baseGte, createOperation } from './internals/comparator';
  * gte(3, 1); // true
  *
  */
-function gte(value: any, other: any) {
-  return createOperation(baseGte)(value, other);
-}
+const gte = createOperation(baseGte);
 
 export default gte;

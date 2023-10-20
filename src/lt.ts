@@ -3,7 +3,7 @@ import { baseLt, createOperation } from './internals/comparator';
 /**
  * 检查 `value` 是否小于 `other` 。
  *
- * @static
+ * @function
  * @alias module:Util.lt
  * @since 1.0.0
  * @param {*} value 要比较的值。
@@ -18,8 +18,6 @@ import { baseLt, createOperation } from './internals/comparator';
  * lt(3, 1); // false
  *
  */
-function lt(value: any, other: any) {
-  return createOperation(baseLt)(value, other);
-}
+const lt = createOperation(baseLt);
 
 export default lt;

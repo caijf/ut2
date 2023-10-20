@@ -3,7 +3,7 @@ import { baseGt, createOperation } from './internals/comparator';
 /**
  * 检查 `value` 是否大于 `other` 。
  *
- * @static
+ * @function
  * @alias module:Util.gt
  * @since 1.0.0
  * @param {*} value 要比较的值。
@@ -18,8 +18,6 @@ import { baseGt, createOperation } from './internals/comparator';
  * gt(3, 1); // true
  *
  */
-function gt(value: any, other: any) {
-  return createOperation(baseGt)(value, other);
-}
+const gt = createOperation(baseGt);
 
 export default gt;
