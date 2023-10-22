@@ -2,7 +2,7 @@
 
 一个现代 JavaScript 实用工具库。[点击查看在线文档]。
 
-[![npm][npm]][npm-url] [![Build and Deploy Docs](https://github.com/caijf/ut2/actions/workflows/ci.yml/badge.svg)](https://github.com/caijf/ut2/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/caijf/ut2/branch/main/graph/badge.svg?token=XKTS0H7085)](https://codecov.io/gh/caijf/ut2) ![npm](https://img.shields.io/npm/dt/ut2) ![GitHub](https://img.shields.io/github/license/caijf/ut2.svg)
+[![npm][npm]][npm-url] [![Build and Deploy Docs](https://github.com/caijf/ut2/actions/workflows/ci.yml/badge.svg)](https://github.com/caijf/ut2/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/caijf/ut2/branch/main/graph/badge.svg?token=XKTS0H7085)](https://codecov.io/gh/caijf/ut2) [![Static Badge](https://img.shields.io/badge/benchmark-online-green)](https://codesandbox.io/s/github/caijf/ut2/tree/main/benchmark) ![npm](https://img.shields.io/npm/dt/ut2) ![GitHub](https://img.shields.io/github/license/caijf/ut2.svg)
 
 ## 比较
 
