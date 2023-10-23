@@ -53,15 +53,13 @@ type Customizer = (objValue: any, othValue: any, key?: number | string | symbol,
  * 2. `typeof` 不同类型，如 `1` `Object(1)`
  * 3. 无效日期对象，如 `new Date('')` `new Date('abc')`
  *
- * @static
- * @alias module:Language.isEqual
- * @since 1.3.0
+ * @private
  * @param {*} value 要比较的值。
  * @param {*} other 另一个要比较的值。
  * @param {Function} [customizer] 自定义比较。
  * @param {boolean} [strictCheck=false] 严格比较，默认 `false` 。
- * @param {*[]} [valueStack] 值的堆栈。
- * @param {*[]} [otherStack] 另一个值的堆栈。
+ * @param {Array} [valueStack] 值的堆栈。
+ * @param {Array} [otherStack] 另一个值的堆栈。
  * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
  */
 function isEqualDeep(value: any, other: any, customizer?: Customizer, strictCheck?: boolean, valueStack?: any[], otherStack?: any[]): boolean {
