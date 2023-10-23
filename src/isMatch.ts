@@ -1,7 +1,7 @@
 import allKeys from './allKeys';
 import getTag from './internals/getTag';
 import { objectTag } from './internals/native';
-import isEqual from './isEqual';
+import isEqualDeep from './internals/isEqualDeep';
 
 // 是否需要深比较
 function isDeepComparable(object: any, source: any) {
@@ -10,7 +10,7 @@ function isDeepComparable(object: any, source: any) {
 
 type Customizer = (objValue: any, srcValue: any, key?: number | string | symbol, object?: any, source?: any, objStack?: any[], srcStack?: any[]) => void | boolean;
 
-function baseIsMatch(object: Record<string | symbol, any>, source: Record<string | symbol, any>, customizer?: Customizer, strictCheck?: boolean, objStack?: any[], srcStack?: any[], executedCustomizer = false) {
+function baseIsMatch(object: Record<string | symbol, any>, source: Record<string | symbol, any>, customizer?: Customizer, strictCheck?: boolean, objStack?: any[], srcStack?: any[]) {
   const hasCustomizer = typeof customizer === 'function';
 
   if (isDeepComparable(object, source)) {
@@ -51,7 +51,7 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
       }
 
       // 循环对象
-      if (!baseIsMatch(object[key], source[key], customizer, strictCheck, objStack, srcStack, true)) {
+      if (!baseIsMatch(object[key], source[key], customizer, strictCheck, objStack, srcStack)) {
         return false;
       }
     }
@@ -63,22 +63,23 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
   }
 
   // 非对象比较
-  const result = isEqual(
+  const result = isEqualDeep(
     object,
     source,
     (objValue, srcValue, k, obj, src) => {
-      if (!executedCustomizer && hasCustomizer) {
+      if (hasCustomizer) {
         const compared = customizer(objValue, srcValue, k, obj, src, objStack, srcStack);
         if (compared !== undefined) {
           return compared;
         }
       }
-      executedCustomizer = false;
       if (isDeepComparable(objValue, srcValue)) {
         return baseIsMatch(objValue, srcValue, customizer, strictCheck, objStack, srcStack);
       }
     },
-    strictCheck
+    strictCheck,
+    objStack,
+    srcStack
   );
 
   return result;
@@ -133,7 +134,7 @@ function isMatch(object: object, source: object, customizer?: Customizer, strict
     }
   }
 
-  return baseIsMatch(object, source, customizer, strictCheck, undefined, undefined, true);
+  return baseIsMatch(object, source, customizer, strictCheck, undefined, undefined);
 }
 
 export default isMatch;

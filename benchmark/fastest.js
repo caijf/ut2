@@ -483,8 +483,19 @@
             [
               { a: 1, b: -0 },
               { a: 1, b: 0 }
+            ],
+            [
+              { a: [1, 2, 3], b: 0 },
+              { a: [1, 2, 3], b: 0 }
+            ],
+            [
+              { a: [{ b: [{ c: 0, d: 1 }], e: 2 }], f: 3 },
+              { a: [{ b: [{ c: 0, d: 1 }], e: 2 }], f: 3 }
             ]
-          ]
+          ],
+          lodash: {
+            method: 'isEqualWith'
+          }
         },
         {
           method: 'isError',
@@ -519,9 +530,14 @@
         {
           method: 'isMatch',
           params: [
-            [{ a: 1, b: -0 }, { a: 1 }],
-            [{ a: 1, b: -0 }, { b: 0 }]
-          ]
+            [{ a: 1, b: 0 }, { a: 1 }],
+            [{ a: 1, b: -0 }, { b: 0 }],
+            [{ a: [1, 2, 3], b: 0 }, { a: [1, 2, 3] }],
+            [{ a: [{ b: [{ c: 0, d: 1 }], e: 2 }], f: 3 }, { a: [{ b: [{ c: 0 }] }] }]
+          ],
+          lodash: {
+            method: 'isMatchWith'
+          }
         },
         {
           method: 'isNaN',
@@ -578,7 +594,7 @@
         },
         {
           method: 'isTypedArray',
-          params: [[new Int8Array(8)], [[]]]
+          params: [[new Int8Array(8)], [[]], [null]]
         },
         {
           method: 'isUndefined',
