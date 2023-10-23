@@ -2,6 +2,7 @@ import getTag from './internals/getTag';
 import keys from './internals/keys';
 import { mapTag, setTag } from './internals/native';
 import isArrayLike from './isArrayLike';
+import isNil from './isNil';
 import isObjectLike from './isObjectLike';
 
 /**
@@ -38,7 +39,7 @@ import isObjectLike from './isObjectLike';
  *
  */
 function isEmpty(value: any) {
-  if (value == null) {
+  if (isNil(value)) {
     return true;
   }
 

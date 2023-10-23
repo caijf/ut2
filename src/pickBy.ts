@@ -1,5 +1,6 @@
 import allKeysIn from './allKeysIn';
 import { stubFlase } from './internals/helpers';
+import isNil from './isNil';
 
 /**
  * 创建一个对象，该对象的属性从 `object` 中经 `predicate` （断言函数）判断为真值的属性。
@@ -26,7 +27,7 @@ import { stubFlase } from './internals/helpers';
 function pickBy<T extends object>(object: T, predicate: (value: any, key: any) => any = stubFlase) {
   const result: Partial<T> = {};
 
-  if (object === null) {
+  if (isNil(object)) {
     return result;
   }
 

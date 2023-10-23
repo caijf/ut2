@@ -1,5 +1,6 @@
 import { symbolProto } from './internals/native';
 import isArray from './isArray';
+import isNil from './isNil';
 import isSymbol from './isSymbol';
 
 const symbolToString = symbolProto ? symbolProto.toString : undefined;
@@ -41,7 +42,7 @@ function baseToString(value: any): string {
  *
  */
 function toString(value: any) {
-  return value == null ? '' : baseToString(value);
+  return isNil(value) ? '' : baseToString(value);
 }
 
 export default toString;
