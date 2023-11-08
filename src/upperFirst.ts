@@ -14,6 +14,10 @@ import createCaseFirst from './internals/createCaseFirst';
  *
  * upperFirst('BAR'); // 'BAR'
  *
+ * lowerFirst('--foo-bar--'); // '--foo-bar--' 不进行分词处理
+ *
+ * lowerFirst('foo-bar'); // 'Foo-bar'
+ *
  */
 const upperFirst = createCaseFirst('toUpperCase');
 

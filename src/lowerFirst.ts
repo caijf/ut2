@@ -14,6 +14,10 @@ import createCaseFirst from './internals/createCaseFirst';
  *
  * lowerFirst('BAR'); // 'bAR'
  *
+ * lowerFirst('--Foo-bar--'); // '--Foo-bar--' 不进行分词处理
+ *
+ * lowerFirst('Foo-bar'); // 'foo-bar'
+ *
  */
 const lowerFirst = createCaseFirst('toLowerCase');
 

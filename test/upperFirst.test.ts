@@ -5,6 +5,8 @@ describe('upperFirst', () => {
     expect(upperFirst('bar')).toBe('Bar');
     expect(upperFirst('Bar')).toBe('Bar');
     expect(upperFirst('BAR')).toBe('BAR');
+    expect(upperFirst('--foo-bar--')).toBe('--foo-bar--');
+    expect(upperFirst('foo-bar')).toBe('Foo-bar');
   });
 
   it('首个字符非英文字母，没有变化', () => {
