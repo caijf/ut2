@@ -2,6 +2,7 @@ import allKeysIn from './allKeysIn';
 import isArray from './isArray';
 import isObject from './isObject';
 import isObjectLike from './isObjectLike';
+import isPlainObject from './isPlainObject';
 
 type Customizer = (objValue: any, srcValue: any, key: string | symbol, object: any, source: any) => any;
 
@@ -25,7 +26,7 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, customize
     }
 
     // 递归处理对象和数组
-    if (isObjectLike(newValue) && key in obj && !storage.has(newValue as object)) {
+    if (isObjectLike(newValue) && !storage.has(newValue as object)) {
       storage.set(newValue as object, true);
 
       const objValue = obj[key];
@@ -33,11 +34,11 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, customize
 
       if (isArray(newValue)) {
         newObjValue = isArray(objValue) ? objValue : [];
-      } else {
-        newObjValue = isObjectLike(objValue) ? objValue : {};
+      } else if (isPlainObject(newValue)) {
+        newObjValue = isPlainObject(objValue) ? objValue : {};
       }
 
-      obj[key] = baseMerge(newObjValue, newValue as any, customizer, storage);
+      obj[key] = newObjValue ? baseMerge(newObjValue, newValue as any, customizer, storage) : newValue;
     } else {
       if (newValue !== undefined || (newValue === undefined && !(key in obj))) {
         obj[key] = newValue;

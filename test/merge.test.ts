@@ -184,6 +184,18 @@ describe('merge', () => {
     });
   });
 
+  it('目标对象不存在值，则迭代来源目标赋值给目标对象', () => {
+    const a = { a: { b: 1 } };
+    const b = { a: { b: 2 } };
+    const c = merge({}, a);
+
+    expect(c).toEqual(a);
+
+    const d = merge(c, b);
+    expect(d).toBe(c);
+    expect(d).not.toEqual(a);
+  });
+
   it('错误的参数', () => {
     const boolObj = Object(false);
     boolObj.a = true;
