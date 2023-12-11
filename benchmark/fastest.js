@@ -759,12 +759,23 @@
         {
           method: 'merge',
           params: [
+            [{ a: 1 }, { a: undefined, b: undefined }],
+            [{ a: undefined, b: undefined }, { a: 1 }],
+            [[{ a: 1, b: { c: [{ d: 2 }] } }], [{ a: 3, b: { c: [{ d: 4 }, { d: 5 }] } }]],
             [{}, { a: true, b: false }],
             [{ a: [{ b: 2 }, { d: 4 }] }, { a: [{ c: 3 }, { e: 5 }] }],
-            [{}, { [Symbol('a')]: 1 }]
+            [
+              { a: 1, b: 2, c: 3, d: 4, e: 5 },
+              { a: 2, b: 3, c: 4, e: 5 }
+            ]
+            // [{}, { [Symbol('a')]: 1 }]
           ],
           underscore: {
             existed: false
+          },
+          // lodash 没有处理原型链上可枚举的 symbol 属性
+          lodash: {
+            method: 'mergeWith'
           }
         },
         {
@@ -1216,14 +1227,15 @@
           }
 
           const currentLibResult = result[item.method][i][libName];
+          const params = ut2.merge(conf.params[i]);
 
           currentLibResult.existed = conf.existed !== false;
-          currentLibResult.result = currentLibResult.existed ? obj[conf.method].apply(null, conf.params[i]) : undefined;
+          currentLibResult.result = currentLibResult.existed ? obj[conf.method].apply(null, params) : undefined;
           currentLibResult.case = cases[libName];
 
           if (currentLibResult.existed) {
             suite.add(libName + '.' + currentLibResult.case, function () {
-              obj[conf.method].apply(null, conf.params[i]);
+              obj[conf.method].apply(null, params);
             });
           }
         }

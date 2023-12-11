@@ -7,41 +7,44 @@ import isPlainObject from './isPlainObject';
 type Customizer = (objValue: any, srcValue: any, key: string | symbol, object: any, source: any) => any;
 
 // 内部处理合并和循环引用
-function baseMerge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, storage = new WeakMap()) {
+function baseMerge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, stack = new WeakMap()) {
   const obj = Object(object);
 
   if (!isObject(source) || obj === source) {
     return obj;
   }
-
   const keys = allKeysIn(source as object);
+  const hasCustomizer = typeof customizer === 'function';
 
   keys.forEach((key) => {
     // @ts-ignore
     const srcValue = source[key];
-    let newValue = typeof customizer === 'function' ? customizer(obj[key], srcValue, key, obj, source) : undefined;
+    const srcIsObj = isObject(srcValue);
 
-    if (newValue === undefined) {
-      newValue = srcValue;
-    }
-
-    // 递归处理对象和数组
-    if (isObjectLike(newValue) && !storage.has(newValue as object)) {
-      storage.set(newValue as object, true);
-
-      const objValue = obj[key];
-      let newObjValue: any;
-
-      if (isArray(newValue)) {
-        newObjValue = isArray(objValue) ? objValue : [];
-      } else if (isPlainObject(newValue)) {
-        newObjValue = isPlainObject(objValue) ? objValue : {};
-      }
-
-      obj[key] = newObjValue ? baseMerge(newObjValue, newValue as any, customizer, storage) : newValue;
+    if (srcIsObj && stack.has(srcValue)) {
+      obj[key] = srcValue;
     } else {
-      if (newValue !== undefined || (newValue === undefined && !(key in obj))) {
+      const newValue = hasCustomizer ? customizer(obj[key], srcValue, key, obj, source) : undefined;
+      if (newValue !== undefined) {
         obj[key] = newValue;
+      } else {
+        const objValue = obj[key];
+        let newObjValue: any;
+
+        if (srcIsObj) {
+          stack.set(srcValue, true);
+          if (isArray(srcValue)) {
+            newObjValue = isArray(objValue) ? objValue : [];
+          } else if (isPlainObject(srcValue)) {
+            newObjValue = isObjectLike(objValue) ? objValue : {};
+          }
+        }
+
+        if (newObjValue) {
+          obj[key] = baseMerge(newObjValue, srcValue, customizer, stack);
+        } else if (srcValue !== undefined || !(key in obj)) {
+          obj[key] = srcValue;
+        }
       }
     }
   });
