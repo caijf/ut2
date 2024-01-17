@@ -10,7 +10,7 @@ function baseToString(value: any): string {
     return value;
   }
   if (isArray(value)) {
-    return `${value.map(baseToString)}`;
+    return '' + value.map(baseToString);
   }
   if (isSymbol(value)) {
     return symbolToString ? symbolToString.call(value) : '';
