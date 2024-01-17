@@ -173,6 +173,7 @@ const debounced = debounce(() => {
   - lte - 小于等于。
   - noop - 空函数。
   - nthArg - 返回指定位置参数的函数。
+  - range - 创建升序或降序的数字数组。
   - sleep - 返回 `promise` 延迟。
   - times - 迭代执行次数。
   - toFinite - 转为有限数字。

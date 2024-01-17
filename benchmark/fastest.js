@@ -1040,6 +1040,10 @@
           }
         },
         {
+          method: 'range',
+          params: [[1, 4], [-4], [0, 100, 2]]
+        },
+        {
           method: 'sleep',
           params: [[], [300]],
           underscore: {
