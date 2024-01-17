@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>escapeRegExp.js - ut2 </title>
+    <title>range.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">escapeRegExp.js</h1>
+    <h1 class="page-title">range.js</h1>
     
 
     
@@ -70,32 +70,55 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var reRegExpChar = /[\\^$.*+?\-()[\]{}|]/g;
-var reHasRegExpChar = RegExp(reRegExpChar.source);
+            <pre class="prettyprint source linenums"><code>import { mathCeil, mathMax } from './internals/native';
+import isNil from './isNil';
+import toFinite from './toFinite';
 /**
- * 转义 `RegExp` 字符串中特殊的字符 `\\` `^` `$` `.` `*` `+` `?` `-` `(` `)` `[` `]` `{` `}` `|` 。
+ * 创建一个升序或降序的数字数组。
+ *
+ * 如果省略 `start` 默认为 0 。
  *
  * @static
- * @alias module:String.escapeRegExp
- * @since 1.0.0
- * @see {@link https://tc39.es/ecma262/multipage/text-processing.html#sec-patterns | syntax characters}
- * @param {string} string 要转义的字符串。
- * @returns {string} 转义后的字符串。
+ * @alias module:Util.range
+ * @since 1.6.0
+ * @param {number} [start=0] 开始值。
+ * @param {number} end 结束值。
+ * @param {number} [step] 要增加或减少的值。如果值为 `0` ，将视为无效参数。如果 `start` 在 `end` 之前，默认为 1 ，否则默认为 -1。
+ * @return {number[]} 从开始值（包含）到结束值（不包含）逐步递增或递减的数字数组。
  * @example
  *
- * escapeRegExp('\\'); // '\\\\'
- *
- * escapeRegExp('-+='); // '\\-\\+='
- *
- * escapeRegExp('[ut2](https://caijf.github.io/ut2/)'); // '\\[ut2\\]\\(https://caijf\\.github\\.io/ut2/\\)'
- *
+ * range(4); // [0, 1, 2, 3]
+ * range(-4); // [0, -1, -2, -3]
+ * range(1, 5); // [1, 2, 3, 4]
+ * range(0, 20, 5); // [0, 5, 10, 15]
+ * range(0, -4, -1); // [1, 2, 3]
+ * range(1, 4, 0); // [1, 2, 3]
+ * range(0); // []
  */
-function escapeRegExp(string) {
-    return string &amp;&amp; reHasRegExpChar.test(string)
-        ? string.replace(reRegExpChar, '\\$&amp;')
-        : string || '';
+function range(start, end, step) {
+    start = toFinite(start);
+    if (isNil(end)) {
+        end = start;
+        start = 0;
+    }
+    else {
+        end = toFinite(end);
+    }
+    step = toFinite(step);
+    // 值为 0, '', null, undefined 时
+    if (!step) {
+        step = start &lt; end ? 1 : -1;
+    }
+    var index = -1;
+    var length = mathMax(mathCeil((end - start) / step), 0);
+    var result = Array(length);
+    while (length--) {
+        result[++index] = start;
+        start += step;
+    }
+    return result;
 }
-export default escapeRegExp;
+export default range;
 </code></pre>
         </article>
     </section>
