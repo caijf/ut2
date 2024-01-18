@@ -762,13 +762,7 @@
             [{ a: 1 }, { a: undefined, b: undefined }],
             [{ a: undefined, b: undefined }, { a: 1 }],
             [[{ a: 1, b: { c: [{ d: 2 }] } }], [{ a: 3, b: { c: [{ d: 4 }, { d: 5 }] } }]],
-            [{}, { a: true, b: false }],
-            [{ a: [{ b: 2 }, { d: 4 }] }, { a: [{ c: 3 }, { e: 5 }] }],
-            [
-              { a: 1, b: 2, c: 3, d: 4, e: 5 },
-              { a: 2, b: 3, c: 4, e: 5 }
-            ]
-            // [{}, { [Symbol('a')]: 1 }]
+            [{}, { [Symbol('a')]: 1 }]
           ],
           underscore: {
             existed: false
@@ -1142,19 +1136,6 @@
     // ]
   };
 
-  function argToString(args) {
-    return args.map(function (arg) {
-      const tag = Object.prototype.toString.call(arg);
-      if (typeof arg === 'function' || tag === '[object RegExp]' || tag === '[object Symbol]') {
-        return arg.toString();
-      }
-      if (Object.prototype.toString.call(arg) === '[object Arguments]') {
-        return JSON.stringify(Array.from(arg));
-      }
-      return JSON.stringify(arg);
-    });
-  }
-
   function fastest(options) {
     // libs
     const Benchmark = options.Benchmark;
@@ -1207,6 +1188,34 @@
         )
       };
 
+      function isObjectOrArray(value) {
+        return ut2.isArray(value) || ut2.isObjectLike(value);
+      }
+
+      function formatString(value) {
+        let result;
+        if (ut2.isArray(value)) {
+          result = [];
+          value.forEach((item) => {
+            result.push(isObjectOrArray(item) ? formatString(item) : ut2.toString(item));
+          });
+        } else if (ut2.isObjectLike(value)) {
+          result = {};
+          ut2.allKeys(value).forEach((key) => {
+            const newKey = ut2.toString(key);
+            const newValue = isObjectOrArray(value[key]) ? formatString(value[key]) : ut2.toString(value[key]);
+            result[newKey] = newValue;
+          });
+        } else {
+          result = ut2.toString(value);
+        }
+        return result;
+      }
+
+      function argToString(args) {
+        return JSON.stringify(formatString(args));
+      }
+
       item.params.forEach(function (args, i) {
         const suite = new Benchmark.Suite();
 
@@ -1234,7 +1243,7 @@
           const params = ut2.merge(conf.params[i]);
 
           currentLibResult.existed = conf.existed !== false;
-          currentLibResult.result = currentLibResult.existed ? obj[conf.method].apply(null, params) : undefined;
+          currentLibResult.result = currentLibResult.existed ? formatString(obj[conf.method].apply(null, params)) : undefined;
           currentLibResult.case = cases[libName];
 
           if (currentLibResult.existed) {
