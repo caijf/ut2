@@ -16,7 +16,7 @@ import { weakMapTag } from './internals/native';
  * isWeakMap(new Map); // false
  *
  */
-function isWeakMap(value: any): value is WeakMap<any, any> {
+function isWeakMap(value: any): value is WeakMap<object, any> {
   return getTagWithBugfix(value) === weakMapTag;
 }
 

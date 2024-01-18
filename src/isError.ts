@@ -19,7 +19,7 @@ import isObjectLike from './isObjectLike';
  * isError(Error); // false
  *
  */
-function isError(value: any) {
+function isError(value: any): value is Error {
   if (!isObjectLike(value)) {
     return false;
   }

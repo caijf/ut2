@@ -19,7 +19,7 @@ import { nodeIsArrayBuffer } from './internals/nodeUtil';
  * isArrayBuffer('2012'); // false
  *
  */
-function isArrayBuffer(value: any) {
+function isArrayBuffer(value: any): value is ArrayBuffer {
   return nodeIsArrayBuffer ? nodeIsArrayBuffer(value) : getTag(value) === arrayBufferTag;
 }
 

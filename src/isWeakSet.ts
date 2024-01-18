@@ -16,7 +16,7 @@ import { weakSetTag } from './internals/native';
  * isWeakSet(new Set); // false
  *
  */
-function isWeakSet(value: any): value is WeakSet<any> {
+function isWeakSet(value: any): value is WeakSet<object> {
   return getTag(value) === weakSetTag;
 }
 
