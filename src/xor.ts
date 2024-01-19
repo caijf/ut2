@@ -1,5 +1,5 @@
 import difference from './difference';
-import createIteratee from './internals/createIteratee';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
 import intersection from './intersection';
 import isArray from './isArray';
 import union from './union';
@@ -36,23 +36,18 @@ import uniq from './uniq';
  * xor([-0, 0],[0], undefined, true); // [-0]
  *
  */
-function xor<T, F extends (value: T) => any, K extends keyof T>(array: T[], other: T[] = [], iteratee?: F | K, strickCheck = false) {
+function xor<T>(array: T[], other: T[] = [], iteratee?: IterateeParam<T>, strickCheck = false) {
   if (!isArray(array) && !isArray(other)) {
     return [];
   }
-  const internalIteratee = createIteratee<T, F, K>(iteratee);
+  const internalIteratee = createIteratee<T>(iteratee);
   if (!isArray(other)) {
     return uniq(array, internalIteratee, strickCheck);
   }
   if (!isArray(array)) {
     return uniq(other, internalIteratee, strickCheck);
   }
-  return difference(
-    union(array, other, internalIteratee, strickCheck),
-    intersection(array, other, internalIteratee, strickCheck),
-    internalIteratee,
-    strickCheck
-  );
+  return difference(union(array, other, internalIteratee, strickCheck), intersection(array, other, internalIteratee, strickCheck), internalIteratee, strickCheck);
 }
 
 export default xor;

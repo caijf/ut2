@@ -1,9 +1,9 @@
 import isArray from '../isArray';
 import isSymbol from '../isSymbol';
 import isUndefined from '../isUndefined';
-import createIteratee from './createIteratee';
+import createIteratee, { IterateeParam } from './createIteratee';
 
-function createExtremum<T, F extends (item: T) => any, K extends keyof T>(array: T[], comparator: (value: any, other: any) => boolean, iteratee?: F | K) {
+function createExtremum<T>(array: T[], comparator: (value: any, other: any) => boolean, iteratee?: IterateeParam<T>) {
   if (!isArray(array)) {
     return;
   }
@@ -17,7 +17,7 @@ function createExtremum<T, F extends (item: T) => any, K extends keyof T>(array:
       }
     });
   } else {
-    const internalIteratee = createIteratee<T, F, K>(iteratee);
+    const internalIteratee = createIteratee<T>(iteratee);
 
     array.forEach((value) => {
       const current = internalIteratee(value);

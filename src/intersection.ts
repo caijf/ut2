@@ -1,5 +1,5 @@
 import eq from './eq';
-import createIteratee from './internals/createIteratee';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
 import isArray from './isArray';
 
 /**
@@ -33,12 +33,12 @@ import isArray from './isArray';
  * intersection([-0, 0], [0], undefined, true); // [0]
  *
  */
-function intersection<T, F extends (value: T) => any, K extends keyof T>(array: T[], other: T[], iteratee?: F | K, strictCheck = false) {
+function intersection<T>(array: T[], other: T[], iteratee?: IterateeParam<T>, strictCheck = false) {
   if (!isArray(array) || !isArray(other)) {
     return [];
   }
 
-  const internalIteratee = createIteratee<T, F, K>(iteratee);
+  const internalIteratee = createIteratee<T>(iteratee);
   const caches: any[] = [];
   return array.filter((item) => {
     const current = internalIteratee(item);

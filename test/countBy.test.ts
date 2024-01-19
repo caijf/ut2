@@ -31,6 +31,15 @@ describe('countBy', () => {
     });
   });
 
+  it('对象', () => {
+    expect(countBy({ a: 1, b: 1, c: 2 })).toEqual({ '1': 2, '2': 1 });
+    expect(countBy({ a: 'one', b: 'two', c: 'three' }, 'length')).toEqual({ '3': 2, '5': 1 });
+    expect(countBy({ a: { n: 6.1 }, b: { n: 4.2 }, c: { n: 6.3 } }, (value) => Math.floor(value.n))).toEqual({
+      '6': 2,
+      '4': 1
+    });
+  });
+
   it('错误的参数', () => {
     const values = [null, undefined, 1, '', {}, NaN, symbol];
     values.forEach((item) => {

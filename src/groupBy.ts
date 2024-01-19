@@ -1,5 +1,8 @@
-import createIteratee from './internals/createIteratee';
-import isArray from './isArray';
+import forEach from './forEach';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
+
+function groupBy<T>(collection: ArrayLike<T> | null | undefined, iteratee?: IterateeParam<T>): Record<string, T[]>;
+function groupBy<T extends object, V extends T[keyof T]>(collection: T | null | undefined, iteratee?: IterateeParam<V>): Record<string, V[]>;
 
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。分组值的顺序是由他们出现在 `collection` 的顺序确定的。每个键对应的值负责生成 `key` 的元素组成的数组。
@@ -9,7 +12,7 @@ import isArray from './isArray';
  * @static
  * @alias module:Collection.groupBy
  * @since 1.0.0
- * @param {Array} collection 一个用来迭代的集合。
+ * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
  * @param {Function | string} [iteratee] 迭代函数，用来转换键。
  * @returns {Object} 组成聚合对象。
  * @example
@@ -24,20 +27,18 @@ import isArray from './isArray';
  * groupBy(['one', 'two', 'three'], 'length'); // {'3': ['one', 'two'], '5': ['three']}
  *
  */
-function groupBy<T, F extends (value: T) => any, K extends keyof T>(collection: T[], iteratee?: F | K) {
+function groupBy<T>(collection: ArrayLike<T> | object | null | undefined, iteratee?: any) {
   const result: Record<string | number | symbol, T[]> = {};
 
-  if (isArray(collection)) {
-    const internalIteratee = createIteratee<T, F, K>(iteratee);
-    collection.forEach((item) => {
-      const key = internalIteratee(item);
-      if (key in result) {
-        result[key].push(item);
-      } else {
-        result[key] = [item];
-      }
-    });
-  }
+  const internalIteratee = createIteratee<T>(iteratee);
+  forEach(collection, (item) => {
+    const key = internalIteratee(item);
+    if (key in result) {
+      result[key].push(item);
+    } else {
+      result[key] = [item];
+    }
+  });
   return result;
 }
 

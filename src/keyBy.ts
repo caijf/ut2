@@ -1,5 +1,8 @@
-import createIteratee from './internals/createIteratee';
-import isArray from './isArray';
+import forEach from './forEach';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
+
+function keyBy<T>(collection: ArrayLike<T> | null | undefined, iteratee?: IterateeParam<T>): Record<string, T>;
+function keyBy<T extends object, V extends T[keyof T]>(collection: T | null | undefined, iteratee?: IterateeParam<V>): Record<string, V>;
 
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。每个 `key` 对应的值是生成 `key` 的最后一个元素。
@@ -9,7 +12,7 @@ import isArray from './isArray';
  * @static
  * @alias module:Collection.keyBy
  * @since 1.0.0
- * @param {Array} collection 一个用来迭代的集合。
+ * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
  * @param {Function | string} [iteratee] 迭代函数，用来转换键。
  * @returns {Object} 组成聚合对象。
  * @example
@@ -24,16 +27,14 @@ import isArray from './isArray';
  * keyBy(['one', 'two', 'three'], 'length'); // {'3': 'two', '5': 'three'}
  *
  */
-function keyBy<T, F extends (value: T) => any, K extends keyof T>(collection: T[], iteratee?: F | K) {
+function keyBy<T>(collection: ArrayLike<T> | object | null | undefined, iteratee?: any) {
   const result: Record<string | number | symbol, T> = {};
 
-  if (isArray(collection)) {
-    const internalIteratee = createIteratee<T, F, K>(iteratee);
-    collection.forEach((item) => {
-      const key = internalIteratee(item);
-      result[key] = item;
-    });
-  }
+  const internalIteratee = createIteratee<T>(iteratee);
+  forEach(collection, (item) => {
+    const key = internalIteratee(item);
+    result[key] = item;
+  });
   return result;
 }
 

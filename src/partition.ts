@@ -1,5 +1,8 @@
-import createIteratee from './internals/createIteratee';
-import isArray from './isArray';
+import forEach from './forEach';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
+
+function partition<T>(collection: ArrayLike<T> | null | undefined, iteratee?: IterateeParam<T>): [T[], T[]];
+function partition<T extends object, V extends T[keyof T]>(collection: T | null | undefined, iteratee?: IterateeParam<V>): [V[], V[]];
 
 /**
  * 创建一个分成两组的元素数组，第一组包含 `predicate`（断言函数）返回为 [`truthy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)（真值）的元素，第二组包含 `predicate`（断言函数）返回为 [`falsy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy)（假值）的元素。
@@ -9,7 +12,7 @@ import isArray from './isArray';
  * @static
  * @alias module:Collection.partition
  * @since 1.0.0
- * @param {Array} collection 一个用来迭代的集合。
+ * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
  * @param {Function | string} [predicate=identity] 每次迭代调用的断言函数。
  * @returns {Array} 分组后的数组。
  * @example
@@ -34,14 +37,12 @@ import isArray from './isArray';
  * // ]
  *
  */
-function partition<T, F extends (value: T) => any, K extends keyof T>(collection: T[], predicate?: F | K) {
+function partition<T>(collection: ArrayLike<T> | object | null | undefined, predicate?: any) {
   const result: [T[], T[]] = [[], []];
-  if (isArray(collection)) {
-    const internalIteratee = createIteratee<T, F, K>(predicate);
-    collection.forEach((item) => {
-      result[internalIteratee(item) ? 0 : 1].push(item);
-    });
-  }
+  const internalIteratee = createIteratee<T>(predicate);
+  forEach(collection, (item) => {
+    result[internalIteratee(item) ? 0 : 1].push(item);
+  });
   return result;
 }
 

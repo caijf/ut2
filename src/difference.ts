@@ -1,5 +1,5 @@
 import eq from './eq';
-import createIteratee from './internals/createIteratee';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
 import isArray from './isArray';
 
 /**
@@ -33,7 +33,7 @@ import isArray from './isArray';
  * difference([-0, 0], [0], undefined, true); // [-0]
  *
  */
-function difference<T, F extends (value: T) => any, K extends keyof T>(array: T[], values: any[], iteratee?: F | K, strictCheck = false) {
+function difference<T>(array: T[], values: any[], iteratee?: IterateeParam<T>, strictCheck = false) {
   if (!isArray(array)) {
     return [];
   }
@@ -42,7 +42,7 @@ function difference<T, F extends (value: T) => any, K extends keyof T>(array: T[
     return array;
   }
 
-  const internalIteratee = createIteratee<T, F, K>(iteratee);
+  const internalIteratee = createIteratee<T>(iteratee);
   return array.filter((item) => {
     const current = internalIteratee(item);
     // 注意此处不能使用 `find` ，如果值存在 `undefined` 不好处理。

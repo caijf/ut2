@@ -32,13 +32,7 @@ describe('orderBy', () => {
   });
 
   it('嵌套对象', () => {
-    expect(orderBy(nestedObj, [(item) => item.address.zipCode, (item) => item.address.streetName], ['asc', 'desc'])).toEqual([
-      nestedObj[2],
-      nestedObj[3],
-      nestedObj[1],
-      nestedObj[0],
-      nestedObj[4]
-    ]);
+    expect(orderBy(nestedObj, [(item) => item.address.zipCode, (item) => item.address.streetName], ['asc', 'desc'])).toEqual([nestedObj[2], nestedObj[3], nestedObj[1], nestedObj[0], nestedObj[4]]);
   });
 
   it('自定义排序比较方法', () => {
@@ -67,6 +61,12 @@ describe('orderBy', () => {
 
     expect(orderBy([3, s2, 1, 5, s1, 4, 'z', 2], (item) => item, 'desc')).toEqual([s2, s1, 'z', 5, 4, 3, 2, 1]);
     expect(orderBy([3, s1, 1, 5, s2, 4, 'z', 2], (item) => item, 'desc')).toEqual([s1, s2, 'z', 5, 4, 3, 2, 1]);
+  });
+
+  it('对象', () => {
+    expect(orderBy({ a: 1, b: 1, c: 2 })).toEqual([1, 1, 2]);
+    expect(orderBy({ a: 'one', b: 'two', c: 'three' }, 'length')).toEqual(['one', 'two', 'three']);
+    expect(orderBy({ a: { n: 6.1 }, b: { n: 4.2 }, c: { n: 6.3 } }, (value) => Math.floor(value.n))).toEqual([{ n: 4.2 }, { n: 6.1 }, { n: 6.3 }]);
   });
 
   it('错误的参数', () => {

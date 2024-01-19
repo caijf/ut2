@@ -1,5 +1,5 @@
 import eq from './eq';
-import createIteratee from './internals/createIteratee';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
 import isArray from './isArray';
 import isUndefined from './isUndefined';
 
@@ -33,7 +33,7 @@ import isUndefined from './isUndefined';
  * uniq([-0, 0], undefined, true); // [-0, 0]
  *
  */
-function uniq<T, F extends (value: T) => any, K extends keyof T>(array: T[], iteratee?: F | K, strickCheck = false) {
+function uniq<T>(array: T[], iteratee?: IterateeParam<T>, strickCheck = false) {
   if (!isArray(array)) {
     return [];
   }
@@ -43,7 +43,7 @@ function uniq<T, F extends (value: T) => any, K extends keyof T>(array: T[], ite
       return arr.findIndex((item) => eq(item, value, strickCheck)) === index;
     });
   } else {
-    const internalIteratee = createIteratee<T, F, K>(iteratee);
+    const internalIteratee = createIteratee<T>(iteratee);
     return array.filter((value, index, arr) => {
       const current = internalIteratee(value);
       return arr.findIndex((item) => eq(internalIteratee(item), current, strickCheck)) === index;

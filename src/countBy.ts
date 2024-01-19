@@ -1,5 +1,8 @@
-import createIteratee from './internals/createIteratee';
-import isArray from './isArray';
+import forEach from './forEach';
+import createIteratee, { IterateeParam } from './internals/createIteratee';
+
+function countBy<T>(collection: ArrayLike<T> | null | undefined, iteratee?: IterateeParam<T>): Record<string, number>;
+function countBy<T extends object, V extends T[keyof T]>(collection: T | null | undefined, iteratee?: IterateeParam<V>): Record<string, number>;
 
 /**
  * 创建一个组成对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果，每个 `key` 对应的值是 `iteratee` 返回该 `key` 的次数。
@@ -9,7 +12,7 @@ import isArray from './isArray';
  * @static
  * @alias module:Collection.countBy
  * @since 1.0.0
- * @param {Array} collection 一个用来迭代的集合。
+ * @param {ArrayLike<any> | object} collection 一个用来迭代的集合。
  * @param {Function | string} [iteratee] 迭代函数，用来转换键。
  * @returns {Object} 组成集合对象。
  * @example
@@ -24,20 +27,17 @@ import isArray from './isArray';
  * countBy(['one', 'two', 'three'], 'length'); // {'3': 2, '5': 1}
  *
  */
-function countBy<T, F extends (value: T) => any, K extends keyof T>(collection: T[], iteratee?: F | K) {
+function countBy<T>(collection: ArrayLike<T> | object | null | undefined, iteratee?: any) {
   const result: Record<string | number | symbol, number> = {};
-
-  if (isArray(collection)) {
-    const internalIteratee = createIteratee<T, F, K>(iteratee);
-    collection.forEach((item) => {
-      const key = internalIteratee(item);
-      if (key in result) {
-        ++result[key];
-      } else {
-        result[key] = 1;
-      }
-    });
-  }
+  const internalIteratee = createIteratee<T>(iteratee);
+  forEach(collection, (item) => {
+    const key = internalIteratee(item);
+    if (key in result) {
+      ++result[key];
+    } else {
+      result[key] = 1;
+    }
+  });
   return result;
 }
 

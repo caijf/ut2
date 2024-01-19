@@ -46,6 +46,15 @@ describe('groupBy', () => {
     });
   });
 
+  it('对象', () => {
+    expect(groupBy({ a: 1, b: 1, c: 2 })).toEqual({ '1': [1, 1], '2': [2] });
+    expect(groupBy({ a: 'one', b: 'two', c: 'three' }, 'length')).toEqual({ '3': ['one', 'two'], '5': ['three'] });
+    expect(groupBy({ a: { n: 6.1 }, b: { n: 4.2 }, c: { n: 6.3 } }, (value) => Math.floor(value.n))).toEqual({
+      '6': [{ n: 6.1 }, { n: 6.3 }],
+      '4': [{ n: 4.2 }]
+    });
+  });
+
   it('错误的参数', () => {
     const values = [null, undefined, 1, '', {}, NaN, symbol];
     values.forEach((item) => {
