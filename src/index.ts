@@ -24,6 +24,7 @@ export { default as zip } from './zip';
  * @since 1.0.0
  */
 export { default as countBy } from './countBy';
+export { default as forEach } from './forEach';
 export { default as groupBy } from './groupBy';
 export { default as keyBy } from './keyBy';
 export { default as orderBy } from './orderBy';
@@ -119,6 +120,7 @@ export { default as randomInt } from './randomInt';
  */
 export { default as allKeys } from './allKeys';
 export { default as allKeysIn } from './allKeysIn';
+export { default as keys } from './keys';
 export { default as keysIn } from './keysIn';
 export { default as merge } from './merge';
 export { default as omit } from './omit';

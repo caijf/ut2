@@ -10,7 +10,7 @@ import isObject from './isObject';
  * @alias module:Object.keysIn
  * @since 1.1.0
  * @param {Object} object 要查询的对象。
- * @returns {string[]} 对象自身及继承的可枚举属性名(不包含 `Symbol` 属性)数组。
+ * @returns {string[]} 对象自身及继承的可枚举属性(不包含 `Symbol` 属性)。
  * @example
  *
  * function Foo(){

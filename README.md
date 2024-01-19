@@ -75,6 +75,7 @@ const debounced = debounce(() => {
   - zip - 数组参数分组。
 - Collection 集合
   - countBy - 统计数量。
+  - forEach - 迭代集合元素。
   - groupBy - 对象分组。
   - keyBy - 转为对象。
   - orderBy - 排序。
@@ -140,6 +141,7 @@ const debounced = debounce(() => {
 - Object 对象
   - allKeys - 对象自身的可枚举属性（包含 `Symbol` 属性）。
   - allKeysIn - 对象自身及继承的可枚举属性（包含 `Symbol` 属性）。
+  - keys - 对象自身的可枚举属性（不包含 `Symbol` 属性）。
   - keysIn - 对象自身及继承的可枚举属性（不包含 `Symbol` 属性）。
   - merge - 递归对象或数组进行合并。
   - omit - 排除部分属性。

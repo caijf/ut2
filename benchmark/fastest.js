@@ -366,6 +366,20 @@
           ]
         },
         {
+          method: 'forEach',
+          params: [
+            [[1, 2, 3], (item) => item],
+            [[1, 2, 3], (item) => item !== 2],
+            [[1, null, undefined, false, 2, 3], (item) => item],
+            [{ a: 1, b: 2, c: 3 }, (item) => item],
+            [{ a: 1, b: false, c: 3 }, (item) => item]
+          ],
+          underscore: {
+            method: 'each'
+            // existed: false
+          }
+        },
+        {
           method: 'groupBy',
           params: [
             [[6, 4, 6]],
@@ -745,6 +759,10 @@
           lodash: {
             existed: false
           }
+        },
+        {
+          method: 'keys',
+          params: [[{ a: 1, b: 2, c: 3 }], [{ a: 1, [Symbol.for('b')]: 2 }], [new Foo()], [null]]
         },
         {
           method: 'keysIn',
@@ -1207,8 +1225,9 @@
             result[newKey] = newValue;
           });
         } else {
-          result = ut2.toString(value);
+          result = value === null ? 'null' : value === undefined ? 'undefined' : ut2.toString(value);
         }
+        // console.log(value, result);
         return result;
       }
 

@@ -22,7 +22,7 @@ import isLength from './isLength';
  * isArrayLike(()=>{}); // false
  *
  */
-function isArrayLike(value: any) {
+function isArrayLike(value: any): value is ArrayLike<any> {
   return value != null && isLength(value.length) && !isFunction(value);
 }
 

@@ -2,9 +2,17 @@ import { keysIn } from '../src';
 import { symbol } from './_utils';
 
 describe('keysIn', () => {
-  it('返回对象自身及继承的属性名', () => {
+  it('返回对象自身及继承的属性', () => {
     const obj = { a: 1, b: 2, c: 3 };
     expect(keysIn(obj)).toEqual(['a', 'b', 'c']);
+  });
+
+  it('包含原型链可枚举属性', () => {
+    function Foo(this: any) {
+      this.a = 1;
+    }
+    Foo.prototype.c = 3;
+    expect(keysIn(new (Foo as any)())).toEqual(['a', 'c']);
   });
 
   it('不包含 `Symbol` 属性', () => {

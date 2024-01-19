@@ -7,6 +7,14 @@ describe('allKeysIn', () => {
     expect(allKeysIn(obj)).toEqual(['a', 'b', 'c']);
   });
 
+  it('包含原型链可枚举属性', () => {
+    function Foo(this: any) {
+      this.a = 1;
+    }
+    Foo.prototype.c = 3;
+    expect(allKeysIn(new (Foo as any)())).toEqual(['a', 'c']);
+  });
+
   it('包含 `Symbol` 属性', () => {
     const obj = { a: 1, [symbol]: 2 };
     expect(allKeysIn(obj)).toEqual(['a', symbol]);
