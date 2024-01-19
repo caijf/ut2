@@ -36,7 +36,8 @@ export type OrderData<T> = {
   index: number;
   value: T;
 };
-export type Order = 'asc' | 'desc' | ((a: any, b: any) => number);
+export type OrderBase = 'asc' | 'desc';
+export type Order = OrderBase | ((a: any, b: any) => number);
 
 export function compareMultiple<T>(object: OrderData<T>, other: OrderData<T>, orders: Order[]) {
   const objCriteria = object.criteria;

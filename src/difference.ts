@@ -1,5 +1,6 @@
 import eq from './eq';
-import createIteratee, { IterateeParam } from './internals/createIteratee';
+import createIteratee from './internals/createIteratee';
+import { IterateeParam } from './internals/types';
 import isArray from './isArray';
 
 /**

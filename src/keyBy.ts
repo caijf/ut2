@@ -1,8 +1,9 @@
 import forEach from './forEach';
-import createIteratee, { IterateeParam } from './internals/createIteratee';
+import createIteratee from './internals/createIteratee';
+import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
 
-function keyBy<T>(collection: ArrayLike<T> | null | undefined, iteratee?: IterateeParam<T>): Record<string, T>;
-function keyBy<T extends object, V extends T[keyof T]>(collection: T | null | undefined, iteratee?: IterateeParam<V>): Record<string, V>;
+function keyBy<T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, T>;
+function keyBy<T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, V>;
 
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。每个 `key` 对应的值是生成 `key` 的最后一个元素。
@@ -27,7 +28,7 @@ function keyBy<T extends object, V extends T[keyof T]>(collection: T | null | un
  * keyBy(['one', 'two', 'three'], 'length'); // {'3': 'two', '5': 'three'}
  *
  */
-function keyBy<T>(collection: ArrayLike<T> | object | null | undefined, iteratee?: any) {
+function keyBy<T>(collection: any, iteratee?: any) {
   const result: Record<string | number | symbol, T> = {};
 
   const internalIteratee = createIteratee<T>(iteratee);

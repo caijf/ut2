@@ -1,20 +1,16 @@
 import identity from './identity';
+import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './internals/types';
 import isArrayLike from './isArrayLike';
 import keys from './keys';
-
-type StringIterator<Result> = (char: string, index: number, string: string) => Result;
-type ArrayIterator<T, Result> = (item: T, index: number, collection: T[]) => Result;
-type ArrayLikeIterator<T, Result> = (item: T, index: number, collection: ArrayLike<T>) => Result;
-type ObjectIterator<T, Result> = (value: T[keyof T], key: string, collection: T) => Result;
 
 function forEach<T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[];
 function forEach(collection: string, iteratee?: StringIterator<any>): string;
 function forEach<T>(collection: ArrayLike<T>, iteratee?: ArrayLikeIterator<T, any>): ArrayLike<T>;
 function forEach<T extends object>(collection: T, iteratee?: ObjectIterator<T, any>): T;
-function forEach<T, TArray extends T[] | null | undefined>(collection: TArray & (T[] | null | undefined), iteratee?: ArrayIterator<T, any>): TArray;
-function forEach<TString extends string | null | undefined>(collection: TString, iteratee?: StringIterator<any>): TString;
-function forEach<T, TArrayLike extends ArrayLike<T> | null | undefined>(collection: TArrayLike & (ArrayLike<T> | null | undefined), iteratee?: ArrayLikeIterator<T, any>): TArrayLike;
-function forEach<T extends object>(collection: T | null | undefined, iteratee?: ObjectIterator<T, any>): T | null | undefined;
+function forEach<T, TArray extends WithNullable<T[]>>(collection: TArray & WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): TArray;
+function forEach<TString extends WithNullable<string>>(collection: TString, iteratee?: StringIterator<any>): TString;
+function forEach<T, TArrayLike extends WithNullable<ArrayLike<T>>>(collection: TArrayLike & WithNullable<ArrayLike<T>>, iteratee?: ArrayLikeIterator<T, any>): TArrayLike;
+function forEach<T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): WithNullable<T>;
 
 /**
  * 迭代集合的元素并为每个元素调用 `iteratee` 。

@@ -1,5 +1,6 @@
 import difference from './difference';
-import createIteratee, { IterateeParam } from './internals/createIteratee';
+import createIteratee from './internals/createIteratee';
+import { IterateeParam } from './internals/types';
 import intersection from './intersection';
 import isArray from './isArray';
 import union from './union';

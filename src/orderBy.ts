@@ -1,11 +1,12 @@
 import identity from './identity';
-import createIteratee, { IterateeParam } from './internals/createIteratee';
-import { compareMultiple, Order, OrderData } from './internals/compare';
+import createIteratee from './internals/createIteratee';
+import { compareMultiple, Order, OrderBase, OrderData } from './internals/compare';
 import isArray from './isArray';
 import forEach from './forEach';
+import { CollectionList, CollectionObject, IterateeParam, Many } from './internals/types';
 
-function orderBy<T>(collection: ArrayLike<T> | null | undefined, iteratee?: IterateeParam<T> | IterateeParam<T>[], orders?: Order | Order[]): T[];
-function orderBy<T extends object, V extends T[keyof T]>(collection: T | null | undefined, iteratee?: IterateeParam<V> | IterateeParam<V>, orders?: Order | Order[]): V[];
+function orderBy<T>(collection: CollectionList<T>, iteratee?: Many<IterateeParam<T>>, orders?: Many<Order>): T[];
+function orderBy<T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<IterateeParam<V>>, orders?: Many<Order>): V[];
 
 /**
  * 创建一个元素数组，以迭代函数处理的结果排序。如果没有指定排序，默认为升序排序。
@@ -45,11 +46,11 @@ function orderBy<T extends object, V extends T[keyof T]>(collection: T | null | 
  * // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
  *
  */
-function orderBy<T>(collection: ArrayLike<T> | object | null | undefined, iteratees?: any, orders?: Order | Order[]) {
+function orderBy<T>(collection: any, iteratees?: any, orders?: Many<Order>) {
   const result: OrderData<T>[] = [];
 
   iteratees = (isArray(iteratees) ? iteratees : iteratees !== undefined ? [iteratees] : [identity]) as IterateeParam<T>[];
-  orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : []) as ('asc' | 'desc')[];
+  orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : []) as OrderBase[];
 
   let index = -1;
   forEach(collection, (item) => {

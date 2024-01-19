@@ -1,8 +1,9 @@
 import forEach from './forEach';
-import createIteratee, { IterateeParam } from './internals/createIteratee';
+import createIteratee from './internals/createIteratee';
+import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
 
-function countBy<T>(collection: ArrayLike<T> | null | undefined, iteratee?: IterateeParam<T>): Record<string, number>;
-function countBy<T extends object, V extends T[keyof T]>(collection: T | null | undefined, iteratee?: IterateeParam<V>): Record<string, number>;
+function countBy<T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, number>;
+function countBy<T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, number>;
 
 /**
  * 创建一个组成对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果，每个 `key` 对应的值是 `iteratee` 返回该 `key` 的次数。
@@ -27,7 +28,7 @@ function countBy<T extends object, V extends T[keyof T]>(collection: T | null | 
  * countBy(['one', 'two', 'three'], 'length'); // {'3': 2, '5': 1}
  *
  */
-function countBy<T>(collection: ArrayLike<T> | object | null | undefined, iteratee?: any) {
+function countBy<T>(collection: any, iteratee?: any) {
   const result: Record<string | number | symbol, number> = {};
   const internalIteratee = createIteratee<T>(iteratee);
   forEach(collection, (item) => {

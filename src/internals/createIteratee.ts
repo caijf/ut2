@@ -1,7 +1,6 @@
 import identity from '../identity';
 import isSymbol from '../isSymbol';
-
-export type IterateeParam<T> = ((value: T, ...args: any[]) => any) | keyof T;
+import { IterateeParam } from './types';
 
 /**
  * 创建迭代函数。

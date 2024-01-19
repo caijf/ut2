@@ -1,7 +1,8 @@
 import isArray from '../isArray';
 import isSymbol from '../isSymbol';
 import isUndefined from '../isUndefined';
-import createIteratee, { IterateeParam } from './createIteratee';
+import createIteratee from './createIteratee';
+import { IterateeParam } from './types';
 
 function createExtremum<T>(array: T[], comparator: (value: any, other: any) => boolean, iteratee?: IterateeParam<T>) {
   if (!isArray(array)) {
