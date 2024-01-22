@@ -3,14 +3,10 @@ import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithN
 import isArrayLike from './isArrayLike';
 import keys from './keys';
 
-function forEach<T>(collection: T[], iteratee?: ArrayIterator<T, any>): T[];
-function forEach(collection: string, iteratee?: StringIterator<any>): string;
-function forEach<T>(collection: ArrayLike<T>, iteratee?: ArrayLikeIterator<T, any>): ArrayLike<T>;
-function forEach<T extends object>(collection: T, iteratee?: ObjectIterator<T, any>): T;
-function forEach<T, TArray extends WithNullable<T[]>>(collection: TArray & WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): TArray;
-function forEach<TString extends WithNullable<string>>(collection: TString, iteratee?: StringIterator<any>): TString;
-function forEach<T, TArrayLike extends WithNullable<ArrayLike<T>>>(collection: TArrayLike & WithNullable<ArrayLike<T>>, iteratee?: ArrayLikeIterator<T, any>): TArrayLike;
-function forEach<T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): WithNullable<T>;
+function forEach<T>(collection: WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): T[];
+function forEach(collection: WithNullable<string>, iteratee?: StringIterator<any>): string;
+function forEach<T>(collection: WithNullable<ArrayLike<T>>, iteratee?: ArrayLikeIterator<T, any>): ArrayLike<T>;
+function forEach<T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): T;
 
 /**
  * 迭代集合的元素并为每个元素调用 `iteratee` 。
@@ -21,7 +17,7 @@ function forEach<T extends object>(collection: WithNullable<T>, iteratee?: Objec
  * @alias module:Collection.forEach
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
- * @param {Function} [iteratee] 每次迭代调用的函数。
+ * @param {Function} [iteratee=identity] 每次迭代调用的函数。
  * @returns {ArrayLike<any> | Object} 迭代集合本身。
  * @example
  *

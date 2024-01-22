@@ -14,7 +14,7 @@ function countBy<T extends object, V extends T[keyof T]>(collection: CollectionO
  * @alias module:Collection.countBy
  * @since 1.0.0
  * @param {ArrayLike<any> | object} collection 一个用来迭代的集合。
- * @param {Function | string} [iteratee] 迭代函数，用来转换键。
+ * @param {Function | string} [iteratee=identity] 迭代函数，用来转换键。
  * @returns {Object} 组成集合对象。
  * @example
  *

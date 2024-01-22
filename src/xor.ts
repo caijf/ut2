@@ -1,4 +1,5 @@
 import difference from './difference';
+import identity from './identity';
 import createIteratee from './internals/createIteratee';
 import { IterateeParam } from './internals/types';
 import intersection from './intersection';
@@ -18,7 +19,7 @@ import uniq from './uniq';
  * @since 1.0.0
  * @param {Array} array 要检查的数组。
  * @param {Array} [other=[]] 另一个要检查的数组。
- * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
+ * @param {Function | string} [iteratee={@link https://caijf.github.io/ut2/module-Util.html#.identity | identity}] 迭代函数，调用每个元素。
  * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`，默认 `false` 。
  * @returns {Array} 过滤值后的新数组。
  * @example
@@ -37,7 +38,7 @@ import uniq from './uniq';
  * xor([-0, 0],[0], undefined, true); // [-0]
  *
  */
-function xor<T>(array: T[], other: T[] = [], iteratee?: IterateeParam<T>, strickCheck = false) {
+function xor<T>(array: T[], other: T[] = [], iteratee: IterateeParam<T> = identity, strickCheck = false) {
   if (!isArray(array) && !isArray(other)) {
     return [];
   }

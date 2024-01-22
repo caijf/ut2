@@ -1,4 +1,5 @@
 import forEach from './forEach';
+import identity from './identity';
 import createIteratee from './internals/createIteratee';
 import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
 
@@ -38,7 +39,7 @@ function partition<T extends object, V extends T[keyof T]>(collection: Collectio
  * // ]
  *
  */
-function partition<T>(collection: any, predicate?: any) {
+function partition<T>(collection: any, predicate: any = identity) {
   const result: [T[], T[]] = [[], []];
   const internalIteratee = createIteratee<T>(predicate);
   forEach(collection, (item) => {

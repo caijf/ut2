@@ -1,4 +1,5 @@
 import eq from './eq';
+import identity from './identity';
 import createIteratee from './internals/createIteratee';
 import { IterateeParam } from './internals/types';
 import isArray from './isArray';
@@ -15,7 +16,7 @@ import isArray from './isArray';
  * @since 1.0.0
  * @param {Array} array 要检查的数组。
  * @param {Array} values 排除的值。
- * @param {Function | string} [iteratee] 迭代函数，调用每个元素。
+ * @param {Function | string} [iteratee=identity] 迭代函数，调用每个元素。
  * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`，默认 `false` 。
  * @returns {Array} 过滤值后的新数组。
  * @example
@@ -34,7 +35,7 @@ import isArray from './isArray';
  * difference([-0, 0], [0], undefined, true); // [-0]
  *
  */
-function difference<T>(array: T[], values: any[], iteratee?: IterateeParam<T>, strictCheck = false) {
+function difference<T>(array: T[], values: any[], iteratee: IterateeParam<T> = identity, strictCheck = false) {
   if (!isArray(array)) {
     return [];
   }

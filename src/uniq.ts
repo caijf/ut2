@@ -43,13 +43,13 @@ function uniq<T>(array: T[], iteratee?: IterateeParam<T>, strickCheck = false) {
     return array.filter((value, index, arr) => {
       return arr.findIndex((item) => eq(item, value, strickCheck)) === index;
     });
-  } else {
-    const internalIteratee = createIteratee<T>(iteratee);
-    return array.filter((value, index, arr) => {
-      const current = internalIteratee(value);
-      return arr.findIndex((item) => eq(internalIteratee(item), current, strickCheck)) === index;
-    });
   }
+
+  const internalIteratee = createIteratee<T>(iteratee);
+  return array.filter((value, index, arr) => {
+    const current = internalIteratee(value);
+    return arr.findIndex((item) => eq(internalIteratee(item), current, strickCheck)) === index;
+  });
 }
 
 export default uniq;

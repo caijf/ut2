@@ -1,3 +1,4 @@
+import { IterateeParam } from './internals/types';
 import isArray from './isArray';
 import uniq from './uniq';
 
@@ -32,7 +33,7 @@ import uniq from './uniq';
  * union([-0, 0], [-0], undefined, true); // [-0, 0]
  *
  */
-function union<T, F extends (value: T) => any, K extends keyof T>(array: T[], other: T[] = [], iteratee?: F | K, strickCheck = false) {
+function union<T>(array: T[], other: T[] = [], iteratee?: IterateeParam<T>, strickCheck = false) {
   array = isArray(array) ? array : [];
   other = isArray(other) ? other : [];
   return uniq(array.concat(other), iteratee, strickCheck);

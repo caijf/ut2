@@ -1,4 +1,5 @@
 import forEach from './forEach';
+import identity from './identity';
 import createIteratee from './internals/createIteratee';
 import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
 
@@ -14,7 +15,7 @@ function keyBy<T extends object, V extends T[keyof T]>(collection: CollectionObj
  * @alias module:Collection.keyBy
  * @since 1.0.0
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
- * @param {Function | string} [iteratee] 迭代函数，用来转换键。
+ * @param {Function | string} [iteratee=identity] 迭代函数，用来转换键。
  * @returns {Object} 组成聚合对象。
  * @example
  *
@@ -28,7 +29,7 @@ function keyBy<T extends object, V extends T[keyof T]>(collection: CollectionObj
  * keyBy(['one', 'two', 'three'], 'length'); // {'3': 'two', '5': 'three'}
  *
  */
-function keyBy<T>(collection: any, iteratee?: any) {
+function keyBy<T>(collection: any, iteratee: any = identity) {
   const result: Record<string | number | symbol, T> = {};
 
   const internalIteratee = createIteratee<T>(iteratee);
