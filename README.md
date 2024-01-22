@@ -75,6 +75,7 @@ const debounced = debounce(() => {
   - zip - 数组参数分组。
 - Collection 集合
   - countBy - 统计数量。
+  - filter - 过滤集合元素。
   - forEach - 迭代集合元素。
   - groupBy - 对象分组。
   - keyBy - 转为对象。

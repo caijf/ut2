@@ -9,7 +9,7 @@ function forEach<T>(collection: WithNullable<ArrayLike<T>>, iteratee?: ArrayLike
 function forEach<T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): T;
 
 /**
- * 迭代集合的元素并为每个元素调用 `iteratee` 。
+ * 迭代集合元素，为每个元素调用 `iteratee` 。
  *
  * `iteratee` 函数可以通过显式返回 `false` 来提前退出迭代。
  *

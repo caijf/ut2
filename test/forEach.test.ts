@@ -86,6 +86,26 @@ describe('forEach', () => {
     expect(objFn).toBeCalledTimes(2);
   });
 
+  it('带 length 的普通对象，视为类数组对象', () => {
+    // 错误的类数组对象
+    const obj = { a: 1, b: 2, length: 2 };
+    const fn = jest.fn((value) => {
+      expect(value).toBeUndefined();
+    });
+    const objResult = forEach(obj, fn);
+    expect(fn).toBeCalledTimes(2);
+    expect(objResult).toBe(obj);
+
+    // 正常的类数组对象
+    const obj2 = { 0: 'a', 1: 'b', length: 2 };
+    const fn2 = jest.fn((value) => {
+      expect(value).not.toBeUndefined();
+    });
+    const obj2Result = forEach(obj2, fn2);
+    expect(fn2).toBeCalledTimes(2);
+    expect(obj2Result).toBe(obj2);
+  });
+
   it('不支持的数据类型 Map,Set,number,null,undefined,function 等', () => {
     const mapFn = jest.fn();
     const map = new Map([
