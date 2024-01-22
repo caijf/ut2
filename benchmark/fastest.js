@@ -780,7 +780,8 @@
             [{ a: 1 }, { a: undefined, b: undefined }],
             [{ a: undefined, b: undefined }, { a: 1 }],
             [[{ a: 1, b: { c: [{ d: 2 }] } }], [{ a: 3, b: { c: [{ d: 4 }, { d: 5 }] } }]],
-            [{}, { [Symbol('a')]: 1 }]
+            [{}, { [Symbol('a')]: 1 }],
+            [{}, new Foo()]
           ],
           underscore: {
             existed: false
@@ -1160,6 +1161,12 @@
     const ut2 = options.ut2;
     const underscore = options.underscore;
     const lodash = options.lodash;
+
+    // // 自定义 ut2 merge方法，不处理 `Symbol` 属性，执行速度将比 lodash 快
+    // const _merge = ut2.merge;
+    // ut2.merge = (obj, src, customizer) => {
+    //   return _merge(obj, src, customizer, ut2.keysIn);
+    // };
 
     // 其他配置
     // const async = options.async || false, // 开启async可能没有触发 cycle

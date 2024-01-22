@@ -1,4 +1,4 @@
-import { isBuffer, merge, noop } from '../src';
+import { isBuffer, keys, keysIn, merge, noop } from '../src';
 import { args } from './_utils';
 
 describe('merge', () => {
@@ -194,6 +194,33 @@ describe('merge', () => {
     const d = merge(c, b);
     expect(d).toBe(c);
     expect(d).not.toEqual(a);
+  });
+
+  it('自定义获取对象键的方法', () => {
+    function Foo(this: any) {
+      this.a = 1;
+      this[Symbol.for('a')] = 2;
+    }
+    Foo.prototype.b = 3;
+    Foo.prototype[Symbol.for('b')] = 4;
+
+    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)(), undefined, keys)).toEqual({
+      a: 1,
+      [Symbol.for('a')]: 'a'
+    });
+    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)(), undefined, keysIn)).toEqual({
+      a: 1,
+      [Symbol.for('a')]: 'a',
+      b: 3
+    });
+
+    expect(merge({ a: 'a' }, new (Foo as any)(), undefined, keys)).toEqual({
+      a: 1
+    });
+    expect(merge({ a: 'a' }, new (Foo as any)(), undefined, keysIn)).toEqual({
+      a: 1,
+      b: 3
+    });
   });
 
   it('错误的参数', () => {
