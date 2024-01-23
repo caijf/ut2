@@ -76,6 +76,7 @@ const debounced = debounce(() => {
 - Collection 集合
   - countBy - 统计数量。
   - every - 检查集合元素都为真值。
+  - find - 查找集合元素。
   - filter - 过滤集合元素。
   - forEach - 迭代集合元素。
   - groupBy - 对象分组。
