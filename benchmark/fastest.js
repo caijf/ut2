@@ -1249,7 +1249,8 @@
       }
 
       function argToString(args) {
-        return JSON.stringify(formatString(args));
+        const arr = formatString(args);
+        return arr.map((item) => JSON.stringify(formatString(item))).join(', ');
       }
 
       item.params.forEach(function (args, i) {
