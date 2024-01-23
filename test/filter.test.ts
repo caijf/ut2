@@ -8,6 +8,22 @@ describe('filter', () => {
     expect(filter(arr, (item) => item > 3)).toEqual([4, 5, 6]);
   });
 
+  it('不传第二个参数，默认返回元素自身的值', () => {
+    const arr = [1, null, undefined, false, 2, 3];
+    expect(filter(arr)).toEqual([1, 2, 3]);
+
+    const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
+    filter(arr, fn);
+    expect(fn).toBeCalledTimes(6);
+
+    const obj = { a: 1, b: false, c: 2 };
+    expect(filter(obj)).toEqual([1, 2]);
+
+    const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
+    filter(obj, objFn);
+    expect(objFn).toBeCalledTimes(3);
+  });
+
   it('对象', () => {
     const obj = { one: 1, two: 2, three: 3 };
     expect(filter(obj, (item) => item % 2 === 0)).toEqual([2]);
@@ -40,22 +56,6 @@ describe('filter', () => {
         return false;
       }
     });
-    filter(obj, objFn);
-    expect(objFn).toBeCalledTimes(3);
-  });
-
-  it('不传第二个参数，默认返回元素自身的值', () => {
-    const arr = [1, null, undefined, false, 2, 3];
-    expect(filter(arr)).toEqual([1, 2, 3]);
-
-    const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
-    filter(arr, fn);
-    expect(fn).toBeCalledTimes(6);
-
-    const obj = { a: 1, b: false, c: 2 };
-    expect(filter(obj)).toEqual([1, 2]);
-
-    const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
     filter(obj, objFn);
     expect(objFn).toBeCalledTimes(3);
   });

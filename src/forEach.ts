@@ -13,6 +13,8 @@ function forEach<T extends object>(collection: WithNullable<T>, iteratee?: Objec
  *
  * `iteratee` 函数可以通过显式返回 `false` 来提前退出迭代。
  *
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ *
  * @static
  * @alias module:Collection.forEach
  * @since 1.7.0

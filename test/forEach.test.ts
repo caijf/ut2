@@ -20,6 +20,22 @@ describe('forEach', () => {
     expect(answers).toEqual(arr);
   });
 
+  it('不传第二个参数，如果迭代的值为 false 终止迭代', () => {
+    const arr = [1, null, undefined, false, 2, 3];
+    forEach(arr);
+
+    const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
+    forEach(arr, fn);
+    expect(fn).toBeCalledTimes(4);
+
+    const obj = { a: 1, b: false, c: 2 };
+    forEach(obj);
+
+    const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
+    forEach(obj, objFn);
+    expect(objFn).toBeCalledTimes(2);
+  });
+
   it('迭代对象', () => {
     const keys: any[] = [];
     const values: any[] = [];
@@ -66,22 +82,6 @@ describe('forEach', () => {
         return false;
       }
     });
-    forEach(obj, objFn);
-    expect(objFn).toBeCalledTimes(2);
-  });
-
-  it('不传第二个参数，如果迭代的值为 false 终止迭代', () => {
-    const arr = [1, null, undefined, false, 2, 3];
-    forEach(arr);
-
-    const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
-    forEach(arr, fn);
-    expect(fn).toBeCalledTimes(4);
-
-    const obj = { a: 1, b: false, c: 2 };
-    forEach(obj);
-
-    const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
     forEach(obj, objFn);
     expect(objFn).toBeCalledTimes(2);
   });
