@@ -82,6 +82,7 @@ const debounced = debounce(() => {
   - keyBy - 转为对象。
   - orderBy - 排序。
   - partition - 拆分真值和假值。
+  - some - 检查集合元素包含真值。
 - Function 函数
   - after - 调用 `n` 或更多次之后触发。
   - before - 调用次数少于 `n` 次之前触发。
