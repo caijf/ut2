@@ -81,6 +81,7 @@ const debounced = debounce(() => {
   - forEach - 迭代集合元素。
   - groupBy - 对象分组。
   - keyBy - 转为对象。
+  - map - 迭代集合元素生成新数组。
   - orderBy - 排序。
   - partition - 拆分真值和假值。
   - some - 检查集合元素包含真值。

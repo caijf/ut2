@@ -437,6 +437,16 @@
           }
         },
         {
+          method: 'map',
+          params: [
+            [[1, 2, 3], (item) => item],
+            [[1, 2, 3], (item) => item !== 2],
+            [[1, null, undefined, false, 2, 3], (item) => item],
+            [{ a: 1, b: 2, c: 3 }, (item) => item],
+            [{ a: 1, b: false, c: 3 }, (item) => item]
+          ]
+        },
+        {
           method: 'orderBy',
           params: [
             [[2, 1, 3, 5, 4]],

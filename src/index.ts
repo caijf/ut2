@@ -31,6 +31,7 @@ export { default as forEach } from './forEach';
 export { default as groupBy } from './groupBy';
 export { default as keyBy } from './keyBy';
 export { default as orderBy } from './orderBy';
+export { default as map } from './map';
 export { default as partition } from './partition';
 export { default as some } from './some';
 
