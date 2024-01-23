@@ -36,24 +36,16 @@ function forEach<T extends object>(collection: WithNullable<T>, iteratee?: Objec
  *
  */
 function forEach(collection: any, iteratee: (item: any, index: any, collection: any) => any = identity) {
-  let i = -1;
-  let len: number;
+  const _keys = !isArrayLike(collection) && keys(collection);
+  const len = (_keys || collection).length;
+  let i = 0;
 
-  if (isArrayLike(collection)) {
-    len = collection.length;
-    while (++i < len) {
-      if (iteratee(collection[i], i, collection) === false) {
-        break;
-      }
+  while (i < len) {
+    const currentKey = _keys ? _keys[i] : i;
+    if (iteratee(collection[currentKey], currentKey, collection) === false) {
+      break;
     }
-  } else {
-    const _keys = keys(collection as object);
-    len = _keys.length;
-    while (++i < len) {
-      if (iteratee((collection as any)[_keys[i]], _keys[i], collection) === false) {
-        break;
-      }
-    }
+    i++;
   }
 
   return collection;

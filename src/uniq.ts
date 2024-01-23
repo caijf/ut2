@@ -2,7 +2,6 @@ import eq from './eq';
 import createIteratee from './internals/createIteratee';
 import { IterateeParam } from './internals/types';
 import isArray from './isArray';
-import isUndefined from './isUndefined';
 
 /**
  * 创建一个去重后的数组副本。只有第一次出现的元素才会被保留。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
@@ -37,12 +36,6 @@ import isUndefined from './isUndefined';
 function uniq<T>(array: T[], iteratee?: IterateeParam<T>, strickCheck = false) {
   if (!isArray(array)) {
     return [];
-  }
-
-  if (isUndefined(iteratee)) {
-    return array.filter((value, index, arr) => {
-      return arr.findIndex((item) => eq(item, value, strickCheck)) === index;
-    });
   }
 
   const internalIteratee = createIteratee<T>(iteratee);
