@@ -1225,12 +1225,6 @@
     const underscore = options.underscore;
     const lodash = options.lodash;
 
-    // // 自定义 ut2 merge方法，不处理 `Symbol` 属性，执行速度将比 lodash 快
-    // const _merge = ut2.merge;
-    // ut2.merge = (obj, src, customizer) => {
-    //   return _merge(obj, src, customizer, ut2.keysIn);
-    // };
-
     // 其他配置
     // const async = options.async || false, // 开启async可能没有触发 cycle
     let methods = options.methods;

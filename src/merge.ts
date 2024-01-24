@@ -1,10 +1,10 @@
-import allKeysIn from './allKeysIn';
+import keysIn from './keysIn';
 import isArray from './isArray';
 import isObject from './isObject';
 import isObjectLike from './isObjectLike';
 import isPlainObject from './isPlainObject';
 
-type GetKeysMethod = typeof allKeysIn;
+type GetKeysMethod = <T extends object>(object: T) => (symbol | string)[];
 type Customizer = (objValue: any, srcValue: any, key: string | symbol, object: any, source: any) => any;
 
 // 内部处理合并和循环引用
@@ -54,11 +54,11 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
 }
 
 /**
- * 递归合并 `source` 来源对象自身和继承的可枚举属性（包含 `Symbol` 属性）到 `object` 目标对象。
+ * 递归合并 `source` 来源对象自身和继承的可枚举属性（不包含 `Symbol` 属性）到 `object` 目标对象。
  *
  * 如果目标值存在，被解析为 `undefined` 的 `source` 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。
  *
- * 如果你不需要 `Symbol` 属性，可以传入 {@link https://caijf.github.io/ut2/module-Object.html#.keysIn | keysIn} 方法。
+ * 如果你需要合并 `Symbol` 属性，可以传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn | allKeysIn} 方法。
  *
  * @static
  * @alias module:Object.merge
@@ -66,7 +66,7 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  * @param {Object | Array} object 目标对象。
  * @param {Object | Array} source 来源对象。
  * @param {Function} [customizer] 自定义赋值函数。
- * @param {Function} [getKeys=allKeysIn] 自定义获取对象键方法。
+ * @param {Function} [getKeys=keysIn] 自定义获取对象键方法。
  * @returns {Object} 目标对象。
  * @example
  *
@@ -81,8 +81,8 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  * merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }
  *
  */
-function merge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, getKeys?: typeof allKeysIn): TObject & TSource {
-  return baseMerge(object, source, getKeys || allKeysIn, customizer);
+function merge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, getKeys: GetKeysMethod = keysIn): TObject & TSource {
+  return baseMerge(object, source, getKeys, customizer);
 }
 
 export default merge;

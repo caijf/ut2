@@ -1,4 +1,4 @@
-import { isBuffer, keys, keysIn, merge, noop } from '../src';
+import { allKeysIn, isBuffer, keys, allKeys, merge, noop } from '../src';
 import { args } from './_utils';
 
 describe('merge', () => {
@@ -168,7 +168,7 @@ describe('merge', () => {
     expect(actual).toEqual({ a: { b: [0, 1, 2] } });
   });
 
-  it('包含 `Symbol` 属性值', () => {
+  it('不处理 `Symbol` 属性值合并', () => {
     function Foo(this: any) {
       this.a = 1;
       this[Symbol.for('a')] = 2;
@@ -177,6 +177,43 @@ describe('merge', () => {
     Foo.prototype[Symbol.for('b')] = 4;
 
     expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)())).toEqual({
+      a: 1,
+      b: 3,
+      [Symbol.for('a')]: 'a'
+    });
+  });
+
+  it('自定义获取对象键的方法', () => {
+    function Foo(this: any) {
+      this.a = 1;
+      this[Symbol.for('a')] = 2;
+    }
+    Foo.prototype.b = 3;
+    Foo.prototype[Symbol.for('b')] = 4;
+
+    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)(), undefined, keys)).toEqual({
+      a: 1,
+      [Symbol.for('a')]: 'a'
+    });
+    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)(), undefined, allKeys)).toEqual({
+      a: 1,
+      [Symbol.for('a')]: 2
+    });
+    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)(), undefined, allKeysIn)).toEqual({
+      a: 1,
+      b: 3,
+      [Symbol.for('a')]: 2,
+      [Symbol.for('b')]: 4
+    });
+
+    expect(merge({ a: 'a' }, new (Foo as any)(), undefined, keys)).toEqual({
+      a: 1
+    });
+    expect(merge({ a: 'a' }, new (Foo as any)(), undefined, allKeys)).toEqual({
+      a: 1,
+      [Symbol.for('a')]: 2
+    });
+    expect(merge({ a: 'a' }, new (Foo as any)(), undefined, allKeysIn)).toEqual({
       a: 1,
       b: 3,
       [Symbol.for('a')]: 2,
@@ -194,33 +231,6 @@ describe('merge', () => {
     const d = merge(c, b);
     expect(d).toBe(c);
     expect(d).not.toEqual(a);
-  });
-
-  it('自定义获取对象键的方法', () => {
-    function Foo(this: any) {
-      this.a = 1;
-      this[Symbol.for('a')] = 2;
-    }
-    Foo.prototype.b = 3;
-    Foo.prototype[Symbol.for('b')] = 4;
-
-    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)(), undefined, keys)).toEqual({
-      a: 1,
-      [Symbol.for('a')]: 'a'
-    });
-    expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)(), undefined, keysIn)).toEqual({
-      a: 1,
-      [Symbol.for('a')]: 'a',
-      b: 3
-    });
-
-    expect(merge({ a: 'a' }, new (Foo as any)(), undefined, keys)).toEqual({
-      a: 1
-    });
-    expect(merge({ a: 'a' }, new (Foo as any)(), undefined, keysIn)).toEqual({
-      a: 1,
-      b: 3
-    });
   });
 
   it('错误的参数', () => {
