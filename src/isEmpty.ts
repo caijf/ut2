@@ -1,5 +1,5 @@
 import getTag from './internals/getTag';
-import keys from './internals/keys';
+import specialKeys from './internals/specialKeys';
 import { mapTag, setTag } from './internals/native';
 import isArrayLike from './isArrayLike';
 import isNil from './isNil';
@@ -49,7 +49,7 @@ function isEmpty(value: any) {
   }
 
   if (isObjectLike(value)) {
-    return !keys(value).length;
+    return !specialKeys(value).length;
   }
 
   if (isArrayLike(value)) {
