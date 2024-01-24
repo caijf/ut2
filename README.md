@@ -79,6 +79,7 @@ const debounced = debounce(() => {
   - find - 查找集合元素。
   - filter - 过滤集合元素。
   - forEach - 迭代集合元素。
+  - forEachRight - 迭代集合元素（从右往左的顺序）。
   - groupBy - 对象分组。
   - keyBy - 转为对象。
   - map - 迭代集合元素生成新数组。

@@ -1,34 +1,34 @@
 import createForEach from './internals/createForEach';
 
 /**
- * 迭代集合元素，为每个元素调用 `iteratee` 。
+ * 迭代集合元素（从右往左的顺序），为每个元素调用 `iteratee` 。
  *
  * `iteratee` 函数可以通过显式返回 `false` 来提前退出迭代。
  *
  * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
  *
  * @function
- * @alias module:Collection.forEach
+ * @alias module:Collection.forEachRight
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
  * @param {Function} [iteratee=identity] 每次迭代调用的函数。
  * @returns {ArrayLike<any> | Object} 迭代集合本身。
  * @example
  *
- * forEach([1,2,3], function(item){
+ * forEachRight([1,2,3], function(item){
  *   console.log(item);
  * });
- * // 1
- * // 2
  * // 3
+ * // 2
+ * // 1
  *
- * forEach({a: 1, b: 2}, function(value, key){
+ * forEachRight({a: 1, b: 2}, function(value, key){
  *   console.log(value, key);
  * });
- * // 1 'a'
  * // 2 'b'
+ * // 1 'a'
  *
  */
-const forEach = createForEach(1);
+const forEachRight = createForEach(-1);
 
-export default forEach;
+export default forEachRight;
