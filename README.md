@@ -85,6 +85,8 @@ const debounced = debounce(() => {
   - map - 迭代集合元素生成新数组。
   - orderBy - 排序。
   - partition - 拆分真值和假值。
+  - reduce - 累计值（从右往左的顺序）。
+  - reduceRight - 累计值。
   - some - 检查集合元素包含真值。
 - Function 函数
   - after - 调用 `n` 或更多次之后触发。

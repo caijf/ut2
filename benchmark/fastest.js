@@ -495,6 +495,42 @@
           ]
         },
         {
+          method: 'reduce',
+          params: [
+            [
+              [1, 2, 3],
+              function (accumulator, current) {
+                return accumulator + current;
+              }
+            ],
+            [
+              [1, 2, 3],
+              function (accumulator, current) {
+                return accumulator + current;
+              },
+              0
+            ]
+          ]
+        },
+        {
+          method: 'reduceRight',
+          params: [
+            [
+              [1, 2, 3],
+              function (accumulator, current) {
+                return accumulator + current;
+              }
+            ],
+            [
+              [1, 2, 3],
+              function (accumulator, current) {
+                return accumulator + current;
+              },
+              0
+            ]
+          ]
+        },
+        {
           method: 'some',
           params: [
             [[1, 2, 3], (item) => item],
