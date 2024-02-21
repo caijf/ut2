@@ -1,7 +1,35 @@
-import { allKeysIn, isBuffer, keys, allKeys, merge, noop } from '../src';
+import { allKeysIn, isBuffer, keys, allKeys, merge, noop, isArray } from '../src';
 import { args } from './_utils';
 
 describe('merge', () => {
+  it('basic', () => {
+    const object = {
+      a: [{ b: 2 }, { d: 4 }]
+    };
+
+    const other = {
+      a: [{ c: 3 }, { e: 5 }]
+    };
+
+    expect(merge(object, other)).toEqual({
+      a: [
+        { b: 2, c: 3 },
+        { d: 4, e: 5 }
+      ]
+    });
+
+    // 数组不合并
+    expect(
+      merge(object, other, (objValue, srcValue) => {
+        if (isArray(srcValue)) {
+          return srcValue;
+        }
+      })
+    ).toEqual({
+      a: [{ c: 3 }, { e: 5 }]
+    });
+  });
+
   it('来源对象合并到目标对象', () => {
     expect(merge({}, { a: true, b: false })).toEqual({ a: true, b: false });
     expect(

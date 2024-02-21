@@ -58,7 +58,7 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  *
  * 如果目标值存在，被解析为 `undefined` 的 `source` 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。
  *
- * 如果你需要合并 `Symbol` 属性，可以传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn | allKeysIn} 方法。
+ * 如果你需要合并 `Symbol` 属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn | allKeysIn} 方法， `merge(object, source, undefined, allKeysIn)` 。
  *
  * @static
  * @alias module:Object.merge
@@ -80,6 +80,8 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  *
  * merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }
  *
+ * // 自定义，数组不合并
+ * merge(object, other, (objValue, srcValue) => Array.isArray(srcValue) ? srcValue : undefined); // { a: [{c: 3},{e: 5}] }
  */
 function merge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, getKeys: GetKeysMethod = keysIn): TObject & TSource {
   return baseMerge(object, source, getKeys, customizer);
