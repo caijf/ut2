@@ -85,8 +85,8 @@ const debounced = debounce(() => {
   - [map](https://caijf.github.io/ut2/module-Collection.html#.map) - 迭代集合元素生成新数组。
   - [orderBy](https://caijf.github.io/ut2/module-Collection.html#.orderBy) - 排序。
   - [partition](https://caijf.github.io/ut2/module-Collection.html#.partition) - 拆分真值和假值。
-  - [reduce](https://caijf.github.io/ut2/module-Collection.html#.reduce) - 累计值（从右往左的顺序）。
-  - [reduceRight](https://caijf.github.io/ut2/module-Collection.html#.reduceRight) - 累计值。
+  - [reduce](https://caijf.github.io/ut2/module-Collection.html#.reduce) - 累计。
+  - [reduceRight](https://caijf.github.io/ut2/module-Collection.html#.reduceRight) - 累计（从右往左的顺序）。
   - [some](https://caijf.github.io/ut2/module-Collection.html#.some) - 检查集合元素包含真值。
 - [Function](https://caijf.github.io/ut2/module-Function.html) 函数
   - [after](https://caijf.github.io/ut2/module-Function.html#.after) - 调用 `n` 或更多次之后触发。
