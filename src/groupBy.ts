@@ -3,8 +3,10 @@ import identity from './identity';
 import createIteratee from './internals/createIteratee';
 import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
 
-function groupBy<T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, T[]>;
-function groupBy<T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, V[]>;
+interface GroupBy {
+  <T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, T[]>;
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, V[]>;
+}
 
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。分组值的顺序是由他们出现在 `collection` 的顺序确定的。每个键对应的值负责生成 `key` 的元素组成的数组。
@@ -29,7 +31,7 @@ function groupBy<T extends object, V extends T[keyof T]>(collection: CollectionO
  * groupBy(['one', 'two', 'three'], 'length'); // {'3': ['one', 'two'], '5': ['three']}
  *
  */
-function groupBy<T>(collection: any, iteratee: any = identity) {
+const groupBy: GroupBy = function <T>(collection: any, iteratee: any = identity) {
   const result: Record<string | number | symbol, T[]> = {};
 
   const internalIteratee = createIteratee<T>(iteratee);
@@ -42,6 +44,6 @@ function groupBy<T>(collection: any, iteratee: any = identity) {
     }
   });
   return result;
-}
+};
 
 export default groupBy;

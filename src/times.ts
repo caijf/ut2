@@ -3,14 +3,17 @@ import { MAX_ARRAY_LENGTH, MAX_SAFE_INTEGER, mathFloor, mathMin } from './intern
 import isInteger from './isInteger';
 import isFinite from './isFinite';
 
-function times<T>(n: number, iteratee: (index: number) => T): T[];
-function times(n: number): number[];
+interface Times {
+  <T>(n: number, iteratee: (index: number) => T): T[];
+  (n: number): number[];
+}
+
 /**
  * 调用 `iteratee` `n` 次，每次调用返回的结果存入到数组中。
  *
  * `iteratee` 调用传入 1 个参数 `index` 。
  *
- * @static
+ * @function
  * @alias module:Util.times
  * @since 1.0.0
  * @param {number} n 调用 `iteratee` 的次数。
@@ -25,7 +28,7 @@ function times(n: number): number[];
  * times(4, () => 0); // [0, 0, 0, 0]
  *
  */
-function times<T>(n: number, iteratee = identity): T[] {
+const times: Times = function <T>(n: number, iteratee = identity): T[] {
   if (n < 1 || n > MAX_SAFE_INTEGER) {
     return [];
   }
@@ -41,6 +44,6 @@ function times<T>(n: number, iteratee = identity): T[] {
   }
 
   return result;
-}
+};
 
 export default times;

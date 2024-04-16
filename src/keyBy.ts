@@ -3,15 +3,17 @@ import identity from './identity';
 import createIteratee from './internals/createIteratee';
 import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
 
-function keyBy<T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, T>;
-function keyBy<T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, V>;
+interface KeyBy {
+  <T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, T>;
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, V>;
+}
 
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。每个 `key` 对应的值是生成 `key` 的最后一个元素。
  *
  * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
- * @static
+ * @function
  * @alias module:Collection.keyBy
  * @since 1.0.0
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
@@ -29,7 +31,7 @@ function keyBy<T extends object, V extends T[keyof T]>(collection: CollectionObj
  * keyBy(['one', 'two', 'three'], 'length'); // {'3': 'two', '5': 'three'}
  *
  */
-function keyBy<T>(collection: any, iteratee: any = identity) {
+const keyBy: KeyBy = function <T>(collection: any, iteratee: any = identity) {
   const result: Record<string | number | symbol, T> = {};
 
   const internalIteratee = createIteratee<T>(iteratee);
@@ -38,6 +40,6 @@ function keyBy<T>(collection: any, iteratee: any = identity) {
     result[key] = item;
   });
   return result;
-}
+};
 
 export default keyBy;

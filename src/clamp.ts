@@ -1,12 +1,15 @@
 import defaultTo from './defaultTo';
 import toNumber from './toNumber';
 
-function clamp(number: number, upper: number): number;
-function clamp(number: number, lower: number, upper: number): number;
+interface Clamp {
+  (number: number, upper: number): number;
+  (number: number, lower: number, upper: number): number;
+}
+
 /**
  * 数字限制在 `lower` 和 `upper` 之间的值。
  *
- * @static
+ * @function
  * @alias module:Number.clamp
  * @since 1.0.0
  * @param {number} number 被限制的值。
@@ -27,7 +30,7 @@ function clamp(number: number, lower: number, upper: number): number;
  * clamp(-10, 5); // -10
  *
  */
-function clamp(number: number, lower?: number, upper?: number) {
+const clamp: Clamp = function (number: number, lower?: number, upper?: number) {
   if (upper === undefined) {
     upper = lower;
     lower = undefined;
@@ -53,6 +56,6 @@ function clamp(number: number, lower?: number, upper?: number) {
   }
 
   return number;
-}
+};
 
 export default clamp;

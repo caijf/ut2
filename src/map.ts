@@ -2,10 +2,12 @@ import forEach from './forEach';
 import identity from './identity';
 import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './internals/types';
 
-function map<T>(collection: WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): T[];
-function map(collection: WithNullable<string>, iteratee?: StringIterator<any>): string[];
-function map<T>(collection: WithNullable<ArrayLike<T>>, iteratee?: ArrayLikeIterator<T, any>): T[];
-function map<T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): Array<T[keyof T]>;
+interface Map {
+  <T>(collection: WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): T[];
+  (collection: WithNullable<string>, iteratee?: StringIterator<any>): string[];
+  <T>(collection: WithNullable<ArrayLike<T>>, iteratee?: ArrayLikeIterator<T, any>): T[];
+  <T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): Array<T[keyof T]>;
+}
 
 /**
  * 创建一个新数组，这个数组的值由迭代集合每个元素调用 `iteratee` 函数的返回值组成。
@@ -28,12 +30,12 @@ function map<T extends object>(collection: WithNullable<T>, iteratee?: ObjectIte
  *
  * map([[1, 2], [3, 4]], item=>item[0]); // [1, 3]
  */
-function map(collection: any, iteratee: any = identity) {
+const map: Map = function (collection: any, iteratee: any = identity) {
   const result: any[] = [];
   forEach(collection, (item, index, arr) => {
     result.push(iteratee(item, index, arr));
   });
   return result;
-}
+};
 
 export default map;

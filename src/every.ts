@@ -2,17 +2,19 @@ import forEach from './forEach';
 import identity from './identity';
 import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './internals/types';
 
-function every<T>(collection: WithNullable<T[]>, predicate?: ArrayIterator<T, any>): boolean;
-function every(collection: WithNullable<string>, predicate?: StringIterator<any>): boolean;
-function every<T>(collection: WithNullable<ArrayLike<T>>, predicate?: ArrayLikeIterator<T, any>): boolean;
-function every<T extends object>(collection: WithNullable<T>, predicate?: ObjectIterator<T, any>): boolean;
+interface Every {
+  <T>(collection: WithNullable<T[]>, predicate?: ArrayIterator<T, any>): boolean;
+  (collection: WithNullable<string>, predicate?: StringIterator<any>): boolean;
+  <T>(collection: WithNullable<ArrayLike<T>>, predicate?: ArrayLikeIterator<T, any>): boolean;
+  <T extends object>(collection: WithNullable<T>, predicate?: ObjectIterator<T, any>): boolean;
+}
 
 /**
  * 迭代集合中的元素执行 `predicate` 函数，如果全部元素都通过 `predicate` 返回真值，则返回 `true` ，否则停止迭代并返回 `false` 。
  *
  * `predicate` 调用时会传入三个参数 `value` `index|key` `collection` 。
  *
- * @static
+ * @function
  * @alias module:Collection.every
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
@@ -28,7 +30,7 @@ function every<T extends object>(collection: WithNullable<T>, predicate?: Object
  * every(obj, item => item > 1); // false
  * every(obj, item => item > 0); // true
  */
-function every(collection: any, predicate: any = identity) {
+const every: Every = function (collection: any, predicate: any = identity) {
   let result = true;
   forEach(collection, (item, index, arr) => {
     if (!predicate(item, index, arr)) {
@@ -37,6 +39,6 @@ function every(collection: any, predicate: any = identity) {
     }
   });
   return result;
-}
+};
 
 export default every;

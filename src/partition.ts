@@ -3,8 +3,10 @@ import identity from './identity';
 import createIteratee from './internals/createIteratee';
 import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
 
-function partition<T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): [T[], T[]];
-function partition<T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): [V[], V[]];
+interface Partition {
+  <T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): [T[], T[]];
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): [V[], V[]];
+}
 
 /**
  * 创建一个分成两组的元素数组，第一组包含 `predicate`（断言函数）返回为 [`truthy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)（真值）的元素，第二组包含 `predicate`（断言函数）返回为 [`falsy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy)（假值）的元素。
@@ -39,13 +41,13 @@ function partition<T extends object, V extends T[keyof T]>(collection: Collectio
  * // ]
  *
  */
-function partition<T>(collection: any, predicate: any = identity) {
+const partition: Partition = function <T>(collection: any, predicate: any = identity) {
   const result: [T[], T[]] = [[], []];
   const internalIteratee = createIteratee<T>(predicate);
   forEach(collection, (item) => {
     result[internalIteratee(item) ? 0 : 1].push(item);
   });
   return result;
-}
+};
 
 export default partition;

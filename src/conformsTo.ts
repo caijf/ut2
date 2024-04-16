@@ -2,12 +2,15 @@ import allKeys from './allKeys';
 import { WithNullable } from './internals/types';
 import isNil from './isNil';
 
-function conformsTo<T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => any>): boolean;
-function conformsTo<T extends WithNullable<object>>(object: T, source: Record<string | symbol, (value: any) => any>): boolean;
+interface ConformsTo {
+  <T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => any>): boolean;
+  <T extends WithNullable<object>>(object: T, source: Record<string | symbol, (value: any) => any>): boolean;
+}
+
 /**
  * 通过调用断言 `source` 的属性与 `object` 的相应属性值，检查 `object` 是否符合 `source` 。
  *
- * @static
+ * @function
  * @alias module:Util.conformsTo
  * @since 1.0.0
  * @param {Object} object 要检查的对象。
@@ -22,7 +25,7 @@ function conformsTo<T extends WithNullable<object>>(object: T, source: Record<st
  * conformsTo(object, { b: value => value > 2 }); // false
  *
  */
-function conformsTo<T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => any>) {
+const conformsTo: ConformsTo = function <T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => any>) {
   const props = allKeys(source) as unknown as K[];
   const length = props.length;
 
@@ -45,6 +48,6 @@ function conformsTo<T extends object, K extends keyof T>(object: T, source: Reco
   }
 
   return true;
-}
+};
 
 export default conformsTo;

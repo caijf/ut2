@@ -5,8 +5,10 @@ import isArray from './isArray';
 import forEach from './forEach';
 import { CollectionList, CollectionObject, IterateeParam, Many } from './internals/types';
 
-function orderBy<T>(collection: CollectionList<T>, iteratee?: Many<IterateeParam<T>>, orders?: Many<Order>): T[];
-function orderBy<T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<IterateeParam<V>>, orders?: Many<Order>): V[];
+interface OrderBy {
+  <T>(collection: CollectionList<T>, iteratee?: Many<IterateeParam<T>>, orders?: Many<Order>): T[];
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<IterateeParam<V>>, orders?: Many<Order>): V[];
+}
 
 /**
  * 创建一个元素数组，以迭代函数处理的结果排序。如果没有指定排序，默认为升序排序。
@@ -15,7 +17,7 @@ function orderBy<T extends object, V extends T[keyof T]>(collection: CollectionO
  *
  * `iteratee` 调用时会传入 1 个参数 `value` 。
  *
- * @static
+ * @function
  * @alias module:Collection.orderBy
  * @since 1.0.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort | sort}
@@ -46,7 +48,7 @@ function orderBy<T extends object, V extends T[keyof T]>(collection: CollectionO
  * // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
  *
  */
-function orderBy<T>(collection: any, iteratees?: any, orders?: Many<Order>) {
+const orderBy: OrderBy = function <T>(collection: any, iteratees?: any, orders?: Many<Order>) {
   const result: OrderData<T>[] = [];
 
   iteratees = (isArray(iteratees) ? iteratees : iteratees !== undefined ? [iteratees] : [identity]) as IterateeParam<T>[];
@@ -63,6 +65,6 @@ function orderBy<T>(collection: any, iteratees?: any, orders?: Many<Order>) {
   });
 
   return result.sort((a, b) => compareMultiple<T>(a, b, orders as Order[])).map((item) => item.value);
-}
+};
 
 export default orderBy;

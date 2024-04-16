@@ -3,6 +3,13 @@ import isArrayLike from '../isArrayLike';
 import keys from '../keys';
 import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './types';
 
+export interface ForEach {
+  <T>(collection: WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): T[];
+  (collection: WithNullable<string>, iteratee?: StringIterator<any>): string;
+  <T>(collection: WithNullable<ArrayLike<T>>, iteratee?: ArrayLikeIterator<T, any>): ArrayLike<T>;
+  <T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): T;
+}
+
 /**
  * 创建迭代集合方法
  *
@@ -11,11 +18,7 @@ import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithN
  * @returns 迭代集合方法
  */
 function createForEach(dir: 1 | -1) {
-  function forEach<T>(collection: WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): T[];
-  function forEach(collection: WithNullable<string>, iteratee?: StringIterator<any>): string;
-  function forEach<T>(collection: WithNullable<ArrayLike<T>>, iteratee?: ArrayLikeIterator<T, any>): ArrayLike<T>;
-  function forEach<T extends object>(collection: WithNullable<T>, iteratee?: ObjectIterator<T, any>): T;
-  function forEach(collection: any, iteratee: any = identity) {
+  const forEach: ForEach = function (collection: any, iteratee: any = identity) {
     const _keys = !isArrayLike(collection) && keys(collection);
     const len = (_keys || collection).length;
     let i = dir > 0 ? 0 : len - 1;
@@ -29,7 +32,7 @@ function createForEach(dir: 1 | -1) {
     }
 
     return collection;
-  }
+  };
 
   return forEach;
 }

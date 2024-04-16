@@ -2,10 +2,12 @@ import forEach from './forEach';
 import identity from './identity';
 import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './internals/types';
 
-function filter<T>(collection: WithNullable<T[]>, predicate?: ArrayIterator<T, any>): T[];
-function filter(collection: WithNullable<string>, predicate?: StringIterator<any>): string[];
-function filter<T>(collection: WithNullable<ArrayLike<T>>, predicate?: ArrayLikeIterator<T, any>): T[];
-function filter<T extends object>(collection: WithNullable<T>, predicate?: ObjectIterator<T, any>): Array<T[keyof T]>;
+interface Filter {
+  <T>(collection: WithNullable<T[]>, predicate?: ArrayIterator<T, any>): T[];
+  (collection: WithNullable<string>, predicate?: StringIterator<any>): string[];
+  <T>(collection: WithNullable<ArrayLike<T>>, predicate?: ArrayLikeIterator<T, any>): T[];
+  <T extends object>(collection: WithNullable<T>, predicate?: ObjectIterator<T, any>): Array<T[keyof T]>;
+}
 
 /**
  * 过滤集合元素，为每个元素执行 `predicate` 函数，返回真值的元素将保留在结果数组中（不改变原值）。
@@ -26,7 +28,7 @@ function filter<T extends object>(collection: WithNullable<T>, predicate?: Objec
  * const obj = { one: 1, two: 2, three: 3 };
  * filter(obj, item => item > 1); // [2, 3]
  */
-function filter<T>(array: any, predicate: any = identity) {
+const filter: Filter = function <T>(array: any, predicate: any = identity) {
   const results: T[] = [];
   forEach(array, (item, index) => {
     if (predicate(item, index, array)) {
@@ -34,6 +36,6 @@ function filter<T>(array: any, predicate: any = identity) {
     }
   });
   return results;
-}
+};
 
 export default filter;

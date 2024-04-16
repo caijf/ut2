@@ -1,7 +1,10 @@
 import isArray from './isArray';
 
-function fromPairs<P extends string | number | symbol, V = any>(array: [P, V][]): Record<P, V>;
-function fromPairs<P extends string | number | symbol>(array: any[][]): Record<P, any>;
+interface FromPairs {
+  <P extends string | number | symbol, V = any>(array: [P, V][]): Record<P, V>;
+  <P extends string | number | symbol>(array: any[][]): Record<P, any>;
+}
+
 /**
  * 将键值对数组转为对象。
  *
@@ -17,7 +20,7 @@ function fromPairs<P extends string | number | symbol>(array: any[][]): Record<P
  * fromPairs([['foo', 'bar'], ['baz', 42]]); // {foo: 'bar', baz: 42}
  *
  */
-function fromPairs<P extends string | number | symbol, V>(array: any[][]) {
+const fromPairs: FromPairs = function <P extends string | number | symbol, V>(array: any[][]) {
   // @ts-ignore
   const result: Record<P, V> = {};
 
@@ -30,6 +33,6 @@ function fromPairs<P extends string | number | symbol, V>(array: any[][]) {
   });
 
   return result;
-}
+};
 
 export default fromPairs;

@@ -2,16 +2,18 @@ import { mathCeil, mathMax } from './internals/native';
 import isNil from './isNil';
 import toFinite from './toFinite';
 
-function range(start: number, end: number, step: number): number[];
-function range(start: number, end: number): number[];
-function range(end: number): number[];
+interface Range {
+  (start: number, end: number, step: number): number[];
+  (start: number, end: number): number[];
+  (end: number): number[];
+}
 
 /**
  * 创建一个升序或降序的数字数组。
  *
  * 如果省略 `start` 默认为 0 。
  *
- * @static
+ * @function
  * @alias module:Util.range
  * @since 1.6.0
  * @param {number} [start=0] 开始值。
@@ -28,7 +30,7 @@ function range(end: number): number[];
  * range(1, 4, 0); // [1, 2, 3]
  * range(0); // []
  */
-function range(start: number, end?: number, step?: number) {
+const range: Range = function (start: number, end?: number, step?: number) {
   start = toFinite(start);
   if (isNil(end)) {
     end = start;
@@ -53,6 +55,6 @@ function range(start: number, end?: number, step?: number) {
   }
 
   return result;
-}
+};
 
 export default range;
