@@ -1,7 +1,7 @@
 import identity from '../identity';
 import isArrayLike from '../isArrayLike';
 import keys from '../keys';
-import { ReduceArrayIterator, ReduceArrayLikeIterator, ReduceObjectIterator, ReduceStringIterator, WithNullable } from './types';
+import { FunctionAny, ReduceArrayIterator, ReduceArrayLikeIterator, ReduceObjectIterator, ReduceStringIterator, WithNullable } from './types';
 
 /**
  * 创建 reducer 函数
@@ -11,7 +11,7 @@ import { ReduceArrayIterator, ReduceArrayLikeIterator, ReduceObjectIterator, Red
  * @returns reduce 方法
  */
 function createReduce(dir: 1 | -1) {
-  function reducer(collection: any, iteratee: (...args: any[]) => any, memo: any, initial: boolean) {
+  function reducer(collection: any, iteratee: FunctionAny, memo: any, initial: boolean) {
     const _keys = !isArrayLike(collection) && keys(collection);
     const len = (_keys || collection).length;
     let i = dir > 0 ? 0 : len - 1;
@@ -38,7 +38,7 @@ function createReduce(dir: 1 | -1) {
   function reduce(collection: WithNullable<string>, iteratee?: ReduceStringIterator<string>): string | undefined;
   function reduce<T>(collection: WithNullable<ArrayLike<T>>, iteratee?: ReduceArrayLikeIterator<T, T>): T | undefined;
   function reduce<T extends object>(collection: WithNullable<T>, iteratee?: ReduceObjectIterator<T, T[keyof T]>): T[keyof T] | undefined;
-  function reduce(collection: any, iteratee: (...args: any[]) => any = identity, initialValue?: any) {
+  function reduce(collection: any, iteratee: FunctionAny = identity, initialValue?: any) {
     const initial = arguments.length >= 3;
     return reducer(collection, iteratee, initialValue, initial);
   }

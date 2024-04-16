@@ -1,4 +1,5 @@
 import baseDebounce from './internals/baseDebounce';
+import { FunctionAny } from './internals/types';
 
 /**
  * 创建一个防抖动函数，该函数会从上一次被调用后，延迟 `wait` 毫秒数后调用 `func` 方法。
@@ -35,7 +36,7 @@ import baseDebounce from './internals/baseDebounce';
  * window.addEventListener('popstate', debounced.cancel);
  *
  */
-function debounce<T extends (...args: any[]) => any>(func: T, wait = 0, immediate = false) {
+function debounce<T extends FunctionAny>(func: T, wait = 0, immediate = false) {
   return baseDebounce(func, wait, immediate);
 }
 

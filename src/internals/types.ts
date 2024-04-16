@@ -1,3 +1,5 @@
+export type FunctionAny = (...args: any[]) => any;
+
 /**
  * 工具辅助类型
  */

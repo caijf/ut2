@@ -1,4 +1,5 @@
 import before from './before';
+import { FunctionAny } from './internals/types';
 
 /**
  * 创建一个只能调用 `func` 一次的函数。重复调用将返回第一次调用 `func` 的结果。
@@ -22,7 +23,7 @@ import before from './before';
  * increment(); // 1
  *
  */
-function once<T extends (...args: any[]) => any>(func: T) {
+function once<T extends FunctionAny>(func: T) {
   return before(2, func);
 }
 

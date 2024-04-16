@@ -1,4 +1,5 @@
 import baseDebounce from './internals/baseDebounce';
+import { FunctionAny } from './internals/types';
 
 /**
  * 创建一个节流函数，该函数在 `wait` 毫秒数内最多执行一次 `func` 方法。
@@ -35,7 +36,7 @@ import baseDebounce from './internals/baseDebounce';
  * window.addEvenetListener('popstate', throttled.cancel);
  *
  */
-function throttle<T extends (...args: any[]) => any>(func: T, wait = 0, immediate = true) {
+function throttle<T extends FunctionAny>(func: T, wait = 0, immediate = true) {
   return baseDebounce(func, wait, immediate, true);
 }
 

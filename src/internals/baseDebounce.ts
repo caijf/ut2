@@ -1,23 +1,14 @@
 import defaultTo from '../defaultTo';
 import toNumber from '../toNumber';
 import { FUNC_ERROR_TEXT } from './helpers';
+import { FunctionAny } from './types';
 
-function baseDebounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number,
-  immediate: boolean,
-  __throttle__ = false
-) {
+function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: boolean, __throttle__ = false) {
   if (typeof func !== 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
 
-  let timer: any,
-    lastCallTime: number | undefined,
-    lastInvokeTime: number,
-    lastArgs: any[] | undefined,
-    lastThis: any,
-    result: ReturnType<T>;
+  let timer: any, lastCallTime: number | undefined, lastInvokeTime: number, lastArgs: any[] | undefined, lastThis: any, result: ReturnType<T>;
 
   wait = defaultTo(toNumber(wait), 0);
 
@@ -27,11 +18,7 @@ function baseDebounce<T extends (...args: any[]) => any>(
     }
     const timeSinceLastCall = time - lastCallTime;
     const timeSinceLastInvoke = time - lastInvokeTime;
-    return (
-      timeSinceLastCall >= wait ||
-      timeSinceLastCall < 0 ||
-      (__throttle__ && timeSinceLastInvoke >= wait)
-    );
+    return timeSinceLastCall >= wait || timeSinceLastCall < 0 || (__throttle__ && timeSinceLastInvoke >= wait);
   }
 
   function invokeFunc(time: number) {
@@ -48,11 +35,7 @@ function baseDebounce<T extends (...args: any[]) => any>(
     const time = Date.now();
     const isInvoke = shouldInvoke(time); // 是否可以立即调用
 
-    const waitTime = !__throttle__
-      ? wait
-      : !isInvoke && lastCallTime !== undefined && timer === undefined
-      ? wait - (time - lastCallTime)
-      : wait;
+    const waitTime = !__throttle__ ? wait : !isInvoke && lastCallTime !== undefined && timer === undefined ? wait - (time - lastCallTime) : wait;
 
     lastCallTime = time;
 

@@ -1,5 +1,6 @@
 import getTag from './internals/getTag';
 import { functionTags } from './internals/native';
+import { FunctionAny } from './internals/types';
 
 /**
  * 检查值是否为 `Function` 对象 。
@@ -18,7 +19,7 @@ import { functionTags } from './internals/native';
  * isFunction(/x/); // false
  *
  */
-function isFunction(value: any): value is (...args: any[]) => any {
+function isFunction(value: any): value is FunctionAny {
   if (typeof value === 'function') {
     return true;
   }

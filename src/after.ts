@@ -1,5 +1,6 @@
 import defaultTo from './defaultTo';
 import { FUNC_ERROR_TEXT } from './internals/helpers';
+import { FunctionAny } from './internals/types';
 import toNumber from './toNumber';
 
 /**
@@ -25,7 +26,7 @@ import toNumber from './toNumber';
  * // 'done saving!'
  *
  */
-function after<T extends (...args: any[]) => any>(n: number, func: T) {
+function after<T extends FunctionAny>(n: number, func: T) {
   if (typeof func !== 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }

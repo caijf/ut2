@@ -1,4 +1,5 @@
 import { FUNC_ERROR_TEXT } from './internals/helpers';
+import { FunctionAny } from './internals/types';
 
 /**
  * 创建一个断言函数结果取反的函数。
@@ -21,7 +22,7 @@ import { FUNC_ERROR_TEXT } from './internals/helpers';
  * nums.filter(ne); // [1, 3, 5]
  *
  */
-function negate<T extends (...args: any[]) => any>(this: any, predicate: T) {
+function negate<T extends FunctionAny>(this: any, predicate: T) {
   if (typeof predicate !== 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }

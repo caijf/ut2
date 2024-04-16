@@ -1,5 +1,6 @@
 import defaultTo from './defaultTo';
 import { FUNC_ERROR_TEXT } from './internals/helpers';
+import { FunctionAny } from './internals/types';
 import toNumber from './toNumber';
 
 /**
@@ -22,7 +23,7 @@ import toNumber from './toNumber';
  * // 'hello world'
  *
  */
-function delay<T extends (...args: any[]) => any>(func: T, wait: number, ...args: Parameters<T>) {
+function delay<T extends FunctionAny>(func: T, wait: number, ...args: Parameters<T>) {
   if (typeof func !== 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
