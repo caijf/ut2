@@ -64,6 +64,7 @@ export { default as isArray } from './isArray';
 export { default as isArrayBuffer } from './isArrayBuffer';
 export { default as isArrayLike } from './isArrayLike';
 export { default as isArrayLikeObject } from './isArrayLikeObject';
+export { default as isBigInt } from './isBigInt';
 export { default as isBlob } from './isBlob';
 export { default as isBoolean } from './isBoolean';
 export { default as isBuffer } from './isBuffer';

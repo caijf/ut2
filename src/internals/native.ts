@@ -58,6 +58,7 @@ export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  */
 export const MAX_ARRAY_LENGTH = 4294967295;
 
+export const bigIntTag = '[object BigInt]';
 export const numberTag = '[object Number]';
 export const booleanTag = '[object Boolean]';
 export const stringTag = '[object String]';

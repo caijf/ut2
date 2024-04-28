@@ -103,6 +103,7 @@ const debounced = debounce(() => {
   - [isArrayBuffer](https://caijf.github.io/ut2/module-Language.html#.isArrayBuffer) - `ArrayBuffer` 对象。
   - [isArrayLike](https://caijf.github.io/ut2/module-Language.html#.isArrayLike) - 类数组。
   - [isArrayLikeObject](https://caijf.github.io/ut2/module-Language.html#.isArrayLikeObject) - 类数组对象。
+  - [isBigInt](https://caijf.github.io/ut2/module-Language.html#.isBigInt) - `bigint` 类型或对象。
   - [isBlob](https://caijf.github.io/ut2/module-Language.html#.isBlob) - `Blob` 对象。
   - [isBoolean](https://caijf.github.io/ut2/module-Language.html#.isBoolean) - 布尔类型或对象。
   - [isBuffer](https://caijf.github.io/ut2/module-Language.html#.isBuffer) - `Buffer` 对象。
