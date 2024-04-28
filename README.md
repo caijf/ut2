@@ -164,7 +164,8 @@ const debounced = debounce(() => {
   - [kebabCase](https://caijf.github.io/ut2/module-String.html#.kebabCase) - 连接符分隔小写。
   - [lowerCase](https://caijf.github.io/ut2/module-String.html#.lowerCase) - 空格分隔小写。
   - [lowerFirst](https://caijf.github.io/ut2/module-String.html#.lowerFirst) - 首字母小写。
-  - [snakeCase](https://caijf.github.io/ut2/module-String.html#.snakeCase) - 下划线分隔小写
+  - [pascalCase](https://caijf.github.io/ut2/module-String.html#.pascalCase) - 帕斯卡小写。又名大驼峰。
+  - [snakeCase](https://caijf.github.io/ut2/module-String.html#.snakeCase) - 下划线分隔小写。
   - [unescape](https://caijf.github.io/ut2/module-String.html#.unescape) - 转义字符串中的 HTML 实体字符 `&amp;` `&lt;` `&quot;` `&#39;`。
   - [upperCase](https://caijf.github.io/ut2/module-String.html#.upperCase) - 空格分隔大写。
   - [upperFirst](https://caijf.github.io/ut2/module-String.html#.upperFirst) - 首字母大写。

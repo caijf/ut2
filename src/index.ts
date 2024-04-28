@@ -149,6 +149,7 @@ export { default as escapeRegExp } from './escapeRegExp';
 export { default as kebabCase } from './kebabCase';
 export { default as lowerCase } from './lowerCase';
 export { default as lowerFirst } from './lowerFirst';
+export { default as pascalCase } from './pascalCase';
 export { default as snakeCase } from './snakeCase';
 export { default as unescape } from './unescape';
 export { default as upperCase } from './upperCase';
