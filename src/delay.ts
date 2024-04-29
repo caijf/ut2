@@ -23,12 +23,11 @@ import toNumber from './toNumber';
  * // 'hello world'
  *
  */
-function delay<T extends FunctionAny>(func: T, wait: number, ...args: Parameters<T>) {
+function delay<T extends FunctionAny>(this: any, func: T, wait: number, ...args: Parameters<T>) {
   if (typeof func !== 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
 
-  // @ts-ignore
   const context = this;
   wait = defaultTo(toNumber(wait), 0);
 

@@ -1,15 +1,11 @@
 /* eslint-disable prefer-rest-params */
 import { arrayProtoSlice } from './internals/native';
 
-interface PartialPlaceholder {
-  __ut2_partial__: number;
-}
-
-const PLACEHOLDER: PartialPlaceholder = {
-  __ut2_partial__: 1
+const PLACEHOLDER = {
+  __ut2_partial_ph__: null
 };
 
-type Placeholder = PartialPlaceholder;
+type Placeholder = typeof PLACEHOLDER;
 type Function0<R> = () => R;
 type Function1<T1, R> = (t1: T1) => R;
 type Function2<T1, T2, R> = (t1: T1, t2: T2) => R;
@@ -49,7 +45,7 @@ interface Partial {
 /**
  * 创建一个函数。该函数调用 `func` ，并传入预设的 `args` 参数。
  *
- *  `partial._` 或 `partial.placeholder` 可用作部分参数的占位符。
+ *  `partial._` 或 `partial.placeholder` 可用作参数的占位符。
  *
  * @function
  * @alias module:Function.partial
@@ -73,7 +69,7 @@ interface Partial {
 const partial: Partial = function (func: any) {
   const argsOrig = arrayProtoSlice.call(arguments, 1);
 
-  return function () {
+  return function (this: any) {
     const args = [];
     const argsPartial = arrayProtoSlice.call(arguments);
 
@@ -81,7 +77,6 @@ const partial: Partial = function (func: any) {
       args[i] = argsOrig[i] === PLACEHOLDER ? argsPartial.shift() : argsOrig[i];
     }
 
-    // @ts-ignore
     return func.apply(this, args.concat(argsPartial));
   };
 };
