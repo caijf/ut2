@@ -91,6 +91,7 @@ const debounced = debounce(() => {
 - [Function](https://caijf.github.io/ut2/module-Function.html) 函数
   - [after](https://caijf.github.io/ut2/module-Function.html#.after) - 调用 `n` 或更多次之后触发。
   - [before](https://caijf.github.io/ut2/module-Function.html#.before) - 调用次数少于 `n` 次之前触发。
+  - [curry](https://caijf.github.io/ut2/module-Function.html#.curry) - 柯里化函数。
   - [debounce](https://caijf.github.io/ut2/module-Function.html#.debounce) - 防抖函数。
   - [delay](https://caijf.github.io/ut2/module-Function.html#.delay) - 延迟触发。
   - [negate](https://caijf.github.io/ut2/module-Function.html#.negate) - 否定断言。
