@@ -102,7 +102,6 @@ describe('map', () => {
     expect(nullResult).toEqual([]);
 
     const undefFn = jest.fn((item) => item);
-    // @ts-ignore
     const undefResult = map(undefined, undefFn);
     expect(undefFn).toBeCalledTimes(0);
     expect(undefResult).toEqual([]);

@@ -1,4 +1,10 @@
 import castArray from './castArray';
+import { PropertyName, WithNullable } from './internals/types';
+
+interface PickFunction {
+  <T extends object, K extends keyof T>(object: WithNullable<T>, fields?: K | K[]): Pick<T, K>;
+  <T extends object, K extends PropertyName>(object: WithNullable<T>, fields?: K | K[]): Record<PropertyName, any>;
+}
 
 /**
  * 创建一个从 `object` 选中的属性的对象。
@@ -23,7 +29,7 @@ import castArray from './castArray';
  * // 选取多个属性
  * pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }
  */
-function pick<T extends object, K extends keyof T>(object: T, fields: K | K[] = []) {
+const pick: PickFunction = function <T extends object, K extends keyof T>(object: T, fields: K | K[] = []) {
   const result: Record<any, any> = {};
   const fieldArr = castArray(fields);
 
@@ -34,6 +40,6 @@ function pick<T extends object, K extends keyof T>(object: T, fields: K | K[] = 
   });
 
   return result as Pick<T, K>;
-}
+};
 
 export default pick;

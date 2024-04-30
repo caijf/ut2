@@ -43,7 +43,6 @@ describe('countBy', () => {
   it('错误的参数', () => {
     const values = [null, undefined, 1, '', {}, NaN, symbol];
     values.forEach((item) => {
-      // @ts-ignore
       expect(countBy(item)).toEqual({});
     });
   });

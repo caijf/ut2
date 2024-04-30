@@ -108,7 +108,6 @@ describe('some', () => {
     expect(nullResult).toBe(false);
 
     const undefFn = jest.fn((item) => item);
-    // @ts-ignore
     const undefResult = some(undefined, undefFn);
     expect(undefFn).toBeCalledTimes(0);
     expect(undefResult).toBe(false);

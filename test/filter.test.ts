@@ -113,7 +113,6 @@ describe('filter', () => {
     expect(nullResult).toEqual([]);
 
     const undefFn = jest.fn();
-    // @ts-ignore
     const undefResult = filter(undefined, (...args) => {
       undefFn(...args);
     });

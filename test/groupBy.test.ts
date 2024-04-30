@@ -58,7 +58,6 @@ describe('groupBy', () => {
   it('错误的参数', () => {
     const values = [null, undefined, 1, '', {}, NaN, symbol];
     values.forEach((item) => {
-      // @ts-ignore
       expect(groupBy(item)).toEqual({});
     });
   });

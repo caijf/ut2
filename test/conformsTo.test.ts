@@ -14,9 +14,7 @@ describe('conformsTo', () => {
       { a: 3, b: 16 }
     ]);
 
-    const result2 = objs.filter((item) =>
-      conformsTo(item, { b: (value) => value > 4, a: (value) => value > 1 })
-    );
+    const result2 = objs.filter((item) => conformsTo(item, { b: (value) => value > 4, a: (value) => value > 1 }));
     expect(result2).toEqual([{ a: 3, b: 16 }]);
 
     const result3 = objs.filter((item) => conformsTo(item, { b: (value) => value === 4 }));
@@ -92,9 +90,7 @@ describe('conformsTo', () => {
       [Symbol.for('a')]: 1,
       [Symbol.for('b')]: 'b'
     };
-    expect(conformsTo(object, { [Symbol.for('a')]: isNumber, [Symbol.for('b')]: isString })).toBe(
-      true
-    );
+    expect(conformsTo(object, { [Symbol.for('a')]: isNumber, [Symbol.for('b')]: isString })).toBe(true);
   });
 
   it('`object` 为 null', () => {
@@ -105,5 +101,20 @@ describe('conformsTo', () => {
     // 有符合属性断言时，返回 false
     expect(conformsTo(null, { a: (value: any) => !!value })).toBe(false);
     expect(conformsTo(undefined, { a: (value: any) => !!value })).toBe(false);
+  });
+
+  it('types check', () => {
+    const r1 = conformsTo(objs[0], {
+      b: (value) => !!value
+    });
+    const r2 = conformsTo(objs[0], {
+      b: (value) => !!value,
+      c: (value) => !!value
+    });
+    const r3 = conformsTo(objs[0], {});
+
+    expect(r1).toBe(true);
+    expect(r2).toBe(false);
+    expect(r3).toBe(true);
   });
 });

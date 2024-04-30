@@ -1,5 +1,6 @@
 import allKeysIn from './allKeysIn';
 import { stubFlase } from './internals/helpers';
+import { ObjectPredicate, WithNullable } from './internals/types';
 import isNil from './isNil';
 
 /**
@@ -24,7 +25,7 @@ import isNil from './isNil';
  * pickBy(obj, (value) => value); // { name: "jeff", age: 18 }
  *
  */
-function pickBy<T extends object>(object: T, predicate: (value: any, key: any) => any = stubFlase) {
+function pickBy<T extends object>(object: WithNullable<T>, predicate: ObjectPredicate<T> = stubFlase) {
   const result: Partial<T> = {};
 
   if (isNil(object)) {

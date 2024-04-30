@@ -1,10 +1,10 @@
 import allKeys from './allKeys';
-import { WithNullable } from './internals/types';
+import { PropertyName, WithNullable } from './internals/types';
 import isNil from './isNil';
 
 interface ConformsTo {
-  <T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => any>): boolean;
-  <T extends WithNullable<object>>(object: T, source: Record<string | symbol, (value: any) => any>): boolean;
+  <T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => boolean>): boolean;
+  (object: WithNullable<object>, source: Record<PropertyName, (value: any) => boolean>): boolean;
 }
 
 /**
@@ -25,7 +25,7 @@ interface ConformsTo {
  * conformsTo(object, { b: value => value > 2 }); // false
  *
  */
-const conformsTo: ConformsTo = function <T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => any>) {
+const conformsTo: ConformsTo = function <T extends object, K extends keyof T>(object: T, source: Record<K, (value: T[K]) => boolean>) {
   const props = allKeys(source) as unknown as K[];
   const length = props.length;
 

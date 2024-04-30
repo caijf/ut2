@@ -23,7 +23,7 @@ import isObject from './isObject';
  * keysIn(new Foo); // ['a', 'c']
  *
  */
-function keysIn<T extends object>(object: T) {
+function keysIn(object?: any) {
   if (!isObject(object)) {
     return [];
   }

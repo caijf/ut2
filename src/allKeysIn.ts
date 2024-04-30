@@ -24,7 +24,7 @@ import isObject from './isObject';
  * allKeysIn(new Foo); // ['a', 'c', Symbol(b), Symbol(d)]
  *
  */
-function allKeysIn<T extends object>(object: T) {
+function allKeysIn(object?: any) {
   if (!isObject(object)) {
     return [];
   }

@@ -5,6 +5,8 @@ export type FunctionAny = (...args: any[]) => any;
  */
 export type Many<T> = T | T[];
 export type WithNullable<T> = T | null | undefined;
+export type PropertyName = string | number | symbol;
+export type ObjectPredicate<T extends object, K extends keyof T = keyof T> = (value: T[K], key: K) => boolean;
 
 /**
  * 迭代参数

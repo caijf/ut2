@@ -101,18 +101,28 @@ describe('conforms', () => {
   it('`object` 为 null', () => {
     const par1 = conforms({});
 
-    // @ts-ignore
     // 无符合属性断言时，返回 true
     expect(par1(null)).toBe(true);
-    // @ts-ignore
     expect(par1(undefined)).toBe(true);
 
     const par2 = conforms({ a: (value: any) => !!value });
 
-    // @ts-ignore
     // 有符合属性断言时，返回 false
     expect(par2(null)).toBe(false);
-    // @ts-ignore
     expect(par2(undefined)).toBe(false);
+  });
+
+  it('types check', () => {
+    const par1 = conforms({ a: (value) => value > 1 });
+    const par2 = conforms({ d: (value) => value > 1 });
+    const par3 = conforms({});
+    const par4 = conforms([]);
+    const par5 = conforms(function () {});
+
+    expect(par1(objs[0])).toBe(false);
+    expect(par2(objs[0])).toBe(false);
+    expect(par3(objs[0])).toBe(true);
+    expect(par4(objs[0])).toBe(true);
+    expect(par5(objs[0])).toBe(true);
   });
 });

@@ -8,9 +8,7 @@ describe('pickBy', () => {
     expect(pickBy(obj)).toEqual({});
     expect(pickBy(obj, isString)).toEqual({ name: 'jeff', [symbol]: 'some val' });
 
-    // @ts-ignore
     expect(pickBy(null)).toEqual({});
-    // @ts-ignore
     expect(pickBy(null, isString)).toEqual({});
   });
 

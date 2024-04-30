@@ -70,8 +70,6 @@ describe('reduceRight', () => {
     // @ts-ignore
     expect(reduceRight([1], noop)).toBe(1);
     expect(reduceRight([], noop)).toBeUndefined();
-
-    // @ts-ignore
     expect(reduceRight(null, noop)).toBeUndefined();
   });
 
@@ -189,7 +187,6 @@ describe('reduceRight', () => {
     expect(nullResult).toBeUndefined();
 
     const undefFn = jest.fn();
-    // @ts-ignore
     const undefResult = reduceRight(undefined, undefFn);
     expect(undefFn).toBeCalledTimes(0);
     expect(undefResult).toBeUndefined();

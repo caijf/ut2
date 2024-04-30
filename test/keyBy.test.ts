@@ -65,7 +65,6 @@ describe('keyBy', () => {
   it('错误的参数', () => {
     const values = [null, undefined, 1, '', {}, NaN, symbol];
     values.forEach((item) => {
-      // @ts-ignore
       expect(keyBy(item)).toEqual({});
     });
   });

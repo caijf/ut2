@@ -143,7 +143,6 @@ describe('forEachRight', () => {
     expect(nullResult).toBeNull();
 
     const undefFn = jest.fn();
-    // @ts-ignore
     const undefResult = forEachRight(undefined, (...args) => {
       undefFn(...args);
     });

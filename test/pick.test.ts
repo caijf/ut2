@@ -20,7 +20,6 @@ describe('pick', () => {
 
   it('忽略不存在的属性', () => {
     expect(pick(obj)).toEqual({});
-    // @ts-ignore
     expect(pick(obj, '')).toEqual({});
   });
 
@@ -71,7 +70,6 @@ describe('pick', () => {
     );
 
     expect(o).toEqual({ age: 18 });
-    // @ts-ignore
     expect(pick(o, 'name')).toEqual({ name: 'jeff' });
   });
 });

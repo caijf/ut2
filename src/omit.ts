@@ -1,5 +1,11 @@
 import allKeysIn from './allKeysIn';
 import castArray from './castArray';
+import { PropertyName, WithNullable } from './internals/types';
+
+interface OmitFunction {
+  <T extends object, K extends keyof T>(object: WithNullable<T>, fields?: K | K[]): Omit<T, K>;
+  <T extends object, K extends PropertyName>(object: WithNullable<T>, fields?: K | K[]): Omit<T, K>;
+}
 
 /**
  * 创建一个对象，该对象由忽略属性之外的 `object` 自身和继承的可枚举属性组成。与 [`pick`](#.pick) 相反。
@@ -24,18 +30,18 @@ import castArray from './castArray';
  * omit(obj, ['name', 'age']); // {}
  *
  */
-function omit<T extends object, K extends keyof T>(object: T, fields: K | K[] = []) {
+const omit: OmitFunction = function <T extends object, K extends keyof T>(object: WithNullable<T>, fields: K | K[] = []) {
   const keys = allKeysIn(object) as K[];
   const fieldArr = castArray(fields);
   const result: Record<any, any> = {};
 
   keys.forEach((key) => {
     if (fieldArr.indexOf(key) === -1) {
-      result[key] = object[key];
+      result[key] = object![key];
     }
   });
 
   return result as Omit<T, K>;
-}
+};
 
 export default omit;

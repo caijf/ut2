@@ -107,7 +107,6 @@ describe('every', () => {
     expect(nullResult).toBe(true);
 
     const undefFn = jest.fn((item) => item);
-    // @ts-ignore
     const undefResult = every(undefined, undefFn);
     expect(undefFn).toBeCalledTimes(0);
     expect(undefResult).toBe(true);

@@ -70,8 +70,6 @@ describe('reduce', () => {
     // @ts-ignore
     expect(reduce([1], noop)).toBe(1);
     expect(reduce([], noop)).toBeUndefined();
-
-    // @ts-ignore
     expect(reduce(null, noop)).toBeUndefined();
   });
 
@@ -189,7 +187,6 @@ describe('reduce', () => {
     expect(nullResult).toBeUndefined();
 
     const undefFn = jest.fn();
-    // @ts-ignore
     const undefResult = reduce(undefined, undefFn);
     expect(undefFn).toBeCalledTimes(0);
     expect(undefResult).toBeUndefined();
