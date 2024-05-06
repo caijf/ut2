@@ -575,6 +575,16 @@
           }
         },
         {
+          method: 'isBigInt',
+          params: [[1n], [false], [null]],
+          lodash: {
+            existed: false
+          },
+          underscore: {
+            existed: false
+          }
+        },
+        {
           method: 'isBoolean',
           params: [[false], [null]]
         },
@@ -860,6 +870,10 @@
           }
         },
         {
+          method: 'invert',
+          params: [[{ a: 1, b: 2, c: 3 }], [{ a: 1, [Symbol.for('b')]: 2 }], [new Foo()], [null]]
+        },
+        {
           method: 'keys',
           params: [[{ a: 1, b: 2, c: 3 }], [{ a: 1, [Symbol.for('b')]: 2 }], [new Foo()], [null]]
         },
@@ -996,6 +1010,16 @@
         {
           method: 'snakeCase',
           params: [['foo bar'], ['foo-bar'], ['Foo Bar'], ['FOO BAR'], ['--FOO-BAR--'], ['__FOO_BAR__']],
+          underscore: {
+            existed: false
+          }
+        },
+        {
+          method: 'pascalCase',
+          params: [['foo bar'], ['foo-bar'], ['Foo Bar'], ['FOO BAR'], ['--FOO-BAR--'], ['__FOO_BAR__']],
+          lodash: {
+            existed: false
+          },
           underscore: {
             existed: false
           }
