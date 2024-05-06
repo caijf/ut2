@@ -8,7 +8,7 @@
 
 **与其他工具库对比（[`lodash`]、[`underscore`]）**
 
-- 基于 ES2015+ 标准，无需原生支持的方法（`forEach`、`filter`、`Object.keys`、`Object.entries` ……）。
+- 大部分是基于 ES2015+ 标准实现的纯函数，没有过多的包装嵌套。
 - 使用 TypeScript 实现，提供类型定义。
 - 导出 `es`、`cjs`、`umd` 模块格式，支持不同开发环境使用。
 

@@ -12,7 +12,7 @@ import isNil from './isNil';
  * @alias module:Object.pickBy
  * @since 1.0.0
  * @param {Object} obj 来源对象。
- * @param {Function} [predicate] 调用每一个属性的函数。
+ * @param {Function} [predicate] 调用每一个属性的函数，返回 `truthy` 表示要提取该属性，否则不提取。
  * @returns {Object} 新对象。
  * @example
  *

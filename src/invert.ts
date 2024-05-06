@@ -10,7 +10,7 @@ import keys from './keys';
  * @alias module:Object.invert
  * @since 1.8.0
  * @param {Object} object 来源对象。
- * @param {Function} [predicate] 调用每一个属性的函数。
+ * @param {Function} [predicate] 调用每一个属性的函数，返回 `truthy` 表示要反转，否则不反转。
  * @returns {Object} 新对象。
  * @example
  *
