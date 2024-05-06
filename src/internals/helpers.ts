@@ -31,3 +31,4 @@ export function toSource(func: any) {
 }
 
 export const stubFlase = () => false;
+export const stubTrue = () => true;

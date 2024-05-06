@@ -130,6 +130,7 @@ export { default as randomInt } from './randomInt';
  */
 export { default as allKeys } from './allKeys';
 export { default as allKeysIn } from './allKeysIn';
+export { default as invert } from './invert';
 export { default as keys } from './keys';
 export { default as keysIn } from './keysIn';
 export { default as merge } from './merge';
