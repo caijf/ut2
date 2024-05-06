@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isUndefined.js - ut2 </title>
+    <title>invert.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isUndefined.js</h1>
+    <h1 class="page-title">invert.js</h1>
     
 
     
@@ -70,25 +70,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `undefined` 。
+            <pre class="prettyprint source linenums"><code>import { stubTrue } from './internals/helpers';
+import { objectProtoToString } from './internals/native';
+import keys from './keys';
+/**
+ * 创建一个对象，该对象由 `object` 自身可枚举属性（不包含 `Symbol` 属性）和值反转组成。
  *
  * @static
- * @alias module:Language.isUndefined
- * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `undefined` ，返回 `true` ，否则返回 `false` 。
+ * @alias module:Object.invert
+ * @since 1.8.0
+ * @param {Object} object 来源对象。
+ * @param {Function} [predicate] 调用每一个属性的函数，返回 `truthy` 表示要反转，否则不反转。
+ * @returns {Object} 新对象。
  * @example
  *
- * isUndefined(undefined); // true
+ * invert({ a: 1, b: 2 }); // { 1: 'a', 2: 'b' }
  *
- * isUndefined(null); // false
+ * invert({ a: undefined, b: null }); // { undefined: 'a', null: 'b' }
  *
  */
-function isUndefined(value) {
-    return value === void 0;
+function invert(object, predicate) {
+    if (predicate === void 0) { predicate = stubTrue; }
+    var _keys = keys(object);
+    var result = {};
+    _keys.forEach(function (key) {
+        var value = object[key];
+        if (predicate(value, key)) {
+            var valueStr = value != null &amp;&amp; typeof value.toString != 'function' ? objectProtoToString.call(value) : value;
+            result[valueStr] = key;
+        }
+        else {
+            result[key] = value;
+        }
+    });
+    return result;
 }
-export default isUndefined;
+export default invert;
 </code></pre>
         </article>
     </section>

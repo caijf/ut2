@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isUndefined.js - ut2 </title>
+    <title>pascalCase.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isUndefined.js</h1>
+    <h1 class="page-title">pascalCase.js</h1>
     
 
     
@@ -70,25 +70,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 检查值是否为 `undefined` 。
+            <pre class="prettyprint source linenums"><code>import splitCaseWords from './internals/splitCaseWords';
+import upperFirst from './upperFirst';
+/**
+ * 转换字符串为帕斯卡写法。又名为大驼峰写法。
  *
  * @static
- * @alias module:Language.isUndefined
- * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `undefined` ，返回 `true` ，否则返回 `false` 。
+ * @alias module:String.pascalCase
+ * @since 1.8.0
+ * @see {@link https://en.wikipedia.org/wiki/Camel_case | Camel_case}
+ * @param {string} string 要转换的字符串。
+ * @param {RegExp | string} [pattern] 拆分词组的匹配模式。
+ * @returns {string} 帕斯卡写法的字符串。
  * @example
  *
- * isUndefined(undefined); // true
+ * pascalCase('foo bar'); // 'FooBar'
  *
- * isUndefined(null); // false
+ * pascalCase('foo-bar'); // 'FooBar'
+ *
+ * pascalCase('Foo Bar'); // 'FooBar'
+ *
+ * pascalCase('FOO BAR'); // 'FooBar'
+ *
+ * pascalCase('--FOO-BAR--'); // 'FooBar'
+ *
+ * pascalCase('__FOO_BAR__'); // 'FooBar'
  *
  */
-function isUndefined(value) {
-    return value === void 0;
+function pascalCase(string, pattern) {
+    return splitCaseWords(string, pattern).reduce(function (prev, cur) {
+        cur = cur.toLowerCase();
+        return prev + upperFirst(cur);
+    }, '');
 }
-export default isUndefined;
+export default pascalCase;
 </code></pre>
         </article>
     </section>
