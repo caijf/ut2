@@ -1,3 +1,7 @@
+export const nativeUndefined = void 0;
+export const stringUndefined = 'undefined';
+export const stringObject = 'object';
+
 export const objectProto = Object.prototype;
 export const objectProtoToString = objectProto.toString;
 export const objectProtoHasOwnProperty = objectProto.hasOwnProperty;
@@ -10,8 +14,8 @@ export const objectKeys = Object.keys;
 export const functionProto = Function.prototype;
 export const functionProtoToString = functionProto.toString;
 
-const symbolExisted = typeof Symbol !== 'undefined';
-export const symbolProto = symbolExisted ? Symbol.prototype : undefined;
+const symbolExisted = typeof Symbol !== stringUndefined;
+export const symbolProto = symbolExisted ? Symbol.prototype : nativeUndefined;
 
 export const arrayProto = Array.prototype;
 export const arrayProtoSlice = arrayProto.slice;
@@ -27,9 +31,9 @@ export const numberIsFinite = Number.isFinite;
 export const numberIsInteger = Number.isInteger;
 export const numberIsSafeInteger = Number.isSafeInteger;
 
-export const globalThisExisted = typeof globalThis === 'object' && globalThis;
-export const globalExisted = typeof global === 'object' && global;
-export const selfExisted = typeof self === 'object' && self;
+export const globalThisExisted = typeof globalThis === stringObject && globalThis;
+export const globalExisted = typeof global === stringObject && global;
+export const selfExisted = typeof self === stringObject && self;
 
 /**
  * 最大安全整数。

@@ -1,4 +1,5 @@
 import allKeys from './allKeys';
+import { nativeUndefined } from './internals/native';
 import { PropertyName, WithNullable } from './internals/types';
 import isNil from './isNil';
 
@@ -42,7 +43,7 @@ const conformsTo: ConformsTo = function <T extends object, K extends keyof T>(ob
     const predicate = source[key];
     const value = object[key];
 
-    if ((value === undefined && !(key in object)) || !predicate(value)) {
+    if ((value === nativeUndefined && !(key in object)) || !predicate(value)) {
       return false;
     }
   }

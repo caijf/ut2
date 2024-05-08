@@ -1,9 +1,9 @@
-import { symbolProto } from './internals/native';
+import { nativeUndefined, symbolProto } from './internals/native';
 import isArray from './isArray';
 import isNil from './isNil';
 import isSymbol from './isSymbol';
 
-const symbolToString = symbolProto ? symbolProto.toString : undefined;
+const symbolToString = symbolProto ? symbolProto.toString : nativeUndefined;
 
 function baseToString(value: any): string {
   if (typeof value === 'string') {

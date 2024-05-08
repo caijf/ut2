@@ -1,3 +1,4 @@
+import { nativeUndefined } from './internals/native';
 import isArrayLike from './isArrayLike';
 
 /**
@@ -22,7 +23,7 @@ import isArrayLike from './isArrayLike';
  */
 function nth<T = any>(array: T[], n = 0): T {
   if (!isArrayLike(array)) {
-    return undefined as any;
+    return nativeUndefined as any;
   }
 
   n += n < 0 ? array.length : 0;

@@ -1,6 +1,7 @@
 import defaultTo from '../defaultTo';
 import toNumber from '../toNumber';
 import { FUNC_ERROR_TEXT } from './helpers';
+import { nativeUndefined } from './native';
 import { FunctionAny } from './types';
 
 function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: boolean, __throttle__ = false) {
@@ -13,7 +14,7 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
   wait = defaultTo(toNumber(wait), 0);
 
   function shouldInvoke(time: number) {
-    if (lastCallTime === undefined) {
+    if (lastCallTime === nativeUndefined) {
       return true;
     }
     const timeSinceLastCall = time - lastCallTime;
@@ -24,7 +25,7 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
   function invokeFunc(time: number) {
     lastInvokeTime = time;
     result = func.apply(lastThis, lastArgs as any[]);
-    lastThis = lastArgs = undefined;
+    lastThis = lastArgs = nativeUndefined;
     return result;
   }
 
@@ -35,26 +36,26 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
     const time = Date.now();
     const isInvoke = shouldInvoke(time); // 是否可以立即调用
 
-    const waitTime = !__throttle__ ? wait : !isInvoke && lastCallTime !== undefined && timer === undefined ? wait - (time - lastCallTime) : wait;
+    const waitTime = !__throttle__ ? wait : !isInvoke && lastCallTime !== nativeUndefined && timer === nativeUndefined ? wait - (time - lastCallTime) : wait;
 
     lastCallTime = time;
 
     if (isInvoke) {
       // 立即调用，且没有定时器
-      if (immediate && timer === undefined) {
+      if (immediate && timer === nativeUndefined) {
         return invokeFunc(time);
       }
     }
 
     // 如果已有定时器，且不是节流方式，清除并重新启动定时器
-    if (timer !== undefined && !__throttle__) {
+    if (timer !== nativeUndefined && !__throttle__) {
       clearTimeout(timer);
-      timer = undefined;
+      timer = nativeUndefined;
     }
 
-    if (timer === undefined) {
+    if (timer === nativeUndefined) {
       timer = setTimeout(() => {
-        timer = undefined;
+        timer = nativeUndefined;
         invokeFunc(Date.now());
       }, waitTime);
     }
@@ -63,17 +64,17 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
   }
 
   function cancel() {
-    if (timer !== undefined) {
+    if (timer !== nativeUndefined) {
       clearTimeout(timer);
-      timer = undefined;
+      timer = nativeUndefined;
     }
-    lastCallTime = timer = lastArgs = lastThis = undefined;
+    lastCallTime = timer = lastArgs = lastThis = nativeUndefined;
   }
 
   function flush() {
-    if (timer !== undefined) {
+    if (timer !== nativeUndefined) {
       clearTimeout(timer);
-      timer = undefined;
+      timer = nativeUndefined;
 
       if (lastArgs) {
         return invokeFunc(Date.now());
@@ -83,7 +84,7 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
   }
 
   function pending() {
-    return timer !== undefined;
+    return timer !== nativeUndefined;
   }
 
   debounced.cancel = cancel;

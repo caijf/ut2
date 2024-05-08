@@ -1,5 +1,6 @@
 import defaultTo from './defaultTo';
 import { FUNC_ERROR_TEXT } from './internals/helpers';
+import { nativeUndefined } from './internals/native';
 import { FunctionAny } from './internals/types';
 import toNumber from './toNumber';
 
@@ -34,13 +35,13 @@ function before<T extends FunctionAny>(n: number, func: T) {
   n = defaultTo(toNumber(n), 0);
   return function () {
     if (--n > 0) {
-      // @ts-ignore
+      // @ts-expect-error
       // eslint-disable-next-line prefer-rest-params
       result = func.apply(this, arguments);
     }
     if (n <= 1) {
-      // @ts-ignore
-      func = undefined;
+      // @ts-expect-error
+      func = nativeUndefined;
     }
     return result;
   } as T;

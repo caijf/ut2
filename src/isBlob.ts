@@ -1,8 +1,8 @@
 import getTag from './internals/getTag';
-import { blobTag } from './internals/native';
+import { blobTag, stringUndefined } from './internals/native';
 
 // Blob 对象是否存在
-const blobExisted = typeof Blob !== 'undefined';
+const blobExisted = typeof Blob !== stringUndefined;
 
 /**
  * 检查值是否为 `Blob` 对象。

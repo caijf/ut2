@@ -3,6 +3,7 @@ import isArray from './isArray';
 import isObject from './isObject';
 import isObjectLike from './isObjectLike';
 import isPlainObject from './isPlainObject';
+import { nativeUndefined } from './internals/native';
 
 type GetKeysMethod = <T extends object>(object: T) => (symbol | string)[];
 type Customizer = (objValue: any, srcValue: any, key: string | symbol, object: any, source: any) => any;
@@ -25,8 +26,8 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
     if (srcIsObj && stack.has(srcValue)) {
       obj[key] = srcValue;
     } else {
-      const newValue = hasCustomizer ? customizer(obj[key], srcValue, key, obj, source) : undefined;
-      if (newValue !== undefined) {
+      const newValue = hasCustomizer ? customizer(obj[key], srcValue, key, obj, source) : nativeUndefined;
+      if (newValue !== nativeUndefined) {
         obj[key] = newValue;
       } else {
         const objValue = obj[key];
@@ -43,7 +44,7 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
 
         if (newObjValue) {
           obj[key] = baseMerge(newObjValue, srcValue, getKeys, customizer, stack);
-        } else if (srcValue !== undefined || !(key in obj)) {
+        } else if (srcValue !== nativeUndefined || !(key in obj)) {
           obj[key] = srcValue;
         }
       }

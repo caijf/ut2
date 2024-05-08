@@ -4,6 +4,7 @@ import { compareMultiple, CompareOrder, CompareOrderBase, CompareOrderData } fro
 import isArray from './isArray';
 import forEach from './forEach';
 import { CollectionList, CollectionObject, IterateeParam, Many } from './internals/types';
+import { nativeUndefined } from './internals/native';
 
 interface OrderBy {
   <T>(collection: CollectionList<T>, iteratee?: Many<IterateeParam<T>>, orders?: Many<CompareOrder>): T[];
@@ -51,8 +52,8 @@ interface OrderBy {
 const orderBy: OrderBy = function <T>(collection: any, iteratees?: any, orders?: Many<CompareOrder>) {
   const result: CompareOrderData<T>[] = [];
 
-  iteratees = (isArray(iteratees) ? iteratees : iteratees !== undefined ? [iteratees] : [identity]) as IterateeParam<T>[];
-  orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : []) as CompareOrderBase[];
+  iteratees = (isArray(iteratees) ? iteratees : iteratees !== nativeUndefined ? [iteratees] : [identity]) as IterateeParam<T>[];
+  orders = (isArray(orders) ? orders : orders !== nativeUndefined ? [orders] : []) as CompareOrderBase[];
 
   let index = -1;
   forEach(collection, (item) => {

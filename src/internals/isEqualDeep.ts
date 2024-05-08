@@ -1,7 +1,7 @@
 import allKeys from '../allKeys';
 import eq from '../eq';
 import getTagWithBugfix from './getTagWithBugfix';
-import { argumentsTag, arrayProtoSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, objectProtoHasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolProto, symbolTag } from './native';
+import { argumentsTag, arrayProtoSlice, arrayBufferTag, arrayTag, booleanTag, dataViewTag, dateTag, errorTag, objectProtoHasOwnProperty, mapTag, numberTag, objectTag, regExpTag, setTag, stringTag, symbolProto, symbolTag, nativeUndefined } from './native';
 import isBuffer from '../isBuffer';
 import isFunction from '../isFunction';
 import isNil from '../isNil';
@@ -9,7 +9,7 @@ import isObjectLike from '../isObjectLike';
 import isTypedArray from '../isTypedArray';
 import orderBy from '../orderBy';
 
-const symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+const symbolValueOf = symbolProto ? symbolProto.valueOf : nativeUndefined;
 
 function mapToArray(map: Map<any, any>) {
   const result: [any, any][] = [];
@@ -180,7 +180,7 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
     while (length--) {
       if (hasCustomizer) {
         const compared = customizer(value[length], other[length], length, value, other, valueStack, otherStack);
-        if (compared !== undefined) {
+        if (compared !== nativeUndefined) {
           if (!compared) {
             return false;
           }
@@ -204,7 +204,7 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
       const key = keys[length];
       if (hasCustomizer) {
         const compared = customizer(value[key], other[key], key, value, other, valueStack, otherStack);
-        if (compared !== undefined) {
+        if (compared !== nativeUndefined) {
           if (!compared) {
             return false;
           }

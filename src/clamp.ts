@@ -1,4 +1,5 @@
 import defaultTo from './defaultTo';
+import { nativeUndefined } from './internals/native';
 import toNumber from './toNumber';
 
 interface Clamp {
@@ -31,26 +32,26 @@ interface Clamp {
  *
  */
 const clamp: Clamp = function (number: number, lower?: number, upper?: number) {
-  if (upper === undefined) {
+  if (upper === nativeUndefined) {
     upper = lower;
-    lower = undefined;
+    lower = nativeUndefined;
   }
 
-  if (upper !== undefined) {
+  if (upper !== nativeUndefined) {
     upper = defaultTo(toNumber(upper), 0);
   }
 
-  if (lower !== undefined) {
+  if (lower !== nativeUndefined) {
     lower = defaultTo(toNumber(lower), 0);
   }
 
   number = toNumber(number);
 
   if (number === number) {
-    if (upper !== undefined) {
+    if (upper !== nativeUndefined) {
       number = number <= upper ? number : upper;
     }
-    if (lower !== undefined) {
+    if (lower !== nativeUndefined) {
       number = number >= lower ? number : lower;
     }
   }

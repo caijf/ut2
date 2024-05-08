@@ -1,9 +1,11 @@
+import { stringObject } from './native';
+
 // `exports`
-const freeExports = typeof exports === 'object' && exports && !exports.nodeType && exports;
+const freeExports = typeof exports === stringObject && exports && !exports.nodeType && exports;
 
 // @ts-ignore
 // `module`
-const freeModule = freeExports && typeof module === 'object' && module && !module.nodeType && module;
+const freeModule = freeExports && typeof module === stringObject && module && !module.nodeType && module;
 
 const nodeUtil = (function () {
   try {

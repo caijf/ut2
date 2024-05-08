@@ -1,12 +1,12 @@
-import { objectTag, dataViewTag, mapTag, promiseTag, setTag, weakMapTag } from './native';
+import { objectTag, dataViewTag, mapTag, promiseTag, setTag, weakMapTag, nativeUndefined, stringUndefined } from './native';
 import { toSource } from './helpers';
 import getTag from './getTag';
 
-const dataViewExisted = typeof DataView !== 'undefined';
-const mapExisted = typeof Map !== 'undefined';
-const promiseExisted = typeof Promise !== 'undefined';
-const setExisted = typeof Set !== 'undefined';
-const weakMapExisted = typeof WeakMap !== 'undefined';
+const dataViewExisted = typeof DataView !== stringUndefined;
+const mapExisted = typeof Map !== stringUndefined;
+const promiseExisted = typeof Promise !== stringUndefined;
+const setExisted = typeof Set !== stringUndefined;
+const weakMapExisted = typeof WeakMap !== stringUndefined;
 
 const dataViewCtorString = toSource(DataView);
 const mapCtorString = toSource(Map);
@@ -27,7 +27,7 @@ if (
 ) {
   getTagWithBugfix = function (value: any) {
     const result = getTag(value);
-    const Ctor = result === objectTag ? value.constructor : undefined;
+    const Ctor = result === objectTag ? value.constructor : nativeUndefined;
     const ctorString = Ctor ? toSource(Ctor) : '';
 
     if (ctorString) {

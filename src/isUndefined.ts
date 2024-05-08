@@ -1,3 +1,5 @@
+import { nativeUndefined } from './internals/native';
+
 /**
  * 检查值是否为 `undefined` 。
  *
@@ -14,7 +16,7 @@
  *
  */
 function isUndefined(value: any): value is undefined {
-  return value === void 0;
+  return value === nativeUndefined;
 }
 
 export default isUndefined;

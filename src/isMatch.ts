@@ -1,6 +1,6 @@
 import allKeys from './allKeys';
 import getTag from './internals/getTag';
-import { objectTag } from './internals/native';
+import { nativeUndefined, objectTag } from './internals/native';
 import isEqualDeep from './internals/isEqualDeep';
 
 // 是否需要深比较
@@ -42,7 +42,7 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
 
       if (hasCustomizer) {
         const compared = customizer(object[key], source[key], key, object, source, objStack, srcStack);
-        if (compared !== undefined) {
+        if (compared !== nativeUndefined) {
           if (!compared) {
             return false;
           }
@@ -69,7 +69,7 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
     (objValue, srcValue, k, obj, src) => {
       if (hasCustomizer) {
         const compared = customizer(objValue, srcValue, k, obj, src, objStack, srcStack);
-        if (compared !== undefined) {
+        if (compared !== nativeUndefined) {
           return compared;
         }
       }
@@ -129,12 +129,12 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
 function isMatch(object: object, source: object, customizer?: Customizer, strictCheck = false) {
   if (typeof customizer === 'function') {
     const compared = customizer(object, source);
-    if (compared !== undefined) {
+    if (compared !== nativeUndefined) {
       return !!compared;
     }
   }
 
-  return baseIsMatch(object, source, customizer, strictCheck, undefined, undefined);
+  return baseIsMatch(object, source, customizer, strictCheck, nativeUndefined, nativeUndefined);
 }
 
 export default isMatch;

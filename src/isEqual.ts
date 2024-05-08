@@ -1,4 +1,5 @@
 import isEqualDeep from './internals/isEqualDeep';
+import { nativeUndefined } from './internals/native';
 
 /**
  * 深度比较两个值是否相等。
@@ -45,7 +46,7 @@ function isEqual(value: any, other: any, customizer?: Parameters<typeof isEqualD
   // 自定义比较
   if (typeof customizer === 'function') {
     const result = customizer(value, other);
-    if (result !== undefined) {
+    if (result !== nativeUndefined) {
       return !!result;
     }
   }
