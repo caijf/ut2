@@ -27,8 +27,8 @@ describe('invert', () => {
   });
 
   it('值为特殊值', () => {
-    const obj = { a: { a: 1 }, b: true, c: [123], d: Symbol.for('a'), e: () => {}, f: function () {}, g: NaN, h: undefined, i: null };
-    expect(invert(obj)).toEqual({ '[object Object]': 'a', true: 'b', 123: 'c', [Symbol.for('a')]: 'd', '() => { }': 'e', 'function () { }': 'f', NaN: 'g', undefined: 'h', null: 'i' });
+    const obj = { a: { a: 1 }, b: true, c: [123], d: Symbol.for('a'), e: () => {}, f: function () {}, g: NaN, h: undefined, i: null, j: Object.create(null) };
+    expect(invert(obj)).toEqual({ '[object Object]': 'j', true: 'b', 123: 'c', [Symbol.for('a')]: 'd', '() => { }': 'e', 'function () { }': 'f', NaN: 'g', undefined: 'h', null: 'i' });
   });
 
   it('不包含继承的属性', () => {
