@@ -31,15 +31,15 @@ export function compareDesc(value: any, other: any) {
   return 0;
 }
 
-export type OrderData<T> = {
+export type CompareOrderData<T> = {
   criteria: any[];
   index: number;
   value: T;
 };
-export type OrderBase = 'asc' | 'desc';
-export type Order = OrderBase | ((a: any, b: any) => number);
+export type CompareOrderBase = 'asc' | 'desc';
+export type CompareOrder = CompareOrderBase | ((a: any, b: any) => number);
 
-export function compareMultiple<T>(object: OrderData<T>, other: OrderData<T>, orders: Order[]) {
+export function compareMultiple<T>(object: CompareOrderData<T>, other: CompareOrderData<T>, orders: CompareOrder[]) {
   const objCriteria = object.criteria;
   const othCriteria = other.criteria;
   const length = objCriteria.length;

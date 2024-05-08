@@ -1,13 +1,13 @@
 import identity from './identity';
 import createIteratee from './internals/createIteratee';
-import { compareMultiple, Order, OrderBase, OrderData } from './internals/compare';
+import { compareMultiple, CompareOrder, CompareOrderBase, CompareOrderData } from './internals/compare';
 import isArray from './isArray';
 import forEach from './forEach';
 import { CollectionList, CollectionObject, IterateeParam, Many } from './internals/types';
 
 interface OrderBy {
-  <T>(collection: CollectionList<T>, iteratee?: Many<IterateeParam<T>>, orders?: Many<Order>): T[];
-  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<IterateeParam<V>>, orders?: Many<Order>): V[];
+  <T>(collection: CollectionList<T>, iteratee?: Many<IterateeParam<T>>, orders?: Many<CompareOrder>): T[];
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<IterateeParam<V>>, orders?: Many<CompareOrder>): V[];
 }
 
 /**
@@ -48,11 +48,11 @@ interface OrderBy {
  * // [{ a: 'x', b: 3 },{ a: 'x', b: 1 },{ a: 'y', b: 4 },{ a: 'y', b: 2 }]
  *
  */
-const orderBy: OrderBy = function <T>(collection: any, iteratees?: any, orders?: Many<Order>) {
-  const result: OrderData<T>[] = [];
+const orderBy: OrderBy = function <T>(collection: any, iteratees?: any, orders?: Many<CompareOrder>) {
+  const result: CompareOrderData<T>[] = [];
 
   iteratees = (isArray(iteratees) ? iteratees : iteratees !== undefined ? [iteratees] : [identity]) as IterateeParam<T>[];
-  orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : []) as OrderBase[];
+  orders = (isArray(orders) ? orders : orders !== undefined ? [orders] : []) as CompareOrderBase[];
 
   let index = -1;
   forEach(collection, (item) => {
@@ -64,7 +64,7 @@ const orderBy: OrderBy = function <T>(collection: any, iteratees?: any, orders?:
     });
   });
 
-  return result.sort((a, b) => compareMultiple<T>(a, b, orders as Order[])).map((item) => item.value);
+  return result.sort((a, b) => compareMultiple<T>(a, b, orders as CompareOrder[])).map((item) => item.value);
 };
 
 export default orderBy;
