@@ -1,9 +1,9 @@
 import getTag from './internals/getTag';
-import specialKeys from './internals/specialKeys';
 import { mapTag, setTag } from './internals/native';
 import isArrayLike from './isArrayLike';
 import isNil from './isNil';
 import isObjectLike from './isObjectLike';
+import allKeys from './allKeys';
 
 /**
  * 检查值是否为空对象。
@@ -49,7 +49,7 @@ function isEmpty(value: any) {
   }
 
   if (isObjectLike(value)) {
-    return !specialKeys(value).length;
+    return !allKeys(value).length;
   }
 
   if (isArrayLike(value)) {

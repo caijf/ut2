@@ -42,7 +42,7 @@ describe('isEmpty', () => {
     function Foo() {}
     Foo.prototype = { constructor: Foo };
 
-    expect(isEmpty(Foo.prototype)).toBe(true);
+    expect(isEmpty(Foo.prototype)).toBe(false);
 
     Foo.prototype.a = 1;
 
