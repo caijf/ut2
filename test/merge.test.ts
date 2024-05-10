@@ -196,7 +196,7 @@ describe('merge', () => {
     expect(actual).toEqual({ a: { b: [0, 1, 2] } });
   });
 
-  it('不处理 `Symbol` 属性值合并', () => {
+  it('支持 `Symbol` 属性值合并', () => {
     function Foo(this: any) {
       this.a = 1;
       this[Symbol.for('a')] = 2;
@@ -206,8 +206,7 @@ describe('merge', () => {
 
     expect(merge({ a: 'a', [Symbol.for('a')]: 'a' }, new (Foo as any)())).toEqual({
       a: 1,
-      b: 3,
-      [Symbol.for('a')]: 'a'
+      [Symbol.for('a')]: 2
     });
   });
 
