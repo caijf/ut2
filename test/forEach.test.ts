@@ -1,4 +1,5 @@
 import { forEach, times } from '../src';
+import { symbol } from './_utils';
 
 describe('forEach', () => {
   it('basic', () => {
@@ -40,12 +41,12 @@ describe('forEach', () => {
     const keys: any[] = [];
     const values: any[] = [];
 
-    forEach({ foo: 'bar', baz: 1 }, (value, key) => {
+    forEach({ foo: 'bar', baz: 1, [symbol]: 'abc' }, (value, key) => {
       values.push(value);
       keys.push(key);
     });
-    expect(keys).toEqual(['foo', 'baz']);
-    expect(values).toEqual(['bar', 1]);
+    expect(keys).toEqual(['foo', 'baz', symbol]);
+    expect(values).toEqual(['bar', 1, 'abc']);
   });
 
   it('迭代字符串', () => {

@@ -1,4 +1,5 @@
 import { forEachRight, times } from '../src';
+import { symbol } from './_utils';
 
 describe('forEachRight', () => {
   it('basic', () => {
@@ -40,12 +41,12 @@ describe('forEachRight', () => {
     const keys: any[] = [];
     const values: any[] = [];
 
-    forEachRight({ foo: 'bar', baz: 1 }, (value, key) => {
+    forEachRight({ foo: 'bar', baz: 1, [symbol]: 'abc' }, (value, key) => {
       values.push(value);
       keys.push(key);
     });
-    expect(keys).toEqual(['baz', 'foo']);
-    expect(values).toEqual([1, 'bar']);
+    expect(keys).toEqual([symbol, 'baz', 'foo']);
+    expect(values).toEqual(['abc', 1, 'bar']);
   });
 
   it('迭代字符串', () => {

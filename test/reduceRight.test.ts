@@ -1,4 +1,5 @@
 import { noop, reduceRight, times } from '../src';
+import { symbol } from './_utils';
 
 describe('reduceRight', () => {
   it('basic', () => {
@@ -96,7 +97,7 @@ describe('reduceRight', () => {
     const arr: any[] = [];
 
     reduceRight(
-      { foo: 'bar', baz: 1 },
+      { foo: 'bar', baz: 1, [symbol]: 'abc' },
       (accumulator, value, key) => {
         values.push(value);
         keys.push(key);
@@ -105,9 +106,9 @@ describe('reduceRight', () => {
       },
       arr
     );
-    expect(keys).toEqual(['baz', 'foo']);
-    expect(values).toEqual([1, 'bar']);
-    expect(arr).toEqual([{ '1': 'baz' }, { bar: 'foo' }]);
+    expect(keys).toEqual([symbol, 'baz', 'foo']);
+    expect(values).toEqual(['abc', 1, 'bar']);
+    expect(arr).toEqual([{ abc: symbol }, { '1': 'baz' }, { bar: 'foo' }]);
   });
 
   it('迭代字符串', () => {

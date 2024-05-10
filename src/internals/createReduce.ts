@@ -1,6 +1,6 @@
+import allKeys from '../allKeys';
 import identity from '../identity';
 import isArrayLike from '../isArrayLike';
-import keys from '../keys';
 import { FunctionAny, ReduceArrayIterator, ReduceArrayLikeIterator, ReduceObjectIterator, ReduceStringIterator, WithNullable } from './types';
 
 export interface Reduce {
@@ -23,7 +23,7 @@ export interface Reduce {
  */
 function createReduce(dir: 1 | -1) {
   function reducer(collection: any, iteratee: FunctionAny, memo: any, initial: boolean) {
-    const _keys = !isArrayLike(collection) && keys(collection);
+    const _keys = !isArrayLike(collection) && allKeys(collection);
     const len = (_keys || collection).length;
     let i = dir > 0 ? 0 : len - 1;
 

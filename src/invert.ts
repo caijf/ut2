@@ -1,10 +1,10 @@
+import allKeys from './allKeys';
 import { stubTrue } from './internals/helpers';
 import { objectProtoToString } from './internals/native';
 import { ObjectPredicate, PropertyName, WithNullable } from './internals/types';
-import keys from './keys';
 
 /**
- * 创建一个对象，该对象由 `object` 自身可枚举属性（不包含 `Symbol` 属性）和值反转组成。
+ * 创建一个对象，该对象由 `object` 自身可枚举属性（包含 `Symbol` 属性）和值反转组成。
  *
  * @static
  * @alias module:Object.invert
@@ -20,7 +20,7 @@ import keys from './keys';
  *
  */
 function invert<T extends object>(object: WithNullable<T>, predicate: ObjectPredicate<T> = stubTrue) {
-  const _keys = keys(object);
+  const _keys = allKeys(object);
   const result: Record<PropertyName, any> = {};
 
   _keys.forEach((key) => {

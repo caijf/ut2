@@ -5,7 +5,7 @@ import createReduce from './internals/createReduce';
  *
  * 如果没有提供第三个参数值，则集合中的第一个元素将用作初始值。
  *
- * `iteratee` 调用时会传入四个参数 `accumulator`、`value`、`index|key`、`collection` 。
+ * `iteratee` 调用时会传入四个参数 `accumulator` `value` `index|key` `collection` 。
  *
  * @function
  * @alias module:Collection.reduce

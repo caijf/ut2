@@ -1,4 +1,5 @@
 import { invert, isNumber, isString } from '../src';
+import { symbol } from './_utils';
 
 describe('invert', () => {
   it('反转对象', () => {
@@ -7,6 +8,11 @@ describe('invert', () => {
 
     expect(actual).toEqual({ 1: 'a', 2: 'b' });
     expect(invert(actual)).toEqual({ a: '1', b: '2' });
+  });
+
+  it('`Symbol` 属性', () => {
+    const obj = { foo: 'bar', baz: 1, [symbol]: 'abc' };
+    expect(invert(obj)).toEqual({ bar: 'foo', 1: 'baz', abc: symbol });
   });
 
   it('值为 `Object.prototype` 上的属性', () => {
