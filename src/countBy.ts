@@ -1,22 +1,24 @@
 import forEach from './forEach';
 import createIteratee from './internals/createIteratee';
-import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
+import { ArrayLikeIterator, CollectionList, CollectionObject, ObjectIterator, PropertyName } from './internals/types';
 
 interface CountBy {
-  <T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, number>;
-  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, number>;
+  <T extends object>(collection: CollectionList<T>, iteratee?: ArrayLikeIterator<T, PropertyName> | keyof T): Record<PropertyName, number>;
+  <T>(collection: CollectionList<T>, iteratee?: ArrayLikeIterator<T, PropertyName> | PropertyName): Record<PropertyName, number>;
+  <T extends object>(collection: CollectionObject<T>, iteratee?: ObjectIterator<T, PropertyName> | keyof T): Record<PropertyName, number>;
+  <T extends object>(collection: CollectionObject<T>, iteratee?: PropertyName): Record<PropertyName, number>;
 }
 
 /**
  * 创建一个组成对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果，每个 `key` 对应的值是 `iteratee` 返回该 `key` 的次数。
  *
- * `iteratee` 调用时会传入 1 个参数 `value` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
  *
  * @function
  * @alias module:Collection.countBy
  * @since 1.0.0
  * @param {ArrayLike<any> | object} collection 一个用来迭代的集合。
- * @param {Function | string} [iteratee=identity] 迭代函数，用来转换键。
+ * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。
  * @returns {Object} 组成集合对象。
  * @example
  *
@@ -31,10 +33,10 @@ interface CountBy {
  *
  */
 const countBy: CountBy = function <T>(collection: any, iteratee?: any) {
-  const result: Record<string | number | symbol, number> = {};
+  const result: Record<PropertyName, number> = {};
   const internalIteratee = createIteratee<T>(iteratee);
-  forEach(collection, (item) => {
-    const key = internalIteratee(item);
+  forEach(collection, (item, index, arr) => {
+    const key = internalIteratee(item, index, arr);
     if (key in result) {
       ++result[key];
     } else {

@@ -1,23 +1,25 @@
 import forEach from './forEach';
 import identity from './identity';
 import createIteratee from './internals/createIteratee';
-import { CollectionList, CollectionObject, IterateeParam } from './internals/types';
+import { ArrayLikeIterator, CollectionList, CollectionObject, ObjectIterator, PropertyName } from './internals/types';
 
 interface KeyBy {
-  <T>(collection: CollectionList<T>, iteratee?: IterateeParam<T>): Record<string, T>;
-  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: IterateeParam<V>): Record<string, V>;
+  <T extends object>(collection: CollectionList<T>, iteratee?: ArrayLikeIterator<T, PropertyName> | keyof T): Record<PropertyName, T>;
+  <T>(collection: CollectionList<T>, iteratee?: ArrayLikeIterator<T, PropertyName> | PropertyName): Record<PropertyName, T>;
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: ObjectIterator<T, PropertyName> | keyof T): Record<PropertyName, V>;
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: PropertyName): Record<PropertyName, V>;
 }
 
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。每个 `key` 对应的值是生成 `key` 的最后一个元素。
  *
- * `iteratee` 调用时会传入 1 个参数 `value` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
  *
  * @function
  * @alias module:Collection.keyBy
  * @since 1.0.0
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
- * @param {Function | string} [iteratee=identity] 迭代函数，用来转换键。
+ * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。
  * @returns {Object} 组成聚合对象。
  * @example
  *
@@ -32,11 +34,11 @@ interface KeyBy {
  *
  */
 const keyBy: KeyBy = function <T>(collection: any, iteratee: any = identity) {
-  const result: Record<string | number | symbol, T> = {};
+  const result: Record<PropertyName, T> = {};
 
   const internalIteratee = createIteratee<T>(iteratee);
-  forEach(collection, (item) => {
-    const key = internalIteratee(item);
+  forEach(collection, (item, index, arr) => {
+    const key = internalIteratee(item, index, arr);
     result[key] = item;
   });
   return result;

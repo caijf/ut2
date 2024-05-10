@@ -3,12 +3,14 @@ import createIteratee from './internals/createIteratee';
 import { compareMultiple, CompareOrder, CompareOrderBase, CompareOrderData } from './internals/compare';
 import isArray from './isArray';
 import forEach from './forEach';
-import { CollectionList, CollectionObject, IterateeParam, Many } from './internals/types';
+import { ArrayLikeIterator, CollectionList, CollectionObject, IterateeParam, Many, ObjectIterator, PropertyName } from './internals/types';
 import { nativeUndefined } from './internals/native';
 
 interface OrderBy {
-  <T>(collection: CollectionList<T>, iteratee?: Many<IterateeParam<T>>, orders?: Many<CompareOrder>): T[];
-  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<IterateeParam<V>>, orders?: Many<CompareOrder>): V[];
+  <T extends object>(collection: CollectionList<T>, iteratee?: Many<ArrayLikeIterator<T, any> | keyof T>, orders?: Many<CompareOrder>): T[];
+  <T>(collection: CollectionList<T>, iteratee?: Many<ArrayLikeIterator<T, any> | PropertyName>, orders?: Many<CompareOrder>): T[];
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<ObjectIterator<T, any> | keyof T>, orders?: Many<CompareOrder>): V[];
+  <T extends object, V extends T[keyof T]>(collection: CollectionObject<T>, iteratee?: Many<PropertyName>, orders?: Many<CompareOrder>): V[];
 }
 
 /**
@@ -16,14 +18,14 @@ interface OrderBy {
  *
  * `asc` 升序， `desc` 降序，默认执行稳定排序，也就是说相同元素会保持原始排序。
  *
- * `iteratee` 调用时会传入 1 个参数 `value` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
  *
  * @function
  * @alias module:Collection.orderBy
  * @since 1.0.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort | sort}
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
- * @param {Function | string | Array} [iteratees] 排序的迭代函数。
+ * @param {Function | string | number | Symbol | Array} [iteratees] 排序的迭代函数。
  * @param {'asc' | 'desc' | Array} [orders] 迭代函数的排序顺序。
  * @returns {Array} 排序后的新数组。
  * @example
@@ -56,8 +58,8 @@ const orderBy: OrderBy = function <T>(collection: any, iteratees?: any, orders?:
   orders = (isArray(orders) ? orders : orders !== nativeUndefined ? [orders] : []) as CompareOrderBase[];
 
   let index = -1;
-  forEach(collection, (item) => {
-    const criteria = (iteratees as IterateeParam<T>[]).map((iteratee) => createIteratee<T>(iteratee)(item));
+  forEach(collection, (item, key, arr) => {
+    const criteria = (iteratees as IterateeParam<T>[]).map((iteratee) => createIteratee<T>(iteratee)(item, key, arr));
     result.push({
       criteria,
       index: ++index,

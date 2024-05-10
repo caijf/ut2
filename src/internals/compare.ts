@@ -1,34 +1,25 @@
+import isNumber from '../isNumber';
 import isSymbol from '../isSymbol';
 import toString from '../toString';
 
-export function compareAsc(value: any, other: any) {
-  const valueIsSymbol = isSymbol(value);
-  const otherIsSymbol = isSymbol(other);
-  const valueStr = toString(value);
-  const otherStr = toString(other);
+function createCompare(dir: 1 | 0) {
+  const asc = dir === 1;
+  function wrapper(value: any, other: any) {
+    const valueIsSymbol = isSymbol(value);
+    const otherIsSymbol = isSymbol(other);
+    const isNeedConvertString = !valueIsSymbol && !otherIsSymbol && !(isNumber(value) && isNumber(other));
+    const _value = isNeedConvertString ? toString(value) : value;
+    const _other = isNeedConvertString ? toString(other) : other;
 
-  if (!otherIsSymbol && (valueIsSymbol || valueStr > otherStr)) {
-    return 1;
+    if (!otherIsSymbol && (valueIsSymbol || _value > _other)) {
+      return asc ? 1 : -1;
+    }
+    if (!valueIsSymbol && (otherIsSymbol || _value < _other)) {
+      return asc ? -1 : 1;
+    }
+    return 0;
   }
-  if (!valueIsSymbol && (otherIsSymbol || valueStr < otherStr)) {
-    return -1;
-  }
-  return 0;
-}
-
-export function compareDesc(value: any, other: any) {
-  const valueIsSymbol = isSymbol(value);
-  const otherIsSymbol = isSymbol(other);
-  const valueStr = toString(value);
-  const otherStr = toString(other);
-
-  if (!otherIsSymbol && (valueIsSymbol || valueStr > otherStr)) {
-    return -1;
-  }
-  if (!valueIsSymbol && (otherIsSymbol || valueStr < otherStr)) {
-    return 1;
-  }
-  return 0;
+  return wrapper;
 }
 
 export type CompareOrderData<T> = {
@@ -47,7 +38,7 @@ export function compareMultiple<T>(object: CompareOrderData<T>, other: CompareOr
 
   while (++index < length) {
     const order = orders[index];
-    const cmpFn = typeof order === 'function' ? order : order === 'desc' ? compareDesc : compareAsc;
+    const cmpFn = typeof order === 'function' ? order : order === 'desc' ? createCompare(0) : createCompare(1);
     const result = cmpFn(objCriteria[index], othCriteria[index]);
     if (result) {
       return result;
