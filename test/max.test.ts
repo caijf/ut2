@@ -3,12 +3,16 @@ import { max } from '../src';
 describe('max', () => {
   it('basic', () => {
     const array = [1, 2, 3];
-    expect(max(array)).toBe(3);
+
+    const expected1 = max(array);
+    expect(expected1).toBe(3);
 
     const objects = [{ a: 2 }, { a: 3 }, { a: 1 }];
-    expect(max(objects, (item) => item.a)).toEqual({ a: 3 });
+    const expected2 = max(objects, (item) => item.a);
+    expect(expected2).toEqual({ a: 3 });
 
-    expect(max(objects, 'a')).toEqual({ a: 3 });
+    const expected3 = max(objects, 'a');
+    expect(expected3).toEqual({ a: 3 });
   });
 
   it('日期比较', () => {

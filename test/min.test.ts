@@ -3,12 +3,15 @@ import { min } from '../src';
 describe('min', () => {
   it('basic', () => {
     const array = [1, 2, 3];
-    expect(min(array)).toBe(1);
+    const expected1 = min(array);
+    expect(expected1).toBe(1);
 
     const objects = [{ a: 2 }, { a: 3 }, { a: 1 }];
-    expect(min(objects, (item) => item.a)).toEqual({ a: 1 });
+    const expected2 = min(objects, (item) => item.a);
+    expect(expected2).toEqual({ a: 1 });
 
-    expect(min(objects, 'a')).toEqual({ a: 1 });
+    const expected3 = min(objects, 'a');
+    expect(expected3).toEqual({ a: 1 });
   });
 
   it('日期比较', () => {

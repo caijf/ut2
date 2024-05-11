@@ -2,9 +2,9 @@ import isArray from '../isArray';
 import isSymbol from '../isSymbol';
 import createIteratee from './createIteratee';
 import { nativeUndefined } from './native';
-import { IterateeParam } from './types';
+import { IterateeParam, WithNullable } from './types';
 
-function createExtremum<T>(array: T[], comparator: (value: any, other: any) => boolean, iteratee?: IterateeParam<T>) {
+function createExtremum<T>(array: WithNullable<T[]>, comparator: (value: any, other: any) => boolean, iteratee?: IterateeParam<T>) {
   if (!isArray(array)) {
     return;
   }
@@ -12,8 +12,8 @@ function createExtremum<T>(array: T[], comparator: (value: any, other: any) => b
   let result: T | undefined, computed: number | undefined;
   const internalIteratee = createIteratee<T>(iteratee);
 
-  array.forEach((value) => {
-    const current = internalIteratee(value);
+  array.forEach((value, index) => {
+    const current = internalIteratee(value, index, array);
     if (current != null && (computed === nativeUndefined ? current === current && !isSymbol(current) : comparator(current, computed))) {
       computed = current;
       result = value;
