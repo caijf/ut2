@@ -6,7 +6,7 @@ import isNil from './isNil';
 /**
  * 创建一个对象，该对象的属性从 `object` 中经 `predicate` （断言函数）判断为真值的属性。
  *
- * `predicate` 调用时会传入 2 个参数 `value` `key` 。
+ * `predicate` 调用时会传入两个参数 `value` `key` 。
  *
  * @static
  * @alias module:Object.pickBy

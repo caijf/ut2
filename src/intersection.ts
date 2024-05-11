@@ -5,9 +5,9 @@ import { IterateeParam } from './internals/types';
 import isArray from './isArray';
 
 /**
- * 创建唯一值的数组，该数组包含 2 个数组参数都包含的元素（交集）。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
+ * 创建唯一值的数组，该数组包含两个数组参数都包含的元素（交集）。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
  *
- * `iteratee` 调用时会传入 1 个参数 `value` 。
+ * `iteratee` 调用时会传入一个参数 `value` 。
  *
  * 默认使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果 `strictCheck=true` 将使用 [`SameValue`](https://tc39.es/ecma262/#sec-samevalue) 做等值比较。
  *
@@ -16,7 +16,7 @@ import isArray from './isArray';
  * @since 1.0.0
  * @param {Array} array 要检查的数组。
  * @param {Array} other 另一个要检查的数组。
- * @param {Function | string} [iteratee=identity] 迭代函数，调用每个元素。
+ * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，调用每个元素。
  * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`，默认 `false` 。
  * @returns {Array} 包含所有传入数组交集元素的新数组。
  * @example

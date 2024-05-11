@@ -11,7 +11,7 @@ interface Times {
 /**
  * 调用 `iteratee` `n` 次，每次调用返回的结果存入到数组中。
  *
- * `iteratee` 调用传入 1 个参数 `index` 。
+ * `iteratee` 调用传入一个参数 `index` 。
  *
  * @function
  * @alias module:Util.times
