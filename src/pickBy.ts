@@ -1,7 +1,6 @@
 import allKeysIn from './allKeysIn';
 import { stubFlase } from './internals/helpers';
 import { ObjectPredicate, WithNullable } from './internals/types';
-import isNil from './isNil';
 
 /**
  * 创建一个对象，该对象的属性从 `object` 中经 `predicate` （断言函数）判断为真值的属性。
@@ -28,15 +27,11 @@ import isNil from './isNil';
 function pickBy<T extends object>(object: WithNullable<T>, predicate: ObjectPredicate<T> = stubFlase) {
   const result: Partial<T> = {};
 
-  if (isNil(object)) {
-    return result;
-  }
-
   const keys = allKeysIn(object) as (keyof T)[];
 
   keys.forEach((key) => {
-    if (predicate(object[key], key)) {
-      result[key] = object[key];
+    if (predicate(object![key], key)) {
+      result[key] = object![key];
     }
   });
 

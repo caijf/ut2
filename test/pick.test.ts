@@ -1,5 +1,5 @@
 import { pick } from '../src';
-import { symbol, toArgs } from './_utils';
+import { falsy, symbol, toArgs } from './_utils';
 
 describe('pick', () => {
   const obj = { name: 'jeff', age: 18 };
@@ -71,5 +71,12 @@ describe('pick', () => {
 
     expect(o).toEqual({ age: 18 });
     expect(pick(o, 'name')).toEqual({ name: 'jeff' });
+  });
+
+  it('错误参数', () => {
+    falsy.forEach((item) => {
+      // @ts-expect-error
+      expect(pick(item, 'a')).toEqual({});
+    });
   });
 });

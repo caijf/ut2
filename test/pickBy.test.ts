@@ -1,5 +1,5 @@
 import { isString, pickBy } from '../src';
-import { symbol } from './_utils';
+import { falsy, symbol } from './_utils';
 
 describe('pickBy', () => {
   const obj = { name: 'jeff', age: 18, [symbol]: 'some val' };
@@ -46,5 +46,12 @@ describe('pickBy', () => {
     expect(pickBy(o)).toEqual({});
     expect(pickBy(o, (v, k) => k === 'age')).toEqual({ age: 18 });
     expect(pickBy(o, (v, k) => k === 'name')).toEqual({});
+  });
+
+  it('错误参数', () => {
+    falsy.forEach((item) => {
+      // @ts-expect-error
+      expect(pickBy(item, (v) => v === 'a')).toEqual({});
+    });
   });
 });

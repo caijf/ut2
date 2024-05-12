@@ -1,5 +1,6 @@
 import castArray from './castArray';
 import { PropertyName, WithNullable } from './internals/types';
+import isObject from './isObject';
 
 interface PickFunction {
   <T extends object, K extends keyof T>(object: WithNullable<T>, fields?: K | K[]): Pick<T, K>;
@@ -30,7 +31,12 @@ interface PickFunction {
  * pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }
  */
 const pick: PickFunction = function <T extends object, K extends keyof T>(object: T, fields: K | K[] = []) {
-  const result: Record<any, any> = {};
+  const result: Record<PropertyName, any> = {};
+
+  if (!isObject(object)) {
+    return result;
+  }
+
   const fieldArr = castArray(fields);
 
   fieldArr.forEach((field) => {
