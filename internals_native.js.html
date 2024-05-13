@@ -70,34 +70,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>export var nativeUndefined = void 0;
-export var stringUndefined = 'undefined';
-export var stringObject = 'object';
-export var objectProto = Object.prototype;
-export var objectProtoToString = objectProto.toString;
-export var objectProtoHasOwnProperty = objectProto.hasOwnProperty;
-export var objectProtoPropertyIsEnumerable = objectProto.propertyIsEnumerable;
-export var objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
-export var objectGetPrototypeOf = Object.getPrototypeOf;
-export var objectKeys = Object.keys;
-export var functionProto = Function.prototype;
-export var functionProtoToString = functionProto.toString;
-var symbolExisted = typeof Symbol !== stringUndefined;
-export var symbolProto = symbolExisted ? Symbol.prototype : nativeUndefined;
-export var arrayProto = Array.prototype;
-export var arrayProtoSlice = arrayProto.slice;
-export var mathMin = Math.min;
-export var mathMax = Math.max;
-export var mathRandom = Math.random;
-export var mathFloor = Math.floor;
-export var mathCeil = Math.ceil;
-export var mathAbs = Math.abs;
-export var numberIsFinite = Number.isFinite;
-export var numberIsInteger = Number.isInteger;
-export var numberIsSafeInteger = Number.isSafeInteger;
-export var globalThisExisted = typeof globalThis === stringObject &amp;&amp; globalThis;
-export var globalExisted = typeof global === stringObject &amp;&amp; global;
-export var selfExisted = typeof self === stringObject &amp;&amp; self;
+            <pre class="prettyprint source linenums"><code>export const nativeUndefined = void 0;
+export const stringUndefined = 'undefined';
+export const stringObject = 'object';
+export const objectProto = Object.prototype;
+export const objectProtoToString = objectProto.toString;
+export const objectProtoHasOwnProperty = objectProto.hasOwnProperty;
+export const objectProtoPropertyIsEnumerable = objectProto.propertyIsEnumerable;
+export const objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
+export const objectGetPrototypeOf = Object.getPrototypeOf;
+export const objectKeys = Object.keys;
+export const functionProto = Function.prototype;
+export const functionProtoToString = functionProto.toString;
+const symbolExisted = typeof Symbol !== stringUndefined;
+export const symbolProto = symbolExisted ? Symbol.prototype : nativeUndefined;
+export const arrayProto = Array.prototype;
+export const arrayProtoSlice = arrayProto.slice;
+export const mathMin = Math.min;
+export const mathMax = Math.max;
+export const mathRandom = Math.random;
+export const mathFloor = Math.floor;
+export const mathCeil = Math.ceil;
+export const mathAbs = Math.abs;
+export const numberIsFinite = Number.isFinite;
+export const numberIsInteger = Number.isInteger;
+export const numberIsSafeInteger = Number.isSafeInteger;
+export const globalThisExisted = typeof globalThis === stringObject &amp;&amp; globalThis;
+export const globalExisted = typeof global === stringObject &amp;&amp; global;
+export const selfExisted = typeof self === stringObject &amp;&amp; self;
 /**
  * 最大安全整数。
  *
@@ -105,7 +105,7 @@ export var selfExisted = typeof self === stringObject &amp;&amp; self;
  * @since 1.0.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER | MAX_SAFE_INTEGER}
  */
-export var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+export const MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
 /**
  * 最小安全整数。
  *
@@ -113,7 +113,7 @@ export var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
  * @since 1.0.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_SAFE_INTEGER | MIN_SAFE_INTEGER}
  */
-export var MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
+export const MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
 /**
  * 最大数组长度 `Math.pow(2,32) - 1` 。
  *
@@ -121,29 +121,29 @@ export var MIN_SAFE_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
  * @since 1.0.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length | length}
  */
-export var MAX_ARRAY_LENGTH = 4294967295;
-export var bigIntTag = '[object BigInt]';
-export var numberTag = '[object Number]';
-export var booleanTag = '[object Boolean]';
-export var stringTag = '[object String]';
-export var dateTag = '[object Date]';
-export var regExpTag = '[object RegExp]';
-export var symbolTag = '[object Symbol]';
-export var errorTag = '[object Error]';
-export var arrayBufferTag = '[object ArrayBuffer]';
-export var argumentsTag = '[object Arguments]';
-export var arrayTag = '[object Array]';
-export var typedArrayTags = ['Float32Array', 'Float64Array', 'Int8Array', 'Int16Array', 'Int32Array', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'BigInt64Array', 'BigUint64Array'].map(function (item) { return '[object ' + item + ']'; });
-export var functionTags = ['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy'].map(function (item) { return '[object ' + item + ']'; });
-export var weakSetTag = '[object WeakSet]';
-export var blobTag = '[object Blob]';
-export var domExceptionTag = '[object DOMException]';
-export var objectTag = '[object Object]';
-export var dataViewTag = '[object DataView]';
-export var mapTag = '[object Map]';
-export var promiseTag = '[object Promise]';
-export var setTag = '[object Set]';
-export var weakMapTag = '[object WeakMap]';
+export const MAX_ARRAY_LENGTH = 4294967295;
+export const bigIntTag = '[object BigInt]';
+export const numberTag = '[object Number]';
+export const booleanTag = '[object Boolean]';
+export const stringTag = '[object String]';
+export const dateTag = '[object Date]';
+export const regExpTag = '[object RegExp]';
+export const symbolTag = '[object Symbol]';
+export const errorTag = '[object Error]';
+export const arrayBufferTag = '[object ArrayBuffer]';
+export const argumentsTag = '[object Arguments]';
+export const arrayTag = '[object Array]';
+export const typedArrayTags = ['Float32Array', 'Float64Array', 'Int8Array', 'Int16Array', 'Int32Array', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'BigInt64Array', 'BigUint64Array'].map((item) => '[object ' + item + ']');
+export const functionTags = ['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy'].map((item) => '[object ' + item + ']');
+export const weakSetTag = '[object WeakSet]';
+export const blobTag = '[object Blob]';
+export const domExceptionTag = '[object DOMException]';
+export const objectTag = '[object Object]';
+export const dataViewTag = '[object DataView]';
+export const mapTag = '[object Map]';
+export const promiseTag = '[object Promise]';
+export const setTag = '[object Set]';
+export const weakMapTag = '[object WeakMap]';
 </code></pre>
         </article>
     </section>
@@ -158,7 +158,7 @@ export var weakMapTag = '[object WeakMap]';
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Sun May 12 2024 10:48:17 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon May 13 2024 09:48:23 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
