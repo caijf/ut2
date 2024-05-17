@@ -5,21 +5,7 @@
 export const falsy = [, false, 0, -0, 0n, , '', '', ``, null, undefined, NaN];
 
 // ref: https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy
-export const truthy = [
-  true,
-  {},
-  [],
-  42,
-  '0',
-  'false',
-  new Date(),
-  -42,
-  12n,
-  3.14,
-  -3.14,
-  Infinity,
-  -Infinity
-];
+export const truthy = [true, {}, [], 42, '0', 'false', new Date(), -42, 12n, 3.14, -3.14, Infinity, -Infinity];
 
 export const noop = () => {};
 

@@ -19,12 +19,7 @@ function uniq_3(array) {
 }
 
 function uniq_4(array, each) {
-  const iteratee =
-    typeof each === 'function'
-      ? each
-      : typeof each === 'string'
-      ? (value) => value[each]
-      : (value) => value;
+  const iteratee = typeof each === 'function' ? each : typeof each === 'string' ? (value) => value[each] : (value) => value;
   return array.filter((value, index, arr) => {
     const current = iteratee(value);
     return arr.findIndex((item) => eq(iteratee(item), current)) === index;

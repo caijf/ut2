@@ -1,135 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iframe vars</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iframe vars</title>
-</head>
+  <body>
+    <script src="./iframe-vars.js"></script>
+    <script src="../../dist/ut2.js"></script>
+    <script>
+      // isArguments
+      console.assert(ut2.isArguments(childObject.args), childObject.args);
 
-<body>
-  <script src="./iframe-vars.js"></script>
-  <script src="../../dist/ut2.js"></script>
-  <script>
-    // isArguments
-    console.assert(ut2.isArguments(childObject.args), childObject.args);
+      // isArray
+      console.assert(ut2.isArray(childObject.array), childObject.array);
 
-    // isArray
-    console.assert(ut2.isArray(childObject.array), childObject.array);
+      // isBlob
+      console.assert(ut2.isBlob(childObject.blob), childObject.blob);
 
-    // isBlob
-    console.assert(ut2.isBlob(childObject.blob), childObject.blob);
+      // isBoolean
+      console.assert(ut2.isBoolean(childObject.boolean), childObject.boolean);
 
-    // isBoolean
-    console.assert(ut2.isBoolean(childObject.boolean), childObject.boolean);
+      // isDataView
+      console.assert(typeof DataView !== 'undefined' ? ut2.isBoolean(childObject.dataView) : true, childObject.dataView);
 
-    // isDataView
-    console.assert(typeof DataView !== 'undefined' ? ut2.isBoolean(childObject.dataView) : true, childObject.dataView);
+      // isDate
+      console.assert(ut2.isDate(childObject.date), childObject.date);
 
-    // isDate
-    console.assert(ut2.isDate(childObject.date), childObject.date);
+      // isElement
+      console.assert(ut2.isElement(childObject.element), childObject.element);
 
-    // isElement
-    console.assert(ut2.isElement(childObject.element), childObject.element);
+      // isEmpty
+      console.assert(ut2.isEmpty(childObject.map), childObject.map);
+      console.assert(ut2.isEmpty(childObject.set), childObject.set);
+      console.assert(ut2.isEmpty(childObject.args), childObject.args);
+      console.assert(!ut2.isEmpty(childObject.array), childObject.array);
 
-    // isEmpty
-    console.assert(ut2.isEmpty(childObject.map), childObject.map);
-    console.assert(ut2.isEmpty(childObject.set), childObject.set);
-    console.assert(ut2.isEmpty(childObject.args), childObject.args);
-    console.assert(!ut2.isEmpty(childObject.array), childObject.array);
+      // isEqual
+      console.assert(ut2.isEqual(childObject.array, [1]), childObject.array);
+      console.assert(!ut2.isEqual(childObject.array, [2]), childObject.array);
+      console.assert(ut2.isEqual(childObject.object, { a: 1 }), childObject.object);
+      console.assert(!ut2.isEqual(childObject.object, { a: 2 }), childObject.object);
 
-    // isEqual
-    console.assert(ut2.isEqual(childObject.array, [1]), childObject.array);
-    console.assert(!ut2.isEqual(childObject.array, [2]), childObject.array);
-    console.assert(ut2.isEqual(childObject.object, { a: 1 }), childObject.object);
-    console.assert(!ut2.isEqual(childObject.object, { a: 2 }), childObject.object);
+      // isError
+      console.assert(ut2.isError(childObject.error), childObject.error);
+      console.assert(ut2.isError(childObject.evalError), childObject.evalError);
+      console.assert(ut2.isError(childObject.rangeError), childObject.rangeError);
+      console.assert(ut2.isError(childObject.referenceError), childObject.referenceError);
+      console.assert(ut2.isError(childObject.syntaxError), childObject.syntaxError);
+      console.assert(ut2.isError(childObject.typeError), childObject.typeError);
+      console.assert(ut2.isError(childObject.uriError), childObject.uriError);
+      console.assert(ut2.isError(childObject.aggregateError), childObject.aggregateError);
 
-    // isError
-    console.assert(ut2.isError(childObject.error), childObject.error);
-    console.assert(ut2.isError(childObject.evalError), childObject.evalError);
-    console.assert(ut2.isError(childObject.rangeError), childObject.rangeError);
-    console.assert(ut2.isError(childObject.referenceError), childObject.referenceError);
-    console.assert(ut2.isError(childObject.syntaxError), childObject.syntaxError);
-    console.assert(ut2.isError(childObject.typeError), childObject.typeError);
-    console.assert(ut2.isError(childObject.uriError), childObject.uriError);
-    console.assert(ut2.isError(childObject.aggregateError), childObject.aggregateError);
+      // isFunction
+      console.assert(!ut2.isFunction(document.body), document.body);
+      console.assert(ut2.isFunction(childObject.function), childObject.function);
 
-    // isFunction
-    console.assert(!ut2.isFunction(document.body), document.body);
-    console.assert(ut2.isFunction(childObject.function), childObject.function);
+      // isMap
+      console.assert(!ut2.isMap(document.body), document.body);
+      console.assert(ut2.isMap(childObject.map), childObject.map);
+      console.assert(!ut2.isMap(childObject.weakMap), childObject.weakMap);
 
-    // isMap
-    console.assert(!ut2.isMap(document.body), document.body);
-    console.assert(ut2.isMap(childObject.map), childObject.map);
-    console.assert(!ut2.isMap(childObject.weakMap), childObject.weakMap);
+      // isNaN
+      console.assert(ut2.isNaN(childObject.nan), childObject.nan);
 
-    // isNaN
-    console.assert(ut2.isNaN(childObject.nan), childObject.nan);
+      // isObject
+      console.assert(ut2.isObject(document), document);
+      console.assert(ut2.isObject(document.body), document.body);
+      console.assert(ut2.isObject(childObject.element), childObject.element);
+      console.assert(ut2.isObject(childObject.object), childObject.object);
+      console.assert(ut2.isObject(childObject.date), childObject.date);
+      console.assert(ut2.isObject(childObject.function), childObject.function);
+      console.assert(ut2.isObject(childObject.regexp), childObject.regexp);
+      console.assert(ut2.isObject(childObject.string), childObject.string);
+      console.assert(ut2.isObject(childObject.number), childObject.number);
 
-    // isObject
-    console.assert(ut2.isObject(document), document);
-    console.assert(ut2.isObject(document.body), document.body);
-    console.assert(ut2.isObject(childObject.element), childObject.element);
-    console.assert(ut2.isObject(childObject.object), childObject.object);
-    console.assert(ut2.isObject(childObject.date), childObject.date);
-    console.assert(ut2.isObject(childObject.function), childObject.function);
-    console.assert(ut2.isObject(childObject.regexp), childObject.regexp);
-    console.assert(ut2.isObject(childObject.string), childObject.string);
-    console.assert(ut2.isObject(childObject.number), childObject.number);
+      // isObjectLike
+      console.assert(ut2.isObjectLike(document), document);
+      console.assert(ut2.isObjectLike(document.body), document.body);
+      console.assert(ut2.isObjectLike(childObject.element), childObject.element);
+      console.assert(ut2.isObjectLike(childObject.object), childObject.object);
+      console.assert(ut2.isObjectLike(childObject.date), childObject.date);
+      console.assert(ut2.isObjectLike(childObject.regexp), childObject.regexp);
+      console.assert(ut2.isObjectLike(childObject.string), childObject.string);
+      console.assert(ut2.isObjectLike(childObject.number), childObject.number);
 
-    // isObjectLike
-    console.assert(ut2.isObjectLike(document), document);
-    console.assert(ut2.isObjectLike(document.body), document.body);
-    console.assert(ut2.isObjectLike(childObject.element), childObject.element);
-    console.assert(ut2.isObjectLike(childObject.object), childObject.object);
-    console.assert(ut2.isObjectLike(childObject.date), childObject.date);
-    console.assert(ut2.isObjectLike(childObject.regexp), childObject.regexp);
-    console.assert(ut2.isObjectLike(childObject.string), childObject.string);
-    console.assert(ut2.isObjectLike(childObject.number), childObject.number);
+      // isPlainObject
+      console.assert(!ut2.isPlainObject(document), document);
+      console.assert(!ut2.isPlainObject(document.body), document.body);
+      console.assert(!ut2.isPlainObject(childObject.element), childObject.element);
+      console.assert(!ut2.isPlainObject(childObject.date), childObject.date);
+      console.assert(!ut2.isPlainObject(childObject.function), childObject.function);
+      console.assert(!ut2.isPlainObject(childObject.regexp), childObject.regexp);
+      console.assert(!ut2.isPlainObject(childObject.string), childObject.string);
+      console.assert(!ut2.isPlainObject(childObject.number), childObject.number);
+      console.assert(ut2.isPlainObject(childObject.object), childObject.object);
 
-    // isPlainObject
-    console.assert(!ut2.isPlainObject(document), document);
-    console.assert(!ut2.isPlainObject(document.body), document.body);
-    console.assert(!ut2.isPlainObject(childObject.element), childObject.element);
-    console.assert(!ut2.isPlainObject(childObject.date), childObject.date);
-    console.assert(!ut2.isPlainObject(childObject.function), childObject.function);
-    console.assert(!ut2.isPlainObject(childObject.regexp), childObject.regexp);
-    console.assert(!ut2.isPlainObject(childObject.string), childObject.string);
-    console.assert(!ut2.isPlainObject(childObject.number), childObject.number);
-    console.assert(ut2.isPlainObject(childObject.object), childObject.object);
+      // isRegExp
+      console.assert(ut2.isRegExp(childObject.regexp), childObject.regexp);
 
-    // isRegExp
-    console.assert(ut2.isRegExp(childObject.regexp), childObject.regexp);
+      // isString
+      console.assert(ut2.isString(childObject.string), childObject.string);
 
-    // isString
-    console.assert(ut2.isString(childObject.string), childObject.string);
+      // isSymbol
+      console.assert(ut2.isSymbol(childObject.symbol), childObject.symbol);
 
-    // isSymbol
-    console.assert(ut2.isSymbol(childObject.symbol), childObject.symbol);
+      // isTypedArray
+      console.assert(ut2.isTypedArray(childObject.float32Array), childObject.float32Array);
+      console.assert(ut2.isTypedArray(childObject.float64Array), childObject.float64Array);
+      console.assert(ut2.isTypedArray(childObject.int8Array), childObject.int8Array);
+      console.assert(ut2.isTypedArray(childObject.int16Array), childObject.int16Array);
+      console.assert(ut2.isTypedArray(childObject.int32Array), childObject.int32Array);
+      console.assert(ut2.isTypedArray(childObject.uint8Array), childObject.uint8Array);
+      console.assert(ut2.isTypedArray(childObject.uint8ClampedArray), childObject.uint8ClampedArray);
+      console.assert(ut2.isTypedArray(childObject.uint16Array), childObject.uint16Array);
+      console.assert(ut2.isTypedArray(childObject.uint32Array), childObject.uint32Array);
+      console.assert(ut2.isTypedArray(childObject.bigInt64Array), childObject.bigInt64Array);
+      console.assert(ut2.isTypedArray(childObject.bigUint64Array), childObject.bigUint64Array);
 
-    // isTypedArray
-    console.assert(ut2.isTypedArray(childObject.float32Array), childObject.float32Array);
-    console.assert(ut2.isTypedArray(childObject.float64Array), childObject.float64Array);
-    console.assert(ut2.isTypedArray(childObject.int8Array), childObject.int8Array);
-    console.assert(ut2.isTypedArray(childObject.int16Array), childObject.int16Array);
-    console.assert(ut2.isTypedArray(childObject.int32Array), childObject.int32Array);
-    console.assert(ut2.isTypedArray(childObject.uint8Array), childObject.uint8Array);
-    console.assert(ut2.isTypedArray(childObject.uint8ClampedArray), childObject.uint8ClampedArray);
-    console.assert(ut2.isTypedArray(childObject.uint16Array), childObject.uint16Array);
-    console.assert(ut2.isTypedArray(childObject.uint32Array), childObject.uint32Array);
-    console.assert(ut2.isTypedArray(childObject.bigInt64Array), childObject.bigInt64Array);
-    console.assert(ut2.isTypedArray(childObject.bigUint64Array), childObject.bigUint64Array);
+      // isUndefined
+      console.assert(ut2.isUndefined(childObject.undefined), childObject.undefined);
 
-    // isUndefined
-    console.assert(ut2.isUndefined(childObject.undefined), childObject.undefined);
+      // isWeakMap
+      console.assert(ut2.isWeakMap(childObject.weakMap), childObject.weakMap);
 
-    // isWeakMap
-    console.assert(ut2.isWeakMap(childObject.weakMap), childObject.weakMap);
-
-    // isWeakSet
-    console.assert(ut2.isWeakSet(childObject.weakSet), childObject.weakSet);
-  </script>
-</body>
-
+      // isWeakSet
+      console.assert(ut2.isWeakSet(childObject.weakSet), childObject.weakSet);
+    </script>
+  </body>
 </html>

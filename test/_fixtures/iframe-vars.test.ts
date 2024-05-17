@@ -1,30 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import {
-  isArguments,
-  isArray,
-  isBlob,
-  isBoolean,
-  isDataView,
-  isDate,
-  isElement,
-  isEmpty,
-  isEqual,
-  isError,
-  isFunction,
-  isMap,
-  isObject,
-  isObjectLike,
-  isPlainObject,
-  isRegExp,
-  isString,
-  isSymbol,
-  isTypedArray,
-  isUndefined,
-  isWeakMap,
-  isWeakSet
-} from '../../src';
+import { isArguments, isArray, isBlob, isBoolean, isDataView, isDate, isElement, isEmpty, isEqual, isError, isFunction, isMap, isObject, isObjectLike, isPlainObject, isRegExp, isString, isSymbol, isTypedArray, isUndefined, isWeakMap, isWeakSet } from '../../src';
 import { toArgs } from '../_utils';
 import './iframe-vars.js';
 

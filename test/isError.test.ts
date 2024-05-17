@@ -6,16 +6,7 @@ import { args, falsy, symbol, truthy } from './_utils';
 
 describe('isError', () => {
   it('correct', () => {
-    const errors = [
-      new Error(),
-      new EvalError(),
-      new RangeError(),
-      new ReferenceError(),
-      new SyntaxError(),
-      new TypeError(),
-      new URIError(),
-      new AggregateError([])
-    ];
+    const errors = [new Error(), new EvalError(), new RangeError(), new ReferenceError(), new SyntaxError(), new TypeError(), new URIError(), new AggregateError([])];
 
     errors.forEach((item) => {
       expect(isError(item)).toBe(true);

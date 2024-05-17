@@ -29,47 +29,15 @@ describe('toFinite', () => {
   });
 
   it('字符串转数字', () => {
-    const values = [
-      '10',
-      '1.234567890',
-      Number.MAX_SAFE_INTEGER + '',
-      '1e+308',
-      '1e308',
-      '1E308',
-      '5e-324',
-      '5E-324',
-      'Infinity',
-      'NaN'
-    ];
-    const result = [
-      10,
-      1.23456789,
-      Number.MAX_SAFE_INTEGER,
-      1e308,
-      1e308,
-      1e308,
-      5e-324,
-      5e-324,
-      Number.MAX_VALUE,
-      0
-    ];
+    const values = ['10', '1.234567890', Number.MAX_SAFE_INTEGER + '', '1e+308', '1e308', '1E308', '5e-324', '5E-324', 'Infinity', 'NaN'];
+    const result = [10, 1.23456789, Number.MAX_SAFE_INTEGER, 1e308, 1e308, 1e308, 5e-324, 5e-324, Number.MAX_VALUE, 0];
     values.forEach((item, i) => {
       expect(toFinite(item)).toBe(result[i]);
     });
   });
 
   it('二/八/十六进制转十进制', () => {
-    const values = [
-      '0b101010',
-      '0B101010',
-      '0b101',
-      '0o12345',
-      '0O12345',
-      '0o1',
-      '0x1a2b3c',
-      '0X1a2b3c',
-      '-0X1a2b3c'
-    ];
+    const values = ['0b101010', '0B101010', '0b101', '0o12345', '0O12345', '0o1', '0x1a2b3c', '0X1a2b3c', '-0X1a2b3c'];
     const result = [42, 42, 5, 5349, 5349, 1, 1715004, 1715004, 0];
     values.forEach((item, i) => {
       expect(toFinite(item)).toBe(result[i]);

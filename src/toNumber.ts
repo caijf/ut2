@@ -53,11 +53,7 @@ function toNumber(value: any): number {
   value = value.trim();
   const isBinary = reIsBinary.test(value);
 
-  return isBinary || reIsOctal.test(value)
-    ? parseInt(value.slice(2), isBinary ? 2 : 8)
-    : reIsBadHex.test(value)
-    ? NaN
-    : +value;
+  return isBinary || reIsOctal.test(value) ? parseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NaN : +value;
 }
 
 export default toNumber;
