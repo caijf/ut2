@@ -14,12 +14,16 @@ import toFinite from './toFinite';
  * @returns {number} 随机整数。
  * @example
  *
- * randomInt(); // 0 到 1 之间的整数
+ * // 0 到 1 之间的整数
+ * randomInt(); // 1
  *
- * randomInt(2, 4); // 2 到 4 之间的整数
+ * // 2 到 4 之间的整数
+ * randomInt(2, 4); // 4
  *
- * randomInt(4, 2); // 2 到 4 之间的整数
+ * // 2 到 4 之间的整数
+ * randomInt(4, 2); // 3
  *
+ * // 区间只有一个整数
  * randomInt(1.2, 2.4); // 2
  *
  */
