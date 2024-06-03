@@ -8,7 +8,7 @@ import decimalAdjust from './internals/decimalAdjust';
  * @static
  * @alias module:Math.floor
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/round#小数舍入 | 小数舍入}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Math/round#小数舍入 小数舍入}
  * @param {number} number 要向下舍入的值。
  * @param {number} [precision=0] 向下舍入的精度。
  * @returns {number} 向下舍入的值。

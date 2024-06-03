@@ -6,7 +6,7 @@
  * @static
  * @alias module:Util.eq
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness | JavaScript 中的相等性判断}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness JavaScript 中的相等性判断}
  * @param {*} value 要比较的值。
  * @param {*} other 另一个要比较的值。
  * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`，默认 `false` 。
