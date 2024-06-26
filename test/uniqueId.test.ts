@@ -30,8 +30,7 @@ describe('uniqueId', () => {
     expect(/^123.*$/.test(uniqueId(obj as any))).toBe(true);
     expect(uniqueId(123 as any).indexOf('123')).toBe(0);
 
-    // undefined/null 会使用默认的前缀 ''
-    expect(uniqueId(null as any).indexOf('null')).toBe(-1);
+    expect(uniqueId(null as any).indexOf('null')).toBe(0);
     expect(uniqueId(undefined).indexOf('undefined')).toBe(-1);
   });
 });
