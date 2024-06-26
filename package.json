@@ -1,6 +1,6 @@
 {
   "name": "ut2",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "author": "caijf",
   "license": "MIT",
   "main": "lib/index.js",
