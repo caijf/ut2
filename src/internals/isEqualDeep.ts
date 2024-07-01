@@ -36,7 +36,7 @@ function toBufferView(bufferSource: any) {
 }
 
 function isDomNode(obj: any) {
-  return isObjectLike(obj) && typeof obj.nodeType === 'number' && typeof obj.nodeName === 'string' && typeof obj.isEqualNode === 'function';
+  return isObjectLike(obj) && typeof (obj as Element).nodeType === 'number' && typeof (obj as Element).nodeName === 'string' && typeof (obj as Element).isEqualNode === 'function';
 }
 
 type Customizer = (objValue: any, othValue: any, key?: number | string | symbol, object?: any, other?: any, valueStack?: any[], otherStack?: any[]) => void | boolean;

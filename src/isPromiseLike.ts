@@ -1,4 +1,7 @@
+import { FunctionAny } from './internals/types';
 import isObject from './isObject';
+
+type PromiseLikeObject = { then: FunctionAny; [x: string]: any };
 
 /**
  * 检测值是否类似 `Promise` 对象。
@@ -19,8 +22,8 @@ import isObject from './isObject';
  * isPromiseLike([]); // false
  *
  */
-function isPromiseLike(value: any) {
-  return isObject(value) && typeof value.then === 'function';
+function isPromiseLike(value: any): value is Promise<any> | PromiseLikeObject {
+  return isObject(value) && typeof (value as Promise<any>).then === 'function';
 }
 
 export default isPromiseLike;

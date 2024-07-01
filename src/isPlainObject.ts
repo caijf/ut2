@@ -27,7 +27,7 @@ const objectCtorString = functionProtoToString.call(Object);
  * isPlainObject(Object.create(null)); // true
  *
  */
-function isPlainObject(value: any) {
+function isPlainObject(value: any): value is object {
   if (!isObjectLike(value) || getTag(value) !== objectTag) {
     return false;
   }
