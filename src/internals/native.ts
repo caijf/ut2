@@ -32,6 +32,7 @@ export const numberIsInteger = Number.isInteger;
 export const numberIsSafeInteger = Number.isSafeInteger;
 
 export const globalThisExisted = typeof globalThis === stringObject && globalThis;
+// @ts-ignore
 export const globalExisted = typeof global === stringObject && global;
 export const selfExisted = typeof self === stringObject && self;
 
@@ -73,7 +74,6 @@ export const errorTag = '[object Error]';
 export const arrayBufferTag = '[object ArrayBuffer]';
 export const argumentsTag = '[object Arguments]';
 export const arrayTag = '[object Array]';
-export const typedArrayTags = ['Float32Array', 'Float64Array', 'Int8Array', 'Int16Array', 'Int32Array', 'Uint8Array', 'Uint8ClampedArray', 'Uint16Array', 'Uint32Array', 'BigInt64Array', 'BigUint64Array'].map((item) => '[object ' + item + ']');
 export const functionTags = ['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy'].map((item) => '[object ' + item + ']');
 export const weakSetTag = '[object WeakSet]';
 export const blobTag = '[object Blob]';

@@ -1,8 +1,9 @@
 import getTag from './internals/getTag';
-import { typedArrayTags } from './internals/native';
 import { nodeIsTypedArray } from './internals/nodeUtil';
 import isLength from './isLength';
 import isObjectLike from './isObjectLike';
+
+const typedArrayPattern = /\[object ((I|Ui)nt(8|16|32)|Float(32|64)|Uint8Clamped|Big(I|Ui)nt64)Array\]/;
 
 /**
  * 检查值是否为类型化数组。
@@ -24,9 +25,8 @@ function isTypedArray(value: any) {
   if (nodeIsTypedArray) {
     return nodeIsTypedArray(value);
   }
-  if (isObjectLike(value) && isLength(value.length)) {
-    const tag = getTag(value);
-    return typedArrayTags.some((item) => item === tag);
+  if (isObjectLike(value) && isLength((value as any).length)) {
+    return typedArrayPattern.test(getTag(value));
   }
   return false;
 }

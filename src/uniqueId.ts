@@ -1,8 +1,10 @@
+import { mathRandom } from './internals/native';
+
 // 计数器
 let idCounter = 0;
 
 // 默认前缀，避免不同工具库uniqueId之间产生的值冲突
-const defaultPrefix = '_' + Math.random().toString(36).substring(2, 4);
+const defaultPrefix = '_' + mathRandom().toString(36).substring(2, 4);
 
 /**
  * 生成唯一ID。如果提供了 `prefix` ，会被添加到ID前缀上。

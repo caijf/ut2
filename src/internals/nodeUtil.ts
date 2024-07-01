@@ -1,5 +1,6 @@
 import { stringObject } from './native';
 
+// @ts-ignore
 // `exports`
 const freeExports = typeof exports === stringObject && exports && !exports.nodeType && exports;
 

@@ -3,3 +3,6 @@
 /lib
 /umd
 /coverage
+/docs
+/dist-bak
+/types
