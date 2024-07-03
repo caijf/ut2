@@ -10,16 +10,16 @@ interface Some {
 }
 
 /**
- * 迭代集合中的元素执行 `predicate` 函数，如果任一元素通过 `predicate` 返回真值，则停止迭代并返回 `true` ，否则返回 `false` 。
+ * 迭代集合中的元素执行 `predicate` 函数，如果任一元素通过 `predicate` 返回真值，则停止迭代并返回 `true`，否则返回 `false`。
  *
- * `predicate` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `predicate` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @function
  * @alias module:Collection.some
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
- * @param {function} [predicate=identity] 每次迭代调用的函数。
- * @returns {boolean} 如果任一元素通过 `predicate` 测试，则返回 `true` ，否则返回 `false` 。
+ * @param {function} [predicate=identity] 每次迭代调用的函数。默认 `identity`。
+ * @returns {boolean} 如果任一元素通过 `predicate` 测试，则返回 `true`，否则返回 `false`。
  * @example
  *
  * const arr = [1, 2, 3, 4, 5, 6];

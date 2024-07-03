@@ -11,13 +11,13 @@ interface Times {
 /**
  * 调用 `iteratee` `n` 次，每次调用返回的结果存入到数组中。
  *
- * `iteratee` 调用传入一个参数 `index` 。
+ * `iteratee` 调用传入一个参数 `index`。
  *
  * @function
  * @alias module:Util.times
  * @since 1.0.0
  * @param {number} n 调用 `iteratee` 的次数。
- * @param {Function} [iteratee=identity] 每次迭代调用的函数。
+ * @param {Function} [iteratee=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {Array} 调用结果的数组。
  * @example
  *

@@ -13,13 +13,13 @@ interface KeyBy {
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。每个 `key` 对应的值是生成 `key` 的最后一个元素。
  *
- * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @function
  * @alias module:Collection.keyBy
  * @since 1.0.0
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
- * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。
+ * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。默认 `identity`。
  * @returns {Object} 组成聚合对象。
  * @example
  *

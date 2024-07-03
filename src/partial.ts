@@ -43,7 +43,7 @@ interface Partial {
 }
 
 /**
- * 创建一个函数。该函数调用 `func` ，并传入预设的 `args` 参数。
+ * 创建一个函数。该函数调用 `func`，并传入预设的 `args` 参数。
  *
  *  `partial._` 或 `partial.placeholder` 可用作参数的占位符。
  *

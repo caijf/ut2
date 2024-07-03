@@ -9,8 +9,8 @@ import toFinite from './toFinite';
  * @static
  * @alias module:Number.random
  * @since 1.0.0
- * @param {number} [lower=0] 下限，默认 0 。
- * @param {number} [upper=1] 上限，默认 1 。
+ * @param {number} [lower=0] 下限。默认 `0`。
+ * @param {number} [upper=1] 上限。默认 `1`。
  * @returns {number} 随机浮点数。
  * @example
  *

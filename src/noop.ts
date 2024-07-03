@@ -1,5 +1,5 @@
 /**
- * 空函数，返回 `undefined` 。
+ * 空函数，返回 `undefined`。
  *
  * @static
  * @alias module:Util.noop

@@ -4,7 +4,7 @@ import isObject from './isObject';
 /**
  * 创建一个数组，包含对象自身及继承的可枚举属性（不包含 `Symbol` 属性）。
  *
- * 同 `key...in` 。
+ * 同 `key...in`。
  *
  * @static
  * @alias module:Object.keysIn

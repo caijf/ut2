@@ -9,8 +9,9 @@ import { ObjectPredicate, PropertyName, WithNullable } from './internals/types';
  * @static
  * @alias module:Object.invert
  * @since 1.8.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy Truthy}
  * @param {Object} object 来源对象。
- * @param {Function} [predicate] 调用每一个属性的函数，返回 `truthy` 表示要反转，否则不反转。
+ * @param {Function} [predicate] 调用每一个属性的函数，返回 `Truthy` 表示要反转，否则不反转。
  * @returns {Object} 新对象。
  * @example
  *

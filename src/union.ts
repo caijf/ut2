@@ -5,7 +5,7 @@ import uniq from './uniq';
 /**
  * 创建一个按顺序排列的唯一值的数组（并集）。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。与 [`uniq`](#.uniq) 相似。
  *
- * `iteratee` 调用时会传入一个参数 `value` 。
+ * `iteratee` 调用时会传入一个参数 `value`。
  *
  * 默认使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果 `strictCheck=true` 将使用 [`SameValue`](https://tc39.es/ecma262/#sec-samevalue) 做等值比较。
  *
@@ -15,7 +15,7 @@ import uniq from './uniq';
  * @param {Array} array 要检查的数组。
  * @param {Array} [other=[]] 另一个要检查的数组。
  * @param {Function | string | number | Symbol} [iteratee] 迭代函数，调用每个元素。
- * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`，默认 `false` 。
+ * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`。默认 `false`。
  * @returns {Array} 新的联合数组。
  * @example
  *

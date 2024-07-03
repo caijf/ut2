@@ -59,15 +59,15 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  *
  * 如果目标值存在，被解析为 `undefined` 的 `source` 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。
  *
- * 如果你需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn allKeysIn} 方法， `merge(object, source, undefined, allKeysIn)` 。
+ * 如果你需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn allKeysIn} 方法， `merge(object, source, undefined, allKeysIn)`。
  *
  * @static
  * @alias module:Object.merge
  * @since 1.0.0
  * @param {Object | Array} object 目标对象。
  * @param {Object | Array} source 来源对象。
- * @param {Function} [customizer] 自定义赋值函数。
- * @param {Function} [getKeys=allKeys] 自定义获取对象键方法。
+ * @param {Function} [customizer] 自定义赋值函数，如果函数返回 `undefined` 将使用默认合并。
+ * @param {Function} [getKeys=allKeys] 自定义获取对象键方法。默认 `allKeys`。
  * @returns {Object} 目标对象。
  * @example
  *
@@ -82,7 +82,7 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  * merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }
  *
  * // 自定义，数组不合并
- * merge(object, other, (objValue, srcValue) => Array.isArray(srcValue) ? srcValue : undefined); // { a: [{c: 3},{e: 5}] }
+ * merge(object, other, (objValue, srcValue) => isArray(srcValue) ? srcValue : undefined); // { a: [{c: 3},{e: 5}] }
  */
 function merge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, getKeys: GetKeysMethod = allKeys): TObject & TSource {
   return baseMerge(object, source, getKeys, customizer);

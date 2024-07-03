@@ -6,7 +6,7 @@ import { nativeUndefined } from './internals/native';
  *
  * 支持比较 `boolean` `number` `string` `symbol` `array` `array buffer` `date` `error` `map` `object` `regexp` `set` `typed array` 类型。对象只比较自身的属性，不包括继承和不可枚举的属性。
  *
- * 如果 `strictCheck=true` , 以下值不相等：
+ * 如果 `strictCheck=true`， 以下值不相等：
  *
  * 1. `0` `-0`
  * 2. `typeof` 不同类型，如 `1` `Object(1)`
@@ -18,8 +18,8 @@ import { nativeUndefined } from './internals/native';
  * @param {*} value 要比较的值。
  * @param {*} other 另一个要比较的值。
  * @param {Function} [customizer] 自定义比较。
- * @param {boolean} [strictCheck=false] 严格比较，默认 `false` 。
- * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
+ * @param {boolean} [strictCheck=false] 严格比较。默认 `false`。
+ * @returns {boolean} 如果两个值相等，返回 `true`，否则返回 `false`。
  * @example
  *
  * const value = { a: 1, b: -0 }

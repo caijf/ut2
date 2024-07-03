@@ -6,7 +6,7 @@ import nth from './nth';
  * @static
  * @alias module:Util.nthArg
  * @since 1.0.0
- * @param {number} [n=0] 要返回参数的索引值。
+ * @param {number} [n=0] 要返回参数的索引值。默认 `0`。
  * @returns 新函数。
  * @example
  *

@@ -13,8 +13,8 @@ import { FunctionAny } from './internals/types';
  * @alias module:Function.debounce
  * @since 1.0.0
  * @param {Function} func 要防抖动的函数。
- * @param {number} [wait=0] 需要延迟的毫秒数。
- * @param {boolean} [immediate=false] 是否在延迟开始前调用。
+ * @param {number} [wait=0] 需要延迟的毫秒数。默认 `0`。
+ * @param {boolean} [immediate=false] 是否在延迟开始前调用。默认 `false`。
  * @returns {Function} 防抖动函数。
  * @example
  *

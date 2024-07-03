@@ -12,13 +12,13 @@ interface Filter {
 /**
  * 过滤集合元素，为每个元素执行 `predicate` 函数，返回真值的元素将保留在结果数组中（不改变原值）。
  *
- * `predicate` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `predicate` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @static
  * @alias module:Collection.filter
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
- * @param {function} [predicate=identity] 每次迭代调用的函数。
+ * @param {function} [predicate=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {Array} 返回新的过滤数组。
  * @example
  *

@@ -90,7 +90,7 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
  *
  * 注意：只有普通对象才会执行部分匹配，函数、数组不会执行部分匹配。
  *
- * 如果 `strictCheck=true` , 以下值不相等：
+ * 如果 `strictCheck=true`， 以下值不相等：
  *
  * 1. `0` `-0`
  * 2. `typeof` 不同类型，如 `1` `Object(1)`
@@ -103,8 +103,8 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
  * @param {Object} object 要检查的对象。
  * @param {Object} source 属性值相匹配的对象。
  * @param {Function} [customizer] 自定义比较。
- * @param {boolean} [strictCheck=false] 严格比较。
- * @returns {boolean} 如果 `object` 匹配，返回 `true` ，否则返回 `false` 。
+ * @param {boolean} [strictCheck=false] 严格比较。默认 `false`。
+ * @returns {boolean} 如果 `object` 匹配，返回 `true`，否则返回 `false`。
  * @example
  *
  * const object = { a: 1, b: -0 }

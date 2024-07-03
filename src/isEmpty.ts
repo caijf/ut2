@@ -16,7 +16,7 @@ import allKeys from './allKeys';
  * @alias module:Language.isEmpty
  * @since 1.0.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为空，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值为空，返回 `true`，否则返回 `false`。
  * @example
  *
  * isEmpty(null); // true

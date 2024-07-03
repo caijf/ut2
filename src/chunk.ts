@@ -11,7 +11,7 @@ import toLength from './toLength';
  * @alias module:Array.chunk
  * @since 1.0.0
  * @param {Array} array 要处理的数组。
- * @param {number} [size=1] 每个数组区块的长度。
+ * @param {number} [size=1] 每个数组区块的长度。默认 `1`。
  * @returns {Array} 拆分区块的新数组。
  * @example
  *

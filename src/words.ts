@@ -8,7 +8,7 @@ const reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
  * @since 1.0.0
  * @see {@link https://zh.wikipedia.org/wiki/ASCII ASCII}
  * @param {string} string 要拆分的字符串。
- * @param {RegExp | string} [pattern=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g] 匹配模式。
+ * @param {RegExp | string} [pattern=/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g] 匹配模式。默认 `/[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g`。
  * @returns {string[]} 拆分后的数组。
  * @example
  *

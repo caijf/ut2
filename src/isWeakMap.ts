@@ -8,7 +8,7 @@ import { weakMapTag } from './internals/native';
  * @alias module:Language.isWeakMap
  * @since 1.0.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `WeakMap` 对象，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值为 `WeakMap` 对象，返回 `true`，否则返回 `false`。
  * @example
  *
  * isWeakMap(new WeakMap); // true

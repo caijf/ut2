@@ -8,7 +8,7 @@ import { bigIntTag } from './internals/native';
  * @alias module:Language.isBigInt
  * @since 1.8.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 bigint 类型或对象，返回 `true` 否则返回 `false` 。
+ * @returns {boolean} 如果值为 bigint 类型或对象，返回 `true` 否则返回 `false`。
  * @example
  *
  * isBigInt(0n); // true

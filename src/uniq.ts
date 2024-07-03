@@ -6,7 +6,7 @@ import isArray from './isArray';
 /**
  * 创建一个去重后的数组副本。只有第一次出现的元素才会被保留。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。
  *
- * `iteratee` 调用时会传入一个参数 `value` 。
+ * `iteratee` 调用时会传入一个参数 `value`。
  *
  * 默认使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果 `strictCheck=true` 将使用 [`SameValue`](https://tc39.es/ecma262/#sec-samevalue) 做等值比较。
  *
@@ -15,7 +15,7 @@ import isArray from './isArray';
  * @since 1.0.0
  * @param {Array} array 要检查的数组。
  * @param {Function | string | number | Symbol} [iteratee] 迭代函数，调用每个元素。
- * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`，默认 `false` 。
+ * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`。默认 `false`。
  * @returns {Array} 去重后的新数组。
  * @example
  *

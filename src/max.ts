@@ -5,7 +5,7 @@ import { ExtremumFunction, IterateeParam, WithNullable } from './internals/types
 /**
  * 调用 `array` 中的每一个元素，来生成其值排序的标准，返回最大的值。
  *
- * `iteratee` 调用时会传入三个参数 `value` `index` `array` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index` `array`。
  *
  * @function
  * @alias module:Math.max

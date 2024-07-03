@@ -18,7 +18,7 @@ interface OrderBy {
  *
  * `asc` 升序， `desc` 降序，默认执行稳定排序，也就是说相同元素会保持原始排序。
  *
- * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @function
  * @alias module:Collection.orderBy

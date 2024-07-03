@@ -4,13 +4,13 @@ import { numberIsFinite } from './internals/native';
 /**
  * 检查值是否为有限数字。
  *
- * 同 `Number.isFinite` 。
+ * 同 `Number.isFinite`。
  *
  * @static
  * @alias module:Language.isFinite
  * @since 1.0.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为有限数字，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值为有限数字，返回 `true`，否则返回 `false`。
  * @example
  *
  * isFinite(1); // true

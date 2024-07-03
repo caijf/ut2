@@ -124,7 +124,7 @@ interface CurriedFunction5<T1, T2, T3, T4, T5, R> {
  * @alias module:Function.curry
  * @since 1.8.0
  * @param {Function} func 需要柯里化的函数。
- * @param {number} [arity] 指定参数数量，默认值为 `func.length`。
+ * @param {number} [arity] 指定参数数量。默认值为 `func.length`。
  * @returns {Function} 新的柯里化函数。
  * @example
  *

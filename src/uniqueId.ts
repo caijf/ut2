@@ -7,12 +7,12 @@ let idCounter = 0;
 const defaultPrefix = '_' + mathRandom().toString(36).substring(2, 4);
 
 /**
- * 生成唯一ID。如果提供了 `prefix` ，会被添加到ID前缀上。
+ * 生成唯一ID。如果提供了 `prefix`，会被添加到ID前缀上。
  *
  * @static
  * @alias module:Util.uniqueId
  * @since 1.0.0
- * @param {string} [prefix] 要添加到ID前缀的值，默认 `"_" + 2个随机生成的字符`。
+ * @param {string} [prefix] 要添加到ID前缀的值。默认 `"_" + 2个随机生成的字符`。
  * @returns {string} 唯一ID。
  * @example
  *

@@ -1,7 +1,7 @@
 import { objectProtoToString } from './native';
 
 /**
- * 获取值的 `Object.prototype.toString` 。
+ * 获取值的 `Object.prototype.toString`。
  *
  * @private
  * @param value 要查询的值

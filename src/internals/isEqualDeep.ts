@@ -47,7 +47,7 @@ type Customizer = (objValue: any, othValue: any, key?: number | string | symbol,
  *
  * 支持比较 `boolean` `number` `string` `symbol` `array` `array buffer` `date` `error` `map` `object` `regexp` `set` `typed array` 类型。对象只比较自身的属性，不包括继承和不可枚举的属性。
  *
- * 如果 `strictCheck=true` , 以下值不相等：
+ * 如果 `strictCheck=true`， 以下值不相等：
  *
  * 1. `0` `-0`
  * 2. `typeof` 不同类型，如 `1` `Object(1)`
@@ -57,10 +57,10 @@ type Customizer = (objValue: any, othValue: any, key?: number | string | symbol,
  * @param {*} value 要比较的值。
  * @param {*} other 另一个要比较的值。
  * @param {Function} [customizer] 自定义比较。
- * @param {boolean} [strictCheck=false] 严格比较，默认 `false` 。
+ * @param {boolean} [strictCheck=false] 严格比较。默认 `false`。
  * @param {Array} [valueStack] 值的堆栈。
  * @param {Array} [otherStack] 另一个值的堆栈。
- * @returns {boolean} 如果两个值相等，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果两个值相等，返回 `true`，否则返回 `false`。
  */
 function isEqualDeep(value: any, other: any, customizer?: Customizer, strictCheck?: boolean, valueStack?: any[], otherStack?: any[]): boolean {
   // 如果两个值相等，直接返回 true
@@ -95,7 +95,7 @@ function isEqualDeep(value: any, other: any, customizer?: Customizer, strictChec
       return eq(+value, +other, strictCheck);
     case booleanTag:
     case dateTag:
-      // 日期转为毫秒数进行比较，而无效日期转为 `NaN` 。如果是严格比较，无效日期不相等。
+      // 日期转为毫秒数进行比较，而无效日期转为 `NaN`。如果是严格比较，无效日期不相等。
       return strictCheck ? +value === +other : eq(+value, +other);
     case stringTag:
     case regExpTag:

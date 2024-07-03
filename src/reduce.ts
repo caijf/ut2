@@ -5,13 +5,13 @@ import createReduce from './internals/createReduce';
  *
  * 如果没有提供第三个参数值，则集合中的第一个元素将用作初始值。
  *
- * `iteratee` 调用时会传入四个参数 `accumulator` `value` `index|key` `collection` 。
+ * `iteratee` 调用时会传入四个参数 `accumulator` `value` `index|key` `collection`。
  *
  * @function
  * @alias module:Collection.reduce
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
- * @param {Function} [iteratee=identity] 每次迭代调用的函数。
+ * @param {Function} [iteratee=identity] 每次迭代调用的函数。默认 `identity`。
  * @param {*} [initialValue] 初始值。
  * @returns {*} 累计值。
  * @example

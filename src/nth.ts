@@ -10,7 +10,7 @@ import isArrayLike from './isArrayLike';
  * @alias module:Array.nth
  * @since 1.0.0
  * @param {Array} array 要查询的数组。
- * @param {number} [n=0] 要返回元素的索引值。
+ * @param {number} [n=0] 要返回元素的索引值。默认 `0`。
  * @returns {*} 数组的第 `n` 个元素。
  * @example
  *

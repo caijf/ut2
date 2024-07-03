@@ -12,13 +12,13 @@ interface Map {
 /**
  * 创建一个新数组，这个数组的值由迭代集合每个元素调用 `iteratee` 函数的返回值组成。
  *
- * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @static
  * @alias module:Collection.map
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
- * @param {function} [iteratee=identity] 每次迭代调用的函数。
+ * @param {function} [iteratee=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {Array} 一个新数组。
  * @example
  *

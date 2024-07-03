@@ -12,7 +12,7 @@ type PromiseLikeObject = { then: FunctionAny; [x: string]: any };
  * @alias module:Language.isPromiseLike
  * @since 1.0.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值类似 `Promise` 对象，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值类似 `Promise` 对象，返回 `true`，否则返回 `false`。
  * @example
  *
  * isPromiseLike(Promise.resolve()); // true

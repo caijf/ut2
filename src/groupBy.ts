@@ -13,13 +13,13 @@ interface GroupBy {
 /**
  * 创建一个组成聚合对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果。分组值的顺序是由他们出现在 `collection` 的顺序确定的。每个键对应的值负责生成 `key` 的元素组成的数组。
  *
- * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @static
  * @alias module:Collection.groupBy
  * @since 1.0.0
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
- * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。
+ * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。默认 `identity`。
  * @returns {Object} 组成聚合对象。
  * @example
  *

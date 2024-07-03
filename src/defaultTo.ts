@@ -4,14 +4,14 @@ interface DefaultTo {
 }
 
 /**
- * 检查值以确定是否应在其位置返回默认值。如果值为 `NaN` `null` 或 `undefined` ，返回 `defaultValue` 。
+ * 检查值以确定是否应在其位置返回默认值。如果值为 `NaN` `null` 或 `undefined`，返回 `defaultValue`。
  *
  * @function
  * @alias module:Util.defaultTo
  * @since 1.0.0
  * @param {*} value 要检查的值。
  * @param {*} defaultValue 默认值。
- * @returns {*} 如果值为 `NaN` `null` 或 `undefined` ，返回 `defaultValue` ，否则返回 `value` 。
+ * @returns {*} 如果值为 `NaN` `null` 或 `undefined`，返回 `defaultValue`，否则返回 `value`。
  * @example
  *
  * defaultTo(undefined, 1); // 1

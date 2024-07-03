@@ -20,7 +20,7 @@ function baseToString(value: any): string {
 }
 
 /**
- * 转换 `value` 为字符串。`null` 和 `undefined` 将返回空字符串。`-0` 将被转换为 `"-0"` 。
+ * 转换 `value` 为字符串。`null` 和 `undefined` 将返回空字符串。`-0` 将被转换为 `"-0"`。
  *
  * @static
  * @alias module:Util.toString

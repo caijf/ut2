@@ -14,9 +14,9 @@ interface Clamp {
  * @alias module:Number.clamp
  * @since 1.0.0
  * @param {number} number 被限制的值。
- * @param {number} [lower] 下限。
- * @param {number} upper 上限。
- * @returns {number} 被限制的值。
+ * @param {number} [lower] 下限。默认 `0`。
+ * @param {number} upper 上限。默认 `0`。
+ * @returns {number} 限制后的值。
  * @example
  *
  * clamp(-10, -5, 5); // -5

@@ -7,7 +7,7 @@ interface ConformsFunction {
 }
 
 /**
- * 创建一个函数，调用 `source` 的属性名对应的断言函数与传入对象相对应属性名的值进行断言处理。如果都符合返回 `true`，否则返回 `false` 。
+ * 创建一个函数，调用 `source` 的属性名对应的断言函数与传入对象相对应属性名的值进行断言处理。如果都符合返回 `true`，否则返回 `false`。
  *
  * @function
  * @alias module:Util.conforms

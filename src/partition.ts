@@ -11,15 +11,17 @@ interface Partition {
 }
 
 /**
- * 创建一个分成两组的元素数组，第一组包含 `predicate`（断言函数）返回为 [`truthy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)（真值）的元素，第二组包含 `predicate`（断言函数）返回为 [`falsy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy)（假值）的元素。
+ * 创建一个分成两组的元素数组，第一组包含 `predicate`（断言函数）返回为 [`Truthy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)（真值）的元素，第二组包含 `predicate`（断言函数）返回为 [`Falsy`](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy)（假值）的元素。
  *
- * `predicate` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `predicate` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @static
  * @alias module:Collection.partition
  * @since 1.0.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy Truthy}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy Falsy}
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
- * @param {Function | string | number | Symbol | Array} [predicate=identity] 每次迭代调用的断言函数。
+ * @param {Function | string | number | Symbol | Array} [predicate=identity] 每次迭代调用的断言函数。默认 `identity`。
  * @returns {Array} 分组后的数组。
  * @example
  *

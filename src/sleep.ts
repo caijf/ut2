@@ -4,7 +4,7 @@
  * @static
  * @alias module:Util.sleep
  * @since 1.0.0
- * @param {number} [ms=1000] 等待时间，单位毫秒。
+ * @param {number} [ms=1000] 等待时间，单位毫秒。默认 `1000`。
  * @returns {Promise<void>} 异步对象。
  * @example
  *
@@ -18,8 +18,8 @@
  * })
  *
  */
-function sleep(ms = 1000): Promise<void> {
-  return new Promise((resolve) => {
+function sleep(ms = 1000) {
+  return new Promise<void>((resolve) => {
     setTimeout(resolve, ms);
   });
 }

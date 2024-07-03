@@ -13,8 +13,8 @@ import { FunctionAny } from './internals/types';
  * @alias module:Function.throttle
  * @since 1.0.0
  * @param {Function} func 要节流的函数。
- * @param {number} [wait=0] 需要节流的毫秒数。
- * @param {boolean} [immediate=true] 是否在节流开始前调用。
+ * @param {number} [wait=0] 需要节流的毫秒数。默认 `0`。
+ * @param {boolean} [immediate=true] 是否在节流开始前调用。默认 `true`。
  * @returns 节流函数。
  * @example
  *

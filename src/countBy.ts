@@ -12,7 +12,7 @@ interface CountBy {
 /**
  * 创建一个组成对象， `key` 是经过 `iteratee` 执行处理 `collection` 中每个元素后返回的结果，每个 `key` 对应的值是 `iteratee` 返回该 `key` 的次数。
  *
- * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @function
  * @alias module:Collection.countBy

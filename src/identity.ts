@@ -5,7 +5,7 @@
  * @alias module:Util.identity
  * @since 1.0.0
  * @param {*} value 任意值。
- * @returns 返回 `value` 。
+ * @returns 返回 `value`。
  * @example
  *
  * const obj = { a: 1, b: 2 };

@@ -4,13 +4,13 @@ import isFinite from './isFinite';
 /**
  * 检查值是否为整数。
  *
- * 同 `Number.isInteger` 。
+ * 同 `Number.isInteger`。
  *
  * @static
  * @alias module:Language.isInteger
  * @since 1.0.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为整数，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值为整数，返回 `true`，否则返回 `false`。
  * @example
  *
  * isInteger(1); // true

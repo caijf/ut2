@@ -4,7 +4,7 @@ import { FunctionAny } from './internals/types';
 import toNumber from './toNumber';
 
 /**
- * 延迟 `wait` 毫秒后调用 `func` 。
+ * 延迟 `wait` 毫秒后调用 `func`。
  *
  * @static
  * @alias module:Function.delay
@@ -12,7 +12,7 @@ import toNumber from './toNumber';
  * @param {Function} func 要延迟的函数。
  * @param {number} wait 要延迟的毫秒数。
  * @param {...*} [args] 调用函数时传入的参数。
- * @returns {number} 计时器 id 。
+ * @returns {number} 定时器 `id`。
  * @example
  *
  * // 延迟 1000 毫秒后执行

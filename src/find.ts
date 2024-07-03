@@ -10,15 +10,15 @@ interface Find {
 }
 
 /**
- * 迭代集合中的元素执行 `predicate` 函数，返回第一个通过 `predicate` 返回真值的元素（停止迭代），如果都不通过返回 `undefined` 。
+ * 迭代集合中的元素执行 `predicate` 函数，返回第一个通过 `predicate` 返回真值的元素（停止迭代），如果都不通过返回 `undefined`。
  *
- * `predicate` 调用时会传入三个参数 `value` `index|key` `collection` 。
+ * `predicate` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
  * @function
  * @alias module:Collection.find
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
- * @param {function} [predicate=identity] 每次迭代调用的函数。
+ * @param {function} [predicate=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {ArrayLike<any> | Object} 返回第一个通过 `predicate` 返回真值的元素，否则返回 `undefined`。
  * @example
  *

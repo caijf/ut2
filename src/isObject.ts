@@ -9,7 +9,7 @@ import isObjectLike from './isObjectLike';
  * @since 1.0.0
  * @see {@link https://tc39.es/ecma262/#sec-ecmascript-language-types language type}
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为对象，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值为对象，返回 `true`，否则返回 `false`。
  * @example
  *
  * isObject({}); // true

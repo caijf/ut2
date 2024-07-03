@@ -10,7 +10,7 @@ import getTag from './internals/getTag';
  * @alias module:Language.isArguments
  * @since 1.0.0
  * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `arguments` 对象，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值为 `arguments` 对象，返回 `true`，否则返回 `false`。
  * @example
  *
  * isArguments(function() { return arguments }()); // true

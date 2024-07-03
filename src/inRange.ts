@@ -2,7 +2,7 @@ import { mathMax, mathMin } from './internals/native';
 import toNumber from './toNumber';
 
 /**
- * 检查数字是否在 `start` 与 `end` 之间，但不包括 `end` 。
+ * 检查数字是否在 `start` 与 `end` 之间，但不包括 `end`。
  *
  * 如果 `start` 大于 `end` 会自动交换范围参数。
  *
@@ -11,8 +11,8 @@ import toNumber from './toNumber';
  * @since 1.0.0
  * @param {number} number 要检查的值。
  * @param {number} start 开始范围。
- * @param {number} [end=0] 结束范围。
- * @returns {number} 如果数字在范围内，返回 `true` ，否则返回 `false` 。
+ * @param {number} [end=0] 结束范围。默认 `0`。
+ * @returns {number} 如果数字在范围内，返回 `true`，否则返回 `false`。
  * @example
  *
  * inRange(3, 2, 4); // true

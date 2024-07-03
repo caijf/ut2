@@ -4,7 +4,7 @@ import { FunctionAny } from './internals/types';
 import toNumber from './toNumber';
 
 /**
- * 创建一个函数，当它被调用 `n` 或更多次之后触发 `func` 。
+ * 创建一个函数，当它被调用 `n` 或更多次之后触发 `func`。
  *
  * @static
  * @alias module:Function.after

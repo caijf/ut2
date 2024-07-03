@@ -4,13 +4,13 @@ import toFinite from './toFinite';
 /**
  * 产生一个包含 `lower` 与 `upper` 之间的随机整数。
  *
- * 如果参数非整数 `lower=Math.ceil(lower)` `upper=Math.floor(upper)` 。如果 `lower` 大于 `upper` 会自动交换参数。
+ * 如果参数非整数 `lower=Math.ceil(lower)` `upper=Math.floor(upper)`。如果 `lower` 大于 `upper` 会自动交换参数。
  *
  * @static
  * @alias module:Number.randomInt
  * @since 1.0.0
- * @param {number} [lower=0] 下限，默认 0 。
- * @param {number} [upper=1] 上限，默认 1 。
+ * @param {number} [lower=0] 下限。默认 `0`。
+ * @param {number} [upper=1] 上限。默认 `1`。
  * @returns {number} 随机整数。
  * @example
  *
