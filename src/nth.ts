@@ -1,6 +1,11 @@
 import { nativeUndefined } from './internals/native';
 import isArrayLike from './isArrayLike';
 
+interface Nth {
+  (array: [], n?: number): undefined;
+  <T>(array: T[], n?: number): T;
+}
+
 /**
  * 获取数组的第 `n` 个元素。如果 `n` 为负数，则返回从数组结尾开始的第 `n` 个元素。
  *
@@ -21,13 +26,13 @@ import isArrayLike from './isArrayLike';
  * nth(arr, -2); // 'c'
  *
  */
-function nth<T = any>(array: T[], n = 0): T {
+const nth: Nth = function <T = any>(array: T[], n = 0) {
   if (!isArrayLike(array)) {
-    return nativeUndefined as any;
+    return nativeUndefined;
   }
 
   n += n < 0 ? array.length : 0;
   return array[n];
-}
+};
 
 export default nth;

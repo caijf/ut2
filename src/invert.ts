@@ -27,8 +27,8 @@ function invert<T extends object>(object: WithNullable<T>, predicate: ObjectPred
   _keys.forEach((key) => {
     const value = object![key as keyof T];
     if (predicate(value, key as keyof T)) {
-      const valueStr = value != null && typeof value.toString != 'function' ? objectProtoToString.call(value) : value;
-      result[valueStr as any] = key;
+      const valueProp = value != null && typeof value.toString != 'function' ? objectProtoToString.call(value) : (value as string | symbol);
+      result[valueProp] = key;
     } else {
       result[key] = value;
     }

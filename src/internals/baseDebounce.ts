@@ -24,7 +24,7 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
 
   function invokeFunc(time: number) {
     lastInvokeTime = time;
-    result = func.apply(lastThis, lastArgs as any[]);
+    result = func.apply(lastThis, lastArgs!);
     lastThis = lastArgs = nativeUndefined;
     return result;
   }
