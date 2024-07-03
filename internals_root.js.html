@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isUndefined.js - ut2 </title>
+    <title>internals/root.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isUndefined.js</h1>
+    <h1 class="page-title">internals/root.js</h1>
     
 
     
@@ -70,26 +70,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { nativeUndefined } from './internals/native';
+            <pre class="prettyprint source linenums"><code>import { globalThisExisted, globalExisted, selfExisted } from './native';
+const freeGlobalThis = globalThisExisted &amp;&amp; globalThis.Object === Object &amp;&amp; globalThis;
+const freeGlobal = globalExisted &amp;&amp; global.Object === Object &amp;&amp; global;
+const freeSelf = selfExisted &amp;&amp; self.Object === Object &amp;&amp; self;
 /**
- * 检查值是否为 `undefined`。
+ * 全局对象。
+ *
+ * 不同的 JavaScript 环境都可以获取到对应的全局对象：
+ * 1. Web 中等同于 `globalThis` / `window` / `self` / `frames` （兼容旧浏览器）
+ * 2. Node.js 中等同于 `globalThis` / `global` （兼容低版本 Node.js）
+ * 3. Web Workers 中等同于 `self`
  *
  * @static
- * @alias module:Language.isUndefined
- * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `undefined`，返回 `true`，否则返回 `false`。
- * @example
- *
- * isUndefined(undefined); // true
- *
- * isUndefined(null); // false
- *
+ * @since 1.10.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/globalThis globalThis}
  */
-function isUndefined(value) {
-    return value === nativeUndefined;
-}
-export default isUndefined;
+const root = freeGlobalThis || freeGlobal || freeSelf || Function('return this')();
+export default root;
 </code></pre>
         </article>
     </section>

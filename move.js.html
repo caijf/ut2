@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isUndefined.js - ut2 </title>
+    <title>move.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isUndefined.js</h1>
+    <h1 class="page-title">move.js</h1>
     
 
     
@@ -70,26 +70,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { nativeUndefined } from './internals/native';
-/**
- * 检查值是否为 `undefined`。
+            <pre class="prettyprint source linenums"><code>/**
+ * 将数组 `from` 位置的元素移至 `to` 位置。
  *
  * @static
- * @alias module:Language.isUndefined
- * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 `undefined`，返回 `true`，否则返回 `false`。
+ * @alias module:Array.move
+ * @since 1.10.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice splice}
+ * @param {Array} array 要处理的数组。
+ * @param {number} from 要移动的元素索引。
+ * @param {number} to 要移动目标位置的元素索引。
+ * @returns {*} 处理后的原数组。
  * @example
  *
- * isUndefined(undefined); // true
+ * const arr = ['a', 'b', 'c', 'd'];
  *
- * isUndefined(null); // false
+ * move(arr, 0, 1); // ['b', 'a', 'c', 'd']
+ *
+ * // 此时 arr 已经变为 ['b', 'a', 'c', 'd']
+ * move(arr, -2, 0); // ['c', 'b', 'a', 'd']
  *
  */
-function isUndefined(value) {
-    return value === nativeUndefined;
+function move(arr, from, to) {
+    arr.splice(to, 0, arr.splice(from, 1)[0]);
+    return arr;
 }
-export default isUndefined;
+export default move;
 </code></pre>
         </article>
     </section>
