@@ -1,7 +1,6 @@
 import getTag from './internals/getTag';
 import { nodeIsTypedArray } from './internals/nodeUtil';
-import isLength from './isLength';
-import isObjectLike from './isObjectLike';
+import isArrayLikeObject from './isArrayLikeObject';
 
 const typedArrayPattern = /\[object ((I|Ui)nt(8|16|32)|Float(32|64)|Uint8Clamped|Big(I|Ui)nt64)Array\]/;
 
@@ -25,7 +24,7 @@ function isTypedArray(value: any) {
   if (nodeIsTypedArray) {
     return nodeIsTypedArray(value);
   }
-  if (isObjectLike(value) && isLength((value as any).length)) {
+  if (isArrayLikeObject(value)) {
     return typedArrayPattern.test(getTag(value));
   }
   return false;
