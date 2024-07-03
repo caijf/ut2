@@ -369,7 +369,7 @@ chunk(array, 3); // [['a', 'b', 'c'], ['d']]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>每个数组区块的长度。</p></td>
+            <td class="description last"><p>每个数组区块的长度。默认 <code>1</code>。</p></td>
         </tr>
 
     
@@ -607,7 +607,7 @@ chunk(array, 3); // [['a', 'b', 'c'], ['d']]</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个 <code>array</code> 排除 <code>values</code> 值的新数组。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。</p>
-<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code> 。</p>
+<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code>。</p>
 <p>默认使用了 <a href="https://tc39.es/ecma262/#sec-samevaluezero"><code>SameValueZero</code></a> 做等值比较。如果 <code>strictCheck=true</code> 将使用 <a href="https://tc39.es/ecma262/#sec-samevalue"><code>SameValue</code></a> 做等值比较。</p></li></ul></dd>
     
 
@@ -823,7 +823,7 @@ difference([-0, 0], [0], undefined, true); // [-0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>迭代函数，调用每个元素。</p></td>
+            <td class="description last"><p>迭代函数，调用每个元素。默认 <code>identity</code>。</p></td>
         </tr>
 
     
@@ -863,7 +863,7 @@ difference([-0, 0], [0], undefined, true); // [-0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>，默认 <code>false</code> 。</p></td>
+            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>。默认 <code>false</code>。</p></td>
         </tr>
 
     
@@ -1094,7 +1094,7 @@ difference([-0, 0], [0], undefined, true); // [-0]</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建唯一值的数组，该数组包含两个数组参数都包含的元素（交集）。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。</p>
-<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code> 。</p>
+<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code>。</p>
 <p>默认使用了 <a href="https://tc39.es/ecma262/#sec-samevaluezero"><code>SameValueZero</code></a> 做等值比较。如果 <code>strictCheck=true</code> 将使用 <a href="https://tc39.es/ecma262/#sec-samevalue"><code>SameValue</code></a> 做等值比较。</p></li></ul></dd>
     
 
@@ -1310,7 +1310,7 @@ intersection([-0, 0], [0], undefined, true); // [0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>迭代函数，调用每个元素。</p></td>
+            <td class="description last"><p>迭代函数，调用每个元素。默认 <code>identity</code>。</p></td>
         </tr>
 
     
@@ -1350,7 +1350,7 @@ intersection([-0, 0], [0], undefined, true); // [0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>，默认 <code>false</code> 。</p></td>
+            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>。默认 <code>false</code>。</p></td>
         </tr>
 
     
@@ -1577,7 +1577,7 @@ nth(arr, -2); // 'c'</code></pre>
                 </td>
             
 
-            <td class="description last"><p>要返回元素的索引值。</p></td>
+            <td class="description last"><p>要返回元素的索引值。默认 <code>0</code>。</p></td>
         </tr>
 
     
@@ -1809,7 +1809,7 @@ shuffle([1, 2, 3, 4]); // [3, 2, 1, 4]</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个按顺序排列的唯一值的数组（并集）。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。与 <a href="#.uniq"><code>uniq</code></a> 相似。</p>
-<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code> 。</p>
+<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code>。</p>
 <p>默认使用了 <a href="https://tc39.es/ecma262/#sec-samevaluezero"><code>SameValueZero</code></a> 做等值比较。如果 <code>strictCheck=true</code> 将使用 <a href="https://tc39.es/ecma262/#sec-samevalue"><code>SameValue</code></a> 做等值比较。</p></li></ul></dd>
     
 
@@ -2067,7 +2067,7 @@ union([-0, 0], [-0], undefined, true); // [-0, 0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>，默认 <code>false</code> 。</p></td>
+            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>。默认 <code>false</code>。</p></td>
         </tr>
 
     
@@ -2131,7 +2131,7 @@ union([-0, 0], [-0], undefined, true); // [-0, 0]</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个去重后的数组副本。只有第一次出现的元素才会被保留。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。</p>
-<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code> 。</p>
+<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code>。</p>
 <p>默认使用了 <a href="https://tc39.es/ecma262/#sec-samevaluezero"><code>SameValueZero</code></a> 做等值比较。如果 <code>strictCheck=true</code> 将使用 <a href="https://tc39.es/ecma262/#sec-samevalue"><code>SameValue</code></a> 做等值比较。</p></li></ul></dd>
     
 
@@ -2349,7 +2349,7 @@ uniq([-0, 0], undefined, true); // [-0, 0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>，默认 <code>false</code> 。</p></td>
+            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>。默认 <code>false</code>。</p></td>
         </tr>
 
     
@@ -2581,7 +2581,7 @@ unzip([['barney', 36], ['fred', 40]]); // [['barney', 'fred'], [36, 40]]</code><
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个唯一值的数组（并集-交集），该数组包含两个数组参数中不相同的元素。如果传入迭代函数，会调用数组的每个元素以产生唯一性计算的标准。</p>
-<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code> 。</p>
+<p><code>iteratee</code> 调用时会传入一个参数 <code>value</code>。</p>
 <p>默认使用了 <a href="https://tc39.es/ecma262/#sec-samevaluezero"><code>SameValueZero</code></a> 做等值比较。如果 <code>strictCheck=true</code> 将使用 <a href="https://tc39.es/ecma262/#sec-samevalue"><code>SameValue</code></a> 做等值比较。</p></li></ul></dd>
     
 
@@ -2796,12 +2796,12 @@ xor([-0, 0],[0], undefined, true); // [-0]</code></pre>
             
                 <td class="default">
                 
-                    <code><a href="https://caijf.github.io/ut2/module-Util.html#.identity">identity</a></code>
+                    <code>identity</code>
                 
                 </td>
             
 
-            <td class="description last"><p>迭代函数，调用每个元素。</p></td>
+            <td class="description last"><p>迭代函数，调用每个元素。默认 <code>identity</code>。</p></td>
         </tr>
 
     
@@ -2841,7 +2841,7 @@ xor([-0, 0],[0], undefined, true); // [-0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>，默认 <code>false</code> 。</p></td>
+            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>。默认 <code>false</code>。</p></td>
         </tr>
 
     
@@ -3087,7 +3087,7 @@ xor([-0, 0],[0], undefined, true); // [-0]</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Jul 01 2024 03:39:18 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Wed Jul 03 2024 02:29:36 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

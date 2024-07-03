@@ -559,7 +559,7 @@ allKeysIn(new Foo); // ['a', 'c', Symbol(b), Symbol(d)]</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="invert.js.html">invert.js</a>, <a href="invert.js.html#line20">line 20</a>
+        <a href="invert.js.html">invert.js</a>, <a href="invert.js.html#line21">line 21</a>
     </li></ul></dd>
     
 
@@ -592,6 +592,13 @@ allKeysIn(new Foo); // ['a', 'c', Symbol(b), Symbol(d)]</code></pre>
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy">Truthy</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -702,7 +709,7 @@ invert({ a: undefined, b: null }); // { undefined: 'a', null: 'b' }</code></pre>
 
             
 
-            <td class="description last"><p>调用每一个属性的函数，返回 <code>truthy</code> 表示要反转，否则不反转。</p></td>
+            <td class="description last"><p>调用每一个属性的函数，返回 <code>Truthy</code> 表示要反转，否则不反转。</p></td>
         </tr>
 
     
@@ -766,7 +773,7 @@ invert({ a: undefined, b: null }); // { undefined: 'a', null: 'b' }</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个数组，包含对象自身的可枚举属性（不包含 <code>Symbol</code> 属性）。</p>
-<p>同 <code>Object.keys</code> 。</p></li></ul></dd>
+<p>同 <code>Object.keys</code>。</p></li></ul></dd>
     
 
     
@@ -940,7 +947,7 @@ keys(new Foo); // ['a']</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个数组，包含对象自身及继承的可枚举属性（不包含 <code>Symbol</code> 属性）。</p>
-<p>同 <code>key...in</code> 。</p></li></ul></dd>
+<p>同 <code>key...in</code>。</p></li></ul></dd>
     
 
     
@@ -1115,7 +1122,7 @@ keysIn(new Foo); // ['a', 'c']</code></pre>
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>递归合并 <code>source</code> 来源对象自身的可枚举属性（包含 <code>Symbol</code> 属性）到 <code>object</code> 目标对象。</p>
 <p>如果目标值存在，被解析为 <code>undefined</code> 的 <code>source</code> 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。</p>
-<p>如果你需要合并继承的属性，第四个参数传入 <a href="https://caijf.github.io/ut2/module-Object.html#.allKeysIn">allKeysIn</a> 方法， <code>merge(object, source, undefined, allKeysIn)</code> 。</p></li></ul></dd>
+<p>如果你需要合并继承的属性，第四个参数传入 <a href="https://caijf.github.io/ut2/module-Object.html#.allKeysIn">allKeysIn</a> 方法， <code>merge(object, source, undefined, allKeysIn)</code>。</p></li></ul></dd>
     
 
     
@@ -1182,7 +1189,7 @@ const other = {
 merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }
 
 // 自定义，数组不合并
-merge(object, other, (objValue, srcValue) => Array.isArray(srcValue) ? srcValue : undefined); // { a: [{c: 3},{e: 5}] }</code></pre>
+merge(object, other, (objValue, srcValue) => isArray(srcValue) ? srcValue : undefined); // { a: [{c: 3},{e: 5}] }</code></pre>
 
 
 
@@ -1325,7 +1332,7 @@ merge(object, other, (objValue, srcValue) => Array.isArray(srcValue) ? srcValue 
                 </td>
             
 
-            <td class="description last"><p>自定义赋值函数。</p></td>
+            <td class="description last"><p>自定义赋值函数，如果函数返回 <code>undefined</code> 将使用默认合并。</p></td>
         </tr>
 
     
@@ -1365,7 +1372,7 @@ merge(object, other, (objValue, srcValue) => Array.isArray(srcValue) ? srcValue 
                 </td>
             
 
-            <td class="description last"><p>自定义获取对象键方法。</p></td>
+            <td class="description last"><p>自定义获取对象键方法。默认 <code>allKeys</code>。</p></td>
         </tr>
 
     
@@ -1651,13 +1658,13 @@ omit(obj, ['name', 'age']); // {}</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个对象，该对象忽略 <code>predicate</code> （断言函数）判断不是真值的属性后，<code>object</code> 自身和继承的可枚举属性组成。与 <a href="#.pickBy"><code>pickBy</code></a> 相反。</p>
-<p><code>predicate</code> 调用时会传入两个参数 <code>value</code> <code>key</code> 。</p></li></ul></dd>
+<p><code>predicate</code> 调用时会传入两个参数 <code>value</code> <code>key</code>。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="omitBy.js.html">omitBy.js</a>, <a href="omitBy.js.html#line26">line 26</a>
+        <a href="omitBy.js.html">omitBy.js</a>, <a href="omitBy.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -1690,6 +1697,13 @@ omit(obj, ['name', 'age']); // {}</code></pre>
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy">Truthy</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -1804,7 +1818,7 @@ omitBy(obj, (value) => value); // {}</code></pre>
 
             
 
-            <td class="description last"><p>调用每一个属性的函数，返回 <code>truthy</code> 表示要忽略该属性，否则不忽略。</p></td>
+            <td class="description last"><p>调用每一个属性的函数，返回 <code>Truthy</code> 表示要忽略该属性，否则不忽略。</p></td>
         </tr>
 
     
@@ -2090,13 +2104,13 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个对象，该对象的属性从 <code>object</code> 中经 <code>predicate</code> （断言函数）判断为真值的属性。</p>
-<p><code>predicate</code> 调用时会传入两个参数 <code>value</code> <code>key</code> 。</p></li></ul></dd>
+<p><code>predicate</code> 调用时会传入两个参数 <code>value</code> <code>key</code>。</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="pickBy.js.html">pickBy.js</a>, <a href="pickBy.js.html#line25">line 25</a>
+        <a href="pickBy.js.html">pickBy.js</a>, <a href="pickBy.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -2129,6 +2143,13 @@ pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }</code></pre>
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy">Truthy</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -2243,7 +2264,7 @@ pickBy(obj, (value) => value); // { name: "jeff", age: 18 }</code></pre>
 
             
 
-            <td class="description last"><p>调用每一个属性的函数，返回 <code>truthy</code> 表示要提取该属性，否则不提取。</p></td>
+            <td class="description last"><p>调用每一个属性的函数，返回 <code>Truthy</code> 表示要提取该属性，否则不提取。</p></td>
         </tr>
 
     
@@ -2311,7 +2332,7 @@ pickBy(obj, (value) => value); // { name: "jeff", age: 18 }</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Jul 01 2024 03:39:18 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Wed Jul 03 2024 02:29:36 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

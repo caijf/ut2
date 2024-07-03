@@ -397,7 +397,7 @@ console.log(arr === castArray(arr)); // true</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>创建一个函数，调用 <code>source</code> 的属性名对应的断言函数与传入对象相对应属性名的值进行断言处理。如果都符合返回 <code>true</code>，否则返回 <code>false</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>创建一个函数，调用 <code>source</code> 的属性名对应的断言函数与传入对象相对应属性名的值进行断言处理。如果都符合返回 <code>true</code>，否则返回 <code>false</code>。</p></li></ul></dd>
     
 
     
@@ -568,7 +568,7 @@ objs.filter(conforms({ b: value => value > 1 })); // [{ a: 2: b: 2 }]</code></pr
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>通过调用断言 <code>source</code> 的属性与 <code>object</code> 的相应属性值，检查 <code>object</code> 是否符合 <code>source</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>通过调用断言 <code>source</code> 的属性与 <code>object</code> 的相应属性值，检查 <code>object</code> 是否符合 <code>source</code>。</p></li></ul></dd>
     
 
     
@@ -725,7 +725,7 @@ conformsTo(object, { b: value => value > 2 }); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>如果 <code>object</code> 符合，返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+    <p>如果 <code>object</code> 符合，返回 <code>true</code>，否则返回 <code>false</code>。</p>
 </div>
 
 
@@ -932,7 +932,7 @@ console.log(returnObj() === obj); // true</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查值以确定是否应在其位置返回默认值。如果值为 <code>NaN</code> <code>null</code> 或 <code>undefined</code> ，返回 <code>defaultValue</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查值以确定是否应在其位置返回默认值。如果值为 <code>NaN</code> <code>null</code> 或 <code>undefined</code>，返回 <code>defaultValue</code>。</p></li></ul></dd>
     
 
     
@@ -1089,7 +1089,7 @@ defaultTo(null, undefined); // undefined</code></pre>
 
         
 <div class="param-desc">
-    <p>如果值为 <code>NaN</code> <code>null</code> 或 <code>undefined</code> ，返回 <code>defaultValue</code> ，否则返回 <code>value</code> 。</p>
+    <p>如果值为 <code>NaN</code> <code>null</code> 或 <code>undefined</code>，返回 <code>defaultValue</code>，否则返回 <code>value</code>。</p>
 </div>
 
 
@@ -1343,7 +1343,7 @@ eq(-0, 0, true); // false</code></pre>
                 </td>
             
 
-            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>，默认 <code>false</code> 。</p></td>
+            <td class="description last"><p>严格比较，区分 <code>0</code> <code>-0</code>。默认 <code>false</code>。</p></td>
         </tr>
 
     
@@ -1369,7 +1369,7 @@ eq(-0, 0, true); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>如果两个值相等，返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+    <p>如果两个值相等，返回 <code>true</code>，否则返回 <code>false</code>。</p>
 </div>
 
 
@@ -1406,7 +1406,7 @@ eq(-0, 0, true); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否大于 <code>other</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否大于 <code>other</code>。</p></li></ul></dd>
     
 
     
@@ -1563,7 +1563,7 @@ gt(3, 1); // true</code></pre>
 
         
 <div class="param-desc">
-    <p>如果 <code>value</code> 大于 <code>other</code> 返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+    <p>如果 <code>value</code> 大于 <code>other</code> 返回 <code>true</code>，否则返回 <code>false</code>。</p>
 </div>
 
 
@@ -1600,7 +1600,7 @@ gt(3, 1); // true</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否大于或等于 <code>other</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否大于或等于 <code>other</code>。</p></li></ul></dd>
     
 
     
@@ -1757,7 +1757,7 @@ gte(3, 1); // true</code></pre>
 
         
 <div class="param-desc">
-    <p>如果 <code>value</code> 大于或等于 <code>other</code> 返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+    <p>如果 <code>value</code> 大于或等于 <code>other</code> 返回 <code>true</code>，否则返回 <code>false</code>。</p>
 </div>
 
 
@@ -1925,7 +1925,7 @@ console.log(identity(obj) === obj); // true</code></pre>
 
         
 <div class="param-desc">
-    <p>返回 <code>value</code> 。</p>
+    <p>返回 <code>value</code>。</p>
 </div>
 
 
@@ -1949,7 +1949,7 @@ console.log(identity(obj) === obj); // true</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否小于 <code>other</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否小于 <code>other</code>。</p></li></ul></dd>
     
 
     
@@ -2106,7 +2106,7 @@ lt(3, 1); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>如果 <code>value</code> 小于 <code>other</code> 返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+    <p>如果 <code>value</code> 小于 <code>other</code> 返回 <code>true</code>，否则返回 <code>false</code>。</p>
 </div>
 
 
@@ -2143,7 +2143,7 @@ lt(3, 1); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否小于或等于 <code>other</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>检查 <code>value</code> 是否小于或等于 <code>other</code>。</p></li></ul></dd>
     
 
     
@@ -2300,7 +2300,7 @@ lte(3, 1); // false</code></pre>
 
         
 <div class="param-desc">
-    <p>如果 <code>value</code> 小于或等于 <code>other</code> 返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+    <p>如果 <code>value</code> 小于或等于 <code>other</code> 返回 <code>true</code>，否则返回 <code>false</code>。</p>
 </div>
 
 
@@ -2337,7 +2337,7 @@ lte(3, 1); // false</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>空函数，返回 <code>undefined</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>空函数，返回 <code>undefined</code>。</p></li></ul></dd>
     
 
     
@@ -2559,7 +2559,7 @@ func2('a', 'b', 'c', 'd'); // 'c'</code></pre>
                 </td>
             
 
-            <td class="description last"><p>要返回参数的索引值。</p></td>
+            <td class="description last"><p>要返回参数的索引值。默认 <code>0</code>。</p></td>
         </tr>
 
     
@@ -2610,7 +2610,7 @@ func2('a', 'b', 'c', 'd'); // 'c'</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>创建一个升序或降序的数字数组。</p>
-<p>如果省略 <code>start</code> 默认为 0 。</p></li></ul></dd>
+<p>如果省略 <code>start</code> 默认为 <code>0</code>。</p></li></ul></dd>
     
 
     
@@ -2739,7 +2739,7 @@ range(0); // []</code></pre>
                 </td>
             
 
-            <td class="description last"><p>开始值。</p></td>
+            <td class="description last"><p>开始值。默认 <code>0</code>。</p></td>
         </tr>
 
     
@@ -2813,7 +2813,7 @@ range(0); // []</code></pre>
                 </td>
             
 
-            <td class="description last"><p>要增加或减少的值。如果值为 <code>0</code> ，将视为无效参数。如果 <code>start</code> 在 <code>end</code> 之前，默认为 1 ，否则默认为 -1。</p></td>
+            <td class="description last"><p>要增加或减少的值。如果值为 <code>0</code>，将视为无效参数。如果 <code>start</code> 在 <code>end</code> 之前。默认为 <code>1</code>，否则默认为 <code>-1</code>。</p></td>
         </tr>
 
     
@@ -3006,7 +3006,7 @@ sleep(300).then(()=>{
                 </td>
             
 
-            <td class="description last"><p>等待时间，单位毫秒。</p></td>
+            <td class="description last"><p>等待时间，单位毫秒。默认 <code>1000</code>。</p></td>
         </tr>
 
     
@@ -3070,7 +3070,7 @@ sleep(300).then(()=>{
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>调用 <code>iteratee</code> <code>n</code> 次，每次调用返回的结果存入到数组中。</p>
-<p><code>iteratee</code> 调用传入一个参数 <code>index</code> 。</p></li></ul></dd>
+<p><code>iteratee</code> 调用传入一个参数 <code>index</code>。</p></li></ul></dd>
     
 
     
@@ -3233,7 +3233,7 @@ times(4, () => 0); // [0, 0, 0, 0]</code></pre>
                 </td>
             
 
-            <td class="description last"><p>每次迭代调用的函数。</p></td>
+            <td class="description last"><p>每次迭代调用的函数。默认 <code>identity</code>。</p></td>
         </tr>
 
     
@@ -3477,7 +3477,7 @@ toFinite(-Infinity); // -1.7976931348623157e+308</code></pre>
     
     <dt class="tag-description">Description:</dt>
     <dd class="tag-description"><ul class="dummy"><li><p>转换 <code>value</code> 为一个整数。</p>
-<p>注意: 这个方法基于 <a href="https://tc39.es/ecma262/#sec-tointegerorinfinity">ToIntegerOrInfinity</a> ，区别在于 <code>-0</code> 会返回 <code>-0</code> 。</p></li></ul></dd>
+<p>注意: 这个方法基于 <a href="https://tc39.es/ecma262/#sec-tointegerorinfinity">ToIntegerOrInfinity</a> ，区别在于 <code>-0</code> 会返回 <code>-0</code>。</p></li></ul></dd>
     
 
     
@@ -4204,7 +4204,7 @@ toSafeInteger(-Infinity); // -9007199254740991</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>转换 <code>value</code> 为字符串。<code>null</code> 和 <code>undefined</code> 将返回空字符串。<code>-0</code> 将被转换为 <code>&quot;-0&quot;</code> 。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>转换 <code>value</code> 为字符串。<code>null</code> 和 <code>undefined</code> 将返回空字符串。<code>-0</code> 将被转换为 <code>&quot;-0&quot;</code>。</p></li></ul></dd>
     
 
     
@@ -4379,7 +4379,7 @@ toString(3); // '3'</code></pre>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>生成唯一ID。如果提供了 <code>prefix</code> ，会被添加到ID前缀上。</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>生成唯一ID。如果提供了 <code>prefix</code>，会被添加到ID前缀上。</p></li></ul></dd>
     
 
     
@@ -4498,7 +4498,7 @@ uniqueId('abc_'); // 'abc_3'</code></pre>
 
             
 
-            <td class="description last"><p>要添加到ID前缀的值，默认 <code>&quot;_&quot; + 2个随机生成的字符</code>。</p></td>
+            <td class="description last"><p>要添加到ID前缀的值。默认 <code>&quot;_&quot; + 2个随机生成的字符</code>。</p></td>
         </tr>
 
     
@@ -4566,7 +4566,7 @@ uniqueId('abc_'); // 'abc_3'</code></pre>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Mon Jul 01 2024 03:39:18 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Wed Jul 03 2024 02:29:36 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
