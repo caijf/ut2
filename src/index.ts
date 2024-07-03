@@ -9,6 +9,7 @@ export { default as compact } from './compact';
 export { default as difference } from './difference';
 export { default as fromPairs } from './fromPairs';
 export { default as intersection } from './intersection';
+export { default as move } from './move';
 export { default as nth } from './nth';
 export { default as shuffle } from './shuffle';
 export { default as union } from './union';
