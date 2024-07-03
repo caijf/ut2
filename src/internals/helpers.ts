@@ -1,5 +1,6 @@
+import isObjectLike from '../isObjectLike';
 import getTag from './getTag';
-import { argumentsTag, functionProtoToString } from './native';
+import { argumentsTag, functionProtoToString, stringUndefined } from './native';
 
 /**
  * ut2 版本号。
@@ -8,6 +9,14 @@ import { argumentsTag, functionProtoToString } from './native';
  * @since 1.0.0
  */
 export const VERSION = BUILD_VERSION;
+
+/**
+ * 当前运行环境是否为浏览器
+ *
+ * @static
+ * @since 1.10.0
+ */
+export const isBrowser = typeof window !== stringUndefined && isObjectLike(window) && typeof document !== stringUndefined && isObjectLike(document) && window.document === document;
 
 // @ts-ignore
 export const supportedArgumentsType = getTag((() => arguments)()) === argumentsTag;

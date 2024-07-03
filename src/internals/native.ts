@@ -85,3 +85,4 @@ export const mapTag = '[object Map]';
 export const promiseTag = '[object Promise]';
 export const setTag = '[object Set]';
 export const weakMapTag = '[object WeakMap]';
+export const windowTag = '[object Window]';

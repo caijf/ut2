@@ -137,6 +137,7 @@ const debounced = debounce(() => {
   - [isUndefined](https://caijf.github.io/ut2/module-Language.html#.isUndefined) - `undefined` 。
   - [isWeakMap](https://caijf.github.io/ut2/module-Language.html#.isWeakMap) - `WeakMap` 对象。
   - [isWeakSet](https://caijf.github.io/ut2/module-Language.html#.isWeakSet) - `WeakSet` 对象。
+  - [isWindow](https://caijf.github.io/ut2/module-Language.html#.isWindow) - `Window` 对象。
 - [Math](https://caijf.github.io/ut2/module-Math.html) 数学
   - [ceil](https://caijf.github.io/ut2/module-Math.html#.ceil) - 向上舍入。
   - [floor](https://caijf.github.io/ut2/module-Math.html#.floor) - 向下舍入。
@@ -197,6 +198,13 @@ const debounced = debounce(() => {
   - [toSafeInteger](https://caijf.github.io/ut2/module-Util.html#.toSafeInteger) - 转为安全整数。
   - [toString](https://caijf.github.io/ut2/module-Util.html#.toString) - 转为字符串。
   - [uniqueId](https://caijf.github.io/ut2/module-Util.html#.uniqueId) - 唯一 ID。
+- [GLOBAL](https://caijf.github.io/ut2/global.html) 其他导出的成员
+  - [MAX_ARRAY_LENGTH](https://caijf.github.io/ut2/global.html#MAX_ARRAY_LENGTH) - 最大数组长度。
+  - [MAX_SAFE_INTEGER](https://caijf.github.io/ut2/global.html#MAX_SAFE_INTEGER) - 最大安全整数。
+  - [MIN_SAFE_INTEGER](https://caijf.github.io/ut2/global.html#MIN_SAFE_INTEGER) - 最小安全整数。
+  - [VERSION](https://caijf.github.io/ut2/global.html#VERSION) - 当前版本号。
+  - [isBrowser](https://caijf.github.io/ut2/global.html#isBrowser) - 当前运行环境是否为浏览器。
+  - [root](https://caijf.github.io/ut2/global.html#root) - 全局对象。
 
 [npm]: https://img.shields.io/npm/v/ut2.svg
 [npm-url]: https://npmjs.com/package/ut2

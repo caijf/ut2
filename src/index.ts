@@ -98,6 +98,7 @@ export { default as isTypedArray } from './isTypedArray';
 export { default as isUndefined } from './isUndefined';
 export { default as isWeakMap } from './isWeakMap';
 export { default as isWeakSet } from './isWeakSet';
+export { default as isWindow } from './isWindow';
 
 /**
  * 数学
@@ -191,4 +192,5 @@ export { default as uniqueId } from './uniqueId';
 
 // global
 export { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, MAX_ARRAY_LENGTH } from './internals/native';
-export { VERSION } from './internals/helpers';
+export { VERSION, isBrowser } from './internals/helpers';
+export { default as root } from './internals/root';
