@@ -1,6 +1,8 @@
 import isArrayLike from './isArrayLike';
 import isObjectLike from './isObjectLike';
 
+type ArrayLikeObject = Array<any> | { length: number; [x: string | symbol]: any };
+
 /**
  * 检查值是否为类数组对象。
  *
@@ -8,7 +10,7 @@ import isObjectLike from './isObjectLike';
  * @alias module:Language.isArrayLikeObject
  * @since 1.0.0
  * @param {*} value 要检查的值
- * @returns {boolean} 如果值为类数组对象，返回 `true` ，否则返回 `false` 。
+ * @returns {boolean} 如果值为类数组对象，返回 `true`，否则返回 `false`。
  * @example
  *
  * isArrayLikeObject([1, 2, 3]); // true
@@ -20,7 +22,7 @@ import isObjectLike from './isObjectLike';
  * isArrayLikeObject(()=>{}); // false
  *
  */
-function isArrayLikeObject(value: any) {
+function isArrayLikeObject(value: any): value is ArrayLikeObject {
   return isObjectLike(value) && isArrayLike(value);
 }
 
