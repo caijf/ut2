@@ -71,21 +71,29 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  * @returns {Object} 目标对象。
  * @example
  *
+ * merge({c: 3}, {e: 5}); // { c: 3, e: 5 }
+ * merge({ a: 1 }, { a: undefined, b: undefined }); // { a: 1, b: undefined }
+ *
  * const object = {
  *   a: [{b: 2}, {d: 4}]
  * }
- *
  * const other = {
  *   a: [{c: 3},{e: 5}]
  * }
  *
  * merge(object, other); // { a: [{b: 2, c: 3}, {d: 4, e: 5}] }
  *
- * // 自定义，数组不合并
+ * // 数组不合并
+ * merge(object, other, merge.NOT_MERGE_ARRAYS); // { a: [{c: 3},{e: 5}] }
+ *
+ * // 或自定义数组不合并方法
  * merge(object, other, (objValue, srcValue) => isArray(srcValue) ? srcValue : undefined); // { a: [{c: 3},{e: 5}] }
+ *
  */
 function merge<TObject, TSource>(object: TObject, source: TSource, customizer?: Customizer, getKeys: GetKeysMethod = allKeys): TObject & TSource {
   return baseMerge(object, source, getKeys, customizer);
 }
+
+merge.NOT_MERGE_ARRAYS = (objValue: any, srcValue: any) => (isArray(srcValue) ? srcValue : undefined);
 
 export default merge;

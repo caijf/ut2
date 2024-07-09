@@ -19,6 +19,11 @@ describe('merge', () => {
     });
 
     // 数组不合并
+    expect(merge(object, other, merge.NOT_MERGE_ARRAYS)).toEqual({
+      a: [{ c: 3 }, { e: 5 }]
+    });
+
+    // 自定义方法，数组不合并
     expect(
       merge(object, other, (objValue, srcValue) => {
         if (isArray(srcValue)) {
@@ -28,6 +33,9 @@ describe('merge', () => {
     ).toEqual({
       a: [{ c: 3 }, { e: 5 }]
     });
+
+    // 数组不合并，合并对象中不包含数组，没有变化
+    expect(merge({ c: 3 }, { e: 5 }, merge.NOT_MERGE_ARRAYS)).toEqual({ c: 3, e: 5 });
   });
 
   it('来源对象合并到目标对象', () => {
@@ -254,6 +262,7 @@ describe('merge', () => {
     const c = merge({}, a);
 
     expect(c).toEqual(a);
+    expect(c === a).toBe(false);
 
     const d = merge(c, b);
     expect(d).toBe(c);
