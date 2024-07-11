@@ -59,7 +59,9 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  *
  * 如果目标值存在，被解析为 `undefined` 的 `source` 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。
  *
- * 如果你需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn allKeysIn} 方法， `merge(object, source, undefined, allKeysIn)`。
+ * 如果不需要合并数组，第三个参数传入 `merge.NOT_MERGE_ARRAYS` 。
+ *
+ * 如果需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn allKeysIn} 方法， `merge(object, source, undefined, allKeysIn)`。
  *
  * @static
  * @alias module:Object.merge
