@@ -16,6 +16,6 @@ module.exports = {
   globals: {
     BUILD_VERSION: version
   },
-  coveragePathIgnorePatterns: ['/node_modules/', '/test/'],
+  coveragePathIgnorePatterns: ['/test/'],
   ...coverageConfig
 };
