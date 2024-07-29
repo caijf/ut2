@@ -4,7 +4,7 @@ describe('move', () => {
   it('basic', () => {
     const arr = ['a', 'b', 'c', 'd'];
     expect(move(arr, 0, 1)).toEqual(['b', 'a', 'c', 'd']);
-    expect(move(arr, -2, 0)).toEqual(['c', 'a', 'b', 'd']);
+    expect(move(arr, -2, 0)).toEqual(['c', 'b', 'a', 'd']);
   });
 
   it('非数组报错', () => {
@@ -12,6 +12,6 @@ describe('move', () => {
     function ExpectedError() {
       move(obj as any, 0, 1);
     }
-    expect(ExpectedError).toThrow('array.slice is not a function');
+    expect(ExpectedError).toThrow('array.splice is not a function');
   });
 });
