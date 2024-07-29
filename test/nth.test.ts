@@ -19,9 +19,9 @@ describe('nth', () => {
   });
 
   it('支持类数组', () => {
-    const obj = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', length: 4 } as any;
-    const args = toArgs(['a', 'b', 'c', 'd']) as any;
-    const str = 'abcd' as any;
+    const obj = { 0: 'a', 1: 'b', 2: 'c', 3: 'd', length: 4 };
+    const args = toArgs(['a', 'b', 'c', 'd']);
+    const str = 'abcd';
 
     expect(nth(obj)).toBe('a');
     expect(nth(obj, 1)).toBe('b');
