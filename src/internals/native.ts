@@ -77,6 +77,7 @@ export const arrayTag = '[object Array]';
 export const functionTags = ['Function', 'AsyncFunction', 'GeneratorFunction', 'Proxy'].map((item) => '[object ' + item + ']');
 export const weakSetTag = '[object WeakSet]';
 export const blobTag = '[object Blob]';
+export const fileTag = '[object File]';
 export const domExceptionTag = '[object DOMException]';
 
 export const objectTag = '[object Object]';

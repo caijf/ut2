@@ -76,6 +76,7 @@ export { default as isElement } from './isElement';
 export { default as isEmpty } from './isEmpty';
 export { default as isEqual } from './isEqual';
 export { default as isError } from './isError';
+export { default as isFile } from './isFile';
 export { default as isFinite } from './isFinite';
 export { default as isFunction } from './isFunction';
 export { default as isInteger } from './isInteger';

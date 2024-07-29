@@ -24,7 +24,7 @@
       console.assert(ut2.isBoolean(childObject.boolean), childObject.boolean);
 
       // isDataView
-      console.assert(typeof DataView !== 'undefined' ? ut2.isBoolean(childObject.dataView) : true, childObject.dataView);
+      console.assert(typeof DataView !== 'undefined' ? ut2.isDataView(childObject.dataView) : true, childObject.dataView);
 
       // isDate
       console.assert(ut2.isDate(childObject.date), childObject.date);
@@ -53,6 +53,9 @@
       console.assert(ut2.isError(childObject.typeError), childObject.typeError);
       console.assert(ut2.isError(childObject.uriError), childObject.uriError);
       console.assert(ut2.isError(childObject.aggregateError), childObject.aggregateError);
+
+      // isFile
+      console.assert(ut2.isFile(childObject.file), childObject.file);
 
       // isFunction
       console.assert(!ut2.isFunction(document.body), document.body);

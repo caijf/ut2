@@ -15,6 +15,7 @@ iframe.contentDocument.write(`
       date: new Date,
       element: document.body,
       errors: [new Error, new EvalError, new RangeError, new ReferenceError, new SyntaxError, new TypeError, new URIError],
+      file: new File([], 'test.txt'),
       function: () => { },
       map: new Map,
       nan: NaN,

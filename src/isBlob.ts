@@ -20,6 +20,8 @@ const blobExisted = typeof Blob !== stringUndefined;
  *
  * isBlob(new Blob(['a'])); // true
  *
+ * isBlob(new File([], 'test.txt')); // true
+ *
  * isBlob({}); // false
  *
  * isBlob('2012'); // false

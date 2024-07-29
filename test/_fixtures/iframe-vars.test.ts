@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { isArguments, isArray, isBlob, isBoolean, isDataView, isDate, isElement, isEmpty, isEqual, isError, isFunction, isMap, isObject, isObjectLike, isPlainObject, isRegExp, isString, isSymbol, isTypedArray, isUndefined, isWeakMap, isWeakSet } from '../../src';
+import { isArguments, isArray, isBlob, isBoolean, isDataView, isDate, isElement, isEmpty, isEqual, isError, isFile, isFunction, isMap, isObject, isObjectLike, isPlainObject, isRegExp, isString, isSymbol, isTypedArray, isUndefined, isWeakMap, isWeakSet } from '../../src';
 import { toArgs } from '../_utils';
 import './iframe-vars.js';
 
@@ -62,6 +62,10 @@ describe('iframe vars', () => {
     expect(isError(childObject.typeError)).toBe(true);
     expect(isError(childObject.uriError)).toBe(true);
     expect(isError(childObject.aggregateError)).toBe(true);
+  });
+
+  it('isFile', () => {
+    expect(isFile(childObject.file)).toBe(true);
   });
 
   it('isFunction', () => {
