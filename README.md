@@ -116,6 +116,7 @@ const debounced = debounce(() => {
   - [isEqual](https://caijf.github.io/ut2/module-Language.html#.isEqual) - 深比较。
   - [isError](https://caijf.github.io/ut2/module-Language.html#.isError) - `Error` 对象。
   - [isFinite](https://caijf.github.io/ut2/module-Language.html#.isFinite) - 有限数字。
+  - [isFile](https://caijf.github.io/ut2/module-Language.html#.isFile) - `File` 对象。
   - [isFunction](https://caijf.github.io/ut2/module-Language.html#.isFunction) - `Function` 对象。
   - [isInteger](https://caijf.github.io/ut2/module-Language.html#.isInteger) - 整数。
   - [isLength](https://caijf.github.io/ut2/module-Language.html#.isLength) - 有效的类数组长度。
