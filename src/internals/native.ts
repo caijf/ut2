@@ -10,6 +10,7 @@ export const objectProtoPropertyIsEnumerable = objectProto.propertyIsEnumerable;
 export const objectGetOwnPropertySymbols = Object.getOwnPropertySymbols;
 export const objectGetPrototypeOf = Object.getPrototypeOf;
 export const objectKeys = Object.keys;
+export const objectValues = Object.values;
 
 export const functionProto = Function.prototype;
 export const functionProtoToString = functionProto.toString;

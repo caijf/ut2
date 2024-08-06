@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template</title>
+    <script src="https://unpkg.com/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
+    <script src="../../dist/ut2.js"></script>
+  </head>
+  <body>
+    <!-- <table>
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>年龄</th>
+        </tr>
+      </thead>
+      <tbody>
+        <template>
+          ${data.map((item, index)=> { return `
+          <tr>
+            <td>${index}</td>
+            <td><div>${item.name}</div></td>
+            <td>${item.age}</td>
+          </tr>
+          `; }).join('')}
+        </template>
+      </tbody>
+    </table>
+
+    <script>
+      const tpl = document.querySelector('template');
+      console.log(tpl.innerHTML);
+
+      const json = {
+        data: [
+          {
+            id: '1',
+            name: 'jeff',
+            age: 18
+          },
+          {
+            id: '2',
+            name: 'tom',
+            age: 24
+          },
+          {
+            id: '3',
+            name: 'jerry',
+            age: 22
+          }
+        ]
+      };
+
+      const result = ut2.template(tpl.innerHTML)(json);
+
+      console.log(result);
+      tpl.parentNode.innerHTML = result;
+    </script> -->
+    <script>
+      console.log(ut2.template('${name}今年${age}岁。')({ age: 18, name: 'jeff' }));
+    </script>
+  </body>
+</html>

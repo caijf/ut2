@@ -157,6 +157,7 @@ export { default as lowerCase } from './lowerCase';
 export { default as lowerFirst } from './lowerFirst';
 export { default as pascalCase } from './pascalCase';
 export { default as snakeCase } from './snakeCase';
+export { default as template } from './template';
 export { default as unescape } from './unescape';
 export { default as upperCase } from './upperCase';
 export { default as upperFirst } from './upperFirst';

@@ -60,6 +60,9 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "dependencies": {
+    "tslib": "^2.6.3"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
@@ -89,7 +92,6 @@
     "prettier": "^3.3.2",
     "rollup": "^4.18.0",
     "ts-jest": "^29.1.5",
-    "tslib": "^2.6.3",
     "typescript": "^5.5.2",
     "underscore": "^1.13.6"
   },
