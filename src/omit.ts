@@ -3,7 +3,8 @@ import castArray from './castArray';
 import { Many, PropertyName, WithNullable } from './internals/types';
 
 interface OmitFunction {
-  <T extends object, K extends keyof T>(object: WithNullable<T>, fields?: Many<K>): Omit<T, K>;
+  <T extends object, K extends keyof T = never>(object: WithNullable<T>, fields?: Many<K>): Omit<T, K>;
+  <T extends object, K extends PropertyName>(object: WithNullable<T>, fields?: Many<K>): Partial<T>;
   (object: any, fields?: Many<PropertyName>): Record<PropertyName, any>;
 }
 
@@ -41,7 +42,7 @@ const omit: OmitFunction = function <T extends object, K extends keyof T>(object
     }
   });
 
-  return result as Omit<T, K>;
+  return result;
 };
 
 export default omit;

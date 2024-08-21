@@ -3,7 +3,8 @@ import { Many, PropertyName, WithNullable } from './internals/types';
 import isObject from './isObject';
 
 interface PickFunction {
-  <T extends object, K extends keyof T>(object: WithNullable<T>, fields?: Many<K>): Pick<T, K>;
+  <T extends object, K extends keyof T = never>(object: WithNullable<T>, fields?: Many<K>): Pick<T, K>;
+  <T extends object, K extends PropertyName>(object: WithNullable<T>, fields?: Many<K>): Partial<T>;
   (object: any, fields?: PropertyName): Record<PropertyName, any>;
 }
 
