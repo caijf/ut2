@@ -75,7 +75,6 @@ describe('pick', () => {
 
   it('错误参数', () => {
     falsy.forEach((item) => {
-      // @ts-expect-error
       expect(pick(item, 'a')).toEqual({});
     });
   });

@@ -1,10 +1,10 @@
 import allKeysIn from './allKeysIn';
 import castArray from './castArray';
-import { PropertyName, WithNullable } from './internals/types';
+import { Many, PropertyName, WithNullable } from './internals/types';
 
 interface OmitFunction {
-  <T extends object, K extends keyof T>(object: WithNullable<T>, fields?: K | K[]): Omit<T, K>;
-  <T extends object, K extends PropertyName>(object: WithNullable<T>, fields?: K | K[]): Omit<T, K>;
+  <T extends object, K extends keyof T>(object: WithNullable<T>, fields?: Many<K>): Omit<T, K>;
+  (object: any, fields?: Many<PropertyName>): Record<PropertyName, any>;
 }
 
 /**
@@ -30,7 +30,7 @@ interface OmitFunction {
  * omit(obj, ['name', 'age']); // {}
  *
  */
-const omit: OmitFunction = function <T extends object, K extends keyof T>(object: WithNullable<T>, fields: K | K[] = []) {
+const omit: OmitFunction = function <T extends object, K extends keyof T>(object: WithNullable<T>, fields: Many<K> = []) {
   const keys = allKeysIn(object) as K[];
   const fieldArr = castArray(fields);
   const result: Record<any, any> = {};
