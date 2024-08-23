@@ -25,7 +25,7 @@ import isObject from './isObject';
  * // 选取多个属性
  * pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }
  */
-function pick<T extends object, K extends keyof T>(object: WithNullable<T>, fields: Many<K> = []) {
+function pick<T extends object, K extends keyof T = never>(object: WithNullable<T>, fields: Many<K> = []) {
   const result = {} as T;
 
   if (!isObject(object)) {

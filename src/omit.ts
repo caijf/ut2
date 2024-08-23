@@ -25,7 +25,7 @@ import { Many, WithNullable } from './internals/types';
  * omit(obj, ['name', 'age']); // {}
  *
  */
-function omit<T extends object, K extends keyof T>(object: WithNullable<T>, fields: Many<K> = []) {
+function omit<T extends object, K extends keyof T = never>(object: WithNullable<T>, fields: Many<K> = []) {
   const keys = allKeysIn(object) as K[];
   const fieldArr = castArray(fields);
   const result = {} as T;
