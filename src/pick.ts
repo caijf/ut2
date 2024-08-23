@@ -1,12 +1,6 @@
 import castArray from './castArray';
-import { Many, PropertyName, WithNullable } from './internals/types';
+import { Many, WithNullable } from './internals/types';
 import isObject from './isObject';
-
-interface PickFunction {
-  <T extends object, K extends keyof T = never>(object: WithNullable<T>, fields?: Many<K>): Pick<T, K>;
-  <T extends object, K extends PropertyName>(object: WithNullable<T>, fields?: Many<K>): Partial<T>;
-  (object: any, fields?: PropertyName): Record<PropertyName, any>;
-}
 
 /**
  * 创建一个从 `object` 选中的属性的对象。
@@ -31,8 +25,8 @@ interface PickFunction {
  * // 选取多个属性
  * pick(obj, ['name', 'age']); // { name: "jeff", age: 18 }
  */
-const pick: PickFunction = function <T extends object, K extends keyof T>(object: T, fields: Many<K> = []) {
-  const result: Record<PropertyName, any> = {};
+function pick<T extends object, K extends keyof T>(object: WithNullable<T>, fields: Many<K> = []) {
+  const result = {} as T;
 
   if (!isObject(object)) {
     return result;
@@ -47,6 +41,6 @@ const pick: PickFunction = function <T extends object, K extends keyof T>(object
   });
 
   return result as Pick<T, K>;
-};
+}
 
 export default pick;

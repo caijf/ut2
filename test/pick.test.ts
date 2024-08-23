@@ -20,7 +20,7 @@ describe('pick', () => {
 
   it('忽略不存在的属性', () => {
     expect(pick(obj)).toEqual({});
-    expect(pick(obj, '')).toEqual({});
+    expect(pick(obj, '' as any)).toEqual({});
   });
 
   it('多个重复的属性', () => {
@@ -70,12 +70,12 @@ describe('pick', () => {
     );
 
     expect(o).toEqual({ age: 18 });
-    expect(pick(o, 'name')).toEqual({ name: 'jeff' });
+    expect(pick(o, 'name' as any)).toEqual({ name: 'jeff' });
   });
 
   it('错误参数', () => {
     falsy.forEach((item) => {
-      expect(pick(item, 'a')).toEqual({});
+      expect(pick(item as any, 'a')).toEqual({});
     });
   });
 });

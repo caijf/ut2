@@ -1,12 +1,6 @@
 import allKeysIn from './allKeysIn';
 import castArray from './castArray';
-import { Many, PropertyName, WithNullable } from './internals/types';
-
-interface OmitFunction {
-  <T extends object, K extends keyof T = never>(object: WithNullable<T>, fields?: Many<K>): Omit<T, K>;
-  <T extends object, K extends PropertyName>(object: WithNullable<T>, fields?: Many<K>): Partial<T>;
-  (object: any, fields?: Many<PropertyName>): Record<PropertyName, any>;
-}
+import { Many, WithNullable } from './internals/types';
 
 /**
  * 创建一个对象，该对象由忽略属性之外的 `object` 自身和继承的可枚举属性组成。与 [`pick`](#.pick) 相反。
@@ -31,10 +25,10 @@ interface OmitFunction {
  * omit(obj, ['name', 'age']); // {}
  *
  */
-const omit: OmitFunction = function <T extends object, K extends keyof T>(object: WithNullable<T>, fields: Many<K> = []) {
+function omit<T extends object, K extends keyof T>(object: WithNullable<T>, fields: Many<K> = []) {
   const keys = allKeysIn(object) as K[];
   const fieldArr = castArray(fields);
-  const result: Record<any, any> = {};
+  const result = {} as T;
 
   keys.forEach((key) => {
     if (fieldArr.indexOf(key) === -1) {
@@ -42,7 +36,7 @@ const omit: OmitFunction = function <T extends object, K extends keyof T>(object
     }
   });
 
-  return result;
-};
+  return result as Omit<T, K>;
+}
 
 export default omit;

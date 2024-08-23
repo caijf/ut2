@@ -31,7 +31,7 @@ describe('omit', () => {
   it('string', () => {
     expect(omit(obj, 'age')).toEqual({ name: 'jeff' });
     // 传入不存在的参数
-    expect(omit(obj, 'age2')).toEqual({ name: 'jeff', age: 18 });
+    expect(omit(obj, 'age2' as any)).toEqual({ name: 'jeff', age: 18 });
   });
 
   it('array', () => {
@@ -64,6 +64,6 @@ describe('omit', () => {
     );
 
     expect(omit(o)).toEqual({ age: 18 });
-    expect(omit(o, 'age')).toEqual({});
+    expect(omit(o, 'age' as any)).toEqual({});
   });
 });
