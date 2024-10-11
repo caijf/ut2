@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isEqual.js - ut2 </title>
+    <title>list.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isEqual.js</h1>
+    <h1 class="page-title">list.js</h1>
     
 
     
@@ -70,60 +70,47 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import isEqualDeep from './internals/isEqualDeep';
-import { nativeUndefined } from './internals/native';
+            <pre class="prettyprint source linenums"><code>import identity from './identity';
+import { MAX_ARRAY_LENGTH, MAX_SAFE_INTEGER, mathFloor, mathMin } from './internals/native';
+import isInteger from './isInteger';
+import isFinite from './isFinite';
 /**
- * 深度比较两个值是否相等。
+ * 调用 `iteratee` `n` 次，每次调用返回的结果存入到数组中。
  *
- * 支持比较 `boolean` `number` `string` `symbol` `array` `array buffer` `date` `error` `map` `object` `regexp` `set` `typed array` 类型。对象只比较自身的属性，不包括继承和不可枚举的属性。
+ * `iteratee` 调用传入一个参数 `index`。
  *
- * 如果 `strictCheck=true`， 以下值不相等：
+ * *注：原方法名为 `times`，自 `v1.12.0` 版本调整为 `list`。*
  *
- * 1. `0` `-0`
- * 2. `typeof` 不同类型，如 `1` `Object(1)`
- * 3. 无效日期对象，如 `new Date('')` `new Date('abc')`
- *
- * @static
- * @alias module:Language.isEqual
- * @since 1.3.0
- * @param {*} value 要比较的值。
- * @param {*} other 另一个要比较的值。
- * @param {Function} [customizer] 自定义比较。
- * @param {boolean} [strictCheck=false] 严格比较。默认 `false`。
- * @returns {boolean} 如果两个值相等，返回 `true`，否则返回 `false`。
+ * @function
+ * @alias module:Util.list
+ * @since 1.12.0
+ * @param {number} n 调用 `iteratee` 的次数。
+ * @param {Function} [iteratee=identity] 每次迭代调用的函数。默认 `identity`。
+ * @returns {Array} 调用结果的数组。
  * @example
  *
- * const value = { a: 1, b: -0 }
- * const other = { a: 1, b: 0 }
+ * list(3); // [0, 1, 2]
  *
- * isEqual(value, other); // true
- * value === other // false
+ * list(3, String); // ['0', '1', '2']
  *
- * // 严格比较
- * isEqual(value, other, undefined, true); // false
- *
- * // 自定义比较
- * function customizer(value, other){
- *   if(typeof value === 'string' &amp;&amp; typeof other === 'string'){
- *     return true;
- *   }
- * }
- * isEqual('a', 'b', customizer); // true
- * isEqual(['a'], ['b'], customizer); // true
- * isEqual({foo: 'a'}, {foo: 'b'}, customizer); // true
+ * list(4, () => 0); // [0, 0, 0, 0]
  *
  */
-function isEqual(value, other, customizer, strictCheck = false) {
-    // 自定义比较
-    if (typeof customizer === 'function') {
-        const result = customizer(value, other);
-        if (result !== nativeUndefined) {
-            return !!result;
-        }
+const list = function (n, iteratee = identity) {
+    if (n &lt; 1 || n > MAX_SAFE_INTEGER) {
+        return [];
     }
-    return isEqualDeep(value, other, customizer, strictCheck);
-}
-export default isEqual;
+    let index = 0;
+    const length = mathMin(isInteger(n) ? n : mathFloor(isFinite(n) ? n : 0), MAX_ARRAY_LENGTH);
+    const result = Array(length);
+    const func = typeof iteratee === 'function' ? iteratee : identity;
+    while (index &lt; length) {
+        result[index] = func(index);
+        index++;
+    }
+    return result;
+};
+export default list;
 </code></pre>
         </article>
     </section>
