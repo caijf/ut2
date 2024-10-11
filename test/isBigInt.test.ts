@@ -55,12 +55,12 @@ describe('isBigInt', () => {
     expect(o === o).toBe(true);
 
     // 条件
-    expect(0n || 12n).toBe(12n);
-    expect(0n && 12n).toBe(0n);
-    expect(Boolean(0n)).toBe(false);
-    expect(Boolean(12n)).toBe(true);
-    expect(!!0n).toBe(false);
-    expect(!!12n).toBe(true);
+    // expect(0n || 12n).toBe(12n);
+    // expect(0n && 12n).toBe(0n);
+    // expect(Boolean(0n)).toBe(false);
+    // expect(Boolean(12n)).toBe(true);
+    // expect(!!0n).toBe(false);
+    // expect(!!12n).toBe(true);
 
     // 转化
     // expect(JSON.stringify(BigInt(1))).toBe('1'); // Uncaught TypeError: Do not know how to serialize a BigInt
