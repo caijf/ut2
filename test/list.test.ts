@@ -1,21 +1,21 @@
-import { constant, times } from '../src';
+import { constant, list } from '../src';
 import { falsy } from './_utils';
 
-describe('times', () => {
+describe('list', () => {
   it('basic', () => {
-    expect(times(0)).toEqual([]);
-    expect(times(0, () => {})).toEqual([]);
+    expect(list(0)).toEqual([]);
+    expect(list(0, () => {})).toEqual([]);
 
-    expect(times(2)).toEqual([0, 1]);
-    expect(times(2, () => {})).toEqual([undefined, undefined]);
+    expect(list(2)).toEqual([0, 1]);
+    expect(list(2, () => {})).toEqual([undefined, undefined]);
 
-    expect(times(3, String)).toEqual(['0', '1', '2']);
-    expect(times(4, constant(4))).toEqual([4, 4, 4, 4]);
+    expect(list(3, String)).toEqual(['0', '1', '2']);
+    expect(list(4, constant(4))).toEqual([4, 4, 4, 4]);
 
-    expect(times(3, (x) => x * 2)).toEqual([0, 2, 4]);
+    expect(list(3, (x) => x * 2)).toEqual([0, 2, 4]);
 
     expect(
-      times(1, function () {
+      list(1, function () {
         // eslint-disable-next-line prefer-rest-params
         return Array.prototype.slice.call(arguments);
       })
@@ -23,13 +23,13 @@ describe('times', () => {
   });
 
   it('`n` 为非整数，向下取整', () => {
-    expect(times(2.6)).toEqual([0, 1]);
+    expect(list(2.6)).toEqual([0, 1]);
   });
 
   it('`n` 不是一个有限数值 或 超出安全整数，返回空数组', () => {
     const values = [Infinity, NaN, Number.MAX_VALUE, Number.MAX_SAFE_INTEGER + 1];
     values.forEach((item) => {
-      expect(times(item)).toEqual([]);
+      expect(list(item)).toEqual([]);
     });
   });
 
@@ -37,7 +37,7 @@ describe('times', () => {
     const values = [...falsy, -1, -Infinity];
     values.forEach((item) => {
       // @ts-ignore
-      expect(times(item)).toEqual([]);
+      expect(list(item)).toEqual([]);
     });
   });
 
@@ -46,7 +46,7 @@ describe('times', () => {
     const values = [, null, undefined];
     values.forEach((item) => {
       // @ts-ignore
-      expect(times(3, item)).toEqual(times(3));
+      expect(list(3, item)).toEqual(list(3));
     });
   });
 });

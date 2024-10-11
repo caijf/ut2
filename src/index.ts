@@ -183,6 +183,7 @@ export { default as noop } from './noop';
 export { default as nthArg } from './nthArg';
 export { default as range } from './range';
 export { default as sleep } from './sleep';
+export { default as list } from './list';
 export { default as times } from './times';
 export { default as toFinite } from './toFinite';
 export { default as toInteger } from './toInteger';
