@@ -1,4 +1,4 @@
-import { forEachRight, times } from '../src';
+import { forEachRight, list } from '../src';
 import { symbol } from './_utils';
 
 describe('forEachRight', () => {
@@ -62,13 +62,13 @@ describe('forEachRight', () => {
 
   it('迭代次数', () => {
     const fn = jest.fn();
-    const arr = times(1000);
+    const arr = list(1000);
     forEachRight(arr, fn);
     expect(fn).toBeCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，终止迭代', () => {
-    const arr = times(1000);
+    const arr = list(1000);
     const fn = jest.fn((num: number) => {
       if (num === 499) {
         return false;

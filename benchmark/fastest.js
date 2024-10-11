@@ -1143,6 +1143,24 @@
           }
         },
         {
+          method: 'list',
+          params: [
+            [3, String],
+            [
+              3,
+              function () {
+                return 0;
+              }
+            ]
+          ],
+          underscore: {
+            method: 'times'
+          },
+          lodash: {
+            method: 'times'
+          }
+        },
+        {
           method: 'lt',
           params: [
             [1, 3],
@@ -1188,18 +1206,6 @@
           lodash: {
             existed: false
           }
-        },
-        {
-          method: 'times',
-          params: [
-            [3, String],
-            [
-              3,
-              function () {
-                return 0;
-              }
-            ]
-          ]
         },
         {
           method: 'toFinite',

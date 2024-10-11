@@ -1,9 +1,9 @@
-import { after, times } from '../src';
+import { after, list } from '../src';
 
 describe('after', () => {
   function testAfter(n: number, total: number) {
     const fn = jest.fn();
-    times(total, after(n, fn));
+    list(total, after(n, fn));
     return fn;
   }
 

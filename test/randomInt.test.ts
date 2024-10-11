@@ -1,8 +1,8 @@
-import { randomInt, times, isInteger } from '../src';
+import { randomInt, list, isInteger } from '../src';
 
 describe('randomInt', () => {
   it('默认生成 `0` 到 `1` 之间的随机数', () => {
-    const arr = times(100);
+    const arr = list(100);
     const min = 0;
     const max = 1;
     arr.forEach(() => {
@@ -14,7 +14,7 @@ describe('randomInt', () => {
   });
 
   it('指定范围的随机整数', () => {
-    const arr = times(100);
+    const arr = list(100);
     const min = 2;
     const max = 6;
 
@@ -34,7 +34,7 @@ describe('randomInt', () => {
   });
 
   it('上下限参数交换', () => {
-    const arr = times(100);
+    const arr = list(100);
     const min = 2;
     const max = 6;
 
@@ -65,7 +65,7 @@ describe('randomInt', () => {
   });
 
   it('如果指定范围小于 `1` ，上下限取整数值相等', () => {
-    const arr = times(100);
+    const arr = list(100);
 
     arr.forEach(() => {
       const rand = randomInt(1.5, 2.1);
@@ -74,7 +74,7 @@ describe('randomInt', () => {
   });
 
   it('如果指定范围小于 `1` ，上下限取整数值不相等', () => {
-    const arr = times(100);
+    const arr = list(100);
 
     arr.forEach(() => {
       const rand = randomInt(1.2, 1.3);

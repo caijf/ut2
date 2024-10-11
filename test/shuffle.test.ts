@@ -1,4 +1,4 @@
-import { shuffle, times } from '../src';
+import { shuffle, list } from '../src';
 import { symbol } from './_utils';
 
 describe('shuffle', () => {
@@ -14,7 +14,7 @@ describe('shuffle', () => {
 
   it('打乱最小的数组', () => {
     const smallArray = [1, 2];
-    times(1000, () => shuffle(smallArray)).forEach((item) => {
+    list(1000, () => shuffle(smallArray)).forEach((item) => {
       expect(item).toEqual(item[0] === 1 ? [1, 2] : [2, 1]);
     });
   });

@@ -1,9 +1,9 @@
-import { before, times } from '../src';
+import { before, list } from '../src';
 
 describe('before', () => {
   function testBefore(n: number, total: number) {
     const fn = jest.fn();
-    times(total, before(n, fn));
+    list(total, before(n, fn));
     return fn;
   }
 

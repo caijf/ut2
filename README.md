@@ -186,13 +186,13 @@ const debounced = debounce(() => {
   - [gt](https://caijf.github.io/ut2/module-Util.html#.gt) - 大于。
   - [gte](https://caijf.github.io/ut2/module-Util.html#.gte) - 大于等于
   - [identity](https://caijf.github.io/ut2/module-Util.html#.identity) - 返回第一个参数的函数。
+  - [list](https://caijf.github.io/ut2/module-Util.html#.list) - 迭代执行次数。
   - [lt](https://caijf.github.io/ut2/module-Util.html#.lt) - 小于。
   - [lte](https://caijf.github.io/ut2/module-Util.html#.lte) - 小于等于。
   - [noop](https://caijf.github.io/ut2/module-Util.html#.noop) - 空函数。
   - [nthArg](https://caijf.github.io/ut2/module-Util.html#.nthArg) - 返回指定位置参数的函数。
   - [range](https://caijf.github.io/ut2/module-Util.html#.range) - 创建升序或降序的数字数组。
   - [sleep](https://caijf.github.io/ut2/module-Util.html#.sleep) - 返回 `promise` 延迟。
-  - [times](https://caijf.github.io/ut2/module-Util.html#.times) - 迭代执行次数。
   - [toFinite](https://caijf.github.io/ut2/module-Util.html#.toFinite) - 转为有限数字。
   - [toInteger](https://caijf.github.io/ut2/module-Util.html#.toInteger) - 转为整数。
   - [toLength](https://caijf.github.io/ut2/module-Util.html#.toLength) - 转为数组长度整数。

@@ -1,4 +1,4 @@
-import { noop, reduce, times } from '../src';
+import { noop, reduce, list } from '../src';
 import { symbol } from './_utils';
 
 describe('reduce', () => {
@@ -130,7 +130,7 @@ describe('reduce', () => {
 
   it('迭代次数', () => {
     const fn = jest.fn();
-    const arr = times(1000);
+    const arr = list(1000);
     reduce(arr, fn);
     expect(fn).toBeCalledTimes(999);
 

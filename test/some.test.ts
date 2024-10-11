@@ -1,4 +1,4 @@
-import { some, isNumber, isString, times } from '../src';
+import { some, isNumber, isString, list } from '../src';
 
 describe('some', () => {
   it('basic', () => {
@@ -42,13 +42,13 @@ describe('some', () => {
 
   it('迭代次数', () => {
     const fn = jest.fn();
-    const arr = times(1000);
+    const arr = list(1000);
     some(arr, fn);
     expect(fn).toBeCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，终止迭代', () => {
-    const arr = times(1000);
+    const arr = list(1000);
     const fn = jest.fn((num: number) => {
       return num === 499;
     });

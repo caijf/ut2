@@ -1,4 +1,4 @@
-import { map, times } from '../src';
+import { map, list } from '../src';
 
 describe('map', () => {
   it('basic', () => {
@@ -36,13 +36,13 @@ describe('map', () => {
 
   it('迭代次数', () => {
     const fn = jest.fn();
-    const arr = times(1000);
+    const arr = list(1000);
     map(arr, fn);
     expect(fn).toBeCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，不会终止迭代', () => {
-    const arr = times(1000);
+    const arr = list(1000);
     const fn = jest.fn((num: number) => {
       return num === 499;
     });

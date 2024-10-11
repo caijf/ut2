@@ -1,4 +1,4 @@
-import { filter, times } from '../src';
+import { filter, list } from '../src';
 
 describe('filter', () => {
   it('basic', () => {
@@ -35,13 +35,13 @@ describe('filter', () => {
 
   it('迭代次数', () => {
     const fn = jest.fn();
-    const arr = times(1000);
+    const arr = list(1000);
     filter(arr, fn);
     expect(fn).toBeCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，不会终止迭代', () => {
-    const arr = times(1000);
+    const arr = list(1000);
     const fn = jest.fn((num: number) => {
       if (num === 499) {
         return false;

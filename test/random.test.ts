@@ -1,8 +1,8 @@
-import { isInteger, random, times } from '../src';
+import { isInteger, random, list } from '../src';
 
 describe('random', () => {
   it('默认生成 `0` 到 `1` 之间的随机数', () => {
-    const arr = times(100);
+    const arr = list(100);
     arr.forEach(() => {
       const rand = random();
       expect(rand).toBeGreaterThanOrEqual(0);
@@ -12,7 +12,7 @@ describe('random', () => {
   });
 
   it('指定范围的随机数', () => {
-    const arr = times(100);
+    const arr = list(100);
     const min = 2;
     const max = 6;
 
@@ -44,7 +44,7 @@ describe('random', () => {
   });
 
   it('如果指定范围小于 `1` ，强制返回随机浮点数', () => {
-    const arr = times(100);
+    const arr = list(100);
     const min = 1.5;
     const max = 2.1;
 
