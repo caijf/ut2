@@ -21,7 +21,7 @@ import isObjectLike from './isObjectLike';
  * isWindow(frames); // true
  *
  */
-function isWindow(value: any): value is Window & typeof globalThis {
+function isWindow(value: any): value is Window {
   return isObjectLike(value) && getTag(value) === windowTag;
 }
 
