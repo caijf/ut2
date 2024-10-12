@@ -192,6 +192,7 @@ export { default as toLength } from './toLength';
 export { default as toNumber } from './toNumber';
 export { default as toSafeInteger } from './toSafeInteger';
 export { default as toString } from './toString';
+export { default as tryit } from './tryit';
 export { default as uniqueId } from './uniqueId';
 
 // global

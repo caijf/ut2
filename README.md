@@ -200,6 +200,7 @@ const debounced = debounce(() => {
   - [toNumber](https://caijf.github.io/ut2/module-Util.html#.toNumber) - 转为数字。
   - [toSafeInteger](https://caijf.github.io/ut2/module-Util.html#.toSafeInteger) - 转为安全整数。
   - [toString](https://caijf.github.io/ut2/module-Util.html#.toString) - 转为字符串。
+  - [tryit](https://caijf.github.io/ut2/module-Util.html#.tryit) - 包装函数为错误优先函数。
   - [uniqueId](https://caijf.github.io/ut2/module-Util.html#.uniqueId) - 唯一 ID。
 - [GLOBAL](https://caijf.github.io/ut2/global.html) 其他导出的成员
   - [MAX_ARRAY_LENGTH](https://caijf.github.io/ut2/global.html#MAX_ARRAY_LENGTH) - 最大数组长度。
