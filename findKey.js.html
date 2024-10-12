@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isBigInt.js - ut2 </title>
+    <title>findKey.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBigInt.js</h1>
+    <h1 class="page-title">findKey.js</h1>
     
 
     
@@ -70,32 +70,48 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import getTag from './internals/getTag';
-import { bigIntTag } from './internals/native';
+            <pre class="prettyprint source linenums"><code>import forEach from './forEach';
+import { stubFlase } from './internals/helpers';
+import isMap from './isMap';
+import isObject from './isObject';
 /**
- * 检查值是否为 bigint 类型或对象。
+ * 查找对象的键。
  *
- * @static
- * @alias module:Language.isBigInt
- * @since 1.8.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 bigint 类型或对象，返回 `true` 否则返回 `false`。
+ * @alias module:Object.findKey
+ * @since 1.13.0
+ * @param {Object | Map} obj 对象或 Map 对象
+ * @param {Function} [predicate] 迭代对象自身的可枚举属性（包含 `Symbol` 属性）调用的函数，返回 `Truthy` 表示要查找该值对应的键。
+ * @returns 如果对象存在要查找的值，返回该值的键，否则返回 `undefined`。
  * @example
+ * const obj = { foo: 'bar', baz: 42 }
+ * findKey(obj, isNumber); // 'baz'
+ * findKey(obj, v => typeof v === 'bar'); // 'foo'
  *
- * isBigInt(0n); // true
- *
- * isBigInt(1n); // true
- *
- * isBigInt(BigInt(1)); // true
- *
- * isBigInt(Object(1n)); // true
- *
- * isBigInt(1); // false
+ * const map = new Map([['foo', 'bar'], ['baz', 42]]);
+ * findKey(map, isNumber); // 'baz'
+ * findKey(map, v => typeof v === 'bar'); // 'foo'
  */
-function isBigInt(value) {
-    return typeof value === 'bigint' || getTag(value) === bigIntTag;
-}
-export default isBigInt;
+const findKey = (obj, predicate = stubFlase) => {
+    let key;
+    if (isMap(obj)) {
+        for (const [k, v] of obj) {
+            if (predicate(v, k)) {
+                key = k;
+                break;
+            }
+        }
+    }
+    else if (isObject(obj)) {
+        forEach(obj, (v, k) => {
+            if (predicate(v, k)) {
+                key = k;
+                return false;
+            }
+        });
+    }
+    return key;
+};
+export default findKey;
 </code></pre>
         </article>
     </section>

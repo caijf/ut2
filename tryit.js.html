@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isBigInt.js - ut2 </title>
+    <title>tryit.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isBigInt.js</h1>
+    <h1 class="page-title">tryit.js</h1>
     
 
     
@@ -70,32 +70,53 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import getTag from './internals/getTag';
-import { bigIntTag } from './internals/native';
+            <pre class="prettyprint source linenums"><code>import { nativeUndefined } from './internals/native';
+import isPromiseLike from './isPromiseLike';
 /**
- * 检查值是否为 bigint 类型或对象。
+ * 包装一个函数（支持异步函数），将其转为错误优先函数。
  *
- * @static
- * @alias module:Language.isBigInt
- * @since 1.8.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为 bigint 类型或对象，返回 `true` 否则返回 `false`。
+ * @alias module:Util.tryit
+ * @since 1.13.0
+ * @param {Function} fn 要包装的函数。
+ * @returns 如果执行成功返回 `[null, result]`，否则返回 `[Error, undefined]`。
  * @example
+ * const getGreet = async (name: string) => {
+ *   return 'hello ' + name;
+ * }
+ * const [err, result] = await tryit(getGreet)('jeff');
+ * console.log([err, result]);
+ * // [null, 'hello jeff']
  *
- * isBigInt(0n); // true
  *
- * isBigInt(1n); // true
- *
- * isBigInt(BigInt(1)); // true
- *
- * isBigInt(Object(1n)); // true
- *
- * isBigInt(1); // false
+ * const errorFn = async (name: string) => {
+ *   throw new Error('error message');
+ *   return 'hello ' + name;
+ * }
+ * const [err2, result2] = await tryit(errorFn)('jeff');
+ * console.log([err2, result2]);
+ * // [Error: error message, undefined]
  */
-function isBigInt(value) {
-    return typeof value === 'bigint' || getTag(value) === bigIntTag;
-}
-export default isBigInt;
+const tryit = (fn) => {
+    return (...args) => {
+        try {
+            const result = fn(...args);
+            if (isPromiseLike(result)) {
+                return result
+                    .then((res) => {
+                    return [null, res];
+                })
+                    .catch((err) => {
+                    return [err, nativeUndefined];
+                });
+            }
+            return [null, result];
+        }
+        catch (err) {
+            return [err, nativeUndefined];
+        }
+    };
+};
+export default tryit;
 </code></pre>
         </article>
     </section>
