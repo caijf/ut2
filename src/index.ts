@@ -133,6 +133,7 @@ export { default as randomInt } from './randomInt';
  */
 export { default as allKeys } from './allKeys';
 export { default as allKeysIn } from './allKeysIn';
+export { default as findKey } from './findKey';
 export { default as invert } from './invert';
 export { default as keys } from './keys';
 export { default as keysIn } from './keysIn';

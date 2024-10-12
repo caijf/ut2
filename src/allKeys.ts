@@ -7,6 +7,8 @@ import isObject from './isObject';
  *
  * 同 `Object.keys` + `Object.getOwnPropertySymbols`。
  *
+ * 注意：`Symbol` 键属性在字符串属性后面。
+ *
  * @static
  * @alias module:Object.allKeys
  * @since 1.1.0

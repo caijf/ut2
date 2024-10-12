@@ -7,6 +7,9 @@ export type Many<T> = T | T[];
 export type WithNullable<T> = T | null | undefined;
 export type PropertyName = string | number | symbol;
 export type ObjectPredicate<T extends object, K extends keyof T = keyof T> = (value: T[K], key: K) => boolean;
+export type MapValue<T extends Map<any, any>> = ReturnType<T['get']>;
+export type MapKey<T extends Map<any, any>> = Parameters<T['get']>[0];
+export type MapPredicate<T extends Map<any, any>> = (value: MapValue<T>, key: MapKey<T>) => boolean;
 
 /**
  * 迭代参数
