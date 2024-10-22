@@ -63,7 +63,6 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  *
  * 如果需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn allKeysIn} 方法， `merge(object, source, undefined, allKeysIn)`。
  *
- * @static
  * @alias module:Object.merge
  * @since 1.0.0
  * @param {Object | Array} object 目标对象。

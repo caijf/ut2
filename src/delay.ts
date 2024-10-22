@@ -6,7 +6,6 @@ import toNumber from './toNumber';
 /**
  * 延迟 `wait` 毫秒后调用 `func`。
  *
- * @static
  * @alias module:Function.delay
  * @since 1.0.0
  * @param {Function} func 要延迟的函数。

@@ -15,7 +15,6 @@ interface GroupBy {
  *
  * `iteratee` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
- * @static
  * @alias module:Collection.groupBy
  * @since 1.0.0
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。

@@ -4,10 +4,9 @@ import toInteger from './toInteger';
 /**
  * 转换 `value` 为数组对象的长度整数。
  *
- * @static
  * @alias module:Util.toLength
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length length}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/length | length}
  * @param {*} value 要转换的值。
  * @returns {number} 转换后的整数。
  * @example

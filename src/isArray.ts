@@ -1,7 +1,6 @@
 /**
  * 检查值是否为 `Array` 对象。
  *
- * @static
  * @alias module:Language.isArray
  * @since 1.0.0
  * @param {*} value 要检查的值

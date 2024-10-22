@@ -5,7 +5,6 @@ import { Many, WithNullable } from './internals/types';
 /**
  * 创建一个对象，该对象由忽略属性之外的 `object` 自身和继承的可枚举属性组成。与 [`pick`](#.pick) 相反。
  *
- * @static
  * @alias module:Object.omit
  * @since 1.0.0
  * @param {Object} object 来源对象。

@@ -4,7 +4,6 @@ import { stringTag } from './internals/native';
 /**
  * 检查值是否为字符串类型或对象。
  *
- * @static
  * @alias module:Language.isString
  * @since 1.0.0
  * @param {*} value 要检查的值。

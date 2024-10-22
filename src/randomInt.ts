@@ -6,7 +6,6 @@ import toFinite from './toFinite';
  *
  * 如果参数非整数 `lower=Math.ceil(lower)` `upper=Math.floor(upper)`。如果 `lower` 大于 `upper` 会自动交换参数。
  *
- * @static
  * @alias module:Number.randomInt
  * @since 1.0.0
  * @param {number} [lower=0] 下限。默认 `0`。

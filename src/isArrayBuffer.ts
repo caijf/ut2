@@ -5,7 +5,6 @@ import { nodeIsArrayBuffer } from './internals/nodeUtil';
 /**
  * 检查值是否为 `ArrayBuffer` 对象。
  *
- * @static
  * @alias module:Language.isArrayBuffer
  * @since 1.0.0
  * @param {*} value 要检查的值。

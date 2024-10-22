@@ -1,7 +1,6 @@
 /**
  * 返回第一个参数。
  *
- * @static
  * @alias module:Util.identity
  * @since 1.0.0
  * @param {*} value 任意值。

@@ -7,7 +7,6 @@ import { FunctionAny } from './internals/types';
  *
  * `Function` `AsyncFunction` `GeneratorFunction` `Proxy` 都将返回 `true`。
  *
- * @static
  * @alias module:Language.isFunction
  * @since 1.0.0
  * @param {*} value 要检查的值。

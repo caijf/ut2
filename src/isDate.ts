@@ -5,7 +5,6 @@ import { nodeIsDate } from './internals/nodeUtil';
 /**
  * 检查值是否为 `Date` 对象。
  *
- * @static
  * @alias module:Language.isDate
  * @since 1.0.0
  * @param {*} value 要检查的值。

@@ -6,7 +6,6 @@ import toNumber from './toNumber';
  *
  * 如果 `start` 大于 `end` 会自动交换范围参数。
  *
- * @static
  * @alias module:Number.inRange
  * @since 1.0.0
  * @param {number} number 要检查的值。

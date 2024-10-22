@@ -5,7 +5,6 @@ import { nodeIsRegExp } from './internals/nodeUtil';
 /**
  * 检查值是否为 `RegExp` 对象。
  *
- * @static
  * @alias module:Language.isRegExp
  * @since 1.0.0
  * @param {*} value 要检查的值

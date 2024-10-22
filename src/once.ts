@@ -4,7 +4,6 @@ import { FunctionAny } from './internals/types';
 /**
  * 创建一个只能调用 `func` 一次的函数。重复调用将返回第一次调用 `func` 的结果。
  *
- * @static
  * @alias module:Function.once
  * @since 1.2.0
  * @requires module:Function.before

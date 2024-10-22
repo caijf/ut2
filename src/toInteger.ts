@@ -5,7 +5,6 @@ import toNumber from './toNumber';
  *
  * 注意: 这个方法基于 [ToIntegerOrInfinity](https://tc39.es/ecma262/#sec-tointegerorinfinity) ，区别在于 `-0` 会返回 `-0`。
  *
- * @static
  * @alias module:Util.toInteger
  * @since 1.0.0
  * @param {*} value 要转换的值。

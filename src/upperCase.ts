@@ -3,7 +3,6 @@ import splitCaseWords from './internals/splitCaseWords';
 /**
  * 转换字符串为空格分隔的大写单词。
  *
- * @static
  * @alias module:String.upperCase
  * @since 1.0.0
  * @param {string} string 要转换的字符串。

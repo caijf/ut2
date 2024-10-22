@@ -4,7 +4,6 @@ import { FunctionAny } from './internals/types';
 /**
  * 创建一个断言函数结果取反的函数。
  *
- * @static
  * @alias module:Function.negate
  * @since 1.0.0
  * @param {function} predicate 需要对结果取反的函数。

@@ -10,7 +10,6 @@ import isArray from './isArray';
  *
  * 默认使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果 `strictCheck=true` 将使用 [`SameValue`](https://tc39.es/ecma262/#sec-samevalue) 做等值比较。
  *
- * @static
  * @alias module:Array.uniq
  * @since 1.0.0
  * @param {Array} array 要检查的数组。

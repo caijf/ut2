@@ -7,7 +7,6 @@ import toNumber from './toNumber';
 /**
  * 创建一个调用 `func` 的函数，调用次数少于 `n` 次。之后再调用这个函数，将返回最后一次调用 `func` 的结果。
  *
- * @static
  * @alias module:Function.before
  * @since 1.0.0
  * @param {number} n 不再调用 `func` 的次数。

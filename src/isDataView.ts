@@ -4,7 +4,6 @@ import { dataViewTag } from './internals/native';
 /**
  * 检查值是否为 `DataView` 对象。
  *
- * @static
  * @alias module:Language.isDataView
  * @since 1.2.0
  * @param {*} value 要检查的值。

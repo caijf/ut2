@@ -5,7 +5,6 @@ import isObjectLike from './isObjectLike';
 /**
  * 检查值是否为 `Window` 对象。
  *
- * @static
  * @alias module:Language.isWindow
  * @since 1.10.0
  * @param {*} value 要检查的值。

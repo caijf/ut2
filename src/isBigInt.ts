@@ -4,7 +4,6 @@ import { bigIntTag } from './internals/native';
 /**
  * 检查值是否为 bigint 类型或对象。
  *
- * @static
  * @alias module:Language.isBigInt
  * @since 1.8.0
  * @param {*} value 要检查的值。

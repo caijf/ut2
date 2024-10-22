@@ -1,10 +1,9 @@
 /**
  * 将数组 `from` 位置的元素移至 `to` 位置，返回处理后的原数组。
  *
- * @static
  * @alias module:Array.move
  * @since 1.10.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice splice}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice | splice}
  * @param {Array} array 要处理的数组。
  * @param {number} from 要移动的元素索引。
  * @param {number} to 要移动目标位置的元素索引。

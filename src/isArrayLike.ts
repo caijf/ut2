@@ -6,7 +6,6 @@ import isLength from './isLength';
  *
  * 如果一个值不是函数并且其 `value.length` 是大于或等于 `0` 且小于或等于 `Number.MAX_SAFE_INTEGER` 的整数，则该值被视为类数组。
  *
- * @static
  * @alias module:Language.isArrayLike
  * @since 1.0.0
  * @param {*} value 要检查的值。

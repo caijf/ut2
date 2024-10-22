@@ -6,7 +6,6 @@ import { numberTag } from './internals/native';
  *
  * `Infinity` `-Infinity` `NaN` 都归类为数字。如果要排除，请使用 `isFinite` 方法。
  *
- * @static
  * @alias module:Language.isNumber
  * @since 1.0.0
  * @param {*} value 要检查的值。

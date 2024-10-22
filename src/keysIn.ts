@@ -6,7 +6,6 @@ import isObject from './isObject';
  *
  * 同 `key...in`。
  *
- * @static
  * @alias module:Object.keysIn
  * @since 1.1.0
  * @param {Object} object 要查询的对象。

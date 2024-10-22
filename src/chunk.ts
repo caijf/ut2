@@ -7,7 +7,6 @@ import toLength from './toLength';
  *
  * 如果数组无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
  *
- * @static
  * @alias module:Array.chunk
  * @since 1.0.0
  * @param {Array} array 要处理的数组。

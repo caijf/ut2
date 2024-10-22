@@ -1,7 +1,6 @@
 /**
  * 检查值是否为 `null`。
  *
- * @static
  * @alias module:Language.isNull
  * @since 1.0.0
  * @param {*} value 要检查的值。

@@ -1,7 +1,6 @@
 /**
  * 创建一个返回 `value` 的函数。
  *
- * @static
  * @alias module:Util.constant
  * @since 1.0.0
  * @param {*} value 新函数返回的值。

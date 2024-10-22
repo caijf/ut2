@@ -6,7 +6,6 @@ import isNumber from './isNumber';
  *
  * 和 `Number.isNaN` 区别是 `new Number(NaN)` 也被认为是 `NaN`。
  *
- * @static
  * @alias module:Language.isNaN
  * @since 1.0.0
  * @param {*} value 要检查的值。

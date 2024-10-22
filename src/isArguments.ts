@@ -6,7 +6,6 @@ import getTag from './internals/getTag';
 /**
  * 检查值是否为 `arguments` 对象。
  *
- * @static
  * @alias module:Language.isArguments
  * @since 1.0.0
  * @param {*} value 要检查的值。

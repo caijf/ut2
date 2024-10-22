@@ -6,7 +6,6 @@ import toNumber from './toNumber';
 /**
  * 创建一个函数，当它被调用 `n` 或更多次之后触发 `func`。
  *
- * @static
  * @alias module:Function.after
  * @since 1.0.0
  * @param {number} n 函数应该在调用多少次后执行。

@@ -7,7 +7,6 @@ import isObject from './isObject';
  *
  * 允许选取对象的所有属性（包含不可枚举属性）。
  *
- * @static
  * @alias module:Object.pick
  * @since 1.0.0
  * @param {Object} object 来源对象。

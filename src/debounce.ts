@@ -9,7 +9,6 @@ import { FunctionAny } from './internals/types';
  * 2. `flush` 方法立即调用。
  * 3. `pending` 方法是否在等待函数执行。
  *
- * @static
  * @alias module:Function.debounce
  * @since 1.0.0
  * @param {Function} func 要防抖动的函数。

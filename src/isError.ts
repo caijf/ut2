@@ -7,7 +7,6 @@ import isObjectLike from './isObjectLike';
  *
  * 继承自 `Error` 的对象，如 `EvalError` `RangeError` `ReferenceError` `SyntaxError` `TypeError` `URIError` `AggregateError`，都将返回 `true`。
  *
- * @static
  * @alias module:Language.isError
  * @since 1.0.0
  * @param {*} value 要检查的值。

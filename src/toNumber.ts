@@ -13,7 +13,6 @@ const reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
 /**
  * 转换 `value` 为数字。
  *
- * @static
  * @alias module:Util.toNumber
  * @since 1.0.0
  * @param {*} value 要处理的值。

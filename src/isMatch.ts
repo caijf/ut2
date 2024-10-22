@@ -96,7 +96,6 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
  * 2. `typeof` 不同类型，如 `1` `Object(1)`
  * 3. 无效日期对象，如 `new Date('')` `new Date('abc')`
  *
- * @static
  * @alias module:Language.isMatch
  * @since 1.4.0
  * @requires module:Language.isEqual

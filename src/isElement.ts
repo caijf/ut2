@@ -4,7 +4,6 @@ import isPlainObject from './isPlainObject';
 /**
  * 检查值是否可能为 `DOM` 元素。
  *
- * @static
  * @alias module:Language.isElement
  * @since 1.0.0
  * @param {*} value 要检查的值。

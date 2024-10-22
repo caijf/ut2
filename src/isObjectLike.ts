@@ -3,7 +3,6 @@
  *
  * 如果一个值不为 `null` 并且 `typeof` 结果为 `object`，则该值是类对象。
  *
- * @static
  * @alias module:Language.isObjectLike
  * @since 1.0.0
  * @param {*} value 要检查的值。

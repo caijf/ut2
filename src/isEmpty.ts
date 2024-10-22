@@ -12,7 +12,6 @@ import allKeys from './allKeys';
  *
  * 非上述类型值，都将被认为是空的。
  *
- * @static
  * @alias module:Language.isEmpty
  * @since 1.0.0
  * @param {*} value 要检查的值。

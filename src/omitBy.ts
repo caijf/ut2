@@ -8,10 +8,9 @@ import pickBy from './pickBy';
  *
  * `predicate` 调用时会传入两个参数 `value` `key`。
  *
- * @static
  * @alias module:Object.omitBy
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy Truthy}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy | Truthy}
  * @param {Object} object 来源对象。
  * @param {Function} [predicate] 调用每一个属性的函数，返回 `Truthy` 表示要忽略该属性，否则不忽略。
  * @returns {Object} 新对象。

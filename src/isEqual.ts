@@ -12,7 +12,6 @@ import { nativeUndefined } from './internals/native';
  * 2. `typeof` 不同类型，如 `1` `Object(1)`
  * 3. 无效日期对象，如 `new Date('')` `new Date('abc')`
  *
- * @static
  * @alias module:Language.isEqual
  * @since 1.3.0
  * @param {*} value 要比较的值。

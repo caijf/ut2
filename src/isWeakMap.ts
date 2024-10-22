@@ -4,7 +4,6 @@ import { weakMapTag } from './internals/native';
 /**
  * 检查值是否为 `WeakMap` 对象。
  *
- * @static
  * @alias module:Language.isWeakMap
  * @since 1.0.0
  * @param {*} value 要检查的值。

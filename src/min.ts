@@ -7,7 +7,6 @@ import { ExtremumFunction, IterateeParam, WithNullable } from './internals/types
  *
  * `iteratee` 调用时会传入三个参数 `value` `index` `array`。
  *
- * @static
  * @alias module:Math.min
  * @since 1.0.0
  * @param {Array} array 要迭代的数组。

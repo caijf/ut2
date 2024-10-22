@@ -11,7 +11,6 @@ interface Nth {
  *
  * 同 `Array.prototype.at` 方法。
  *
- * @static
  * @alias module:Array.nth
  * @since 1.0.0
  * @param {ArrayLike} array 要查询的类数组。

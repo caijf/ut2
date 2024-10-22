@@ -15,11 +15,10 @@ interface Partition {
  *
  * `predicate` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
- * @static
  * @alias module:Collection.partition
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy Truthy}
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy Falsy}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy | Truthy}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy | Falsy}
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
  * @param {Function | string | number | Symbol | Array} [predicate=identity] 每次迭代调用的断言函数。默认 `identity`。
  * @returns {Array} 分组后的数组。

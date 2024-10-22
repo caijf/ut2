@@ -4,7 +4,6 @@ import { symbolTag } from './internals/native';
 /**
  * 检查值是否为 `Symbol` 类型或对象。
  *
- * @static
  * @alias module:Language.isSymbol
  * @since 1.0.0
  * @param {*} value 要检查的值。

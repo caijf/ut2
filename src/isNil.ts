@@ -1,7 +1,6 @@
 /**
  * 检查值是否为 `undefined` 或 `null`。
  *
- * @static
  * @alias module:Language.isNil
  * @since 1.0.0
  * @param {*} value 要检查的值。

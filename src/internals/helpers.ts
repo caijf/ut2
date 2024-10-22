@@ -3,17 +3,13 @@ import getTag from './getTag';
 import { argumentsTag, functionProtoToString, stringUndefined } from './native';
 
 /**
- * ut2 版本号。
- *
- * @static
+ * @summary ut2 版本号。
  * @since 1.0.0
  */
 export const VERSION = BUILD_VERSION;
 
 /**
- * 当前运行环境是否为浏览器
- *
- * @static
+ * @summary 当前运行环境是否为浏览器。
  * @since 1.10.0
  */
 export const isBrowser = typeof window !== stringUndefined && isObjectLike(window) && typeof document !== stringUndefined && isObjectLike(document) && window.document === document;

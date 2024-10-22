@@ -6,7 +6,6 @@ import isFinite from './isFinite';
  *
  * 同 `Number.isInteger`。
  *
- * @static
  * @alias module:Language.isInteger
  * @since 1.0.0
  * @param {*} value 要检查的值。

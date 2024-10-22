@@ -5,7 +5,6 @@ import { nodeIsSet } from './internals/nodeUtil';
 /**
  * 检查值是否为 `Set` 对象。
  *
- * @static
  * @alias module:Language.isSet
  * @since 1.0.0
  * @param {*} value 要检查的值。

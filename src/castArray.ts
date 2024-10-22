@@ -3,7 +3,6 @@ import isArray from './isArray';
 /**
  * 如果值不是数组，则将其转换为数组。
  *
- * @static
  * @alias module:Util.castArray
  * @since 1.0.0
  * @param {*} [value] 要处理的值。

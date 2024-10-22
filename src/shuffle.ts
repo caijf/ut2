@@ -4,7 +4,6 @@ import randomInt from './randomInt';
 /**
  * 创建一个被打乱的数组。使用 [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) 版本。
  *
- * @static
  * @alias module:Array.shuffle
  * @since 1.0.0
  * @param {Array} array 要打乱的数组。

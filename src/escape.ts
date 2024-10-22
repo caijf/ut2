@@ -20,10 +20,9 @@ const reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
  *
  * 当解析 HTML 时，总应该在[属性值上使用引号](http://wonko.com/post/html-escaping)以减少 XSS 的可能性。
  *
- * @static
  * @alias module:String.escape
  * @since 1.0.0
- * @see {@link https://mathiasbynens.be/notes/ambiguous-ampersands ambiguous-ampersands}
+ * @see {@link https://mathiasbynens.be/notes/ambiguous-ampersands | ambiguous-ampersands}
  * @param {string} string 要转义的字符串。
  * @returns {string} 转义后的字符串。
  * @example

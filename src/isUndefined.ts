@@ -3,7 +3,6 @@ import { nativeUndefined } from './internals/native';
 /**
  * 检查值是否为 `undefined`。
  *
- * @static
  * @alias module:Language.isUndefined
  * @since 1.0.0
  * @param {*} value 要检查的值。

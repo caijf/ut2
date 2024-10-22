@@ -9,10 +9,9 @@ const fileExisted = typeof File !== stringUndefined;
  *
  * 浏览器环境的 `File` 对象，或其他继承自 `File` 的实例，都将返回 `true`。
  *
- * @static
  * @alias module:Language.isFile
  * @since 1.11.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/File File}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/File | File}
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为 `File` 对象，返回 `true`，否则返回 `false`。
  * @example

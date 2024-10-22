@@ -14,7 +14,6 @@ interface Filter {
  *
  * `predicate` 调用时会传入三个参数 `value` `index|key` `collection`。
  *
- * @static
  * @alias module:Collection.filter
  * @since 1.7.0
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。

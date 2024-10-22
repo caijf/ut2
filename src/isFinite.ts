@@ -6,7 +6,6 @@ import { numberIsFinite } from './internals/native';
  *
  * 同 `Number.isFinite`。
  *
- * @static
  * @alias module:Language.isFinite
  * @since 1.0.0
  * @param {*} value 要检查的值。

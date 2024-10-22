@@ -3,10 +3,9 @@
  *
  * 默认使用了 [`SameValueZero`](https://tc39.es/ecma262/#sec-samevaluezero) 做等值比较。如果 `strictCheck=true` 将使用 [`SameValue`](https://tc39.es/ecma262/#sec-samevalue) 做等值比较。
  *
- * @static
  * @alias module:Util.eq
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness JavaScript 中的相等性判断}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness | JavaScript 中的相等性判断}
  * @param {*} value 要比较的值。
  * @param {*} other 另一个要比较的值。
  * @param {boolean} [strictCheck=false] 严格比较，区分 `0` `-0`。默认 `false`。

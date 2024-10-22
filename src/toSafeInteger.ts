@@ -4,7 +4,6 @@ import toInteger from './toInteger';
 /**
  * 转换 `value` 为一个安全整数。
  *
- * @static
  * @alias module:Util.toSafeInteger
  * @since 1.0.0
  * @param {*} value 要转换的值。

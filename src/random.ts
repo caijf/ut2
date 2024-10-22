@@ -6,7 +6,6 @@ import toFinite from './toFinite';
  *
  * 如果 `lower` 大于 `upper` 会自动交换参数。
  *
- * @static
  * @alias module:Number.random
  * @since 1.0.0
  * @param {number} [lower=0] 下限。默认 `0`。

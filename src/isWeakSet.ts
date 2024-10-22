@@ -4,7 +4,6 @@ import { weakSetTag } from './internals/native';
 /**
  * 检查值是否为 `WeakSet` 对象。
  *
- * @static
  * @alias module:Language.isWeakSet
  * @since 1.0.0
  * @param {*} value 要检查的值。

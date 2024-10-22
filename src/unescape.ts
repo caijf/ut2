@@ -16,7 +16,6 @@ const reHasEscapedHtml = RegExp(reEscapedHtml.source);
  *
  * 注意：不会转换其他的 HTML 实体。如果需要，可以使用第三方库，如 [he](https://github.com/mathiasbynens/he) 。
  *
- * @static
  * @alias module:String.unescape
  * @since 1.0.0
  * @param {string} string 要转换的字符串。

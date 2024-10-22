@@ -3,10 +3,9 @@ import splitCaseWords from './internals/splitCaseWords';
 /**
  * 转换字符串为连接符小写。
  *
- * @static
  * @alias module:String.kebabCase
  * @since 1.0.0
- * @see {@link https://en.wikipedia.org/wiki/Letter_case#Special_case_styles kebab case}
+ * @see {@link https://en.wikipedia.org/wiki/Letter_case#Special_case_styles | kebab case}
  * @param {string} string 要转换的字符串。
  * @param {RegExp | string} [pattern] 拆分词组的匹配模式。
  * @returns {string} 转换后的字符串。

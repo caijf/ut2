@@ -5,7 +5,6 @@ import isArrayLikeObject from './isArrayLikeObject';
 /**
  * 与 [`zip`](#.zip) 类似，除了它接受分组元素的数组，并且创建一个数组，分组元素到打包前的结构。（返回数组的第一个元素包含所有的输入数组的第一元素，第二个元素包含了所有的输入数组的第二元素，依此类推。）。
  *
- * @static
  * @alias module:Array.unzip
  * @since 1.0.0
  * @param {Array} array 要处理的分组元素数组。

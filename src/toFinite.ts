@@ -5,7 +5,6 @@ const MAX_VALUE = 1.7976931348623157e308;
 /**
  * 转换 `value` 为一个有限数字。
  *
- * @static
  * @alias module:Util.toFinite
  * @since 1.0.0
  * @param {*} value 要转换的值。

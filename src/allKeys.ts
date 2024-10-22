@@ -9,7 +9,6 @@ import isObject from './isObject';
  *
  * 注意：`Symbol` 键属性在字符串属性后面。
  *
- * @static
  * @alias module:Object.allKeys
  * @since 1.1.0
  * @param {Object} object 要查询的对象。

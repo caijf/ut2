@@ -6,7 +6,6 @@ type ArrayLikeObject = Array<any> | { length: number; [x: string | symbol]: any 
 /**
  * 检查值是否为类数组对象。
  *
- * @static
  * @alias module:Language.isArrayLikeObject
  * @since 1.0.0
  * @param {*} value 要检查的值

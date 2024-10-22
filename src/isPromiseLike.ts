@@ -5,7 +5,6 @@ import isObject from './isObject';
  *
  * 如果一个对象包含 `then` 方法，它就是类似 `Promise` 对象。
  *
- * @static
  * @alias module:Language.isPromiseLike
  * @since 1.0.0
  * @param {*} value 要检查的值。

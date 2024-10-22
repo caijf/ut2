@@ -4,7 +4,6 @@ import upperFirst from './upperFirst';
 /**
  * 转换字符串首字母大写，剩下为小写。
  *
- * @static
  * @alias module:String.capitalize
  * @since 1.0.0
  * @param {string} string 要转换的字符串。
