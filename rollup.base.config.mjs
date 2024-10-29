@@ -21,6 +21,7 @@ export const plugins = [
   }),
   resolve(),
   commonjs(),
+  // TODO 大版本更新将调整为主要导出 es2018 版本，额外导出 es5 版本。（tsconfig.es2018.json、tsconfig.es5.json）
   typescript({
     tsconfig: './tsconfig.build.json',
     compilerOptions: {
