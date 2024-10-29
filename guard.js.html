@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>lt.js - ut2 </title>
+    <title>guard.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">lt.js</h1>
+    <h1 class="page-title">guard.js</h1>
     
 
     
@@ -70,27 +70,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { baseLt, createOperation } from './internals/comparator';
+            <pre class="prettyprint source linenums"><code>import isPromiseLike from './isPromiseLike';
 /**
- * 检查 `value` 是否小于 `other`。
+ * 函数守卫。
  *
- * @function
- * @alias module:Util.lt
- * @since 1.0.0
- * @param {*} value 要比较的值。
- * @param {*} other 另一个要比较的值。
- * @returns {boolean} 如果 `value` 小于 `other` 返回 `true`，否则返回 `false`。
+ * @alias module:Util.guard
+ * @since 1.14.0
+ * @param {Function} fn 要执行的函数。
+ * @param {Function} [shouldGuard] 函数守卫断言。如果返回 `Truthy` 表示需要守卫，否则不需要守卫。
+ * @returns 如果函数执行成功，正常返回结果；如果异步函数拒绝或抛出错误时，有函数守卫返回 `undefined`，否则抛出错误。
  * @example
+ * guard(() => 42); // 42
+ * await guard(() => Primise.resolve(42)); // 42
  *
- * lt(1, 3); // true
- *
- * lt(3, 3); // false
- *
- * lt(3, 1); // false
- *
+ * guard(() => { throw new Error() }); // undefined
+ * await guard(() => Promise.reject()); // undefined
  */
-const lt = createOperation(baseLt);
-export default lt;
+const guard = (fn, shouldGuard) => {
+    const _guard = (err) => {
+        if (shouldGuard &amp;&amp; !shouldGuard(err)) {
+            throw err;
+        }
+        return undefined;
+    };
+    try {
+        const result = fn();
+        return isPromiseLike(result) ? result.catch(_guard) : result;
+    }
+    catch (err) {
+        return _guard(err);
+    }
+};
+export default guard;
 </code></pre>
         </article>
     </section>
