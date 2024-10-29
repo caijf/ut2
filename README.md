@@ -185,7 +185,8 @@ const debounced = debounce(() => {
   - [defaultTo](https://caijf.github.io/ut2/module-Util.html#.defaultTo) - 默认值。
   - [eq](https://caijf.github.io/ut2/module-Util.html#.eq) - 等于。
   - [gt](https://caijf.github.io/ut2/module-Util.html#.gt) - 大于。
-  - [gte](https://caijf.github.io/ut2/module-Util.html#.gte) - 大于等于
+  - [gte](https://caijf.github.io/ut2/module-Util.html#.gte) - 大于等于。
+  - [guard](https://caijf.github.io/ut2/module-Util.html#.guard) - 函数守卫。
   - [identity](https://caijf.github.io/ut2/module-Util.html#.identity) - 返回第一个参数的函数。
   - [list](https://caijf.github.io/ut2/module-Util.html#.list) - 迭代执行次数。
   - [lt](https://caijf.github.io/ut2/module-Util.html#.lt) - 小于。

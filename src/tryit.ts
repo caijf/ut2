@@ -1,8 +1,6 @@
 import { nativeUndefined } from './internals/native';
+import { AsyncFn, SyncFn } from './internals/types';
 import isPromiseLike from './isPromiseLike';
-
-type SyncFn<P extends any[], R> = (...args: P) => R;
-type AsyncFn<P extends any[], R> = (...args: P) => Promise<R>;
 
 interface Tryit {
   <P extends any[], R>(fn: AsyncFn<P, R>): (...args: P) => Promise<[null, R] | [Error, undefined]>;

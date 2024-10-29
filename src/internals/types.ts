@@ -1,4 +1,8 @@
 export type FunctionAny = (...args: any[]) => any;
+export type SyncFn<P extends any[], R> = (...args: P) => R;
+export type AsyncFn<P extends any[], R> = (...args: P) => Promise<R>;
+export type SingleSyncFn<R> = () => R;
+export type SingleAsyncFn<R> = () => Promise<R>;
 
 /**
  * 工具辅助类型

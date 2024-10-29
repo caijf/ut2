@@ -177,6 +177,7 @@ export { default as defaultTo } from './defaultTo';
 export { default as eq } from './eq';
 export { default as gt } from './gt';
 export { default as gte } from './gte';
+export { default as guard } from './guard';
 export { default as identity } from './identity';
 export { default as list } from './list';
 export { default as lt } from './lt';
