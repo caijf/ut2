@@ -193,6 +193,7 @@ const debounced = debounce(() => {
   - [noop](https://caijf.github.io/ut2/module-Util.html#.noop) - 空函数。
   - [nthArg](https://caijf.github.io/ut2/module-Util.html#.nthArg) - 返回指定位置参数的函数。
   - [range](https://caijf.github.io/ut2/module-Util.html#.range) - 创建升序或降序的数字数组。
+  - [retry](https://caijf.github.io/ut2/module-Util.html#.retry) - 异步函数错误重试。
   - [sleep](https://caijf.github.io/ut2/module-Util.html#.sleep) - 返回 `promise` 延迟。
   - [toFinite](https://caijf.github.io/ut2/module-Util.html#.toFinite) - 转为有限数字。
   - [toInteger](https://caijf.github.io/ut2/module-Util.html#.toInteger) - 转为整数。
