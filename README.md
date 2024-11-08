@@ -64,7 +64,6 @@ const debounced = debounce(() => {
   - [chunk](https://caijf.github.io/ut2/module-Array.html#.chunk) - 拆分成多个 `size` 长度的区块。
   - [compact](https://caijf.github.io/ut2/module-Array.html#.compact) - 剔除假值元素。
   - [difference](https://caijf.github.io/ut2/module-Array.html#.difference) - 排除部分值。
-  - [formPairs](https://caijf.github.io/ut2/module-Array.html#.fromPairs) - 将键值对转为对象。
   - [intersection](https://caijf.github.io/ut2/module-Array.html#.intersection) - 交集去重。
   - [move](https://caijf.github.io/ut2/module-Array.html#.move) - 数组元素移动。
   - [nth](https://caijf.github.io/ut2/module-Array.html#.nth) - 获取第 `n` 个元素。

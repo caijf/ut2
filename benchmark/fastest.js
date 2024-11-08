@@ -110,24 +110,6 @@
           }
         },
         {
-          method: 'fromPairs',
-          params: [
-            [
-              ['a', 1],
-              ['b', 2]
-            ],
-            [
-              [
-                ['foo', 'bar'],
-                ['baz', 42]
-              ]
-            ]
-          ],
-          underscore: {
-            existed: false
-          }
-        },
-        {
           method: 'intersection',
           params: [
             [[2, 1, 2], [1]],

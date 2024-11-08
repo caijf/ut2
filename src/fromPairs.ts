@@ -10,6 +10,8 @@ interface FromPairs {
  *
  * 与 [Object.entries](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) 正好相反。
  *
+ * @deprecated 即将废弃，请使用 `Object.fromEntries` 替代。
+ * @private
  * @alias module:Array.fromPairs
  * @since 1.0.0
  * @param {Array} array 键值对数组。
