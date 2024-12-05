@@ -158,6 +158,7 @@ const debounced = debounce(() => {
   - [keys](https://caijf.github.io/ut2/module-Object.html#.keys) - 对象自身的可枚举属性（不包含 `Symbol` 属性）。
   - [keysIn](https://caijf.github.io/ut2/module-Object.html#.keysIn) - 对象自身及继承的可枚举属性（不包含 `Symbol` 属性）。
   - [merge](https://caijf.github.io/ut2/module-Object.html#.merge) - 递归对象自身的可枚举属性（包含 `Symbol` 属性）或数组进行合并。
+  - [mergeObject](https://caijf.github.io/ut2/module-Object.html#.merge) - 递归对象自身的可枚举属性（包含 `Symbol` 属性）进行合并，支持多个目标对象参数。
   - [omit](https://caijf.github.io/ut2/module-Object.html#.omit) - 排除部分属性。
   - [omitBy](https://caijf.github.io/ut2/module-Object.html#.omitBy) - 根据方法，排除部分属性。
   - [pick](https://caijf.github.io/ut2/module-Object.html#.pick) - 选择部分属性。
