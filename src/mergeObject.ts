@@ -24,7 +24,7 @@ interface MergeObject {
  * @alias module:Object.mergeObject
  * @since 1.15.0
  * @param {Object | Array} object 目标对象。
- * @param {...object} args 展开的来源对象。
+ * @param {...object} args 来源对象。
  * @returns 目标对象。
  * @example
  *
