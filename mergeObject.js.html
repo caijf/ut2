@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>omitBy.js - ut2 </title>
+    <title>mergeObject.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">omitBy.js</h1>
+    <h1 class="page-title">mergeObject.js</h1>
     
 
     
@@ -70,35 +70,43 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { stubFlase } from './internals/helpers';
-import negate from './negate';
-import pickBy from './pickBy';
+            <pre class="prettyprint source linenums"><code>import merge from './merge';
 /**
- * 创建一个对象，该对象忽略 `predicate` （断言函数）判断不是真值的属性后，`object` 自身和继承的可枚举属性组成。与 [`pickBy`](#.pickBy) 相反。
+ * 递归合并 `source` 来源对象自身的可枚举属性（包含 `Symbol` 属性）到 `object` 目标对象。
  *
- * `predicate` 调用时会传入两个参数 `value` `key`。
+ * 与 `merge` 方法的区别：
  *
- * @alias module:Object.omitBy
- * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy | Truthy}
- * @param {Object} object 来源对象。
- * @param {Function} [predicate] 调用每一个属性的函数，返回 `Truthy` 表示要忽略该属性，否则不忽略。
- * @returns {Object} 新对象。
+ * 1. 不合并数组，如果只传入 `2` 个参数，同 `merge(obj, src, merge.NOT_MERGE_ARRAYS)`
+ * 2. 不支持自定义赋值函数和获取对象键，但支持多个来源对象参数
+ *
+ * @alias module:Object.mergeObject
+ * @since 1.15.0
+ * @param {Object | Array} object 目标对象。
+ * @param {...object} args 展开的来源对象。
+ * @returns 目标对象。
  * @example
  *
- * const obj = { name: "jeff", age: 18 };
+ * mergeObject({c: 3}, {e: 5}); // { c: 3, e: 5 }
+ * mergeObject({ a: 1 }, { a: undefined, b: undefined }); // { a: 1, b: undefined }
+ * mergeObject({ a: 1 }, { a: undefined, b: undefined }, {c:'x'}); // { a: 1, b: undefined, c: 'x' }
  *
- * omitBy(obj); // { name: "jeff", age: 18 }
- *
- * omitBy(obj, (value) => typeof value === 'number'); // { name: "jeff" }
- *
- * omitBy(obj, (value) => value); // {}
- *
+ * const source = {
+ *   a: [{b: 2}, {d: 4}]
+ * }
+ * const otherSource = {
+ *   a: [{c: 3},{e: 5}]
+ * }
+ * mergeObject({}, source, otherSource); // { a: [{c: 3}, {e: 5}] }
  */
-function omitBy(object, predicate = stubFlase) {
-    return pickBy(object, negate(predicate));
-}
-export default omitBy;
+const mergeObject = (object, source, ...args) => {
+    if (args.length > 0) {
+        const [arg1, ...restArgs] = args;
+        const obj = merge(object, source, merge.NOT_MERGE_ARRAYS);
+        return mergeObject(obj, arg1, ...restArgs);
+    }
+    return merge(object, source, merge.NOT_MERGE_ARRAYS);
+};
+export default mergeObject;
 </code></pre>
         </article>
     </section>
