@@ -138,6 +138,7 @@ export { default as invert } from './invert';
 export { default as keys } from './keys';
 export { default as keysIn } from './keysIn';
 export { default as merge } from './merge';
+export { default as mergeObject } from './mergeObject';
 export { default as omit } from './omit';
 export { default as omitBy } from './omitBy';
 export { default as pick } from './pick';

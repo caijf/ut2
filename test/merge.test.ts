@@ -18,6 +18,9 @@ describe('merge', () => {
       ]
     });
 
+    // console.log(object);
+    // { a: [ { b: 2, c: 3 }, { d: 4, e: 5 } ] }
+
     // 数组不合并
     expect(merge(object, other, merge.NOT_MERGE_ARRAYS)).toEqual({
       a: [{ c: 3 }, { e: 5 }]
