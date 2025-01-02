@@ -6,7 +6,7 @@ const reHasRegExpChar = RegExp(reRegExpChar.source);
  *
  * @alias module:String.escapeRegExp
  * @since 1.0.0
- * @see {@link https://tc39.es/ecma262/multipage/text-processing.html#sec-patterns | syntax characters}
+ * @see {@link https://tc39.es/ecma262/multipage/text-processing.html#sec-patterns syntax characters}
  * @param {string} string 要转义的字符串。
  * @returns {string} 转义后的字符串。
  * @example

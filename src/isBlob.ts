@@ -11,8 +11,8 @@ const blobExisted = typeof Blob !== stringUndefined;
  *
  * @alias module:Language.isBlob
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/Blob | Blob}
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/File | File}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/Blob Blob}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/File File}
  * @param {*} value 要检查的值。
  * @returns {boolean} 如果值为 `Blob` 对象，返回 `true`，否则返回 `false`。
  * @example

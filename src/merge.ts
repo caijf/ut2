@@ -61,7 +61,7 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  *
  * 如果不需要合并数组，第三个参数传入 `merge.NOT_MERGE_ARRAYS` 。
  *
- * 如果需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeysIn allKeysIn} 方法， `merge(object, source, undefined, allKeysIn)`。
+ * 如果需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeys allKeys} 方法， `merge(object, source, undefined, allKeys)`。
  *
  * @alias module:Object.merge
  * @since 1.0.0

@@ -5,7 +5,7 @@ import splitCaseWords from './internals/splitCaseWords';
  *
  * @alias module:String.snakeCase
  * @since 1.0.0
- * @see {@link https://en.wikipedia.org/wiki/Snake_case | snake case}
+ * @see {@link https://en.wikipedia.org/wiki/Snake_case snake case}
  * @param {string} string 要转换的字符串。
  * @param {RegExp | string} [pattern] 拆分词组的匹配模式。
  * @returns {string} 转换后的字符串。

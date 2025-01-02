@@ -9,7 +9,7 @@ import { ObjectPredicate, WithNullable } from './internals/types';
  *
  * @alias module:Object.pickBy
  * @since 1.0.0
- * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy | Truthy}
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy Truthy}
  * @param {Object} obj 来源对象。
  * @param {Function} [predicate] 调用每一个属性的函数，返回 `Truthy` 表示要提取该属性，否则不提取。
  * @returns {Object} 新对象。

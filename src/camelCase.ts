@@ -6,7 +6,7 @@ import upperFirst from './upperFirst';
  *
  * @alias module:String.camelCase
  * @since 1.0.0
- * @see {@link https://en.wikipedia.org/wiki/Camel_case | Camel_case}
+ * @see {@link https://en.wikipedia.org/wiki/Camel_case Camel_case}
  * @param {string} string 要转换的字符串。
  * @param {RegExp | string} [pattern] 拆分词组的匹配模式。
  * @returns {string} 驼峰写法的字符串。
