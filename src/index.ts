@@ -193,6 +193,7 @@ export { default as toFinite } from './toFinite';
 export { default as toInteger } from './toInteger';
 export { default as toLength } from './toLength';
 export { default as toNumber } from './toNumber';
+export { default as toPath } from './toPath';
 export { default as toSafeInteger } from './toSafeInteger';
 export { default as toString } from './toString';
 export { default as tryit } from './tryit';
