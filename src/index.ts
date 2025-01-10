@@ -143,6 +143,8 @@ export { default as omit } from './omit';
 export { default as omitBy } from './omitBy';
 export { default as pick } from './pick';
 export { default as pickBy } from './pickBy';
+export { default as fromPathPairs } from './fromPathPairs';
+export { default as pathPairs } from './pathPairs';
 
 /**
  * 字符串

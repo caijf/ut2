@@ -154,6 +154,7 @@ const debounced = debounce(() => {
   - [allKeys](https://caijf.github.io/ut2/module-Object.html#.allKeys) - 对象自身的可枚举属性（包含 `Symbol` 属性）。
   - [allKeysIn](https://caijf.github.io/ut2/module-Object.html#.allKeysIn) - 对象自身及继承的可枚举属性（包含 `Symbol` 属性）。
   - [findKey](https://caijf.github.io/ut2/module-Object.html#.findKey) - 查找对象的键。
+  - [fromPathPairs](https://caijf.github.io/ut2/module-Object.html#.fromPathPairs) - 将属性路径/值对的数组转为对象。
   - [invert](https://caijf.github.io/ut2/module-Object.html#.invert) - 对象自身的可枚举属性（包含 `Symbol` 属性）和值反转。
   - [keys](https://caijf.github.io/ut2/module-Object.html#.keys) - 对象自身的可枚举属性（不包含 `Symbol` 属性）。
   - [keysIn](https://caijf.github.io/ut2/module-Object.html#.keysIn) - 对象自身及继承的可枚举属性（不包含 `Symbol` 属性）。
@@ -161,6 +162,7 @@ const debounced = debounce(() => {
   - [mergeObject](https://caijf.github.io/ut2/module-Object.html#.merge) - 递归对象自身的可枚举属性（包含 `Symbol` 属性）进行合并，支持多个目标对象参数。
   - [omit](https://caijf.github.io/ut2/module-Object.html#.omit) - 排除部分属性。
   - [omitBy](https://caijf.github.io/ut2/module-Object.html#.omitBy) - 根据方法，排除部分属性。
+  - [pathPairs](https://caijf.github.io/ut2/module-Object.html#.pathPairs) - 将对象转为属性路径/值对的数组。
   - [pick](https://caijf.github.io/ut2/module-Object.html#.pick) - 选择部分属性。
   - [pickBy](https://caijf.github.io/ut2/module-Object.html#.pickBy) - 根据方法，选择部分属性。
 - [String](https://caijf.github.io/ut2/module-String.html) 字符串
@@ -200,6 +202,7 @@ const debounced = debounce(() => {
   - [toInteger](https://caijf.github.io/ut2/module-Util.html#.toInteger) - 转为整数。
   - [toLength](https://caijf.github.io/ut2/module-Util.html#.toLength) - 转为数组长度整数。
   - [toNumber](https://caijf.github.io/ut2/module-Util.html#.toNumber) - 转为数字。
+  - [toPath](https://caijf.github.io/ut2/module-Util.html#.toPath) - 转为属性路径数组。
   - [toSafeInteger](https://caijf.github.io/ut2/module-Util.html#.toSafeInteger) - 转为安全整数。
   - [toString](https://caijf.github.io/ut2/module-Util.html#.toString) - 转为字符串。
   - [tryit](https://caijf.github.io/ut2/module-Util.html#.tryit) - 包装函数为错误优先函数。
