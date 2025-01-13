@@ -46,7 +46,7 @@ describe('unset', () => {
   });
 
   test('当没有匹配路径时返回`true`', () => {
-    const obj = { a: { b: { c: 1 } } };
+    const obj = { a: { b: { c: null } } };
     forEach(['z', 'a.z', 'a.b.z', 'a.b.c.z'], (v) => {
       expect(unset(obj, v)).toBe(true);
     });

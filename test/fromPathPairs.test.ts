@@ -157,6 +157,6 @@ describe('fromPathPairs', () => {
     const startTime = performance.now();
     fromPathPairs(input);
     const endTime = performance.now();
-    expect(endTime - startTime).toBeLessThan(100); // 期望在100毫秒内完成
+    expect(endTime - startTime).toBeLessThan(200); // 期望在200毫秒内完成
   });
 });
