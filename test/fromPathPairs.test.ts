@@ -1,4 +1,4 @@
-import { fromPathPairs, list } from '../src';
+import { fromPathPairs, isObject, list, noop } from '../src';
 import { symbol } from './_utils';
 
 describe('fromPathPairs', () => {
@@ -32,6 +32,23 @@ describe('fromPathPairs', () => {
       ])
     ).toEqual([{ date: '2024-10-10' }, { date: '2024-12-31' }]);
   });
+
+  test('应与 `customizer` 函数一起工作', () => {
+    expect(fromPathPairs([[[0, 1, 2], 3]], (value) => (isObject(value) ? undefined : {}))).toEqual({ 0: { 1: { 2: 3 } } });
+  });
+
+  test('应与 `customizer` 函数返回 `undefined` 一起工作', () => {
+    expect(fromPathPairs([[['a', 0, 'b', 'c'], 4]], noop)).toEqual({ a: [{ b: { c: 4 } }] });
+  });
+
+  // test('自定义根节点对象', () => {
+  //   expect(
+  //     fromPathPairs([[[0, 1, 2], 3]], (value, key, nested) => {
+  //       // console.log(value, key, nested);
+  //       return isUndefined(nested) ? [] : {};
+  //     })
+  //   ).toEqual([{ 1: { 2: 3 } }]);
+  // });
 
   test('应处理数组嵌套转换', () => {
     expect(
