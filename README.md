@@ -155,6 +155,7 @@ const debounced = debounce(() => {
   - [allKeysIn](https://caijf.github.io/ut2/module-Object.html#.allKeysIn) - 对象自身及继承的可枚举属性（包含 `Symbol` 属性）。
   - [findKey](https://caijf.github.io/ut2/module-Object.html#.findKey) - 查找对象的键。
   - [fromPathPairs](https://caijf.github.io/ut2/module-Object.html#.fromPathPairs) - 将属性路径/值对的数组转为对象。
+  - [get](https://caijf.github.io/ut2/module-Object.html#.get) - 获取对象路径的值。
   - [invert](https://caijf.github.io/ut2/module-Object.html#.invert) - 对象自身的可枚举属性（包含 `Symbol` 属性）和值反转。
   - [keys](https://caijf.github.io/ut2/module-Object.html#.keys) - 对象自身的可枚举属性（不包含 `Symbol` 属性）。
   - [keysIn](https://caijf.github.io/ut2/module-Object.html#.keysIn) - 对象自身及继承的可枚举属性（不包含 `Symbol` 属性）。
