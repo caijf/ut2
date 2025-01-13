@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>zip.js - ut2 </title>
+    <title>unset.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">zip.js</h1>
+    <h1 class="page-title">unset.js</h1>
     
 
     
@@ -70,23 +70,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import unzip from './unzip';
+            <pre class="prettyprint source linenums"><code>import get from './get';
+import isNil from './isNil';
+import nth from './nth';
+import toPath from './toPath';
 /**
- * 创建一个数组，数组的第一个元素包含所有给定数组的第一元素，第二个元素包含了所有给定数组的第二元素，依此类推。
+ * 删除对象路径的属性。
  *
- * @alias module:Array.zip
- * @since 1.0.0
- * @param {...Array} array 要处理的分组元素数组。
- * @returns {Array} 重组元素的新数组。
+ * @alias module:Object.unset
+ * @since 1.16.0
+ * @param {*} object 要修改的对象。
+ * @param {string | number | symbol | Array} path 属性路径字符串或数组。
+ * @returns {boolean} 如果删除成功返回`true`，否则返回`false`。
  * @example
+ * const obj = { a: [{ b: { c: 1 } }] };
  *
- * zip(['barney', 'fred'], [36, 40]); // [['barney', 36], ['fred', 40]]
+ * unset(obj, 'a[0].b.c'); // true
+ * console.log(obj); // { a: [{ b: {} }] }
  *
+ * unset(obj, ['a', '0', 'b', 'c']); // true
+ * console.log(obj); // { a: [{ b: {} }] }
  */
-function zip(...arrays) {
-    return unzip(arrays);
+function unset(object, path) {
+    if (isNil(object)) {
+        return true;
+    }
+    const paths = toPath(path, object);
+    const parent = paths.length &lt; 2 ? object : get(object, paths.slice(0, -1));
+    return isNil(parent) ? true : delete parent[nth(paths, -1)];
 }
-export default zip;
+export default unset;
 </code></pre>
         </article>
     </section>

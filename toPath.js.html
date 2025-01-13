@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>zip.js - ut2 </title>
+    <title>toPath.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">zip.js</h1>
+    <h1 class="page-title">toPath.js</h1>
     
 
     
@@ -70,23 +70,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import unzip from './unzip';
+            <pre class="prettyprint source linenums"><code>import stringToPath from './internals/stringToPath';
+import isArray from './isArray';
+import isObject from './isObject';
+import isSymbol from './isSymbol';
+import toString from './toString';
 /**
- * 创建一个数组，数组的第一个元素包含所有给定数组的第一元素，第二个元素包含了所有给定数组的第二元素，依此类推。
+ * 将值转为对象的键。
  *
- * @alias module:Array.zip
- * @since 1.0.0
- * @param {...Array} array 要处理的分组元素数组。
- * @returns {Array} 重组元素的新数组。
- * @example
- *
- * zip(['barney', 'fred'], [36, 40]); // [['barney', 36], ['fred', 40]]
- *
+ * @private
+ * @param {*} value 转为对象键的值
+ * @returns {symbol | string}
  */
-function zip(...arrays) {
-    return unzip(arrays);
+function toKey(value) {
+    return isSymbol(value) ? value : toString(value);
 }
-export default zip;
+/**
+ * 将值转为属性路径数组。
+ *
+ * @alias module:Util.toPath
+ * @since 1.16.0
+ * @param {*} value 要转换的值。
+ * @param {Object} [object] 用于查询键的对象，可选。
+ * @returns {Array} 一个新的属性路径数组。
+ * @example
+ * toPath('a.b.c'); // ['a', 'b', 'c']
+ *
+ * toPath('a[0].b.c'); // ['a', '0', 'b', 'c']
+ *
+ * toPath(['a', 'b', 'c']); // ['a', 'b', 'c']
+ */
+function toPath(value, object) {
+    if (isArray(value)) {
+        return value.map(toKey);
+    }
+    if (isSymbol(value) || (typeof value === 'string' &amp;&amp; isObject(object) &amp;&amp; value in object)) {
+        return [value];
+    }
+    return stringToPath(toString(value));
+}
+export default toPath;
 </code></pre>
         </article>
     </section>

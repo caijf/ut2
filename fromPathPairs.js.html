@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>zip.js - ut2 </title>
+    <title>fromPathPairs.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">zip.js</h1>
+    <h1 class="page-title">fromPathPairs.js</h1>
     
 
     
@@ -70,23 +70,69 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import unzip from './unzip';
+            <pre class="prettyprint source linenums"><code>import isIndex from './internals/isIndex';
+import { nativeUndefined } from './internals/native';
+import isArray from './isArray';
+import isObject from './isObject';
+import set from './set';
+// 调用函数时，参数难以断言元祖类型
+// type TPathPair = [Many&lt;TPath>, any];
 /**
- * 创建一个数组，数组的第一个元素包含所有给定数组的第一元素，第二个元素包含了所有给定数组的第二元素，依此类推。
+ * 将属性路径/值对的数组转为对象。与 [`pathPairs`](#.pathPairs) 相反。
  *
- * @alias module:Array.zip
- * @since 1.0.0
- * @param {...Array} array 要处理的分组元素数组。
- * @returns {Array} 重组元素的新数组。
+ * 如果属性路径为有效索引数字（数字或字符串）且没有值时，将创建数组，否则创建对象。例如：
+ *
+ * ```typescript
+ * fromPathPairs([[[0], 42], [["foo"], "baz"]]);
+ * // [42, foo: 'baz']
+ *
+ * // 调整顺序后
+ * fromPathPairs([[["foo"], "baz"], [[0], 42]]);
+ * // { foo: 'baz', '0': 42 }
+ * ```
+ *
+ * @alias module:Object.fromPathPairs
+ * @since 1.16.0
+ * @param {Array} value 属性路径/值对的数组。
+ * @returns {Object | Array} 转换后的对象或数组。
+ * @param {Function} [customizer] 自定义指定值。
  * @example
+ * fromPathPairs([
+ *   [['date', 'start'], '2024-10-10'],
+ *   [['date', 'end'], '2024-12-31']
+ * ]);
+ * // { date: { start: '2024-10-10', end: '2024-12-31' } }
  *
- * zip(['barney', 'fred'], [36, 40]); // [['barney', 36], ['fred', 40]]
+ * fromPathPairs([
+ *   [['date', 0], '2024-10-10'],
+ *   [['date', 1], '2024-12-31']
+ * ]);
+ * // { date: ['2024-10-10', '2024-12-31'] }
+ *
+ * fromPathPairs([
+ *   [[0, 'date'], '2024-10-10'],
+ *   [[1, 'date'], '2024-12-31']
+ * ]);
+ * // [{ date: '2024-10-10' }, { date: '2024-12-31' }]
  *
  */
-function zip(...arrays) {
-    return unzip(arrays);
+function fromPathPairs(value, customizer) {
+    const valueIsArray = isArray(value);
+    const firstPairPath = valueIsArray &amp;&amp; isArray(value[0]) &amp;&amp; isArray(value[0][0]) ? value[0][0] : [];
+    const firstNode = customizer ? customizer(nativeUndefined, firstPairPath[0], nativeUndefined) : nativeUndefined;
+    const result = isObject(firstNode) ? firstNode : isIndex(firstPairPath[0]) ? [] : {};
+    const length = valueIsArray ? value.length : 0;
+    let index = -1;
+    while (++index &lt; length) {
+        const pathPair = value[index];
+        if (isArray(pathPair)) {
+            const [paths, val] = pathPair;
+            set(result, paths, val, customizer);
+        }
+    }
+    return result;
 }
-export default zip;
+export default fromPathPairs;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>zip.js - ut2 </title>
+    <title>pathPairs.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">zip.js</h1>
+    <h1 class="page-title">pathPairs.js</h1>
     
 
     
@@ -70,23 +70,66 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import unzip from './unzip';
+            <pre class="prettyprint source linenums"><code>import forEach from './forEach';
+import isObjectLike from './isObjectLike';
 /**
- * 创建一个数组，数组的第一个元素包含所有给定数组的第一元素，第二个元素包含了所有给定数组的第二元素，依此类推。
+ * 将对象转为属性路径/值对的数组。
  *
- * @alias module:Array.zip
- * @since 1.0.0
- * @param {...Array} array 要处理的分组元素数组。
- * @returns {Array} 重组元素的新数组。
+ * 如果参数是对象，则包含对象自身的可枚举属性（包含 `Symbol` 属性）。
+ *
+ * 如果参数是数组，则遍历数组。
+ *
+ * @private
+ * @param object 对象或数组
+ * @param parentPath 父级属性路径
+ * @returns 属性路径/值对的数组。
+ */
+function basePathPairs(object, parentPath = []) {
+    const result = [];
+    if (isObjectLike(object)) {
+        forEach(object, (v, k) => {
+            const currentPath = parentPath.concat([k]);
+            if (isObjectLike(v)) {
+                result.push(...basePathPairs(v, currentPath));
+            }
+            else {
+                result.push([currentPath, v]);
+            }
+        });
+    }
+    return result;
+}
+/**
+ * 将对象转为属性路径/值对的数组。与 [`fromPathPairs`](#.fromPathPairs) 相反。
+ *
+ * @alias module:Object.pathPairs
+ * @since 1.16.0
+ * @param {Object|Array} object 对象或数组。
+ * @returns {Array} 属性路径/值对的数组。
  * @example
+ * pathPairs({ date: { start: '2024-10-10', end: '2024-12-31' } });
+ * // [
+ * //   [['date', 'start'], '2024-10-10'],
+ * //   [['date', 'end'], '2024-12-31']
+ * // ]
  *
- * zip(['barney', 'fred'], [36, 40]); // [['barney', 36], ['fred', 40]]
+ * pathPairs({ date: ['2024-10-10', '2024-12-31'] });
+ * // [
+ * //   [['date', 0], '2024-10-10'],
+ * //   [['date', 1], '2024-12-31']
+ * // ]
+ *
+ * pathPairs([{ date: '2024-10-10' }, { date: '2024-12-31' }]);
+ * // [
+ * //   [[0, 'date'], '2024-10-10'],
+ * //   [[1, 'date'], '2024-12-31']
+ * // ]
  *
  */
-function zip(...arrays) {
-    return unzip(arrays);
+function pathPairs(object) {
+    return basePathPairs(object);
 }
-export default zip;
+export default pathPairs;
 </code></pre>
         </article>
     </section>

@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>zip.js - ut2 </title>
+    <title>get.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">zip.js</h1>
+    <h1 class="page-title">get.js</h1>
     
 
     
@@ -70,23 +70,50 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import unzip from './unzip';
+            <pre class="prettyprint source linenums"><code>import { nativeUndefined } from './internals/native';
+import isNil from './isNil';
+import isUndefined from './isUndefined';
+import toPath from './toPath';
 /**
- * 创建一个数组，数组的第一个元素包含所有给定数组的第一元素，第二个元素包含了所有给定数组的第二元素，依此类推。
+ * 获取对象路径的值。
  *
- * @alias module:Array.zip
- * @since 1.0.0
- * @param {...Array} array 要处理的分组元素数组。
- * @returns {Array} 重组元素的新数组。
- * @example
- *
- * zip(['barney', 'fred'], [36, 40]); // [['barney', 36], ['fred', 40]]
- *
+ * @private
+ * @param {*} object 要查询的对象。
+ * @param {string | number | symbol | Array} path 属性路径字符串或数组。
+ * @returns {*} 属性值。
  */
-function zip(...arrays) {
-    return unzip(arrays);
+function baseGet(object, key) {
+    const paths = toPath(key, object);
+    const length = paths.length;
+    let index = 0;
+    while (!isNil(object) &amp;&amp; index &lt; length) {
+        object = object[paths[index++]];
+    }
+    return index &amp;&amp; index === length ? object : nativeUndefined;
 }
-export default zip;
+/**
+ * 获取对象路径的值。
+ *
+ * @alias module:Object.get
+ * @since 1.16.0
+ * @param {*} object 要查询的对象。
+ * @param {string | number | symbol | Array} path 属性路径字符串或数组。
+ * @param {*} [defaultValue] 替代返回 `undefined` 的默认值。
+ * @returns {*} 属性值。
+ * @example
+ * const obj = { a: [{ b: { c: 1 } }] };
+ *
+ * get(obj, 'a[0].b.c'); // 1
+ *
+ * get(obj, ['a', '0', 'b', 'c']); // 1
+ *
+ * get(obj, 'a.b.c', 'default'); // 'default'
+ */
+function get(object, key, defaultValue) {
+    const result = isNil(object) ? nativeUndefined : baseGet(object, key);
+    return isUndefined(result) ? defaultValue : result;
+}
+export default get;
 </code></pre>
         </article>
     </section>
