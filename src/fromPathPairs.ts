@@ -1,16 +1,14 @@
-import forEach from './forEach';
+import isIndex from './internals/isIndex';
 import isArray from './isArray';
-import isLength from './isLength';
-import isObjectLike from './isObjectLike';
+import set from './set';
 
 // 调用函数时，参数难以断言元祖类型
-// type TPath = (string | symbol | number)[];
-// type TPathPair = [TPath, any];
+// type TPathPair = [Many<TPath>, any];
 
 /**
  * 将属性路径/值对的数组转为对象。与 [`pathPairs`](#.pathPairs) 相反。
  *
- * 如果属性路径为数字且没有值时，将创建数组，否则创建对象。例如：
+ * 如果属性路径为有效索引数字（数字或字符串）且没有值时，将创建数组，否则创建对象。例如：
  *
  * ```typescript
  * fromPathPairs([[[0], 42], [["foo"], "baz"]]);
@@ -46,27 +44,20 @@ import isObjectLike from './isObjectLike';
  *
  */
 function fromPathPairs(value: any[]) {
-  const result: any = isArray(value) && isArray(value[0]) && isArray(value[0][0]) && isLength(value[0][0][0]) ? [] : {};
+  const valueIsArray = isArray(value);
+  const result: any = valueIsArray && isArray(value[0]) && isArray(value[0][0]) && isIndex(value[0][0][0]) ? [] : {};
 
-  forEach(value, (v) => {
-    if (isArray(v)) {
-      const [paths, val] = v;
-      if (isArray(paths)) {
-        let temp: any = result;
-        forEach(paths, (path, index) => {
-          if (index === paths.length - 1) {
-            temp[path] = val;
-          } else {
-            if (!isObjectLike(temp[path])) {
-              const nextPath = paths[index + 1];
-              temp[path] = isLength(nextPath) ? [] : {};
-            }
-            temp = temp[path];
-          }
-        });
-      }
+  const length = valueIsArray ? value.length : 0;
+  let index = -1;
+
+  while (++index < length) {
+    const pathPair = value[index];
+
+    if (isArray(pathPair)) {
+      const [paths, val] = pathPair;
+      set(result, paths, val);
     }
-  });
+  }
 
   return result;
 }

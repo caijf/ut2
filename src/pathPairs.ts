@@ -1,18 +1,21 @@
 import forEach from './forEach';
+import { TPath } from './internals/types';
 import isObjectLike from './isObjectLike';
-
-type TPath = (string | symbol | number)[];
 
 /**
  * 将对象转为属性路径/值对的数组。
+ *
+ * 如果参数是对象，则包含对象自身的可枚举属性（包含 `Symbol` 属性）。
+ *
+ * 如果参数是数组，则遍历数组。
  *
  * @private
  * @param object 对象或数组
  * @param parentPath 父级属性路径
  * @returns 属性路径/值对的数组。
  */
-function basePathPairs(object: Record<string, any> | any[], parentPath: TPath = []) {
-  const result: [TPath, any][] = [];
+function basePathPairs(object: Record<string, any> | any[], parentPath: TPath[] = []) {
+  const result: [TPath[], any][] = [];
   if (isObjectLike(object)) {
     forEach(object, (v, k) => {
       const currentPath = parentPath.concat([k]);

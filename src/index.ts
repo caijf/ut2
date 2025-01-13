@@ -145,6 +145,7 @@ export { default as pick } from './pick';
 export { default as pickBy } from './pickBy';
 export { default as fromPathPairs } from './fromPathPairs';
 export { default as pathPairs } from './pathPairs';
+export { default as set } from './set';
 
 /**
  * 字符串

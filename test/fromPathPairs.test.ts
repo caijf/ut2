@@ -124,7 +124,7 @@ describe('fromPathPairs', () => {
 
   test('应处理不正确格式的路径对', () => {
     const input = [[123, 'value']];
-    const expectedOutput = {};
+    const expectedOutput = { '123': 'value' };
     expect(fromPathPairs(input)).toEqual(expectedOutput);
   });
 

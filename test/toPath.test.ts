@@ -9,6 +9,12 @@ describe('toPath', () => {
     expect(toPath('')).toEqual([]);
   });
 
+  it('设置键为属性路径', () => {
+    const obj = { 'a.b': 1 };
+    expect(toPath('a.b', obj)).toEqual(['a.b']);
+    expect(toPath('a.b')).toEqual(['a', 'b']);
+  });
+
   it('强制数组元素为属性类型', () => {
     const array = ['a', 'b', 'c'];
     const arrObject = array.map((item) => Object(item));

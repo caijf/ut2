@@ -1,5 +1,6 @@
 import stringToPath from './internals/stringToPath';
 import isArray from './isArray';
+import isObject from './isObject';
 import isSymbol from './isSymbol';
 import toString from './toString';
 
@@ -20,6 +21,7 @@ function toKey(value: any) {
  * @alias module:Util.toPath
  * @since 1.16.0
  * @param {*} value 要转换的值。
+ * @param {Object} [object] 用于查询键的对象，可选。
  * @returns {Array} 一个新的属性路径数组。
  * @example
  * toPath('a.b.c'); // ['a', 'b', 'c']
@@ -28,11 +30,14 @@ function toKey(value: any) {
  *
  * toPath(['a', 'b', 'c']); // ['a', 'b', 'c']
  */
-function toPath(value: any) {
+function toPath(value: any, object?: object) {
   if (isArray(value)) {
     return value.map(toKey);
   }
-  return isSymbol(value) ? [value] : stringToPath(toString(value));
+  if (isSymbol(value) || (typeof value === 'string' && isObject(object) && value in object)) {
+    return [value];
+  }
+  return stringToPath(toString(value));
 }
 
 export default toPath;

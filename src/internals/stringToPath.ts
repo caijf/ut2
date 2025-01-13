@@ -4,6 +4,7 @@ const rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?
 /**
  * 将字符串路径转为数组路径
  *
+ * @private
  * @param {string} value 字符串路径
  * @returns {string[]} 路径数组
  */

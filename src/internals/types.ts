@@ -4,6 +4,8 @@ export type AsyncFn<P extends any[], R> = (...args: P) => Promise<R>;
 export type SingleSyncFn<R> = () => R;
 export type SingleAsyncFn<R> = () => Promise<R>;
 
+export type TPath = string | symbol | number;
+
 /**
  * 工具辅助类型
  */
