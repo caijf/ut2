@@ -167,6 +167,7 @@ const debounced = debounce(() => {
   - [pick](https://caijf.github.io/ut2/module-Object.html#.pick) - 选择部分属性。
   - [pickBy](https://caijf.github.io/ut2/module-Object.html#.pickBy) - 根据方法，选择部分属性。
   - [set](https://caijf.github.io/ut2/module-Object.html#.set) - 设置对象属性路径值。
+  - [unset](https://caijf.github.io/ut2/module-Object.html#.unset) - 删除对象路径的属性。
 - [String](https://caijf.github.io/ut2/module-String.html) 字符串
   - [camelCase](https://caijf.github.io/ut2/module-String.html#.camelCase) - 驼峰小写。
   - [capitalize](https://caijf.github.io/ut2/module-String.html#.capitalize) - 首字母大写，其余小写。

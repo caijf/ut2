@@ -134,6 +134,8 @@ export { default as randomInt } from './randomInt';
 export { default as allKeys } from './allKeys';
 export { default as allKeysIn } from './allKeysIn';
 export { default as findKey } from './findKey';
+export { default as fromPathPairs } from './fromPathPairs';
+export { default as get } from './get';
 export { default as invert } from './invert';
 export { default as keys } from './keys';
 export { default as keysIn } from './keysIn';
@@ -143,10 +145,9 @@ export { default as omit } from './omit';
 export { default as omitBy } from './omitBy';
 export { default as pick } from './pick';
 export { default as pickBy } from './pickBy';
-export { default as fromPathPairs } from './fromPathPairs';
 export { default as pathPairs } from './pathPairs';
 export { default as set } from './set';
-export { default as get } from './get';
+export { default as unset } from './unset';
 
 /**
  * 字符串
