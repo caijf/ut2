@@ -1,3 +1,4 @@
+import { nativeUndefined } from './internals/native';
 import { Many, TPath } from './internals/types';
 import isNil from './isNil';
 import isUndefined from './isUndefined';
@@ -19,7 +20,7 @@ function baseGet(object: object, key: Many<TPath>) {
   while (!isNil(object) && index < length) {
     object = (object as Record<string | symbol, any>)[paths[index++]];
   }
-  return index && index === length ? object : undefined;
+  return index && index === length ? object : nativeUndefined;
 }
 
 /**
@@ -41,7 +42,7 @@ function baseGet(object: object, key: Many<TPath>) {
  * get(obj, 'a.b.c', 'default'); // 'default'
  */
 function get<TDefault = unknown>(object: any, key: Many<TPath>, defaultValue?: TDefault) {
-  const result = isNil(object) ? undefined : baseGet(object, key);
+  const result = isNil(object) ? nativeUndefined : baseGet(object, key);
   return isUndefined(result) ? defaultValue : (result as TDefault);
 }
 

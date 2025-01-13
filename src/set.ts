@@ -1,4 +1,5 @@
 import isIndex from './internals/isIndex';
+import { nativeUndefined } from './internals/native';
 import { Many, TPath } from './internals/types';
 import isObject from './isObject';
 import toPath from './toPath';
@@ -44,7 +45,7 @@ function set<T extends object>(object: T, path: Many<TPath>, value: any, customi
       nested[key] = value;
     } else {
       const objValue = nested[key];
-      let newValue = customizer ? customizer(objValue, key, nested) : undefined;
+      let newValue = customizer ? customizer(objValue, key, nested) : nativeUndefined;
       if (!isObject(newValue)) {
         newValue = isObject(objValue) ? objValue : isIndex(paths[index + 1]) ? [] : {};
       }

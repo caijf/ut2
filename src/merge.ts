@@ -95,6 +95,6 @@ function merge<TObject, TSource>(object: TObject, source: TSource, customizer?: 
   return baseMerge(object, source, getKeys, customizer);
 }
 
-merge.NOT_MERGE_ARRAYS = (objValue: any, srcValue: any) => (isArray(srcValue) ? srcValue : undefined);
+merge.NOT_MERGE_ARRAYS = (objValue: any, srcValue: any) => (isArray(srcValue) ? srcValue : nativeUndefined);
 
 export default merge;

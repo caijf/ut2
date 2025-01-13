@@ -1,3 +1,4 @@
+import { nativeUndefined } from './internals/native';
 import { SingleAsyncFn, SingleSyncFn } from './internals/types';
 import isPromiseLike from './isPromiseLike';
 
@@ -26,7 +27,7 @@ const guard: Guard = <R>(fn: SingleAsyncFn<R> | SingleSyncFn<R>, shouldGuard?: (
     if (shouldGuard && !shouldGuard(err)) {
       throw err;
     }
-    return undefined;
+    return nativeUndefined;
   };
   try {
     const result = fn();
