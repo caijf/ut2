@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>range.js - ut2 </title>
+    <title>memoize.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">range.js</h1>
+    <h1 class="page-title">memoize.js</h1>
     
 
     
@@ -70,55 +70,87 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { mathCeil, mathMax } from './internals/native';
-import isNil from './isNil';
-import toFinite from './toFinite';
+            <pre class="prettyprint source linenums"><code>import eq from './eq';
+import { mathCeil } from './internals/native';
+function argsEqual(newArgs, lastArgs) {
+    if (newArgs.length !== lastArgs.length) {
+        return false;
+    }
+    for (let i = 0, len = newArgs.length; i &lt; len; i++) {
+        if (!eq(newArgs[i], lastArgs[i])) {
+            return false;
+        }
+    }
+    return true;
+}
 /**
- * 创建一个升序或降序的数字数组。
+ * 创建一个缓存 `func` 结果的函数。
  *
- * 如果省略 `start` 默认为 `0`。
+ * 如果上下文和参数一致，直接返回缓存结果，否则执行函数并缓存。
  *
- * @function
- * @alias module:Util.range
- * @since 1.6.0
- * @param {number} [start=0] 开始值。默认 `0`。
- * @param {number} end 结束值。
- * @param {number} [step] 要增加或减少的值。如果值为 `0`，将视为无效参数。如果 `start` 在 `end` 之前。默认为 `1`，否则默认为 `-1`。
- * @return {number[]} 从开始值（包含）到结束值（不包含）逐步递增或递减的数字数组。
+ * 返回的函数含有一个 `clear` 方法，用于清除缓存。
+ *
+ * @alias module:Function.memoize
+ * @since 1.17.0
+ * @param {Function} func 要缓存结果的函数。
+ * @param {Object} [options] 配置项。
+ * @param {Function} [options.isEqual] 自定义比较参数方法。默认函数遍历参数并使用 `===` 进行比较。
+ * @param {number} [options.max] 最大缓存数量，`0`表示不限制。默认`0`。
+ * @returns 缓存 `func` 结果的函数。
  * @example
+ * const memoizedValues = memoize(Object.values);
+ * const object = { a: 1, b: 2 };
+ * const other = { a: 3, b: 4 };
  *
- * range(4); // [0, 1, 2, 3]
- * range(-4); // [0, -1, -2, -3]
- * range(1, 5); // [1, 2, 3, 4]
- * range(0, 20, 5); // [0, 5, 10, 15]
- * range(0, -4, -1); // [1, 2, 3]
- * range(1, 4, 0); // [1, 2, 3]
- * range(0); // []
+ * memoizedValues(object); // [1, 2]
+ * memoizedValues(other); // [3, 4]
+ *
+ * object.a = 2;
+ * memoizedValues(object); // [1, 2]
+ *
+ * // 清空缓存
+ * memoizedValues.clear();
+ *
+ * memoizedValues(object); // [2, 2]
+ *
+ * // 限制缓存数量。如限制缓存数量为1时，效果同 memoize-one 。
+ * const memoizedOneValues = memoize(Object.values, { max: 1 });
+ *
+ * // 自定义比较函数。如深比较。
+ * import { isEqual } from 'ut2'
+ * const deepMemoizedValues = memoize(Object.values, { isEqual });
+ * const result1 = deepMemoizedValues({ a: 1 });
+ * const result2 = deepMemoizedValues({ a: 1 });
+ * console.log(result1 === result2); // true
+ *
  */
-const range = function (start, end, step) {
-    start = toFinite(start);
-    if (isNil(end)) {
-        end = start;
-        start = 0;
+function memoize(func, options) {
+    const opts = options || {};
+    const max = mathCeil(opts.max || 0);
+    const isEqual = typeof opts.isEqual === 'function' ? opts.isEqual : argsEqual;
+    const cache = [];
+    function memoized(...newArgs) {
+        const cacheValue = cache.find((item) => item.lastThis === this &amp;&amp; isEqual(item.lastArgs, newArgs));
+        if (cacheValue) {
+            return cacheValue.lastReturn;
+        }
+        const lastReturn = func.apply(this, newArgs);
+        if (max > 0 &amp;&amp; cache.length >= max) {
+            cache.shift();
+        }
+        cache.push({
+            lastArgs: newArgs,
+            lastThis: this,
+            lastReturn
+        });
+        return lastReturn;
     }
-    else {
-        end = toFinite(end);
-    }
-    step = toFinite(step);
-    // 值为 0, '', null, undefined 时
-    if (!step) {
-        step = start &lt; end ? 1 : -1;
-    }
-    let index = -1;
-    let length = mathMax(mathCeil((end - start) / step), 0);
-    const result = Array(length);
-    while (length--) {
-        result[++index] = start;
-        start += step;
-    }
-    return result;
-};
-export default range;
+    memoized.clear = function () {
+        cache.length = 0;
+    };
+    return memoized;
+}
+export default memoize;
 </code></pre>
         </article>
     </section>
