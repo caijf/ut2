@@ -9,6 +9,10 @@ const defaultPrefix = '_' + mathRandom().toString(36).substring(2, 4);
 /**
  * 生成唯一ID。如果提供了 `prefix`，会被添加到ID前缀上。
  *
+ * 前缀+自增计数器组合。
+ *
+ * 适用于客户端，比如 `DOM id`。不建议在服务端使用自增计数器，可能会溢出。
+ *
  * @alias module:Util.uniqueId
  * @since 1.0.0
  * @param {string} [prefix] 要添加到ID前缀的值。默认 `"_" + 2个随机生成的字符`。
@@ -17,7 +21,7 @@ const defaultPrefix = '_' + mathRandom().toString(36).substring(2, 4);
  *
  * uniqueId(); // '_vn1'
  *
- * uniqueId(); // '_vn2'
+ * uniqueId(); // '_xa2'
  *
  * uniqueId('abc_'); // 'abc_3'
  *
