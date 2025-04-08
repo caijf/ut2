@@ -190,6 +190,7 @@ const debounced = debounce(() => {
   - [constant](https://caijf.github.io/ut2/module-Util.html#.constant) - 返回自身的函数。
   - [defaultTo](https://caijf.github.io/ut2/module-Util.html#.defaultTo) - 默认值。
   - [eq](https://caijf.github.io/ut2/module-Util.html#.eq) - 等于。
+  - [equalArrayLike](https://caijf.github.io/ut2/module-Util.html#.equalArrayLike) - 比较类数组。
   - [gt](https://caijf.github.io/ut2/module-Util.html#.gt) - 大于。
   - [gte](https://caijf.github.io/ut2/module-Util.html#.gte) - 大于等于。
   - [guard](https://caijf.github.io/ut2/module-Util.html#.guard) - 函数守卫。

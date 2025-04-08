@@ -182,6 +182,7 @@ export { default as conformsTo } from './conformsTo';
 export { default as constant } from './constant';
 export { default as defaultTo } from './defaultTo';
 export { default as eq } from './eq';
+export { default as equalArrayLike } from './equalArrayLike';
 export { default as gt } from './gt';
 export { default as gte } from './gte';
 export { default as guard } from './guard';
