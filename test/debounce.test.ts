@@ -15,12 +15,12 @@ describe('debounce', () => {
 
     const result1 = [debounced('a'), debounced('b'), debounced('c')];
 
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
     expect(result1).toEqual([undefined, undefined, undefined]);
 
     jest.advanceTimersByTime(100);
 
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
     expect(result1).toEqual([undefined, undefined, undefined]);
 
     // 返回上一次执行的结果
@@ -28,7 +28,7 @@ describe('debounce', () => {
     expect(result2).toEqual(['c', 'c', 'c']);
 
     jest.advanceTimersByTime(100);
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
     expect(debounced('g')).toBe('f');
   });
 
@@ -36,40 +36,40 @@ describe('debounce', () => {
     const fn = jest.fn();
     const debounced = debounce(fn, 100, true);
 
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
     debounced();
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     debounced();
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     jest.advanceTimersByTime(50);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     jest.advanceTimersByTime(50);
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('上一次调用的 `wait` 后执行', () => {
     const fn = jest.fn();
     const debounced = debounce(fn, 100);
 
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     debounced();
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     jest.advanceTimersByTime(99);
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     debounced('a');
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     jest.advanceTimersByTime(99);
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     jest.advanceTimersByTime(1);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it('返回最后一次执行的结果', () => {
@@ -95,10 +95,10 @@ describe('debounce', () => {
 
     debounced('a');
     debounced('a');
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     jest.advanceTimersByTime(1);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it('延迟开始前调用', () => {
@@ -107,15 +107,15 @@ describe('debounce', () => {
 
     debounced('a');
 
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     jest.advanceTimersByTime(100);
     debounced('b');
     debounced('c');
 
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
     jest.advanceTimersByTime(100);
-    expect(fn).toBeCalledTimes(3);
+    expect(fn).toHaveBeenCalledTimes(3);
   });
 
   it('测试 `flush` `cancel` `pending` 方法', () => {
@@ -125,32 +125,32 @@ describe('debounce', () => {
     let result = debounced('a');
 
     expect(result).toBeUndefined();
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     expect(debounced.pending()).toBe(true);
     result = debounced.flush();
     expect(debounced.pending()).toBe(false);
     expect(result).toBe('a');
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     // 再次执行 flush 直接返回之前的结果
     expect(debounced.pending()).toBe(false);
     result = debounced.flush();
     expect(debounced.pending()).toBe(false);
     expect(result).toBe('a');
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     result = debounced('b');
     expect(debounced.pending()).toBe(true);
     expect(result).toBe('a');
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     // 取消执行延迟函数
     debounced.cancel();
     expect(debounced.pending()).toBe(false);
     jest.advanceTimersByTime(100);
     expect(result).toBe('a');
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it('非函数报异常', () => {

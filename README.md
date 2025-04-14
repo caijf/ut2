@@ -94,6 +94,7 @@ const debounced = debounce(() => {
   - [curry](https://caijf.github.io/ut2/module-Function.html#.curry) - 柯里化函数。
   - [debounce](https://caijf.github.io/ut2/module-Function.html#.debounce) - 防抖函数。
   - [delay](https://caijf.github.io/ut2/module-Function.html#.delay) - 延迟触发。
+  - [limit](https://caijf.github.io/ut2/module-Function.html#.limit) - 限流函数。
   - [memoize](https://caijf.github.io/ut2/module-Function.html#.memoize) - 缓存函数结果。
   - [negate](https://caijf.github.io/ut2/module-Function.html#.negate) - 否定断言。
   - [once](https://caijf.github.io/ut2/module-Function.html#.once) - 只执行一次。

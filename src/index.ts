@@ -50,6 +50,7 @@ export { default as before } from './before';
 export { default as curry } from './curry';
 export { default as debounce } from './debounce';
 export { default as delay } from './delay';
+export { default as limit } from './limit';
 export { default as memoize } from './memoize';
 export { default as negate } from './negate';
 export { default as once } from './once';
