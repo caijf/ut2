@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>randomInt.js - ut2 </title>
+    <title>limit.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">randomInt.js</h1>
+    <h1 class="page-title">limit.js</h1>
     
 
     
@@ -70,48 +70,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { mathCeil, mathFloor, mathMax, mathMin, mathRandom } from './internals/native';
-import toFinite from './toFinite';
-/**
- * 产生一个包含 `lower` 与 `upper` 之间的随机整数。
+            <pre class="prettyprint source linenums"><code>/**
+ * 创建一个限流函数，该函数在时间间隔内只会执行一次。
  *
- * 如果参数非整数 `lower=Math.ceil(lower)` `upper=Math.floor(upper)`。如果 `lower` 大于 `upper` 会自动交换参数。
+ * 与 `throttle` 的区别：
+ * 1. 在时间间隔内再次调用，`limit`不会执行，而`throttle` 会执行；
+ * 2. `limit` 没有取消和立即执行的方法，逻辑更简洁。
  *
- * @alias module:Number.randomInt
- * @since 1.0.0
- * @param {number} [lower=0] 下限。默认 `0`。
- * @param {number} [upper=1] 上限。默认 `1`。
- * @returns {number} 随机整数。
+ * @alias module:Function.limit
+ * @since 1.19.0
+ * @param {Function} fn 要限流的函数。
+ * @param {number} timespan 限流的时间间隔，单位为毫秒。
+ * @returns 限流函数。
  * @example
+ * function revalidate(){
+ *   if(document.visibilityState !== 'hidden' || navigator.onLine){
+ *     // do something
+ *     console.log('revalidate');
+ *   }
+ * }
  *
- * // 0 到 1 之间的整数
- * randomInt(); // 1
+ * // 限制 5s 内只会执行一次
+ * const limited = limit(revalidate, 5000);
  *
- * // 2 到 4 之间的整数
- * randomInt(2, 4); // 4
- *
- * // 2 到 4 之间的整数
- * randomInt(4, 2); // 3
- *
- * // 区间只有一个整数
- * randomInt(1.2, 2.4); // 2
- *
+ * window.addEventListener('visibilitychange', limited);
+ * window.addEventListener('focus', limited);
  */
-function randomInt(lower = 0, upper = 1) {
-    lower = toFinite(lower);
-    upper = toFinite(upper);
-    let min = mathCeil(mathMin(lower, upper) || 0);
-    let max = mathFloor(mathMax(lower, upper) || 0);
-    // 如果两个值都是整数位相同，浮点数不同， 大小值的可能会互换。（如 1.2, 1.3）
-    if (min > max) {
-        // [min, max] = [max, min]
-        const temp = min;
-        min = max;
-        max = temp;
+export default function limit(fn, timespan) {
+    let pending = false;
+    function limited(...args) {
+        if (pending)
+            return;
+        pending = true;
+        fn(...args);
+        setTimeout(() => {
+            pending = false;
+        }, timespan);
     }
-    return mathFloor(min + mathRandom() * (max - min + 1));
+    return limited;
 }
-export default randomInt;
 </code></pre>
         </article>
     </section>
