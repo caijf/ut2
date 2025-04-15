@@ -5,7 +5,10 @@ import { FunctionAny } from './internals/types';
  *
  * 与 `throttle` 的区别：
  * 1. 在时间间隔内再次调用，`limit`不会执行，而`throttle` 会执行；
- * 2. `limit` 没有取消和立即执行的方法，逻辑更简洁。
+ * 2. `limit` 没有取消和立即执行的方法，逻辑简洁。
+ *
+ * 与 `throttle(fn, wait, false)` 第三个参数为`false`的区别：
+ * 1. 两者都是在间隔时间内只执行一次，但 `limit` 调用后立即执行，`throttle(fn, wait, false)` 调用后等待 wait 毫秒后执行。
  *
  * @alias module:Function.limit
  * @since 1.19.0
