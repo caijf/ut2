@@ -15,6 +15,6 @@ const freeSelf = selfExisted && self.Object === Object && self;
  * @since 1.10.0
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/globalThis globalThis}
  */
-const root: typeof globalThis = freeGlobalThis || freeGlobal || freeSelf || Function('return this')();
+const root: Window & typeof globalThis = freeGlobalThis || freeGlobal || freeSelf || Function('return this')();
 
 export default root;
