@@ -2,7 +2,7 @@ import getTag from './internals/getTag';
 import { nodeIsTypedArray } from './internals/nodeUtil';
 import isArrayLikeObject from './isArrayLikeObject';
 
-const typedArrayPattern = /\[object ((I|Ui)nt(8|16|32)|Float(32|64)|Uint8Clamped|Big(I|Ui)nt64)Array\]/;
+const typedArrayPattern = /\[object ((I|Ui)nt(8|16|32)|Float(16|32|64)|Uint8Clamped|Big(I|Ui)nt64)Array\]/;
 
 /**
  * 检查值是否为类型化数组。

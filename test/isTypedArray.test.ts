@@ -20,6 +20,10 @@ describe('isTypedArray', () => {
     typedArrays.forEach((item) => {
       expect(isTypedArray(item)).toBe(true);
     });
+
+    if (typeof Float16Array !== 'undefined') {
+      expect(isTypedArray(new Float16Array(24))).toBe(true);
+    }
   });
 
   it('incorrect', () => {
