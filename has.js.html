@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isLength.js - ut2 </title>
+    <title>has.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isLength.js</h1>
+    <h1 class="page-title">has.js</h1>
     
 
     
@@ -70,30 +70,49 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { MAX_SAFE_INTEGER } from './internals/native';
+            <pre class="prettyprint source linenums"><code>import hasPath from './internals/hasPath';
+import { objectProtoHasOwnProperty } from './internals/native';
+import isNil from './isNil';
 /**
- * 检查值是否为有效的类数组长度。
+ * 对象自身是否包含属性。
  *
- * @alias module:Language.isLength
- * @since 1.0.0
- * @see {@link https://tc39.es/ecma262/#sec-tolength ToLength}
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为有效的类数组长度，返回 `true`，否则返回 `false`。
- * @example
- *
- * isLength(3); // true
- *
- * isLength('3'); // false
- *
- * isLength(Number.Min_VALUE); // false
- *
- * isLength(Number.Infinity); // false
- *
+ * @private
+ * @param {*} object 要查询的对象。
+ * @param {string | number | symbol | Array} path 属性路径字符串或数组。
+ * @returns {boolean} 对象自身是否包含属性。
  */
-function isLength(value) {
-    return typeof value === 'number' &amp;&amp; value > -1 &amp;&amp; value % 1 === 0 &amp;&amp; value &lt;= MAX_SAFE_INTEGER;
+function baseHas(object, key) {
+    return objectProtoHasOwnProperty.call(object, key);
 }
-export default isLength;
+/**
+ * 判断对象自身的属性是否包含路径属性。
+ *
+ * @alias module:Object.has
+ * @since 1.20.0
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty | hasOwnProperty}
+ * @param {*} object 要查询的对象。
+ * @param {string | number | symbol | Array} path 属性路径字符串或数组。
+ * @returns {boolean} 对象自身的属性是否包含路径属性。
+ * @example
+ * const obj = { a: [{ b: { c: 1 } }] };
+ *
+ * has(obj, 'a[0].b.c'); // true
+ *
+ * has(obj, 'a.0.b.c'); // true
+ *
+ * has(obj, ['a', '0', 'b', 'c']); // true
+ *
+ * has(obj, 'a.b.c'); // false
+ *
+ * has(obj, 'a.0.b.c.d'); // false
+ *
+ * // 不包含继承属性
+ * has(obj, 'toString'); // false
+ */
+function has(object, key) {
+    return !isNil(object) &amp;&amp; hasPath(object, key, baseHas);
+}
+export default has;
 </code></pre>
         </article>
     </section>
