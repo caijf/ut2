@@ -10,6 +10,7 @@ const rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?
  */
 function stringToPath(value: string) {
   const result = [];
+  // . symbol
   if (value.charCodeAt(0) === 46) {
     result.push('');
   }

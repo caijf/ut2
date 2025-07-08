@@ -1,5 +1,6 @@
 import stringToPath from './internals/stringToPath';
 import isArray from './isArray';
+import isNil from './isNil';
 import isObject from './isObject';
 import isSymbol from './isSymbol';
 import toString from './toString';
@@ -12,7 +13,7 @@ import toString from './toString';
  * @returns {symbol | string}
  */
 function toKey(value: any) {
-  return isSymbol(value) ? value : toString(value);
+  return isSymbol(value) ? value : isNil(value) ? value + '' : toString(value);
 }
 
 /**

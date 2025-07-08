@@ -65,6 +65,13 @@ describe('toPath', () => {
     expect(toPath(undefined)).toEqual([]);
     expect(toPath(123)).toEqual(['123']);
     expect(toPath(true)).toEqual(['true']);
+    function fn() {}
+    fn.toString = () => 'fn';
+    expect(toPath(fn)).toEqual(['fn']);
     expect(toPath({})).toEqual(['object Object']); // {} 转为字符串等于 `[object Object]`
+
+    expect(toPath([null])).toEqual(['null']);
+    expect(toPath([undefined])).toEqual(['undefined']);
+    expect(toPath([{}])).toEqual(['[object Object]']);
   });
 });
