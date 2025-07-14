@@ -16,6 +16,6 @@ module.exports = {
   globals: {
     BUILD_VERSION: version
   },
-  coveragePathIgnorePatterns: ['/test/'],
+  coveragePathIgnorePatterns: ['/test/', '/src/uniqueId.ts'],
   ...coverageConfig
 };
