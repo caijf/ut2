@@ -13,14 +13,14 @@ describe('map', () => {
 
     const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
     map(arr, fn);
-    expect(fn).toBeCalledTimes(6);
+    expect(fn).toHaveBeenCalledTimes(6);
 
     const obj = { a: 1, b: false, c: 2 };
     expect(map(obj)).toEqual([1, false, 2]);
 
     const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
     map(obj, objFn);
-    expect(objFn).toBeCalledTimes(3);
+    expect(objFn).toHaveBeenCalledTimes(3);
   });
 
   it('对象', () => {
@@ -38,7 +38,7 @@ describe('map', () => {
     const fn = jest.fn();
     const arr = list(1000);
     map(arr, fn);
-    expect(fn).toBeCalledTimes(1000);
+    expect(fn).toHaveBeenCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，不会终止迭代', () => {
@@ -47,14 +47,14 @@ describe('map', () => {
       return num === 499;
     });
     map(arr, fn);
-    expect(fn).toBeCalledTimes(1000);
+    expect(fn).toHaveBeenCalledTimes(1000);
 
     const obj = { a: 1, b: 2, c: 3 };
     const objFn = jest.fn((value: number, key: string) => {
       return key === 'b';
     });
     map(obj, objFn);
-    expect(objFn).toBeCalledTimes(3);
+    expect(objFn).toHaveBeenCalledTimes(3);
   });
 
   it('带 length 的普通对象，视为类数组对象', () => {
@@ -62,14 +62,14 @@ describe('map', () => {
     const obj = { a: 1, b: 2, length: 2 };
     const fn = jest.fn((item) => item);
     const objResult = map(obj, fn);
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
     expect(objResult).toEqual([undefined, undefined]);
 
     // 正常的类数组对象
     const obj2 = { 0: 'a', 1: 'b', length: 2 };
     const fn2 = jest.fn((item) => item);
     const obj2Result = map(obj2, fn2);
-    expect(fn2).toBeCalledTimes(2);
+    expect(fn2).toHaveBeenCalledTimes(2);
     expect(obj2Result).toEqual(['a', 'b']);
   });
 
@@ -82,28 +82,28 @@ describe('map', () => {
       ]),
       mapFn
     );
-    expect(mapFn).toBeCalledTimes(0);
+    expect(mapFn).toHaveBeenCalledTimes(0);
     expect(mapResult).toEqual([]);
 
     const setFn = jest.fn((item) => item);
     const setResult = map(new Set(['bar', 'foo', 'baz']), setFn);
-    expect(setFn).toBeCalledTimes(0);
+    expect(setFn).toHaveBeenCalledTimes(0);
     expect(setResult).toEqual([]);
 
     const numFn = jest.fn((item) => item);
     // @ts-ignore
     const numResult = map(12345, numFn);
-    expect(numFn).toBeCalledTimes(0);
+    expect(numFn).toHaveBeenCalledTimes(0);
     expect(numResult).toEqual([]);
 
     const nullFn = jest.fn((item) => item);
     const nullResult = map(null, nullFn);
-    expect(nullFn).toBeCalledTimes(0);
+    expect(nullFn).toHaveBeenCalledTimes(0);
     expect(nullResult).toEqual([]);
 
     const undefFn = jest.fn((item) => item);
     const undefResult = map(undefined, undefFn);
-    expect(undefFn).toBeCalledTimes(0);
+    expect(undefFn).toHaveBeenCalledTimes(0);
     expect(undefResult).toEqual([]);
 
     function foo(a: number) {
@@ -111,7 +111,7 @@ describe('map', () => {
     }
     const funcFn = jest.fn((item) => item);
     const funcResult = map(foo, funcFn);
-    expect(funcFn).toBeCalledTimes(0);
+    expect(funcFn).toHaveBeenCalledTimes(0);
     expect(funcResult).toEqual([]);
   });
 });

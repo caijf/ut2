@@ -25,6 +25,12 @@ describe('clamp', () => {
     expect(clamp(10, -5, NaN)).toBe(0);
     expect(clamp(-10, NaN, 0)).toBe(0);
   });
+  it('只有一个参数，直接返回该参数', () => {
+    // @ts-ignore
+    expect(clamp(-10)).toBe(-10);
+    // @ts-ignore
+    expect(clamp(-0)).toBe(-0);
+  });
   it('错误的参数', () => {
     expect(clamp(NaN, -5, 5)).toBeNaN();
     // @ts-ignore

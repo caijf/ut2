@@ -16,14 +16,14 @@ describe('some', () => {
 
     const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
     some(arr, fn);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
 
     const obj = { a: 1, b: false, c: 2 };
     expect(some(obj)).toBe(true);
 
     const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
     some(obj, objFn);
-    expect(objFn).toBeCalledTimes(1);
+    expect(objFn).toHaveBeenCalledTimes(1);
   });
 
   it('对象', () => {
@@ -44,7 +44,7 @@ describe('some', () => {
     const fn = jest.fn();
     const arr = list(1000);
     some(arr, fn);
-    expect(fn).toBeCalledTimes(1000);
+    expect(fn).toHaveBeenCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，终止迭代', () => {
@@ -53,14 +53,14 @@ describe('some', () => {
       return num === 499;
     });
     some(arr, fn);
-    expect(fn).toBeCalledTimes(500);
+    expect(fn).toHaveBeenCalledTimes(500);
 
     const obj = { a: 1, b: 2, c: 3 };
     const objFn = jest.fn((value: number, key: string) => {
       return key === 'b';
     });
     some(obj, objFn);
-    expect(objFn).toBeCalledTimes(2);
+    expect(objFn).toHaveBeenCalledTimes(2);
   });
 
   it('带 length 的普通对象，视为类数组对象', () => {
@@ -68,14 +68,14 @@ describe('some', () => {
     const obj = { a: 1, b: 2, length: 2 };
     const fn = jest.fn((item) => item);
     const objResult = some(obj, fn);
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
     expect(objResult).toBe(false);
 
     // 正常的类数组对象
     const obj2 = { 0: 'a', 1: 'b', length: 2 };
     const fn2 = jest.fn((item) => item);
     const obj2Result = some(obj2, fn2);
-    expect(fn2).toBeCalledTimes(1);
+    expect(fn2).toHaveBeenCalledTimes(1);
     expect(obj2Result).toBe(true);
   });
 
@@ -88,28 +88,28 @@ describe('some', () => {
       ]),
       mapFn
     );
-    expect(mapFn).toBeCalledTimes(0);
+    expect(mapFn).toHaveBeenCalledTimes(0);
     expect(mapResult).toBe(false);
 
     const setFn = jest.fn((item) => item);
     const setResult = some(new Set(['bar', 'foo', 'baz']), setFn);
-    expect(setFn).toBeCalledTimes(0);
+    expect(setFn).toHaveBeenCalledTimes(0);
     expect(setResult).toBe(false);
 
     const numFn = jest.fn((item) => item);
     // @ts-ignore
     const numResult = some(12345, numFn);
-    expect(numFn).toBeCalledTimes(0);
+    expect(numFn).toHaveBeenCalledTimes(0);
     expect(numResult).toBe(false);
 
     const nullFn = jest.fn((item) => item);
     const nullResult = some(null, nullFn);
-    expect(nullFn).toBeCalledTimes(0);
+    expect(nullFn).toHaveBeenCalledTimes(0);
     expect(nullResult).toBe(false);
 
     const undefFn = jest.fn((item) => item);
     const undefResult = some(undefined, undefFn);
-    expect(undefFn).toBeCalledTimes(0);
+    expect(undefFn).toHaveBeenCalledTimes(0);
     expect(undefResult).toBe(false);
 
     function foo(a: number) {
@@ -117,7 +117,7 @@ describe('some', () => {
     }
     const funcFn = jest.fn((item) => item);
     const funcResult = some(foo, funcFn);
-    expect(funcFn).toBeCalledTimes(0);
+    expect(funcFn).toHaveBeenCalledTimes(0);
     expect(funcResult).toBe(false);
   });
 });

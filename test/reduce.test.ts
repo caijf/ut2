@@ -45,7 +45,7 @@ describe('reduce', () => {
       },
       0
     );
-    expect(fn1).toBeCalledTimes(3);
+    expect(fn1).toHaveBeenCalledTimes(3);
     expect(first1).toBe(0);
     expect(result1).toBe(6);
 
@@ -58,7 +58,7 @@ describe('reduce', () => {
       }
       return accumulator + current;
     });
-    expect(fn2).toBeCalledTimes(2);
+    expect(fn2).toHaveBeenCalledTimes(2);
     expect(first2).toBe(1);
     expect(result2).toBe(result1);
   });
@@ -80,14 +80,14 @@ describe('reduce', () => {
 
     const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
     reduce(arr, fn);
-    expect(fn).toBeCalledTimes(5);
+    expect(fn).toHaveBeenCalledTimes(5);
 
     const obj = { a: 1, b: false, c: 2 };
     expect(reduce(obj)).toBe(1);
 
     const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
     reduce(obj, objFn);
-    expect(objFn).toBeCalledTimes(2);
+    expect(objFn).toHaveBeenCalledTimes(2);
   });
 
   it('迭代对象', () => {
@@ -132,11 +132,11 @@ describe('reduce', () => {
     const fn = jest.fn();
     const arr = list(1000);
     reduce(arr, fn);
-    expect(fn).toBeCalledTimes(999);
+    expect(fn).toHaveBeenCalledTimes(999);
 
     fn.mockReset();
     reduce(arr, fn, 0);
-    expect(fn).toBeCalledTimes(1000);
+    expect(fn).toHaveBeenCalledTimes(1000);
   });
 
   it('带 length 的普通对象，视为类数组对象', () => {
@@ -146,7 +146,7 @@ describe('reduce', () => {
       expect(value).toBeUndefined();
     });
     const objResult = reduce(obj, fn);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
     expect(objResult).toBeUndefined();
 
     // 正常的类数组对象
@@ -155,7 +155,7 @@ describe('reduce', () => {
       expect(value).not.toBeUndefined();
     });
     const obj2Result = reduce(obj2, fn2);
-    expect(fn2).toBeCalledTimes(1);
+    expect(fn2).toHaveBeenCalledTimes(1);
     expect(obj2Result).toBeUndefined();
   });
 
@@ -166,30 +166,30 @@ describe('reduce', () => {
       ['baz', 'a']
     ]);
     const mapResult = reduce(map, mapFn);
-    expect(mapFn).toBeCalledTimes(0);
+    expect(mapFn).toHaveBeenCalledTimes(0);
     expect(mapResult).toBeUndefined();
 
     const setFn = jest.fn();
     const set = new Set(['bar', 'foo', 'baz']);
     const setResult = reduce(set, setFn);
-    expect(setFn).toBeCalledTimes(0);
+    expect(setFn).toHaveBeenCalledTimes(0);
     expect(setResult).toBeUndefined();
 
     const numFn = jest.fn();
     const num = 12345;
     // @ts-ignore
     const numResult = reduce(num, numFn);
-    expect(numFn).toBeCalledTimes(0);
+    expect(numFn).toHaveBeenCalledTimes(0);
     expect(numResult).toBeUndefined();
 
     const nullFn = jest.fn();
     const nullResult = reduce(null, nullFn);
-    expect(nullFn).toBeCalledTimes(0);
+    expect(nullFn).toHaveBeenCalledTimes(0);
     expect(nullResult).toBeUndefined();
 
     const undefFn = jest.fn();
     const undefResult = reduce(undefined, undefFn);
-    expect(undefFn).toBeCalledTimes(0);
+    expect(undefFn).toHaveBeenCalledTimes(0);
     expect(undefResult).toBeUndefined();
 
     function foo(a: number) {
@@ -197,7 +197,7 @@ describe('reduce', () => {
     }
     const funcFn = jest.fn();
     const funcResult = reduce(foo, funcFn as any);
-    expect(funcFn).toBeCalledTimes(0);
+    expect(funcFn).toHaveBeenCalledTimes(0);
     expect(funcResult).toBeUndefined();
   });
 });

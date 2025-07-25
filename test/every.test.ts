@@ -16,14 +16,14 @@ describe('every', () => {
 
     const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
     every(arr, fn);
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
 
     const obj = { a: 1, b: false, c: 2 };
     expect(every(obj)).toBe(false);
 
     const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
     every(obj, objFn);
-    expect(objFn).toBeCalledTimes(2);
+    expect(objFn).toHaveBeenCalledTimes(2);
   });
 
   it('对象', () => {
@@ -43,7 +43,7 @@ describe('every', () => {
     const fn = jest.fn(isNumber);
     const arr = list(1000);
     every(arr, fn);
-    expect(fn).toBeCalledTimes(1000);
+    expect(fn).toHaveBeenCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，终止迭代', () => {
@@ -52,14 +52,14 @@ describe('every', () => {
       return num !== 499;
     });
     every(arr, fn);
-    expect(fn).toBeCalledTimes(500);
+    expect(fn).toHaveBeenCalledTimes(500);
 
     const obj = { a: 1, b: 2, c: 3 };
     const objFn = jest.fn((value: number, key: string) => {
       return key !== 'b';
     });
     every(obj, objFn);
-    expect(objFn).toBeCalledTimes(2);
+    expect(objFn).toHaveBeenCalledTimes(2);
   });
 
   it('带 length 的普通对象，视为类数组对象', () => {
@@ -67,14 +67,14 @@ describe('every', () => {
     const obj = { a: 1, b: 2, length: 2 };
     const fn = jest.fn((item) => item);
     const objResult = every(obj, fn);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
     expect(objResult).toBe(false);
 
     // 正常的类数组对象
     const obj2 = { 0: 'a', 1: 'b', length: 2 };
     const fn2 = jest.fn((item) => item);
     const obj2Result = every(obj2, fn2);
-    expect(fn2).toBeCalledTimes(2);
+    expect(fn2).toHaveBeenCalledTimes(2);
     expect(obj2Result).toBe(true);
   });
 
@@ -87,28 +87,28 @@ describe('every', () => {
       ]),
       mapFn
     );
-    expect(mapFn).toBeCalledTimes(0);
+    expect(mapFn).toHaveBeenCalledTimes(0);
     expect(mapResult).toBe(true);
 
     const setFn = jest.fn((item) => item);
     const setResult = every(new Set(['bar', 'foo', 'baz']), setFn);
-    expect(setFn).toBeCalledTimes(0);
+    expect(setFn).toHaveBeenCalledTimes(0);
     expect(setResult).toBe(true);
 
     const numFn = jest.fn((item) => item);
     // @ts-ignore
     const numResult = every(12345, numFn);
-    expect(numFn).toBeCalledTimes(0);
+    expect(numFn).toHaveBeenCalledTimes(0);
     expect(numResult).toBe(true);
 
     const nullFn = jest.fn((item) => item);
     const nullResult = every(null, nullFn);
-    expect(nullFn).toBeCalledTimes(0);
+    expect(nullFn).toHaveBeenCalledTimes(0);
     expect(nullResult).toBe(true);
 
     const undefFn = jest.fn((item) => item);
     const undefResult = every(undefined, undefFn);
-    expect(undefFn).toBeCalledTimes(0);
+    expect(undefFn).toHaveBeenCalledTimes(0);
     expect(undefResult).toBe(true);
 
     function foo(a: number) {
@@ -116,7 +116,7 @@ describe('every', () => {
     }
     const funcFn = jest.fn((item) => item);
     const funcResult = every(foo, funcFn);
-    expect(funcFn).toBeCalledTimes(0);
+    expect(funcFn).toHaveBeenCalledTimes(0);
     expect(funcResult).toBe(true);
   });
 });

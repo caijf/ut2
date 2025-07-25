@@ -137,6 +137,7 @@ describe('fromPathPairs', () => {
     const input = null;
     // @ts-ignore
     expect(fromPathPairs(input)).toEqual({});
+    expect(fromPathPairs([1, 2])).toEqual({});
   });
 
   test('应处理不正确格式的路径对', () => {

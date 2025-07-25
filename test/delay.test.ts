@@ -12,29 +12,29 @@ describe('delay', () => {
   it('basic', () => {
     const fn = jest.fn();
     delay(fn, 100);
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     jest.advanceTimersByTime(100);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it('取消定时器', () => {
     const fn = jest.fn();
     const timerId = delay(fn, 100);
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     clearTimeout(timerId);
     jest.advanceTimersByTime(100);
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
   });
 
   it('延迟 0 毫秒', () => {
     const fn = jest.fn();
     delay(fn, 0);
-    expect(fn).toBeCalledTimes(0);
+    expect(fn).toHaveBeenCalledTimes(0);
 
     jest.advanceTimersByTime(1);
-    expect(fn).toBeCalledTimes(1);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it('测试参数', () => {

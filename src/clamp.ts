@@ -10,12 +10,16 @@ interface Clamp {
 /**
  * 数字限制在 `lower` 和 `upper` 之间的值。
  *
+ * 特殊说明：
+ * - 如果只传入 1 个参数，直接返回该参数；
+ * - 如果只传入 2 个参数，`lower` 透传给 `upper`。
+ *
  * @function
  * @alias module:Number.clamp
  * @since 1.0.0
  * @param {number} number 被限制的值。
- * @param {number} [lower] 下限。默认 `0`。
- * @param {number} upper 上限。默认 `0`。
+ * @param {number} [lower] 下限。
+ * @param {number} upper 上限。
  * @returns {number} 限制后的值。
  * @example
  *

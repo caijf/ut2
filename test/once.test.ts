@@ -51,7 +51,7 @@ describe('once', () => {
       throw new Error();
     });
 
-    expect(onceThrowError).toThrowError();
+    expect(onceThrowError).toThrow();
     expect(onceThrowError()).toBeUndefined();
   });
 });

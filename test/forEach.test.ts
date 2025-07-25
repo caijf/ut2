@@ -27,14 +27,14 @@ describe('forEach', () => {
 
     const fn = jest.fn((item) => item); // 模拟默认第二个参数，用于测试
     forEach(arr, fn);
-    expect(fn).toBeCalledTimes(4);
+    expect(fn).toHaveBeenCalledTimes(4);
 
     const obj = { a: 1, b: false, c: 2 };
     forEach(obj);
 
     const objFn = jest.fn((value) => value); // 模拟默认第二个参数，用于测试
     forEach(obj, objFn);
-    expect(objFn).toBeCalledTimes(2);
+    expect(objFn).toHaveBeenCalledTimes(2);
   });
 
   it('迭代对象', () => {
@@ -64,7 +64,7 @@ describe('forEach', () => {
     const fn = jest.fn();
     const arr = list(1000);
     forEach(arr, fn);
-    expect(fn).toBeCalledTimes(1000);
+    expect(fn).toHaveBeenCalledTimes(1000);
   });
 
   it('迭代函数显示返回 false ，终止迭代', () => {
@@ -75,7 +75,7 @@ describe('forEach', () => {
       }
     });
     forEach(arr, fn);
-    expect(fn).toBeCalledTimes(500);
+    expect(fn).toHaveBeenCalledTimes(500);
 
     const obj = { a: 1, b: 2, c: 3 };
     const objFn = jest.fn((value: number, key: string) => {
@@ -84,7 +84,7 @@ describe('forEach', () => {
       }
     });
     forEach(obj, objFn);
-    expect(objFn).toBeCalledTimes(2);
+    expect(objFn).toHaveBeenCalledTimes(2);
   });
 
   it('带 length 的普通对象，视为类数组对象', () => {
@@ -94,7 +94,7 @@ describe('forEach', () => {
       expect(value).toBeUndefined();
     });
     const objResult = forEach(obj, fn);
-    expect(fn).toBeCalledTimes(2);
+    expect(fn).toHaveBeenCalledTimes(2);
     expect(objResult).toBe(obj);
 
     // 正常的类数组对象
@@ -103,7 +103,7 @@ describe('forEach', () => {
       expect(value).not.toBeUndefined();
     });
     const obj2Result = forEach(obj2, fn2);
-    expect(fn2).toBeCalledTimes(2);
+    expect(fn2).toHaveBeenCalledTimes(2);
     expect(obj2Result).toBe(obj2);
   });
 
@@ -116,7 +116,7 @@ describe('forEach', () => {
     const mapResult = forEach(map, (...args) => {
       mapFn(...args);
     });
-    expect(mapFn).toBeCalledTimes(0);
+    expect(mapFn).toHaveBeenCalledTimes(0);
     expect(mapResult).toBe(map);
 
     const setFn = jest.fn();
@@ -124,7 +124,7 @@ describe('forEach', () => {
     const setResult = forEach(set, (...args) => {
       setFn(...args);
     });
-    expect(setFn).toBeCalledTimes(0);
+    expect(setFn).toHaveBeenCalledTimes(0);
     expect(setResult).toBe(set);
 
     const numFn = jest.fn();
@@ -133,21 +133,21 @@ describe('forEach', () => {
     const numResult = forEach(num, (...args) => {
       numFn(...args);
     });
-    expect(numFn).toBeCalledTimes(0);
+    expect(numFn).toHaveBeenCalledTimes(0);
     expect(numResult).toBe(num);
 
     const nullFn = jest.fn();
     const nullResult = forEach(null, (...args) => {
       nullFn(...args);
     });
-    expect(nullFn).toBeCalledTimes(0);
+    expect(nullFn).toHaveBeenCalledTimes(0);
     expect(nullResult).toBeNull();
 
     const undefFn = jest.fn();
     const undefResult = forEach(undefined, (...args) => {
       undefFn(...args);
     });
-    expect(undefFn).toBeCalledTimes(0);
+    expect(undefFn).toHaveBeenCalledTimes(0);
     expect(undefResult).toBeUndefined();
 
     function foo(a: number) {
@@ -157,7 +157,7 @@ describe('forEach', () => {
     const funcResult = forEach(foo, (...args) => {
       funcFn(...args);
     });
-    expect(funcFn).toBeCalledTimes(0);
+    expect(funcFn).toHaveBeenCalledTimes(0);
     expect(funcResult).toBe(foo);
   });
 });
