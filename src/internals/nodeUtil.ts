@@ -14,7 +14,8 @@ const nodeUtil = (function () {
     if (types) {
       return types;
     }
-  } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (err) {
     /* empty */
   }
 })();

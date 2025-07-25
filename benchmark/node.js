@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 const Benchmark = require('benchmark');
 const underscore = require('underscore');
 const lodash = require('lodash');

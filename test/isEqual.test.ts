@@ -6,8 +6,8 @@ describe('isEqual', () => {
     const value = { a: 1, b: -0 };
     const other = { a: 1, b: 0 };
 
-    isEqual(value, other); // true
-    value === other; // false
+    expect(isEqual(value, other)).toBe(true);
+    expect(value === other).toBe(false);
 
     // 严格比较
     isEqual(value, other, undefined, true); // false

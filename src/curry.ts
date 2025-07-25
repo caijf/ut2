@@ -150,6 +150,7 @@ const curry: Curry = function (func: FunctionAny, arity?: number) {
 
   function wrap(this: any) {
     let args: any[] = arrayProtoSlice.call(arguments);
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const context = this;
 
     function inner() {

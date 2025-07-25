@@ -23,12 +23,14 @@ export function toSource(func: any) {
   if (func !== null) {
     try {
       return functionProtoToString.call(func);
-    } catch (e) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
       /* empty */
     }
     try {
       return func + '';
-    } catch (e) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
       /* empty */
     }
   }

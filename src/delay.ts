@@ -27,6 +27,7 @@ function delay<T extends FunctionAny>(this: any, func: T, wait: number, ...args:
     throw new TypeError(FUNC_ERROR_TEXT);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const context = this;
   wait = defaultTo(toNumber(wait), 0);
 

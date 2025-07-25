@@ -30,6 +30,7 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
   }
 
   function debounced(this: any, ...args: Parameters<T>) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     lastThis = this;
     lastArgs = args;
 
