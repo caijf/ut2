@@ -151,6 +151,13 @@ describe('debounce', () => {
     jest.advanceTimersByTime(100);
     expect(result).toBe('a');
     expect(fn).toHaveBeenCalledTimes(1);
+
+    // 再次取消执行延迟函数，无反应
+    debounced.cancel();
+    expect(debounced.pending()).toBe(false);
+    jest.advanceTimersByTime(100);
+    expect(result).toBe('a');
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it('非函数报异常', () => {

@@ -75,10 +75,7 @@ function baseDebounce<T extends FunctionAny>(func: T, wait: number, immediate: b
     if (timer !== nativeUndefined) {
       clearTimeout(timer);
       timer = nativeUndefined;
-
-      if (lastArgs) {
-        return invokeFunc(Date.now());
-      }
+      return invokeFunc(Date.now());
     }
     return result;
   }

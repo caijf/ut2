@@ -209,6 +209,13 @@ describe('throttle', () => {
     jest.advanceTimersByTime(100);
     expect(result).toBe('b');
     expect(fn).toHaveBeenCalledTimes(2);
+
+    // 再次取消执行延迟函数，无反应
+    throttled.cancel();
+    expect(throttled.pending()).toBe(false);
+    jest.advanceTimersByTime(100);
+    expect(result).toBe('b');
+    expect(fn).toHaveBeenCalledTimes(2);
   });
 
   it('非函数报异常', () => {
