@@ -1,4 +1,4 @@
-import equalArrayLike from './equalArrayLike';
+import shallowEqual from './shallowEqual';
 import { mathCeil } from './internals/native';
 
 type Cache<TFunc extends (...args: any[]) => any> = {
@@ -20,7 +20,7 @@ type EqualFn<TFunc extends (...args: any[]) => any> = (newArgs: Parameters<TFunc
  * @since 1.17.0
  * @param {Function} func 要缓存结果的函数。
  * @param {Object} [options] 配置项。
- * @param {Function} [options.isEqual] 自定义比较参数方法。默认函数 `equalArrayLike`。
+ * @param {Function} [options.isEqual] 自定义比较参数方法。默认函数 `shallowEqual`。
  * @param {number} [options.max] 最大缓存数量，`0`表示不限制。默认`0`。
  * @returns 缓存 `func` 结果的函数。
  * @example
@@ -59,7 +59,7 @@ function memoize<TFunc extends (...args: any[]) => any>(
 ) {
   const opts = options || {};
   const max = mathCeil(opts.max || 0);
-  const isEqual = typeof opts.isEqual === 'function' ? opts.isEqual : equalArrayLike;
+  const isEqual = typeof opts.isEqual === 'function' ? opts.isEqual : shallowEqual;
   const cache: Cache<TFunc>[] = [];
   function memoized(this: any, ...newArgs: Parameters<TFunc>) {
     const cacheValue = cache.find((item) => item.lastThis === this && isEqual(item.lastArgs, newArgs));

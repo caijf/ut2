@@ -198,6 +198,7 @@ export { default as nthArg } from './nthArg';
 export { default as range } from './range';
 export { default as retry } from './retry';
 export { default as sleep } from './sleep';
+export { default as shallowEqual } from './shallowEqual';
 export { default as times } from './times';
 export { default as toFinite } from './toFinite';
 export { default as toInteger } from './toInteger';
