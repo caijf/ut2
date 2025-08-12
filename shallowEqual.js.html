@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>clamp.js - ut2 </title>
+    <title>shallowEqual.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">clamp.js</h1>
+    <h1 class="page-title">shallowEqual.js</h1>
     
 
     
@@ -70,60 +70,70 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import defaultTo from './defaultTo';
-import { nativeUndefined } from './internals/native';
-import toNumber from './toNumber';
+            <pre class="prettyprint source linenums"><code>import eq from './eq';
+import { objectProtoHasOwnProperty } from './internals/native';
 /**
- * 数字限制在 `lower` 和 `upper` 之间的值。
+ * 浅比较两个值是否相等。常用于参数对象比较。
  *
- * 特殊说明：
- * - 如果只传入 1 个参数，直接返回该参数；
- * - 如果只传入 2 个参数，`lower` 透传给 `upper`。
+ * 1. 如果两个值相等，返回 `true`。
+ * 2. 如果两个对象属性数量相等，且遍历每个属性值都相等，则返回 `true`。
+ * 3. 否则返回 `false`。
  *
- * @function
- * @alias module:Number.clamp
- * @since 1.0.0
- * @param {number} number 被限制的值。
- * @param {number} [lower] 下限。
- * @param {number} upper 上限。
- * @returns {number} 限制后的值。
+ * @alias module:Util.shallowEqual
+ * @since 1.21.0
+ * @param {Array} objA 要比较的值。。
+ * @param {Array} objB 另一个要比较的值。
+ * @param {boolean} [strictCheck=true] 严格比较，如果为 `true` 表示区分 `0` 和 `-0`。默认 `true`。
+ * @returns 浅比较两个值是否相等。
  * @example
+ * shallowEqual({ a: 1, b: 2 }, { a: 1, b: 2 }); // true
+ * shallowEqual({ a: 1, b: 2 }, { a: 1, b: 3 }); // false
  *
- * clamp(-10, -5, 5); // -5
+ * shallowEqual([1, 2], [1, 2]); // true
+ * shallowEqual([1, 2], [1, 3]); // false
+ * shallowEqual([1, 2], [1, 2, 3]); // false
  *
- * clamp(-10, 0, 5); // 0
+ * // 两个相等值返回 true
+ * shallowEqual(1, 1); // true
+ * shallowEqual('foo', 'foo'); // true
+ * shallowEqual(NaN, NaN); // true
+ * shallowEqual(null, null); // true
+ * shallowEqual(undefined, undefined); // true
+ * const obj1 = {};
+ * const obj2 = obj1;
+ * shallowEqual(obj1, obj2); // true
  *
- * clamp(10, -5, 5); // 5
+ * // 默认严格比较，区分 0 和 -0
+ * shallowEqual([0, -0], [-0, 0]); // false
  *
- * // 仅限制上限
- * clamp(10, 5); // 5
- *
- * clamp(-10, 5); // -10
- *
+ * // 非严格比较，不区分 0 和 -0
+ * shallowEqual([0, -0], [-0, 0], false); // true
  */
-const clamp = function (number, lower, upper) {
-    if (upper === nativeUndefined) {
-        upper = lower;
-        lower = nativeUndefined;
+function shallowEqual(objA, objB, strictCheck = true) {
+    // 检查两个对象是否为同一个引用
+    if (eq(objA, objB, strictCheck)) {
+        return true;
     }
-    if (upper !== nativeUndefined) {
-        upper = defaultTo(toNumber(upper), 0);
+    // 检查是否为对象类型
+    if (typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null) {
+        return false;
     }
-    if (lower !== nativeUndefined) {
-        lower = defaultTo(toNumber(lower), 0);
+    const keysA = Object.keys(objA);
+    const keysB = Object.keys(objB);
+    // 检查属性数量是否相同
+    if (keysA.length !== keysB.length) {
+        return false;
     }
-    number = toNumber(number);
-    if (number === number) {
-        if (upper !== nativeUndefined) {
-            number = number &lt;= upper ? number : upper;
+    // 遍历属性，检查属性值是否相同
+    for (let i = 0; i &lt; keysA.length; i++) {
+        const key = keysA[i];
+        if (!objectProtoHasOwnProperty.call(objB, key) || !eq(objA[key], objB[key], strictCheck)) {
+            return false;
         }
-        if (lower !== nativeUndefined) {
-            number = number >= lower ? number : lower;
-        }
     }
-    return number;
-};
-export default clamp;
+    return true;
+}
+export default shallowEqual;
 </code></pre>
         </article>
     </section>
