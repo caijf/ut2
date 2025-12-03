@@ -10,6 +10,7 @@ import createForEach from './internals/createForEach';
  * @function
  * @alias module:Collection.forEachRight
  * @since 1.7.0
+ * @requires module:Object.allKeys
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
  * @param {Function} [iteratee=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {ArrayLike<any> | Object} 迭代集合本身。

@@ -17,6 +17,7 @@ interface Find {
  * @function
  * @alias module:Collection.find
  * @since 1.7.0
+ * @requires module:Collection.forEach
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
  * @param {function} [predicate=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {ArrayLike<any> | Object} 返回第一个通过 `predicate` 返回真值的元素，否则返回 `undefined`。

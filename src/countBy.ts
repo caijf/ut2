@@ -17,6 +17,7 @@ interface CountBy {
  * @function
  * @alias module:Collection.countBy
  * @since 1.0.0
+ * @requires module:Collection.forEach
  * @param {ArrayLike<any> | object} collection 一个用来迭代的集合。
  * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。
  * @returns {Object} 组成集合对象。

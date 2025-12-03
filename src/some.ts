@@ -17,6 +17,7 @@ interface Some {
  * @function
  * @alias module:Collection.some
  * @since 1.7.0
+ * @requires module:Collection.forEach
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
  * @param {function} [predicate=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {boolean} 如果任一元素通过 `predicate` 测试，则返回 `true`，否则返回 `false`。

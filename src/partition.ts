@@ -17,6 +17,7 @@ interface Partition {
  *
  * @alias module:Collection.partition
  * @since 1.0.0
+ * @requires module:Collection.forEach
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy Truthy}
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy Falsy}
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。

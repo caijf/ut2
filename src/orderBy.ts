@@ -23,6 +23,7 @@ interface OrderBy {
  * @function
  * @alias module:Collection.orderBy
  * @since 1.0.0
+ * @requires module:Collection.forEach
  * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort sort}
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
  * @param {Function | string | number | Symbol | Array} [iteratees] 排序的迭代函数。

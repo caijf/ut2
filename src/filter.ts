@@ -16,6 +16,7 @@ interface Filter {
  *
  * @alias module:Collection.filter
  * @since 1.7.0
+ * @requires module:Collection.forEach
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
  * @param {function} [predicate=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {Array} 返回新的过滤数组。

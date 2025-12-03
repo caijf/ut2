@@ -18,6 +18,7 @@ interface KeyBy {
  * @function
  * @alias module:Collection.keyBy
  * @since 1.0.0
+ * @requires module:Collection.forEach
  * @param {ArrayLike<any> | Object} collection 一个用来迭代的集合。
  * @param {Function | string | number | Symbol} [iteratee=identity] 迭代函数，用来转换键。默认 `identity`。
  * @returns {Object} 组成聚合对象。

@@ -16,6 +16,7 @@ interface Map {
  *
  * @alias module:Collection.map
  * @since 1.7.0
+ * @requires module:Collection.forEach
  * @param {ArrayLike<any> | Object} collection 要迭代的集合。
  * @param {function} [iteratee=identity] 每次迭代调用的函数。默认 `identity`。
  * @returns {Array} 一个新数组。
