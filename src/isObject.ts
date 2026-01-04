@@ -1,4 +1,3 @@
-import { FunctionAny } from './internals/types';
 import isObjectLike from './isObjectLike';
 
 /**
@@ -20,8 +19,7 @@ import isObjectLike from './isObjectLike';
  * isObject(null); // false
  *
  */
-function isObject(value: any): value is object;
-function isObject(value: any): value is FunctionAny {
+function isObject(value: any): value is object {
   return typeof value === 'function' || isObjectLike(value);
 }
 
