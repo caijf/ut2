@@ -19,7 +19,8 @@
  *
  * isNil(1); // false
  */
-function isNil(value: any): value is undefined | null {
+function isNil(value: any): value is undefined;
+function isNil(value: any): value is null {
   return value == null;
 }
 

@@ -18,7 +18,8 @@ import isObject from './isObject';
  * isPromiseLike([]); // false
  *
  */
-function isPromiseLike(value: any): value is Promise<any> | PromiseLike<any> {
+function isPromiseLike(value: any): value is Promise<any>;
+function isPromiseLike(value: any): value is PromiseLike<any> {
   return isObject(value) && typeof (value as Promise<any>).then === 'function';
 }
 

@@ -20,7 +20,8 @@ import isObjectLike from './isObjectLike';
  * isObject(null); // false
  *
  */
-function isObject(value: any): value is object | FunctionAny {
+function isObject(value: any): value is object;
+function isObject(value: any): value is FunctionAny {
   return typeof value === 'function' || isObjectLike(value);
 }
 
