@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>limit.js - ut2 </title>
+    <title>isObject.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">limit.js</h1>
+    <h1 class="page-title">isObject.js</h1>
     
 
     
@@ -70,48 +70,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * 创建一个限流函数，该函数在时间间隔内只会执行一次。
+            <pre class="prettyprint source linenums"><code>import isObjectLike from './isObjectLike';
+/**
+ * 检查值是否为对象。(例如，数组、函数、对象、正则表达式、new Number(0) 和 new String(''))。
  *
- * 与 `throttle` 的区别：
- * 1. 在时间间隔内再次调用，`limit`不会执行，而`throttle` 会执行；
- * 2. `limit` 没有取消和立即执行的方法，逻辑简洁。
- *
- * 与 `throttle(fn, wait, false)` 第三个参数为`false`的区别：
- * 1. 两者都是在间隔时间内只执行一次，但 `limit` 调用后立即执行，`throttle(fn, wait, false)` 调用后等待 wait 毫秒后执行。
- *
- * @alias module:Function.limit
- * @since 1.19.0
- * @param {Function} fn 要限流的函数。
- * @param {number} timespan 限流的时间间隔，单位为毫秒。
- * @returns 限流函数。
+ * @alias module:Language.isObject
+ * @since 1.0.0
+ * @see {@link https://tc39.es/ecma262/#sec-ecmascript-language-types language type}
+ * @param {*} value 要检查的值。
+ * @returns {boolean} 如果值为对象，返回 `true`，否则返回 `false`。
  * @example
- * function revalidate(){
- *   if(document.visibilityState !== 'hidden' || navigator.onLine){
- *     // do something
- *     console.log('revalidate');
- *   }
- * }
  *
- * // 限制 5s 内只会执行一次
- * const limited = limit(revalidate, 5000);
+ * isObject({}); // true
  *
- * window.addEventListener('visibilitychange', limited);
- * window.addEventListener('focus', limited);
+ * isObject([1,2,3]); // true
+ *
+ * isObject(()=>{}); // true
+ *
+ * isObject(null); // false
+ *
  */
-export default function limit(fn, timespan) {
-    let pending = false;
-    function limited(...args) {
-        if (pending)
-            return;
-        pending = true;
-        fn(...args);
-        setTimeout(() => {
-            pending = false;
-        }, timespan);
-    }
-    return limited;
+function isObject(value) {
+    return typeof value === 'function' || isObjectLike(value);
 }
+export default isObject;
 </code></pre>
         </article>
     </section>
