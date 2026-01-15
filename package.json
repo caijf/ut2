@@ -6,6 +6,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "unpkg": "dist/ut2.min.js",
+  "browser": "dist/ut2.min.js",
   "sideEffects": false,
   "types": "types/index.d.ts",
   "scripts": {
