@@ -1318,22 +1318,18 @@
         )
       };
 
-      function isObjectOrArray(value) {
-        return ut2.isArray(value) || ut2.isObjectLike(value);
-      }
-
       function formatString(value) {
         let result;
         if (ut2.isArray(value)) {
           result = [];
           value.forEach((item) => {
-            result.push(isObjectOrArray(item) ? formatString(item) : ut2.toString(item));
+            result.push(ut2.isObjectLike(item) ? formatString(item) : ut2.toString(item));
           });
         } else if (ut2.isObjectLike(value)) {
           result = {};
           ut2.allKeys(value).forEach((key) => {
             const newKey = ut2.toString(key);
-            const newValue = isObjectOrArray(value[key]) ? formatString(value[key]) : ut2.toString(value[key]);
+            const newValue = ut2.isObjectLike(value[key]) ? formatString(value[key]) : ut2.toString(value[key]);
             result[newKey] = newValue;
           });
         } else {
