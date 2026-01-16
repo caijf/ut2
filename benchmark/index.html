@@ -4,19 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>性能测试</title>
-    <!-- modern browser -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- ie 11 -->
-    <!-- <script src="https://unpkg.com/babel-polyfill@6.26.0/dist/polyfill.min.js"></script>
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1"></script>
     <style>
-      table,
-      th,
-      td {
-        border: 1px solid #ccc;
-      }
-
       table {
         border-collapse: collapse;
         border-spacing: 0;
@@ -26,6 +16,7 @@
       th,
       td {
         padding: 2px 5px;
+        border: 1px solid #ccc;
       }
 
       thead th {
@@ -39,49 +30,28 @@
         word-break: break-all;
       }
 
-      td {
-        text-align: right;
-      }
-
       tr.fastest td {
-        background-color: #e60000;
-        color: #fff;
-      }
-
-      tr:nth-child(6n + 1),
-      tr:nth-child(6n + 2),
-      tr:nth-child(6n + 3) {
-        background-color: #f0f0f0;
+        background-color: #e6eeff;
       }
     </style>
   </head>
 
   <body>
-    <div class="w-full p-5 mx-auto">
+    <div class="max-w-5xl md:w-full p-5 mx-auto bg-gray-100">
       <h1 class="text-2xl mb-2">性能测试</h1>
-      <p class="mb-2">使用 benchmark 测试 ut2 对比 underscore 和 lodash 的性能。</p>
+      <p class="mb-2">测试 ut2 对比 lodash 和 underscore 的性能。</p>
       <p class="text-sm text-gray-500">工具库版本：<span id="lib-version"></span></p>
+      <p class="text-sm text-gray-500">运行环境：<span id="env-info"></span></p>
+
       <div class="my-5">选择方法：<span id="form"></span></div>
-      <div id="action" class="mb-5"><button class="p-2 bg-purple-600 hover:bg-purple-500 rounded-lg text-white shadow-md">点击运行测试</button></div>
-      <p id="tip-running" class="text-lg text-gray-600 mb-5" style="display: none">运行中...</p>
-      <p id="tip-cache" class="text-sm text-gray-600 my-5" style="display: none">当前读取 <span id="tip-cache-date"></span> 运行结果，点击上面按钮可重新运行。</p>
-      <div id="result" style="display: none">
-        <table class="border font-mono">
-          <thead>
-            <tr>
-              <!-- <th>方法</th> -->
-              <th>测试用例</th>
-              <th>库</th>
-              <th>实际调用</th>
-              <th>结果</th>
-              <th>每秒执行次数</th>
-              <th>波动范围</th>
-              <th>抽样次数</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-        <p class="my-5 text-xs text-gray-600"><input type="color" value="#E60000" class="align-middle" disabled /> 表示执行最快的。受运行环境和参数，以及部分方法功能不一样等影响，结果仅供参考。</p>
+
+      <div class="case mb-5">
+        <h3 class="bg-blue-500 text-white px-5 py-1 font-bold mb-2">Test #1</h3>
+        <iframe src="./runner.html" class="w-full border-0" height="500"></iframe>
+      </div>
+      <div class="case mb-5">
+        <h3 class="bg-blue-500 text-white px-5 py-1 font-bold mb-2">Test #2</h3>
+        <iframe src="./runner.html" class="w-full border-0" height="500"></iframe>
       </div>
     </div>
 
@@ -90,20 +60,14 @@
       var underscore = _.noConflict();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    <script src="https://unpkg.com/platform@1/platform.js"></script>
+    <!-- <script src="https://unpkg.com/platform@1/platform.js"></script> -->
     <script src="https://unpkg.com/benchmark@2/benchmark.js"></script>
     <script src="https://unpkg.com/ut2@1/dist/ut2.min.js"></script>
     <!-- <script src="../dist/ut2.min.js"></script> -->
-    <script src="https://unpkg.com/cache2@3/dist/cache2.min.js"></script>
     <script src="https://unpkg.com/dayjs@1/dayjs.min.js"></script>
     <script src="./fastest.js"></script>
     <script>
-      const { Cache } = cache2;
       const categoryConfig = fastest.config;
-      const cache = new Cache('benchmark', {
-        storage: window.localStorage
-      });
-      const selectedCacheKey = '__selected__';
 
       // 添加 select
       const oForm = document.getElementById('form');
@@ -122,139 +86,106 @@
 
         oSelect.appendChild(oOptgroup);
       });
-      const cacheData = cache.get(selectedCacheKey);
-      oSelect.value = cacheData || categoryConfig[0].list[0].method;
+      oSelect.value = categoryConfig[0].list[0].method;
       oForm.appendChild(oSelect);
-
-      oSelect.addEventListener('change', function (e) {
-        cache.set(selectedCacheKey, e.target.value);
-        renderResultWithCache();
-      });
 
       // 各工具库版本
       const oLibVersion = document.getElementById('lib-version');
       oLibVersion.innerHTML = 'ut2@' + ut2.VERSION + ', lodash@' + _.VERSION + ', underscore@' + underscore.VERSION;
 
-      // 测试
-      const libs = ['underscore', 'lodash', 'ut2'];
-      const oResult = document.getElementById('result');
-      const oTbody = oResult.querySelector('tbody');
-      const oAction = document.getElementById('action');
-      const oRunButton = oAction.querySelector('button');
-      const oTipRunning = document.getElementById('tip-running');
-      const oTipCache = document.getElementById('tip-cache');
-      const oTipCacheDate = document.getElementById('tip-cache-date');
+      // 运行环境
+      const uaParser = new UAParser();
+      const ua = `${uaParser.getBrowser().name} ${uaParser.getBrowser().version} / ${uaParser.getOS().name} ${uaParser.getOS().version}`;
+      const oEnv = document.getElementById('env-info');
+      oEnv.innerHTML = ua;
 
-      oRunButton.addEventListener('click', function () {
-        runTest();
-      });
+      // // 测试
+      // const libs = ['underscore', 'lodash', 'ut2'];
+      // const oResult = document.getElementById('result');
+      // const oTbody = oResult.querySelector('tbody');
+      // const oAction = document.getElementById('action');
+      // const oRunButton = oAction.querySelector('button');
+      // const oTipRunning = document.getElementById('tip-running');
 
-      function runTest() {
-        const method = oSelect.value;
+      // oRunButton.addEventListener('click', function () {
+      //   run();
+      // });
 
-        if (!method) {
-          alert('请选择测试方法');
-          return;
-        }
+      // function run() {
+      //   const method = oSelect.value;
 
-        oTbody.innerHTML = '';
-        oResult.style.display = 'none';
-        oAction.style.display = 'none';
-        oTipRunning.style.display = 'block';
-        oTipCache.style.display = 'none';
-        cache.del(method);
+      //   if (!method) {
+      //     alert('请选择测试方法');
+      //     return;
+      //   }
 
-        setTimeout(function () {
-          const result = fastest({
-            Benchmark: Benchmark,
-            ut2: ut2,
-            underscore: underscore,
-            lodash: _,
-            methods: method
-          })[method];
+      //   oTbody.innerHTML = '';
+      //   oResult.style.display = 'none';
+      //   oAction.style.display = 'none';
+      //   oTipRunning.style.display = 'block';
 
-          cache.set(method, result);
-          oAction.style.display = 'block';
-          oTipRunning.style.display = 'none';
+      //   setTimeout(function () {
+      //     const result = fastest({
+      //       Benchmark: Benchmark,
+      //       ut2: ut2,
+      //       underscore: underscore,
+      //       lodash: _,
+      //       methods: method
+      //     })[method];
 
-          renderResult(result);
-        }, 100);
-      }
+      //     oAction.style.display = 'block';
+      //     oTipRunning.style.display = 'none';
 
-      function renderResult(data) {
-        const fragment = document.createDocumentFragment();
+      //     renderResult(result);
+      //   }, 100);
+      // }
 
-        data.forEach(function (item, index) {
-          libs.forEach(function (libItem, libIndex) {
-            const tr = document.createElement('tr');
+      // function renderResult(data) {
+      //   const fragment = document.createDocumentFragment();
 
-            if (libItem === item.$fastest) {
-              tr.setAttribute('class', 'fastest');
-            }
+      //   data.forEach(function (item, index) {
+      //     libs.forEach(function (libItem, libIndex) {
+      //       const tr = document.createElement('tr');
 
-            if (libIndex === 0) {
-              const th = document.createElement('th');
-              th.setAttribute('rowspan', 3);
-              th.innerHTML = item.$case;
-              tr.appendChild(th);
-            }
-            const td0 = document.createElement('td');
-            const td1 = document.createElement('td');
-            const td2 = document.createElement('td');
-            const td3 = document.createElement('td');
-            const td4 = document.createElement('td');
-            const td5 = document.createElement('td');
+      //       if (libItem === item.$fastest) {
+      //         tr.setAttribute('class', 'fastest');
+      //       }
 
-            td0.innerHTML = '<div style="white-space: nowrap;">' + libItem + '</div>';
-            td1.innerHTML = item[libItem].existed ? item[libItem].case : 'unsupported';
-            td2.innerHTML = item[libItem].existed ? JSON.stringify(item[libItem].result) : '-';
-            td3.innerHTML = item[libItem].existed ? item[libItem].hz : '-';
-            td4.innerHTML = item[libItem].existed ? item[libItem].rme : '-';
-            td5.innerHTML = item[libItem].existed ? item[libItem].sampled : '-';
+      //       if (libIndex === 0) {
+      //         const th = document.createElement('th');
+      //         th.setAttribute('rowspan', 3);
+      //         th.innerHTML = item.$case;
+      //         tr.appendChild(th);
+      //       }
+      //       const td0 = document.createElement('td');
+      //       const td1 = document.createElement('td');
+      //       const td2 = document.createElement('td');
+      //       const td3 = document.createElement('td');
+      //       const td4 = document.createElement('td');
+      //       const td5 = document.createElement('td');
 
-            tr.appendChild(td0);
-            tr.appendChild(td1);
-            tr.appendChild(td2);
-            tr.appendChild(td3);
-            tr.appendChild(td4);
-            tr.appendChild(td5);
+      //       td0.innerHTML = '<div style="white-space: nowrap;">' + libItem + '</div>';
+      //       td1.innerHTML = item[libItem].existed ? item[libItem].case : 'unsupported';
+      //       td2.innerHTML = item[libItem].existed ? JSON.stringify(item[libItem].result) : '-';
+      //       td3.innerHTML = item[libItem].existed ? item[libItem].hz : '-';
+      //       td4.innerHTML = item[libItem].existed ? item[libItem].rme : '-';
+      //       td5.innerHTML = item[libItem].existed ? item[libItem].sampled : '-';
 
-            fragment.appendChild(tr);
-          });
-        });
+      //       tr.appendChild(td0);
+      //       tr.appendChild(td1);
+      //       tr.appendChild(td2);
+      //       tr.appendChild(td3);
+      //       tr.appendChild(td4);
+      //       tr.appendChild(td5);
 
-        oTbody.innerHTML = '';
-        oTbody.appendChild(fragment);
-        oResult.style.display = 'block';
-      }
+      //       fragment.appendChild(tr);
+      //     });
+      //   });
 
-      function renderResultWithCache() {
-        const method = oSelect.value;
-        if (!method) {
-          return;
-        }
-
-        const cacheData = cache.get(method);
-        if (!cacheData) {
-          oTipRunning.style.display = 'none';
-          oTipCache.style.display = 'none';
-          oTbody.innerHTML = '';
-          oResult.style.display = 'none';
-          return;
-        }
-
-        oTipRunning.style.display = 'none';
-        oTipCache.style.display = 'block';
-        oTipCacheDate.innerHTML = dayjs(cache.getLastModified(method)).format('YYYY-MM-DD HH:mm:ss');
-
-        renderResult(cacheData);
-      }
-
-      function init() {
-        renderResultWithCache();
-      }
-
-      init();
+      //   oTbody.innerHTML = '';
+      //   oTbody.appendChild(fragment);
+      //   oResult.style.display = 'block';
+      // }
     </script>
   </body>
 </html>

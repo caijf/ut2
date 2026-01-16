@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test runner</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/benchmark@2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+    <style>
+      .cases-table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .cases-table th {
+        padding-block: 4px;
+        background-color: #e5e7eb;
+      }
+      .cases-table th,
+      .cases-table td {
+        border: 1px solid #d1d5db;
+      }
+      .cases-table td {
+        padding: 16px 8px;
+      }
+      .cases-table td:first-child {
+        background-color: #e5e7eb;
+      }
+      .cases-table td:last-child {
+        text-align: center;
+      }
+      .cases-table td.fastest {
+        background: #9cee82;
+      }
+      .cases-table td.slowest {
+        background: pink;
+      }
+
+      /* custom highlight.js style */
+      pre code.hljs {
+        display: inline;
+        padding: 0;
+        background: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="font-sans antialiased min-h-full flex flex-col bg-gray-100">
+      <div class="flex-auto">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen bg-white">
+          <section>
+            <h2 class="font-bold mb-5">Preparation HTML</h2>
+            <pre><code class="language-html" id="preparationCode"></code></pre>
+          </section>
+          <section>
+            <h2 class="font-bold my-5">Test runner</h2>
+            <div class="flex justify-between items-center mb-4">
+              <div id="status">Ready to Run.</div>
+              <div class="flex gap-2">
+                <button id="btn-run" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer">运行</button>
+                <button id="btn-quickrun" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer">快速运行</button>
+                <button id="btn-stop" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer" style="display: none">停止</button>
+              </div>
+            </div>
+
+            <table id="casesTable" class="cases-table">
+              <colgroup>
+                <col width="16.7%" />
+                <col />
+                <col width="120px" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th colspan="2">Test</th>
+                  <th>Ops/sec</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr>
+                  <td>ut2 randomInt</td>
+                  <td>ut2.randomInt(2, 4)</td>
+                  <td class="fastest">ready</td>
+                </tr>
+                <tr>
+                  <td>lodash random</td>
+                  <td>_.random(2, 4)</td>
+                  <td class="slower">ready</td>
+                </tr> -->
+              </tbody>
+            </table>
+          </section>
+          <iframe src="./sandbox.html" id="sandboxFrame" class="fixed w-0 h-0"></iframe>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import EmitterPro from './utils/emitter-pro.esm.js';
+      import PostMessageBroker from './utils/PostMessageBroker.mjs';
+
+      class View extends EmitterPro {
+        /**@type {(config: { initHTML: string; tests: { async?: boolean; code: string; title: string }[] })=>View} */
+        constructor(config) {
+          super();
+
+          this.orinalConfig = config;
+          this.config = {
+            ...config,
+            tests: config.tests.map((item) => ({
+              ...item
+            }))
+          };
+
+          /**@type {'ready' | 'running' | 'complete'} */
+          this.status = 'ready';
+          this.statusMessage = '';
+
+          this.els = {
+            sandboxFrame: window.frames[0],
+            casesTableBody: document.getElementById('casesTable').querySelector('tbody'),
+            preparationCode: document.getElementById('preparationCode'),
+            status: document.getElementById('status'),
+            btnRun: document.getElementById('btn-run'),
+            btnQuickRun: document.getElementById('btn-quickrun'),
+            btnStop: document.getElementById('btn-stop')
+          };
+
+          this.broker = new PostMessageBroker(this.els.sandboxFrame);
+
+          this._init();
+          this._init = null;
+        }
+
+        _init() {
+          this.on('updateStatus', () => {
+            this._updateStatusView();
+            this._updateActionButton();
+            if (this.status !== 'complete') {
+              this._resetCaseStatus();
+            }
+          });
+
+          this.on('updateStatusMessage', () => {
+            this._updateStatusView();
+          });
+
+          this.els.btnRun.addEventListener('click', () => {
+            this.broker.emit('run', {
+              options: { maxTime: 5 },
+              ...this.config
+            });
+            this.updateStatus('running');
+          });
+
+          this.els.btnQuickRun.addEventListener('click', () => {
+            this.broker.emit('run', {
+              options: { maxTime: 0.5 },
+              ...this.config
+            });
+            this.updateStatus('running');
+          });
+
+          this.els.btnStop.addEventListener('click', () => {
+            this.broker.emit('stop');
+            if (this.els.sandboxFrame) {
+              this.els.sandboxFrame.location.reload();
+            }
+            this.updateStatus('ready');
+          });
+
+          this.broker.on('cycle', (event) => {
+            const { id, name, count, size, status, running } = event.data;
+
+            if (!['finished', 'completed'].includes(status)) {
+              this.updateStatusMessage(`${name} × ${count} (${size} sample${size === 1 ? '' : 's'})`);
+            }
+
+            if (this.status === 'running') {
+              this.updateCaseStatus(id, status);
+            }
+          });
+
+          this.broker.on('complete', (event) => {
+            const { results } = event.data;
+            // console.log('results: ', results);
+
+            for (let result of results) {
+              // Merge each test with result
+              this.config.tests[result.id] = {
+                ...this.config.tests[result.id],
+                ...result
+              };
+              this.updateCaseStatus(result.id, result.status);
+            }
+
+            this.updateStatusMessage('Done. Ready to run again.');
+            this.updateStatus('complete');
+            if (this.els.sandboxFrame) {
+              this.els.sandboxFrame.location.reload();
+            }
+          });
+
+          this._renderCases();
+
+          this.els.preparationCode.innerHTML = _.escape(this.config.initHTML);
+          hljs.highlightAll();
+
+          this.emit('updateStatus');
+        }
+
+        _renderCases() {
+          this.els.casesTableBody.innerHTML = '';
+          for (let test of this.config.tests) {
+            const row = this.els.casesTableBody.insertRow();
+            row.insertCell().innerHTML = test.title;
+            row.insertCell().innerHTML = `<pre><code class="language-javascript">${_.escape(test.code)}</code></pre>`;
+            row.insertCell().innerHTML = 'ready';
+          }
+        }
+
+        _resetCaseStatus() {
+          this.config.tests.forEach((test, i) => {
+            if (test.status !== 'ready') {
+              test.status = 'ready';
+              this.updateCaseStatus(i, test.status);
+            }
+          });
+        }
+
+        updateCaseStatus(id, status) {
+          this.config.tests[id].status = status;
+          const test = this.config.tests[id];
+
+          const rows = this.els.casesTableBody.querySelectorAll('tr');
+          const col = rows[id].cells[2];
+          let className = '';
+          let h = `<div>${status}</div>`;
+          if (status === 'error') {
+            className = 'error';
+          } else if (status === 'finished') {
+            if (test.fastest) {
+              className = 'fastest';
+            } else if (test.slowest) {
+              className = 'slowest';
+            }
+
+            h = `<p>${test.hz}</p>
+            <small class="block">&plusmn;${test.rme}%</small>
+            <p>${test.fastest ? 'fastest' : `${test.percent}% slower`}</p>`;
+          }
+          col.className = className;
+          col.innerHTML = h;
+        }
+
+        _updateStatusView() {
+          this.els.status.innerHTML = this.status === 'ready' ? 'Ready to Run.' : this.statusMessage;
+        }
+
+        _updateActionButton() {
+          const statusIsRunning = this.status === 'running';
+          this.els.btnRun.style.display = !statusIsRunning ? 'inline-block' : 'none';
+          this.els.btnQuickRun.style.display = !statusIsRunning ? 'inline-block' : 'none';
+          this.els.btnStop.style.display = statusIsRunning ? 'inline-block' : 'none';
+        }
+
+        updateStatus(newStatus) {
+          this.status = newStatus;
+          this.emit('updateStatus');
+        }
+        updateStatusMessage(message) {
+          this.statusMessage = message;
+          this.emit('updateStatusMessage');
+        }
+      }
+
+      new View({
+        initHTML: '<' + 'script src="https://cdn.jsdelivr.net/npm/ut2@1"><' + '/script>',
+        tests: [
+          { async: false, code: 'ut2.randomInt(2, 4)', title: 'ut2 randomInt' },
+          { async: false, code: 'ut2.randomInt(2, 10)', title: 'ut2 randomInt' },
+          {
+            async: false,
+            code: '_.random(2,4)',
+            title: 'lodash random'
+          },
+          {
+            async: false,
+            code: '_.random(2, 10)',
+            title: 'lodash random'
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>

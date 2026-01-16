@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sandbox</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/benchmark@2"></script>
+  </head>
+  <body>
+    <div id="placeholder"></div>
+
+    <script type="module">
+      import PostMessageBroker from './utils/PostMessageBroker.mjs';
+      import runTest from './utils/runTest.mjs';
+
+      let modulePromises = {};
+      window.resolveScriptModuleById = (id) => {
+        modulePromises[id] && modulePromises[id]();
+      };
+
+      const broker = new PostMessageBroker(window.parent);
+
+      const initHTMLPlaceholder = document.querySelector('#placeholder');
+
+      // ref: https://github.com/rd13/jsperf.app/blob/255cbd0f95c984466e4df205db1f74051b3d1fab/components/UI.js#L24
+      broker.on('run', async ({ data: { options, tests, initHTML, setup, teardown } }) => {
+        console.log('[sandbox] new test run', tests);
+
+        if (initHTML) {
+          // Inject HTML
+          initHTMLPlaceholder.innerHTML = initHTML;
+
+          // Resolve scripts synchronously
+          const scriptNodes = initHTMLPlaceholder.querySelectorAll('script');
+
+          for (const scriptNode of scriptNodes) {
+            await injectScriptNodeToHead(scriptNode, document);
+          }
+        }
+
+        console.log('[sandbox] setup complete');
+
+        const stop = runTest({
+          libs: {
+            Benchmark,
+            _
+          },
+          options,
+          tests,
+          setup,
+          teardown,
+          onCycle(data) {
+            broker.emit('cycle', data);
+          },
+          onComplete(data) {
+            broker.emit('complete', data);
+          }
+        });
+
+        broker.on('stop', stop);
+      });
+
+      function injectScriptNodeToHead(script, document) {
+        return new Promise((resolve, reject) => {
+          const node = document.createElement('script');
+
+          // if script type is a module, inject a callback function
+          if (script.type === 'module') {
+            const id = Math.floor((1 + Math.random()) * 0x10000)
+              .toString(16)
+              .substring(1);
+            modulePromises[id] = resolve;
+            script.text = `${script.text} ;window.resolveScriptModuleById("${id}")`;
+          }
+
+          if (script.type) {
+            node.type = script.type;
+          }
+
+          if (script.src) {
+            node.src = script.src;
+            node.onload = resolve;
+            node.onerror = reject;
+          } else {
+            node.text = script.text;
+          }
+
+          document.head.appendChild(node);
+          script.remove();
+
+          return script.src || script.type || resolve(!0);
+        }).then(() => {
+          console.log('[sandbox] script injected', script.src || script.type || script.text.substr(0, 10));
+        });
+      }
+    </script>
+  </body>
+</html>
