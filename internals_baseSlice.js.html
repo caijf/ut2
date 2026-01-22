@@ -4,7 +4,7 @@
     
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.caijinfeng.com/favicon.ico" />
-    <title>isFinite.js - ut2 </title>
+    <title>internals/baseSlice.js - ut2 </title>
     
     <meta name="description" content="一个现代 JavaScript 实用工具库" />
     
@@ -60,7 +60,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">isFinite.js</h1>
+    <h1 class="page-title">internals/baseSlice.js</h1>
     
 
     
@@ -70,34 +70,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import root from './internals/root';
-import { numberIsFinite } from './internals/native';
-/**
- * 检查值是否为有限数字。
- *
- * 同 `Number.isFinite`。
- *
- * @alias module:Language.isFinite
- * @since 1.0.0
- * @param {*} value 要检查的值。
- * @returns {boolean} 如果值为有限数字，返回 `true`，否则返回 `false`。
- * @example
- *
- * isFinite(1); // true
- *
- * isFinite(Infinity); // false
- *
- * isFinite(Number.MIN_VALUE); // true
- *
- * isFinite('1'); // false
- *
- * isFinite(null); // false
- *
+            <pre class="prettyprint source linenums"><code>/**
+ * 数组切片
+ * @param array 类数组
+ * @param start 开始索引
+ * @param end 结束索引
+ * @returns 数组切片
  */
-function isFinite(value) {
-    return numberIsFinite ? numberIsFinite(value) : typeof value === 'number' &amp;&amp; root.isFinite(value);
+function baseSlice(array, start, end) {
+    let index = -1, length = array.length;
+    if (start &lt; 0) {
+        start = -start > length ? 0 : length + start;
+    }
+    end = end > length ? length : end;
+    if (end &lt; 0) {
+        end += length;
+    }
+    length = start > end ? 0 : (end - start) >>> 0;
+    start >>>= 0;
+    const result = Array(length);
+    while (++index &lt; length) {
+        result[index] = array[index + start];
+    }
+    return result;
 }
-export default isFinite;
+export default baseSlice;
 </code></pre>
         </article>
     </section>
