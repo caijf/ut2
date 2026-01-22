@@ -13,7 +13,7 @@ npm install -g serve
 运行
 
 ```bash
-serve browser
+serve browser --cors
 ```
 
 打开浏览器访问 <http://localhost:3000/>

@@ -96,7 +96,7 @@
               </tbody>
             </table>
           </section>
-          <iframe src="./sandbox.html" id="sandboxFrame" class="fixed w-0 h-0"></iframe>
+          <iframe src="./sandbox.html" id="sandboxFrame" class="fixed w-0 h-0" sandbox="allow-scripts"></iframe>
         </div>
       </div>
     </div>
@@ -267,9 +267,6 @@
         });
         view.on('stop', () => {
           broker.emit('stop');
-          if (sandboxFrame) {
-            sandboxFrame.location.reload();
-          }
         });
 
         broker.on('cycle', (event) => {
@@ -300,9 +297,7 @@
           view.updateStatusMessage('Done. Ready to run again.');
           view.updateStatus('complete');
 
-          if (sandboxFrame) {
-            sandboxFrame.location.reload();
-          }
+          broker.emit('complete');
         });
       });
 

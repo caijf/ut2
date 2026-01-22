@@ -58,7 +58,14 @@
           }
         });
 
-        broker.on('stop', stop);
+        broker.on('stop', () => {
+          stop();
+          window.location.reload();
+        });
+
+        broker.on('complete', () => {
+          window.location.reload();
+        });
       });
 
       function injectScriptNodeToHead(script, document) {
