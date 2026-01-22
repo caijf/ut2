@@ -8,8 +8,8 @@ import underscore from 'underscore';
 import _ from 'lodash';
 import ut2 from 'ut2';
 import Benchmark from 'benchmark';
-import runTest from './shared/runTest.mjs';
-import { testCases, libConfig } from './shared/testCases.mjs';
+import runTest from './browser/shared/runTest.mjs';
+import { testCases, libConfig } from './browser/shared/testCases.mjs';
 
 const _filename = typeof __filename !== 'undefined' ? __filename : import.meta.url;
 const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(_filename));

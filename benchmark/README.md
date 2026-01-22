@@ -13,10 +13,10 @@ npm install -g serve
 运行
 
 ```bash
-serve
+serve browser
 ```
 
-打开浏览器访问 <http://localhost:3000/browser/>
+打开浏览器访问 <http://localhost:3000/>
 
 ## Node.js 端
 
