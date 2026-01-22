@@ -104,7 +104,7 @@
             const oCase = document.createElement('div');
             oCase.classList.add('case', 'mb-5');
             oCase.innerHTML = `<h3 class="bg-blue-500 text-white px-5 py-1 font-bold">Test #${index + 1}</h3>
-            <iframe src="./runner.html?method=${method}&index=${index}" class="w-full border-0" height="500" id="iframe-${method}-${index}" sandbox="allow-scripts"></iframe>`;
+            <iframe src="./runner.html?method=${method}&index=${index}" class="w-full border-0" height="500" id="iframe-${method}-${index}"></iframe>`;
             oTestCases.appendChild(oCase);
             const oIframe = oCase.querySelector(`#iframe-${method}-${index}`);
             oIframe.addEventListener('load', () => {
