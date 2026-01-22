@@ -121,20 +121,22 @@
                 oBtnQuickRunAll.classList.remove('hidden');
 
                 oBtnQuickRunAll.addEventListener('click', () => {
-                  for (let i = 0; i < frames.length; i++) {
-                    const frame = frames[i];
-                    const btnQuickrun = frame.document.querySelector('#btn-quickrun');
+                  for (let i = 0; i < cases.length; i++) {
+                    const frame = document.querySelector(`#iframe-${method}-${i}`);
+                    const doc = frame.contentDocument;
+                    const btnQuickrun = doc.querySelector('#btn-quickrun');
                     if (!btnQuickrun.classList.contains('hidden')) {
-                      frame.document.querySelector('#btn-quickrun').click();
+                      doc.querySelector('#btn-quickrun').click();
                     }
                   }
                 });
                 oBtnRunAll.addEventListener('click', () => {
-                  for (let i = 0; i < frames.length; i++) {
-                    const frame = frames[i];
-                    const btnQuickrun = frame.document.querySelector('#btn-run');
+                  for (let i = 0; i < cases.length; i++) {
+                    const frame = document.querySelector(`#iframe-${method}-${i}`);
+                    const doc = frame.contentDocument;
+                    const btnQuickrun = doc.querySelector('#btn-run');
                     if (!btnQuickrun.classList.contains('hidden')) {
-                      frame.document.querySelector('#btn-run').click();
+                      doc.querySelector('#btn-run').click();
                     }
                   }
                 });
