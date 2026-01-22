@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>性能测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@1"></script>
+  </head>
+
+  <body>
+    <div class="max-w-5xl md:w-full p-5 mx-auto bg-gray-100">
+      <h1 class="text-2xl mb-2">性能测试</h1>
+      <p class="mb-2">测试 ut2 对比 lodash 和 underscore 的性能。</p>
+      <p class="mb-1 text-sm text-gray-500">工具库版本：<span id="lib-version" class="font-bold"></span></p>
+      <p class="mb-1 text-sm text-gray-500">运行环境：<span id="env-info" class="font-bold"></span></p>
+      <p class="text-sm text-gray-500">*测试结果仅供参考，不同运行环境下的性能差异可能会有所不同。</p>
+
+      <div class="flex justify-between items-center">
+        <div class="my-5">选择方法：<span id="form"></span></div>
+        <div class="flex gap-2">
+          <button id="btn-run-all" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer hidden">运行全部</button>
+          <button id="btn-quickrun-all" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer hidden">快速运行全部</button>
+        </div>
+      </div>
+
+      <div id="testCases">
+        <!-- <div class="case mb-5">
+          <h3 class="bg-blue-500 text-white px-5 py-1 font-bold mb-2">Test #1</h3>
+          <iframe src="./runner.html" class="w-full border-0" height="500"></iframe>
+        </div>
+        <div class="case mb-5">
+          <h3 class="bg-blue-500 text-white px-5 py-1 font-bold mb-2">Test #2</h3>
+          <iframe src="./runner.html" class="w-full border-0" height="500"></iframe>
+        </div> -->
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1"></script>
+    <script>
+      var underscore = _.noConflict();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ut2@1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1"></script>
+    <script type="module">
+      import PostMessageBroker from '/browser/utils/PostMessageBroker.mjs';
+      import { testCases } from '/shared/testCases.mjs';
+      const searchParams = new URLSearchParams(window.location.search);
+
+      // const categoryConfig = fastest.config;
+      const methodList = testCases.flatMap((item) => item.list);
+
+      // 添加 select
+      const oForm = document.getElementById('form');
+      const oSelect = document.createElement('select');
+      const oBtnRunAll = document.getElementById('btn-run-all');
+      const oBtnQuickRunAll = document.getElementById('btn-quickrun-all');
+
+      let isLoadedFrames = false; // 全部测试用例的 iframe 是否加载完成
+
+      function updateSelectOptions() {
+        testCases.forEach(function (item) {
+          const oOptgroup = document.createElement('optgroup');
+          oOptgroup.setAttribute('label', item.category);
+
+          item.list.forEach(function (subItem) {
+            const oOption = document.createElement('option');
+            oOption.setAttribute('value', subItem.method);
+            oOption.innerHTML = subItem.method;
+
+            oOptgroup.appendChild(oOption);
+          });
+
+          oSelect.appendChild(oOptgroup);
+        });
+      }
+
+      updateSelectOptions();
+      oSelect.value = searchParams.get('method') || methodList[0].method;
+      oForm.appendChild(oSelect);
+
+      // 各工具库版本
+      const oLibVersion = document.getElementById('lib-version');
+      oLibVersion.innerHTML = `<a href="https://caijf.github.io/ut2/" target="_blank">ut2@${ut2.VERSION}</a>, <a href="https://lodash.com/" target="_blank">lodash@${_.VERSION}</a>, <a href="https://underscorejs.org/" target="_blank">underscore@${underscore.VERSION}</a>`;
+
+      // 运行环境
+      const uaParser = new UAParser();
+      const ua = `${uaParser.getBrowser().name} ${uaParser.getBrowser().version} / ${uaParser.getOS().name} ${uaParser.getOS().version}`;
+      const oEnv = document.getElementById('env-info');
+      oEnv.innerHTML = ua;
+
+      // 渲染测试用例
+      const oTestCases = document.getElementById('testCases');
+      const renderTestCases = () => {
+        const method = oSelect.value;
+        oTestCases.innerHTML = '';
+        let loadedCount = 0; // 已加载完成的 iframe 数量
+
+        if (method) {
+          const cases = methodList.find((item) => item.method === method).cases;
+
+          cases.forEach((_, index) => {
+            const oCase = document.createElement('div');
+            oCase.classList.add('case', 'mb-5');
+            oCase.innerHTML = `<h3 class="bg-blue-500 text-white px-5 py-1 font-bold">Test #${index + 1}</h3>
+            <iframe src="./browser/runner.html?method=${method}&index=${index}" class="w-full border-0" height="500" id="iframe-${method}-${index}"></iframe>`;
+            oTestCases.appendChild(oCase);
+            const oIframe = oCase.querySelector(`#iframe-${method}-${index}`);
+            oIframe.addEventListener('load', () => {
+              const broker = new PostMessageBroker(oIframe.contentWindow);
+              broker.emit('init', {
+                method,
+                index
+              });
+
+              loadedCount++;
+              if (loadedCount === cases.length) {
+                isLoadedFrames = true;
+                oBtnRunAll.classList.remove('hidden');
+                oBtnQuickRunAll.classList.remove('hidden');
+
+                oBtnQuickRunAll.addEventListener('click', () => {
+                  for (let i = 0; i < frames.length; i++) {
+                    const frame = frames[i];
+                    const btnQuickrun = frame.document.querySelector('#btn-quickrun');
+                    if (!btnQuickrun.classList.contains('hidden')) {
+                      frame.document.querySelector('#btn-quickrun').click();
+                    }
+                  }
+                });
+                oBtnRunAll.addEventListener('click', () => {
+                  for (let i = 0; i < frames.length; i++) {
+                    const frame = frames[i];
+                    const btnQuickrun = frame.document.querySelector('#btn-run');
+                    if (!btnQuickrun.classList.contains('hidden')) {
+                      frame.document.querySelector('#btn-run').click();
+                    }
+                  }
+                });
+              }
+            });
+          });
+        }
+      };
+
+      renderTestCases();
+
+      oSelect.addEventListener('change', function () {
+        const method = oSelect.value;
+        if (!method) {
+          alert('请选择测试方法');
+          return;
+        }
+        searchParams.set('method', method);
+        window.location.search = searchParams.toString();
+        // renderTestCases();
+      });
+    </script>
+  </body>
+</html>

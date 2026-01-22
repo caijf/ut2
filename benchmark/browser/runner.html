@@ -6,12 +6,12 @@
     <title>Test runner</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/benchmark@2"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
     <style>
       .cases-table {
         border-collapse: collapse;
+        table-layout: fixed;
         width: 100%;
       }
       .cases-table th {
@@ -52,7 +52,7 @@
   <body>
     <div class="font-sans antialiased min-h-full flex flex-col bg-gray-100">
       <div class="flex-auto">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen bg-white">
+        <div class="max-w-5xl mx-auto px-4 py-5 sm:px-6 lg:px-8 min-h-screen bg-white">
           <section>
             <details>
               <summary class="font-bold">Preparation HTML</summary>
@@ -62,11 +62,11 @@
           <section>
             <h2 class="font-bold my-5">Test runner</h2>
             <div class="flex justify-between items-center mb-4">
-              <div id="status">Ready to Run.</div>
+              <div id="status"></div>
               <div class="flex gap-2">
-                <button id="btn-run" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer" style="display: none">运行</button>
-                <button id="btn-quickrun" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer" style="display: none">快速运行</button>
-                <button id="btn-stop" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer" style="display: none">停止</button>
+                <button id="btn-run" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer hidden">运行</button>
+                <button id="btn-quickrun" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer hidden">快速运行</button>
+                <button id="btn-stop" class="p-2 bg-gray-100 hover:bg-gradient-to-b from-gray-200 to-gray-100 rounded-sm shadow-md border border-gray-400 font-bold cursor-pointer hidden">停止</button>
               </div>
             </div>
 
@@ -101,9 +101,9 @@
       </div>
     </div>
     <script type="module">
-      import EmitterPro from './utils/emitter-pro.esm.js';
-      import PostMessageBroker from './utils/PostMessageBroker.mjs';
-      import { testCases } from './testCases/index.js';
+      import EmitterPro from '/browser/utils/emitter-pro.esm.js';
+      import PostMessageBroker from '/browser/utils/PostMessageBroker.mjs';
+      import { testCasesWithDom } from '/shared/testCases.mjs';
 
       class View extends EmitterPro {
         /**@type {(config: { initHTML: string; tests: { async?: boolean; code: string; title: string }[] })=>View} */
@@ -176,7 +176,7 @@
           for (let test of this.config.tests) {
             const row = this.els.casesTableBody.insertRow();
             row.insertCell().innerHTML = test.title;
-            row.insertCell().innerHTML = `<pre><code class="language-javascript">${_.escape(test.code)}</code></pre>`;
+            row.insertCell().innerHTML = `<pre class="w-full whitespace-pre-wrap break-words"><code class="language-javascript">${_.escape(test.code)}</code></pre>`;
             row.insertCell().innerHTML = 'ready';
           }
         }
@@ -221,9 +221,15 @@
 
         _updateActionButton() {
           const statusIsRunning = this.status === 'running';
-          this.els.btnRun.style.display = !statusIsRunning ? 'inline-block' : 'none';
-          this.els.btnQuickRun.style.display = !statusIsRunning ? 'inline-block' : 'none';
-          this.els.btnStop.style.display = statusIsRunning ? 'inline-block' : 'none';
+          if (!statusIsRunning) {
+            this.els.btnRun.classList.remove('hidden');
+            this.els.btnQuickRun.classList.remove('hidden');
+            this.els.btnStop.classList.add('hidden');
+          } else {
+            this.els.btnRun.classList.add('hidden');
+            this.els.btnQuickRun.classList.add('hidden');
+            this.els.btnStop.classList.remove('hidden');
+          }
         }
 
         updateStatus(newStatus) {
@@ -238,7 +244,7 @@
 
       const sandboxFrame = window.frames[0];
       const broker = new PostMessageBroker(sandboxFrame);
-      const methodList = testCases.flatMap((item) => item.list.map((subItem) => subItem));
+      const methodList = testCasesWithDom.flatMap((item) => item.list.map((subItem) => subItem));
 
       broker.on('init', (e) => {
         // console.log('e', e.data);
@@ -299,9 +305,6 @@
           }
         });
       });
-
-      // iframe 嵌入网页获取不到src的参数
-      // const searchParams = new URLSearchParams(window.location.search);
 
       //       new View({
       //         initHTML: `\x3Cscript src="https://cdn.jsdelivr.net/npm/ut2@1">\x3C/script>
