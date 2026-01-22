@@ -1,4 +1,4 @@
-# Benchmark
+# ut2 benchmark
 
 测试 `ut2` 与 `lodash`、`underscore` 性能
 
@@ -13,7 +13,7 @@ npm install -g serve
 运行
 
 ```bash
-serve browser --cors
+serve browser
 ```
 
 打开浏览器访问 <http://localhost:3000/>

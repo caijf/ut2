@@ -2,7 +2,7 @@
 
 一个现代 JavaScript 实用工具库。[点击查看在线文档]。
 
-[![npm][npm]][npm-url] [![Build and Deploy Docs](https://github.com/caijf/ut2/actions/workflows/ci.yml/badge.svg)](https://github.com/caijf/ut2/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/caijf/ut2/branch/main/graph/badge.svg?token=XKTS0H7085)](https://codecov.io/gh/caijf/ut2) [![benchmark](https://img.shields.io/badge/benchmark-online-green)](https://s57jpy.csb.app/) ![npm](https://img.shields.io/npm/dm/ut2) ![GitHub](https://img.shields.io/github/license/caijf/ut2.svg)
+[![npm][npm]][npm-url] [![Build and Deploy Docs](https://github.com/caijf/ut2/actions/workflows/ci.yml/badge.svg)](https://github.com/caijf/ut2/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/caijf/ut2/branch/main/graph/badge.svg?token=XKTS0H7085)](https://codecov.io/gh/caijf/ut2) [![benchmark](https://img.shields.io/badge/benchmark-online-green)](https://githubbox.com/caijf/ut2/tree/main/benchmark/browser) ![npm](https://img.shields.io/npm/dm/ut2) ![GitHub](https://img.shields.io/github/license/caijf/ut2.svg)
 
 ## 比较
 
@@ -40,7 +40,10 @@ pnpm add ut2
 
 如果你的项目使用的是原生方式开发，可以在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `ut2` 。
 
-`npm` 包的 `ut2/dist` 目录下提供了 `UMD` 包 `ut2.js` 以及 `ut2.min.js`。你也可以通过 [UNPKG](https://unpkg.com/browse/ut2/dist/) 下载到本地进行使用。或者直接使用 [UNPKG 线上版本](https://unpkg.com/ut2/dist/ut2.min.js)<sup> _注意版本_ </sup>。
+`npm` 包的 [ut2/dist](https://www.npmjs.com/package/ut2?activeTab=code) 目录下提供了 `UMD` 包 `ut2.js` 以及 `ut2.min.js`。你也可以直接使用`cdn`：
+
+- jsdelivr: <https://cdn.jsdelivr.net/npm/ut2@1>
+- unpkg: <https://unpkg.com/ut2@1>
 
 ### 示例
 
