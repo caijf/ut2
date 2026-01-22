@@ -1,15 +1,16 @@
+import baseSlice from './internals/baseSlice';
 import { mathCeil } from './internals/native';
-import isArray from './isArray';
-import toLength from './toLength';
+import isNil from './isNil';
+import toInteger from './toInteger';
 
 /**
- * 将数组拆分成多个 `size` 长度的区块，并将这些区块组成一个新数组。
+ * 将类数组拆分成多个 `size` 长度的区块，并将这些区块组成一个新数组。
  *
  * 如果数组无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
  *
  * @alias module:Array.chunk
  * @since 1.0.0
- * @param {Array} array 要处理的数组。
+ * @param {ArrayLike} array 要处理的类数组。
  * @param {number} [size=1] 每个数组区块的长度。默认 `1`。
  * @returns {Array} 拆分区块的新数组。
  * @example
@@ -21,19 +22,19 @@ import toLength from './toLength';
  * chunk(array, 3); // [['a', 'b', 'c'], ['d']]
  *
  */
-function chunk<T>(array: T[], size = 1) {
-  size = toLength(size);
-  if (!isArray(array) || size < 1) {
+function chunk<T>(array: ArrayLike<T>, size = 1) {
+  size = toInteger(size);
+  const length = isNil(array) ? 0 : array.length;
+  if (!length || size < 1) {
     return [];
   }
 
-  const length = array.length;
   const result: T[][] = Array(mathCeil(length / size));
   let resIndex = 0,
     index = 0;
 
   while (index < length) {
-    result[resIndex++] = array.slice(index, (index += size));
+    result[resIndex++] = baseSlice(array, index, (index += size));
   }
 
   return result;

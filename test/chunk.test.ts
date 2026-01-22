@@ -27,6 +27,28 @@ describe('chunk', () => {
     expect(chunk(array, 0)).toEqual([]);
   });
 
+  it('类数组', () => {
+    const str = 'abcd';
+    expect(chunk(str)).toEqual([['a'], ['b'], ['c'], ['d']]);
+    expect(chunk(str, 2)).toEqual([
+      ['a', 'b'],
+      ['c', 'd']
+    ]);
+
+    const arrayLike = {
+      0: 'a',
+      1: 'b',
+      2: 'c',
+      3: 'd',
+      length: 4
+    };
+    expect(chunk(arrayLike)).toEqual([['a'], ['b'], ['c'], ['d']]);
+    expect(chunk(arrayLike, 2)).toEqual([
+      ['a', 'b'],
+      ['c', 'd']
+    ]);
+  });
+
   it('错误的参数', () => {
     const errorSizeValues = [NaN, {}, 0];
     errorSizeValues.forEach((item) => {
