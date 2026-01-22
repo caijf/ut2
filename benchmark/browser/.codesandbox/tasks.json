@@ -1,0 +1,14 @@
+{
+  "setupTasks": ["pnpm install"],
+  "tasks": {
+    "install-dependencies": {
+      "name": "Install Dependencies",
+      "command": "pnpm install"
+    },
+    "start-app": {
+      "name": "Run Dev Server",
+      "command": "pnpm start",
+      "runAtStart": true
+    }
+  }
+}
