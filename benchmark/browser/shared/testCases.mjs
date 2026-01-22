@@ -40,6 +40,9 @@ export const testCases = [
         initHTML: preCodeScriptWithFoo,
         cases: [
           {
+            params: `'abcd', 1`
+          },
+          {
             params: `['a', 'b', 'c', 'd'], 2`
           },
           {

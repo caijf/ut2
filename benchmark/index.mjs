@@ -63,7 +63,8 @@ const asyncRunTest = async (tests) => {
 };
 
 const { version, platform, arch, argv } = process;
-console.log('node:', version, ' platform:', platform, ' arch: ', arch);
+console.log(chalk.bold.italic(`\nnode: ${version}, platform: ${platform}, arch: ${arch}\n`));
+console.log(chalk.bold.italic(`ut2: ${ut2.VERSION}, lodash: ${_.VERSION}, underscore: ${underscore.VERSION}\n`));
 
 /**
  * 支持命令行参数过滤
@@ -75,7 +76,7 @@ console.log('node:', version, ' platform:', platform, ' arch: ', arch);
  */
 const { category, method } = minimist(argv.slice(2));
 
-console.log(`category: ${category || 'all'}, method: ${method || 'all'}`);
+console.log(chalk.inverse(`category: ${category || 'all'}, method: ${method || 'all'}`));
 console.log('\n---');
 
 const methodList = testCases
