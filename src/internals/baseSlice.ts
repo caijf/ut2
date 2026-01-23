@@ -1,5 +1,7 @@
 /**
  * 数组切片
+ *
+ * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_precedence#%E6%B1%87%E6%80%BB%E8%A1%A8 运算符优先级}
  * @param array 类数组
  * @param start 开始索引
  * @param end 结束索引

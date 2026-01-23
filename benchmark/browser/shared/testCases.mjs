@@ -23,11 +23,11 @@ export const libConfig = [
     name: 'ut2'
   },
   {
-    name: 'underscore'
-  },
-  {
     name: 'lodash',
     alias: '_'
+  },
+  {
+    name: 'underscore'
   }
 ];
 

@@ -81,7 +81,8 @@ function runTest(data) {
         slowest: id === slowest?.id,
         status: error ? 'error' : 'finished',
         error,
-        percent: percentFormatted
+        percent: percentFormatted,
+        samples: stats.sample.length
       };
     });
 
