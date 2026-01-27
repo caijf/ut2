@@ -49,6 +49,8 @@ export type CollectionObject<T extends object> = WithNullable<T>;
  * max、min方法
  */
 export interface ExtremumFunction {
-  <T extends object>(array: WithNullable<T[]>, iteratee?: ArrayIterator<T, any> | keyof T): T | undefined;
-  <T>(array: WithNullable<T[]>, iteratee?: ArrayIterator<T, any> | PropertyName): T | undefined;
+  <T extends object>(array: T[], iteratee?: ArrayIterator<T, any> | keyof T): T;
+  <T extends object>(array: WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): T | undefined;
+  <T>(array: T[], iteratee?: ArrayIterator<T, any>): T;
+  <T>(array: WithNullable<T[]>, iteratee?: ArrayIterator<T, any>): T | undefined;
 }
