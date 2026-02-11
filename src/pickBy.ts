@@ -1,5 +1,5 @@
 import allKeysIn from './allKeysIn';
-import { stubFlase } from './internals/helpers';
+import { stubFalse } from './internals/helpers';
 import { ObjectPredicate, WithNullable } from './internals/types';
 
 /**
@@ -24,7 +24,7 @@ import { ObjectPredicate, WithNullable } from './internals/types';
  * pickBy(obj, (value) => value); // { name: "jeff", age: 18 }
  *
  */
-function pickBy<T extends object>(object: WithNullable<T>, predicate: ObjectPredicate<T> = stubFlase) {
+function pickBy<T extends object>(object: WithNullable<T>, predicate: ObjectPredicate<T> = stubFalse) {
   const result: Partial<T> = {};
 
   const keys = allKeysIn(object) as (keyof T)[];

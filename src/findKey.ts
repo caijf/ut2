@@ -1,5 +1,5 @@
 import forEach from './forEach';
-import { stubFlase } from './internals/helpers';
+import { stubFalse } from './internals/helpers';
 import { MapKey, MapPredicate, ObjectPredicate, WithNullable } from './internals/types';
 import isMap from './isMap';
 import isObject from './isObject';
@@ -26,7 +26,7 @@ interface FindKey {
  * findKey(map, isNumber); // 'baz'
  * findKey(map, v => typeof v === 'bar'); // 'foo'
  */
-const findKey: FindKey = (obj: object | Map<any, any>, predicate: MapPredicate<any> | ObjectPredicate<any> = stubFlase) => {
+const findKey: FindKey = (obj: object | Map<any, any>, predicate: MapPredicate<any> | ObjectPredicate<any> = stubFalse) => {
   let key;
 
   if (isMap(obj)) {

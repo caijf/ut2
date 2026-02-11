@@ -37,5 +37,5 @@ export function toSource(func: any) {
   return '';
 }
 
-export const stubFlase = () => false;
+export const stubFalse = () => false;
 export const stubTrue = () => true;
