@@ -32,7 +32,7 @@ import isArray from './isArray';
  * uniq([-0, 0], undefined, true); // [-0, 0]
  *
  */
-function uniq<T>(array: T[], iteratee?: IterateeParam<T>, strickCheck = false) {
+function uniq<T>(array: T[], iteratee?: IterateeParam<T>, strictCheck = false) {
   if (!isArray(array)) {
     return [];
   }
@@ -40,7 +40,7 @@ function uniq<T>(array: T[], iteratee?: IterateeParam<T>, strickCheck = false) {
   const internalIteratee = createIteratee<T>(iteratee);
   return array.filter((value, index, arr) => {
     const current = internalIteratee(value);
-    return arr.findIndex((item) => eq(internalIteratee(item), current, strickCheck)) === index;
+    return arr.findIndex((item) => eq(internalIteratee(item), current, strictCheck)) === index;
   });
 }
 

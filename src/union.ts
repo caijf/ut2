@@ -32,10 +32,10 @@ import uniq from './uniq';
  * union([-0, 0], [-0], undefined, true); // [-0, 0]
  *
  */
-function union<T>(array: T[], other: T[] = [], iteratee?: IterateeParam<T>, strickCheck = false) {
+function union<T>(array: T[], other: T[] = [], iteratee?: IterateeParam<T>, strictCheck = false) {
   array = isArray(array) ? array : [];
   other = isArray(other) ? other : [];
-  return uniq(array.concat(other), iteratee, strickCheck);
+  return uniq(array.concat(other), iteratee, strictCheck);
 }
 
 export default union;

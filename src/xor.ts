@@ -37,18 +37,18 @@ import uniq from './uniq';
  * xor([-0, 0],[0], undefined, true); // [-0]
  *
  */
-function xor<T>(array: T[], other: T[] = [], iteratee: IterateeParam<T> = identity, strickCheck = false) {
+function xor<T>(array: T[], other: T[] = [], iteratee: IterateeParam<T> = identity, strictCheck = false) {
   if (!isArray(array) && !isArray(other)) {
     return [];
   }
   const internalIteratee = createIteratee<T>(iteratee);
   if (!isArray(other)) {
-    return uniq(array, internalIteratee, strickCheck);
+    return uniq(array, internalIteratee, strictCheck);
   }
   if (!isArray(array)) {
-    return uniq(other, internalIteratee, strickCheck);
+    return uniq(other, internalIteratee, strictCheck);
   }
-  return difference(union(array, other, internalIteratee, strickCheck), intersection(array, other, internalIteratee, strickCheck), internalIteratee, strickCheck);
+  return difference(union(array, other, internalIteratee, strictCheck), intersection(array, other, internalIteratee, strictCheck), internalIteratee, strictCheck);
 }
 
 export default xor;

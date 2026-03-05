@@ -31,7 +31,7 @@ describe('intersection', () => {
     expect(intersection([obj, { a: 1 }, ''], [{ a: 1 }], (item) => (typeof item === 'object' ? item.a : item))).toEqual([obj]);
   });
 
-  it('strickCheck', () => {
+  it('strictCheck', () => {
     expect(intersection([-0, 0, +0], [0], undefined, true)).toEqual([0]);
     expect(intersection([-0, 0, +0], [-0], undefined, true)).toEqual([-0]);
     expect(intersection([-0, 0, +0], [+0], undefined, true)).toEqual([0]);
