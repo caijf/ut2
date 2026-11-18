@@ -279,4 +279,19 @@ describe('merge', () => {
     expect(merge(undefined, { a: true })).toEqual({ a: true });
     expect(merge({ a: true }, undefined)).toEqual({ a: true });
   });
+
+  it('应跳过可能造成原型污染的危险键', () => {
+    const result1 = merge({}, JSON.parse('{"__proto__":{"polluted":1}}'));
+    expect(result1).toEqual({});
+    expect(({} as any).polluted).toBeUndefined();
+
+    const result2 = merge({}, JSON.parse('{"a":{"__proto__":{"polluted":2}}}'));
+    expect(result2).toEqual({ a: {} });
+    expect(({} as any).polluted).toBeUndefined();
+
+    const result3 = merge({}, JSON.parse('{"constructor":{"prototype":{"polluted":3}}}'));
+    expect(result3).toEqual({});
+    expect(({} as any).polluted).toBeUndefined();
+    expect(Object.prototype).not.toHaveProperty('polluted');
+  });
 });

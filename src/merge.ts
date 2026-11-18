@@ -3,6 +3,7 @@ import isObject from './isObject';
 import isObjectLike from './isObjectLike';
 import isPlainObject from './isPlainObject';
 import { nativeUndefined } from './internals/native';
+import isUnsafeKey from './internals/unsafeKey';
 import allKeys from './allKeys';
 
 type GetKeysMethod = <T extends object>(object: T) => (symbol | string)[];
@@ -19,6 +20,10 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
   const hasCustomizer = typeof customizer === 'function';
 
   keys.forEach((key) => {
+    // 跳过可能造成原型污染的危险键，如 JSON.parse('{"__proto__":{}}') 产生的自有键
+    if (isUnsafeKey(key)) {
+      return;
+    }
     // @ts-ignore
     const srcValue = source[key];
     const srcIsObj = isObject(srcValue);
@@ -62,6 +67,8 @@ function baseMerge<TObject, TSource>(object: TObject, source: TSource, getKeys: 
  * 如果不需要合并数组，第三个参数传入 `merge.NOT_MERGE_ARRAYS` 。
  *
  * 如果需要合并继承的属性，第四个参数传入 {@link https://caijf.github.io/ut2/module-Object.html#.allKeys allKeys} 方法， `merge(object, source, undefined, allKeys)`。
+ *
+ * 出于安全考虑，来源对象中键为 `__proto__`、`constructor` 的属性会被跳过（防止原型污染）。
  *
  * @alias module:Object.merge
  * @since 1.0.0

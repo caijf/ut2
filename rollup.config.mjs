@@ -4,7 +4,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
-import pkg from './package.json' assert { type: 'json' };
+import { createRequire } from 'module';
+
+const pkg = createRequire(import.meta.url)('./package.json');
 
 const globalName = pkg.name;
 const outputDivConfig = {

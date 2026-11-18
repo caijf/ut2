@@ -59,14 +59,27 @@ describe('unset', () => {
     expect(unset(undefined, ['a', 'b'])).toBe(true);
   });
 
-  test('删除非普通对象的路径', () => {
+  test('不应删除原型链上的属性', () => {
     forEach(['constructor.prototype.a', ['constructor', 'prototype', 'a']], (v) => {
       // @ts-ignore
       Number.prototype.a = 1;
       expect('a' in Number.prototype).toBe(true);
-      expect(unset(0, v)).toBe(true);
-      expect('a' in Number.prototype).toBe(false);
+      expect(unset(0, v)).toBe(false);
+      expect('a' in Number.prototype).toBe(true);
+      // @ts-ignore
+      delete Number.prototype.a;
     });
+  });
+
+  test('不应删除 `__proto__` 上的属性', () => {
+    const obj = {};
+    const hasOwnProperty = Object.prototype.hasOwnProperty;
+    expect(unset(obj, '__proto__.hasOwnProperty')).toBe(false);
+    expect(Object.prototype.hasOwnProperty).toBe(hasOwnProperty);
+    expect(unset(obj, ['__proto__', 'hasOwnProperty'])).toBe(false);
+    expect(Object.prototype.hasOwnProperty).toBe(hasOwnProperty);
+    expect(unset(obj, 'a.__proto__.b')).toBe(false);
+    expect(obj).toEqual({});
   });
 
   test('不可配置属性返回`false`', () => {

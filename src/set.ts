@@ -1,6 +1,7 @@
 import isIndex from './internals/isIndex';
 import { nativeUndefined } from './internals/native';
 import { Many, TPath } from './internals/types';
+import isUnsafeKey from './internals/unsafeKey';
 import isObject from './isObject';
 import toPath from './toPath';
 
@@ -25,6 +26,12 @@ type TCustomizer = (objValue: any, key: TPath, nested: any) => any;
  * set(obj, ['x', '0', 'y'], 2);
  * console.log(obj); // { a: { b: 1 }, x: [{ y: 2 }] }
  *
+ * // 出于安全考虑，路径中包含 `__proto__`、`constructor` 时不会做任何赋值（防止原型污染），直接返回 `object` 。
+ * const obj2 = {};
+ * set(obj2, '__proto__', {});
+ * console.log(obj2); // {}
+ * console.log(obj2.__proto__); // {}
+ *
  */
 function set<T extends object>(object: T, path: Many<TPath>, value: any, customizer?: TCustomizer) {
   if (!isObject(object)) {
@@ -34,6 +41,13 @@ function set<T extends object>(object: T, path: Many<TPath>, value: any, customi
   const paths = toPath(path, object);
   const length = paths.length;
   const lastIndex = length - 1;
+
+  // 先校验整个路径，避免不安全的路径产生部分写入
+  for (let i = 0; i < length; i++) {
+    if (isUnsafeKey(paths[i])) {
+      return object;
+    }
+  }
 
   let index = -1;
   let nested = object as any;

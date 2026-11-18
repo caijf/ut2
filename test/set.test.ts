@@ -141,4 +141,34 @@ describe('set', () => {
     // @ts-ignore
     expect(obj.a).toBe('a');
   });
+
+  test('应忽略可能造成原型污染的危险路径', () => {
+    const obj = {};
+    expect(set(obj, '__proto__.polluted', 'a')).toBe(obj);
+    expect(obj).toEqual({});
+    expect(({} as any).polluted).toBeUndefined();
+
+    expect(set(obj, ['a', '__proto__', 'polluted'], 'b')).toBe(obj);
+    expect(obj).toEqual({});
+
+    expect(set(obj, 'constructor.prototype.polluted', 'c')).toBe(obj);
+    expect(obj).toEqual({});
+    expect(({} as any).polluted).toBeUndefined();
+  });
+
+  test('危险路径不应产生部分写入', () => {
+    const obj = {};
+    set(obj, 'a.b.__proto__.c.d', 1);
+    expect(obj).toEqual({});
+  });
+
+  test('应允许设置 `prototype` 作为普通路径片段', () => {
+    const fn = function () {
+      /* empty */
+    };
+    set(fn, 'prototype.a', 1);
+    expect(fn.prototype).toEqual({ a: 1 });
+    // @ts-ignore
+    delete fn.prototype.a;
+  });
 });
