@@ -1,5 +1,6 @@
 import forEach from './forEach';
 import identity from './identity';
+import { nativeUndefined } from './internals/native';
 import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './internals/types';
 
 interface Every {
@@ -38,6 +39,7 @@ const every: Every = function (collection: any, predicate: any = identity) {
       result = false;
       return false;
     }
+    return nativeUndefined;
   });
   return result;
 };

@@ -1,5 +1,6 @@
 import forEach from './forEach';
 import identity from './identity';
+import { nativeUndefined } from './internals/native';
 import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './internals/types';
 
 interface Find {
@@ -36,6 +37,7 @@ const find: Find = function (collection: any, predicate: any = identity) {
       result = item;
       return false;
     }
+    return nativeUndefined;
   });
   return result;
 };

@@ -27,6 +27,7 @@ describe('isMatch', () => {
       if (typeof objValue === 'string' && typeof srcValue === 'string') {
         return true;
       }
+      return undefined;
     }
     isMatch({ foo: 'a' }, { foo: 'b' }, customizer); // true
     isMatch({ foo: ['a'] }, { foo: ['b'] }, customizer); // true
@@ -188,6 +189,7 @@ describe('isMatch', () => {
       if (typeof objValue === 'object' && typeof srcValue === 'object' && 'a' in objValue && 'a' in srcValue) {
         return true;
       }
+      return undefined;
     }
     expect(isMatch({ a: 'a' }, { a: 'a' }, customizer)).toBe(true);
     expect(isMatch({ a: 'a' }, { a: 1 }, customizer)).toBe(true);

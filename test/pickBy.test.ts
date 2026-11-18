@@ -44,8 +44,8 @@ describe('pickBy', () => {
     );
 
     expect(pickBy(o)).toEqual({});
-    expect(pickBy(o, (v, k) => k === 'age')).toEqual({ age: 18 });
-    expect(pickBy(o, (v, k) => k === 'name')).toEqual({});
+    expect(pickBy(o, (_v, k) => k === 'age')).toEqual({ age: 18 });
+    expect(pickBy(o, (_v, k) => k === 'name')).toEqual({});
   });
 
   it('错误参数', () => {

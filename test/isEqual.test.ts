@@ -17,6 +17,7 @@ describe('isEqual', () => {
       if (typeof value === 'string' && typeof other === 'string') {
         return true;
       }
+      return undefined;
     }
     isEqual('a', 'b', customizer); // true
     isEqual(['a'], ['b'], customizer); // true
@@ -646,6 +647,7 @@ describe('isEqual', () => {
         if (typeof a !== 'object') {
           return a === b;
         }
+        return undefined;
       })
     ).toBe(false);
   });

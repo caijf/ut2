@@ -76,6 +76,7 @@ function baseIsMatch(object: Record<string | symbol, any>, source: Record<string
       if (isDeepComparable(objValue, srcValue)) {
         return baseIsMatch(objValue, srcValue, customizer, strictCheck, objStack, srcStack);
       }
+      return nativeUndefined;
     },
     strictCheck,
     objStack,

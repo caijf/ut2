@@ -56,7 +56,7 @@ describe('some', () => {
     expect(fn).toHaveBeenCalledTimes(500);
 
     const obj = { a: 1, b: 2, c: 3 };
-    const objFn = jest.fn((value: number, key: string) => {
+    const objFn = jest.fn((_value: number, key: string) => {
       return key === 'b';
     });
     some(obj, objFn);

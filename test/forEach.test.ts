@@ -73,15 +73,17 @@ describe('forEach', () => {
       if (num === 499) {
         return false;
       }
+      return undefined;
     });
     forEach(arr, fn);
     expect(fn).toHaveBeenCalledTimes(500);
 
     const obj = { a: 1, b: 2, c: 3 };
-    const objFn = jest.fn((value: number, key: string) => {
+    const objFn = jest.fn((_value: number, key: string) => {
       if (key === 'b') {
         return false;
       }
+      return undefined;
     });
     forEach(obj, objFn);
     expect(objFn).toHaveBeenCalledTimes(2);

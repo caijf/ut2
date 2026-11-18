@@ -43,7 +43,7 @@ describe('omitBy', () => {
     );
 
     expect(omitBy(o)).toEqual({ age: 18 });
-    expect(omitBy(o, (v, k) => k === 'age')).toEqual({});
-    expect(omitBy(o, (v, k) => k === 'name')).toEqual({ age: 18 });
+    expect(omitBy(o, (_v, k) => k === 'age')).toEqual({});
+    expect(omitBy(o, (_v, k) => k === 'name')).toEqual({ age: 18 });
   });
 });

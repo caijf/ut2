@@ -46,15 +46,17 @@ describe('filter', () => {
       if (num === 499) {
         return false;
       }
+      return undefined;
     });
     filter(arr, fn);
     expect(fn).toHaveBeenCalledTimes(1000);
 
     const obj = { a: 1, b: 2, c: 3 };
-    const objFn = jest.fn((value: number, key: string) => {
+    const objFn = jest.fn((_value: number, key: string) => {
       if (key === 'b') {
         return false;
       }
+      return undefined;
     });
     filter(obj, objFn);
     expect(objFn).toHaveBeenCalledTimes(3);

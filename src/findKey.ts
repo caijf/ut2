@@ -1,5 +1,6 @@
 import forEach from './forEach';
 import { stubFalse } from './internals/helpers';
+import { nativeUndefined } from './internals/native';
 import { MapKey, MapPredicate, ObjectPredicate, WithNullable } from './internals/types';
 import isMap from './isMap';
 import isObject from './isObject';
@@ -42,6 +43,7 @@ const findKey: FindKey = (obj: object | Map<any, any>, predicate: MapPredicate<a
         key = k;
         return false;
       }
+      return nativeUndefined;
     });
   }
 

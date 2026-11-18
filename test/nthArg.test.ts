@@ -11,12 +11,12 @@ describe('nthArg', () => {
     const func1 = nthArg(1);
     expect(func1(...args)).toBe('b');
 
-    args.forEach((item, i) => {
+    args.forEach((_item, i) => {
       const func = nthArg(i);
       expect(func(...args)).toBe(args[i]);
     });
 
-    falsy.forEach((item, i) => {
+    falsy.forEach((_item, i) => {
       const func = nthArg(i);
       expect(func(...falsy)).toBe(falsy[i]);
     });

@@ -116,7 +116,7 @@ describe('reduce', () => {
     const values: any[] = [];
     const result = reduce(
       'abc',
-      (accumulator, item, i) => {
+      (_accumulator, item, i) => {
         keys.push(i);
         values.push(item);
         return item;

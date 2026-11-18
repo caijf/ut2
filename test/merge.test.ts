@@ -28,10 +28,11 @@ describe('merge', () => {
 
     // 自定义方法，数组不合并
     expect(
-      merge(object, other, (objValue, srcValue) => {
+      merge(object, other, (_objValue, srcValue) => {
         if (isArray(srcValue)) {
           return srcValue;
         }
+        return undefined;
       })
     ).toEqual({
       a: [{ c: 3 }, { e: 5 }]

@@ -44,7 +44,7 @@ describe('partial', () => {
     expect(fn(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)).toBe(12);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const fn1 = partial(function (a: any, b: any, c: any) {});
+    const fn1 = partial(function (_a: any, _b: any, _c: any) {});
     expect(fn1.length).toBe(0);
   });
 

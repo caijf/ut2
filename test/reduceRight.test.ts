@@ -116,7 +116,7 @@ describe('reduceRight', () => {
     const values: any[] = [];
     const result = reduceRight(
       'abc',
-      (accumulator, item, i) => {
+      (_accumulator, item, i) => {
         keys.push(i);
         values.push(item);
         return item;

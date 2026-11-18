@@ -1,5 +1,6 @@
 import forEach from './forEach';
 import identity from './identity';
+import { nativeUndefined } from './internals/native';
 import { ArrayIterator, ArrayLikeIterator, ObjectIterator, StringIterator, WithNullable } from './internals/types';
 
 interface Some {
@@ -36,6 +37,7 @@ const some: Some = function (collection: any, predicate: any = identity) {
       result = true;
       return false;
     }
+    return nativeUndefined;
   });
   return result;
 };

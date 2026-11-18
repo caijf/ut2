@@ -2,7 +2,7 @@ import { curry, partial } from '../src';
 
 describe('curry', () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function fn(a: number, b: number, c: number, d: number) {
+  function fn(_a: number, _b: number, _c: number, _d: number) {
     // eslint-disable-next-line prefer-rest-params
     return Array.prototype.slice.call(arguments);
   }

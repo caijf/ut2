@@ -29,7 +29,7 @@ describe('invert', () => {
     const obj = { foo: 'bar', baz: 42 };
     expect(invert(obj, isString)).toEqual({ bar: 'foo', baz: 42 });
     expect(invert(obj, isNumber)).toEqual({ foo: 'bar', 42: 'baz' });
-    expect(invert(obj, (v, k) => k === 'foo')).toEqual({ bar: 'foo', baz: 42 });
+    expect(invert(obj, (_v, k) => k === 'foo')).toEqual({ bar: 'foo', baz: 42 });
   });
 
   it('值为特殊值', () => {
