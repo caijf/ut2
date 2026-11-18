@@ -77,4 +77,10 @@ describe('countBy', () => {
       expect(countBy(item)).toEqual({});
     });
   });
+
+  // https://github.com/caijf/ut2/issues/1
+  it('键为 Object.prototype 上的属性', () => {
+    expect(countBy(['constructor', 'js', 'toString', 'js'])).toEqual({ constructor: 1, js: 2, toString: 1 });
+    expect(countBy([{ t: 'constructor' }, { t: 'x' }], (o) => o.t)).toEqual({ constructor: 1, x: 1 });
+  });
 });

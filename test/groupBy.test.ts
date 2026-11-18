@@ -93,4 +93,13 @@ describe('groupBy', () => {
       expect(groupBy(item)).toEqual({});
     });
   });
+
+  // https://github.com/caijf/ut2/issues/1
+  it('键为 Object.prototype 上的属性', () => {
+    expect(groupBy(['constructor', 'js', 'toString', 'js'])).toEqual({
+      constructor: ['constructor'],
+      js: ['js', 'js'],
+      toString: ['toString']
+    });
+  });
 });

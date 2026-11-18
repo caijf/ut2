@@ -1,5 +1,6 @@
 import forEach from './forEach';
 import createIteratee from './internals/createIteratee';
+import { objectProtoHasOwnProperty } from './internals/native';
 import { ArrayLikeIterator, CollectionList, CollectionObject, ObjectIterator, PropertyName } from './internals/types';
 
 interface CountBy {
@@ -38,7 +39,7 @@ const countBy: CountBy = function <T>(collection: any, iteratee?: any) {
   const internalIteratee = createIteratee<T>(iteratee);
   forEach(collection, (item, index, arr) => {
     const key = internalIteratee(item, index, arr);
-    if (key in result) {
+    if (objectProtoHasOwnProperty.call(result, key)) {
       ++result[key];
     } else {
       result[key] = 1;

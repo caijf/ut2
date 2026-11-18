@@ -1,6 +1,7 @@
 import forEach from './forEach';
 import identity from './identity';
 import createIteratee from './internals/createIteratee';
+import { objectProtoHasOwnProperty } from './internals/native';
 import { ArrayLikeIterator, CollectionList, CollectionObject, PropertyName, ObjectIterator } from './internals/types';
 
 interface GroupBy {
@@ -39,7 +40,7 @@ const groupBy: GroupBy = function <T>(collection: any, iteratee: any = identity)
   const internalIteratee = createIteratee<T>(iteratee);
   forEach(collection, (item, index, arr) => {
     const key = internalIteratee(item, index, arr);
-    if (key in result) {
+    if (objectProtoHasOwnProperty.call(result, key)) {
       result[key].push(item);
     } else {
       result[key] = [item];
