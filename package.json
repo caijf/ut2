@@ -33,7 +33,9 @@
     "doc:open": "open ./docs/index.html",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prettier": "prettier -w **/*",
+    "sizecheck": "size-limit",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check .",
     "commit": "cz",
     "prepublishOnly": "npm test && npm run build",
     "tsc": "tsc --noEmit",
@@ -68,6 +70,25 @@
       "path": "@commitlint/cz-commitlint"
     }
   },
+  "size-limit": [
+    {
+      "name": "umd minified",
+      "path": "dist/ut2.min.js",
+      "limit": "12 kB"
+    },
+    {
+      "name": "esm full import",
+      "path": "es/index.js",
+      "import": "*",
+      "limit": "12 kB"
+    },
+    {
+      "name": "tree-shaking sample",
+      "path": "es/index.js",
+      "import": "{ chunk, get, isEqual }",
+      "limit": "3 kB"
+    }
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -81,6 +102,7 @@
     "@rollup/plugin-replace": "^6.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@size-limit/preset-small-lib": "^14.3.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.19.30",
     "benchmark": "^2.1.4",
@@ -98,6 +120,7 @@
     "lodash": "^4.17.23",
     "prettier": "^3.8.1",
     "rollup": "^4.57.0",
+    "size-limit": "^14.3.0",
     "ts-jest": "^29.4.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.54.0",

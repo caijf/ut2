@@ -25,4 +25,5 @@ yarn-error.log
 /es
 /lib
 /coverage
-emitter-pro.esm.js
+pnpm-lock.yaml
+benchmark/browser/utils/emitter-pro.esm.js
