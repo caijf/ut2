@@ -9,6 +9,18 @@
   "browser": "dist/ut2.min.js",
   "sideEffects": false,
   "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.js",
+      "default": "./lib/index.js"
+    },
+    "./es/*": "./es/*",
+    "./lib/*": "./lib/*",
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -20,7 +32,7 @@
     "doc": "rm -rf docs && rm -rf docs-src && tsc -p tsconfig.build.json -t esnext --outDir docs-src && jsdoc -c conf.json && rm -rf docs-src",
     "doc:open": "open ./docs/index.html",
     "lint": "eslint .",
-    "lint:fix": "npm run lint:js -- --fix",
+    "lint:fix": "eslint . --fix",
     "prettier": "prettier -w **/*",
     "commit": "cz",
     "prepublishOnly": "npm test && npm run build",
